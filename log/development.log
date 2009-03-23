@@ -906,3 +906,567 @@ DEPRECATION WARNING: ActiveRecord::Errors.default_error_messages has been deprec
 DEPRECATION WARNING: ActiveRecord::Errors.default_error_messages has been deprecated. Please use I18n.translate('activerecord.errors.messages').. (called from default_error_messages at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/validations.rb:24)
 DEPRECATION WARNING: ActiveRecord::Errors.default_error_messages has been deprecated. Please use I18n.translate('activerecord.errors.messages').. (called from default_error_messages at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/validations.rb:24)
 DEPRECATION WARNING: ActiveRecord::Errors.default_error_messages has been deprecated. Please use I18n.translate('activerecord.errors.messages').. (called from default_error_messages at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/validations.rb:24)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 15:37:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 15:37:19) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.3ms)
+
+ActionView::TemplateError (index 4137 out of string) on line #9 of app/views/layouts/_sidebar.html.erb:
+6:     <%= render( :partial => 'layouts/member_navigation' )%>	
+7: 	<% else %>
+8: 		<ul>
+9: 			<li><%= link_to_unless_current( t'sessions.login', login_path )%></li>
+10: 		  <li><%= link_to_unless_current( t'help.title', help_path )%></li>
+11: 		</ul>
+12: 	<% end %>
+
+    app/views/layouts/_sidebar.html.erb:9
+    app/views/layouts/application.html.erb:17
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (46.6ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 15:39:08) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 2ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 15:39:08) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.1ms)
+Rendered layouts/_sidebar (1.5ms)
+Rendered layouts/_bottom_navi (0.7ms)
+Rendered layouts/_main (46.8ms)
+Rendered layouts/_footer (0.4ms)
+Completed in 63ms (View: 61, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 15:40:02) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 2ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 15:40:02) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.1ms)
+Rendered layouts/_sidebar (0.4ms)
+Rendered layouts/_bottom_navi (0.1ms)
+Rendered layouts/_main (0.4ms)
+Rendered layouts/_footer (0.1ms)
+Completed in 9ms (View: 6, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 15:49:43) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 2ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 15:49:43) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.1ms)
+Rendered layouts/_sidebar (0.4ms)
+Rendered layouts/_bottom_navi (0.1ms)
+Rendered layouts/_main (0.4ms)
+Rendered layouts/_footer (0.1ms)
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 15:49:57) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 15:49:57) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.3ms)
+Rendered layouts/_sidebar (1.0ms)
+Rendered layouts/_bottom_navi (0.6ms)
+Rendered layouts/_main (3.1ms)
+Rendered layouts/_footer (0.4ms)
+Completed in 67ms (View: 65, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 15:50:42) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 2ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 15:50:42) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.1ms)
+Rendered layouts/_sidebar (0.4ms)
+Rendered layouts/_bottom_navi (0.1ms)
+Rendered layouts/_main (0.4ms)
+Rendered layouts/_footer (0.1ms)
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 15:59:16) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 15:59:16) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.1ms)
+Rendered layouts/_sidebar (0.5ms)
+Rendered layouts/_bottom_navi (0.1ms)
+Rendered layouts/_main (0.4ms)
+Rendered layouts/_footer (0.1ms)
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 16:00:02) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 16:00:02) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.3ms)
+Rendered layouts/_sidebar (1.0ms)
+Rendered layouts/_bottom_navi (0.7ms)
+Rendered layouts/_main (3.4ms)
+Rendered layouts/_footer (0.4ms)
+Completed in 68ms (View: 66, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-03-23 16:00:34) [POST]
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"sessions", "login"=>"kreba", "password"=>"[FILTERED]"}
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+
+NoMethodError (undefined method `t' for Person(Table doesn't exist):Class):
+  app/models/person.rb:31
+  app/controllers/sessions_controller.rb:13:in `create'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (38.1ms)
+Rendered rescues/_request_and_response (1.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-03-23 16:03:04) [POST]
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"sessions", "login"=>"kreba", "password"=>"[FILTERED]"}
+
+NameError (uninitialized constant Person::L18n):
+  app/models/person.rb:31
+  app/controllers/sessions_controller.rb:13:in `create'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (37.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 16:03:37) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 16:03:37) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.3ms)
+Rendered layouts/_sidebar (1.0ms)
+Rendered layouts/_bottom_navi (0.7ms)
+Rendered layouts/_main (3.4ms)
+Rendered layouts/_footer (0.4ms)
+Completed in 68ms (View: 66, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-03-23 16:03:41) [POST]
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"sessions", "login"=>"kreba", "password"=>"[FILTERED]"}
+
+NameError (uninitialized constant Person::L18n):
+  app/models/person.rb:31
+  app/controllers/sessions_controller.rb:13:in `create'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (39.1ms)
+Rendered rescues/_request_and_response (1.9ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 16:05:27) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 16:05:27) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.1ms)
+Rendered layouts/_sidebar (0.5ms)
+Rendered layouts/_bottom_navi (0.2ms)
+Rendered layouts/_main (0.5ms)
+Rendered layouts/_footer (0.1ms)
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-03-23 16:05:31) [POST]
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"sessions", "login"=>"kreba", "password"=>"[FILTERED]"}
+
+NameError (uninitialized constant Person::L18n):
+  app/models/person.rb:31
+  app/controllers/sessions_controller.rb:13:in `create'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (40.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 16:06:45) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 16:06:45) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.3ms)
+Rendered layouts/_sidebar (0.9ms)
+Rendered layouts/_bottom_navi (0.7ms)
+Rendered layouts/_main (3.4ms)
+Rendered layouts/_footer (0.4ms)
+Completed in 68ms (View: 65, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-03-23 16:06:50) [POST]
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"sessions", "login"=>"kreba", "password"=>"[FILTERED]"}
+  [4;36;1mPerson Columns (0.0ms)[0m   [0;1mMysql::Error: Table 'badi2010_development.people' doesn't exist: SHOW FIELDS FROM `people`[0m
+
+ActiveRecord::StatementInvalid (Mysql::Error: Table 'badi2010_development.people' doesn't exist: SHOW FIELDS FROM `people`):
+  app/models/person.rb:52:in `authenticate'
+  app/controllers/sessions_controller.rb:13:in `create'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (38.8ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 16:37:53) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+
+ArgumentError (syntax error on line 221, col 3: `'):
+  /usr/lib/ruby/1.8/yaml.rb:133:in `load'
+  /usr/lib/ruby/1.8/yaml.rb:133:in `load'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (80.6ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-03-23 16:38:28) [GET]
+
+ActionController::RoutingError (No route matches "/Framework-Trace" with {:method=>:get}):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 16:38:42) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+
+ArgumentError (syntax error on line 221, col 3: `'):
+  /usr/lib/ruby/1.8/yaml.rb:133:in `load'
+  /usr/lib/ruby/1.8/yaml.rb:133:in `load'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (92.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 16:40:33) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 16:40:34) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.3ms)
+Rendered layouts/_sidebar (1.5ms)
+Rendered layouts/_bottom_navi (0.7ms)
+Rendered layouts/_main (3.4ms)
+Rendered layouts/_footer (0.9ms)
+Completed in 70ms (View: 68, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 16:52:35) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.1ms)
+Rendered layouts/_sidebar (0.4ms)
+Rendered layouts/_bottom_navi (0.1ms)
+Rendered layouts/_main (0.4ms)
+Rendered layouts/_footer (0.1ms)
+Completed in 11ms (View: 8, DB: 0) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 16:53:15) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.1ms)
+Rendered layouts/_sidebar (0.5ms)
+Rendered layouts/_bottom_navi (0.1ms)
+Rendered layouts/_main (0.4ms)
+Rendered layouts/_footer (0.1ms)
+Completed in 18ms (View: 11, DB: 1) | 200 OK [http://localhost/login]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-03-23 16:53:20) [POST]
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"sessions", "login"=>"kreba", "password"=>"[FILTERED]"}
+  [4;36;1mPerson Columns (0.0ms)[0m   [0;1mMysql::Error: Table 'badi2010_development.people' doesn't exist: SHOW FIELDS FROM `people`[0m
+
+ActiveRecord::StatementInvalid (Mysql::Error: Table 'badi2010_development.people' doesn't exist: SHOW FIELDS FROM `people`):
+  app/models/person.rb:52:in `authenticate'
+  app/controllers/sessions_controller.rb:13:in `create'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (60.1ms)
+Rendered rescues/_request_and_response (1.8ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HelpController#contact (for 127.0.0.1 at 2009-03-23 17:07:12) [GET]
+  Parameters: {"action"=>"contact", "controller"=>"help"}
+  [4;36;1mPerson Load (0.0ms)[0m   [0;1mMysql::Error: Table 'badi2010_development.people' doesn't exist: SELECT * FROM `people` [0m
+
+ActiveRecord::StatementInvalid (Mysql::Error: Table 'badi2010_development.people' doesn't exist: SELECT * FROM `people` ):
+  app/controllers/help_controller.rb:6:in `contact'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (37.2ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)

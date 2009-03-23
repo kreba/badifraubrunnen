@@ -1,26 +1,26 @@
-<% content_for :title, @title = lc('title',:description => full_descr(@shiftinfo)) %>
-<% content_for :links do %><li><%= link_to l('shiftinfos','index','title') , shiftinfos_path %></li><% end %>
+<% content_for :title, @title = t('shiftinfos.title',:description => full_descr(@shiftinfo)) %>
+<% content_for :links do %><li><%= link_to t('shiftinfos.index.title') , shiftinfos_path %></li><% end %>
 
 
 <%= error_messages_for :shiftinfo %>
 
 <% form_for(@shiftinfo) do |f| %>
   <p>
-    <b><%=l 'shiftinfos','description_label' %></b><br />
+    <b><%=t 'shiftinfos.description_label' %></b><br />
     <%= f.text_field :description %>
   </p>
 
   <p>
-    <b><%=l 'shiftinfo','attributes','begin' %></b><br />
+    <b><%=t 'shiftinfo.attributes.begin' %></b><br />
     <%= f.text_field :begin %>
   </p>
 
   <p>
-    <b><%=l 'shiftinfo','attributes','end' %></b><br />
+    <b><%=t 'shiftinfo.attributes.end' %></b><br />
     <%= f.text_field :end %>
   </p>
 
   <p>
-    <%= f.submit l('Save') %>
+    <%= f.submit t'Save' %>
   </p>
 <% end %>

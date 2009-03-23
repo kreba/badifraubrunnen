@@ -1,6 +1,6 @@
 <% weeks = weeks_past_view %>
 
-<h3><%=l 'weeks','past_weeks' %>:</h3> 
+<h3><%=t 'weeks.past_weeks' %>:</h3>
 <div class="week_jumper">
 	<% for week in weeks %>
 		<%= link_to_unless_current( content_tag(:span, week.number ), week_path( week ), :class => "jumplink" )%>

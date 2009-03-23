@@ -7008,3 +7008,360 @@ biEGOgpAdXNlZHsGOwhGOg5yZXR1cm5fdG8w--9f1f335067dd28bc06b0b581fcf66e408daf8737
 Rendering template within layouts/application
 Rendering weeks/index
 Completed in 0.76418 (1 reqs/sec) | Rendering: 0.48560 (63%) | DB: 0.02000 (2%) | 200 OK [http://localhost/home]
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 16:07:31) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 16:07:31) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Completed in 15ms (View: 13, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-03-23 16:07:36) [POST]
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"sessions", "login"=>"kreba", "password"=>"[FILTERED]"}
+Rendering template within layouts/application
+Rendering sessions/new
+Completed in 28ms (View: 9, DB: 4) | 200 OK [http://localhost/session]
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 16:37:32) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 16:37:32) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 17:04:33) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 17:04:33) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Completed in 16ms (View: 13, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-03-23 17:04:38) [POST]
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"sessions", "login"=>"gfsa", "password"=>"[FILTERED]"}
+Rendering template within layouts/application
+Rendering sessions/new
+Completed in 17ms (View: 8, DB: 3) | 200 OK [http://localhost/session]
+
+
+Processing HelpController#contact (for 127.0.0.1 at 2009-03-23 17:04:41) [GET]
+  Parameters: {"action"=>"contact", "controller"=>"help"}
+Rendering template within layouts/application
+Rendering help/contact
+Completed in 228ms (View: 9, DB: 61) | 200 OK [http://localhost/help]
+
+
+Processing HelpController#contact (for 127.0.0.1 at 2009-03-23 17:06:15) [GET]
+  Parameters: {"action"=>"contact", "controller"=>"help"}
+Rendering template within layouts/application
+Rendering help/contact
+Completed in 146ms (View: 5, DB: 14) | 200 OK [http://localhost/help]
+
+
+Processing HelpController#contact (for 127.0.0.1 at 2009-03-23 17:06:23) [GET]
+  Parameters: {"action"=>"contact", "controller"=>"help"}
+Rendering template within layouts/application
+Rendering help/contact
+Completed in 182ms (View: 5, DB: 12) | 200 OK [http://localhost/help]
+
+
+Processing HelpController#contact (for 127.0.0.1 at 2009-03-23 17:09:20) [GET]
+  Parameters: {"action"=>"contact", "controller"=>"help"}
+Rendering template within layouts/application
+Rendering help/contact
+Completed in 135ms (View: 12, DB: 12) | 200 OK [http://localhost/help]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2009-03-23 17:09:59) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Completed in 18ms (View: 11, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-03-23 17:10:03) [POST]
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"sessions", "login"=>"kreba", "password"=>"[FILTERED]"}
+Rendering template within layouts/application
+Rendering sessions/new
+Completed in 12ms (View: 8, DB: 0) | 200 OK [http://localhost/session]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-03-23 17:10:10) [POST]
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"sessions", "login"=>"kreba", "password"=>"[FILTERED]"}
+Rendering template within layouts/application
+Rendering sessions/new
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/session]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-03-23 17:10:35) [POST]
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"sessions", "login"=>"kreba", "password"=>"[FILTERED]"}
+Rendering template within layouts/application
+Rendering sessions/new
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://localhost/session]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2009-03-23 17:10:40) [POST]
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"sessions", "login"=>"kreba", "password"=>"[FILTERED]"}
+Redirected to http://localhost:3000/
+Completed in 3ms (DB: 1) | 302 Found [http://localhost/session]
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2009-03-23 17:10:40) [GET]
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+Redirected to http://localhost:3000/home
+Completed in 5ms (DB: 0) | 302 Found [http://localhost/]
+
+
+Processing WeeksController#index (for 127.0.0.1 at 2009-03-23 17:10:40) [GET]
+  Parameters: {"action"=>"index", "controller"=>"weeks"}
+Rendering template within layouts/application
+Rendering weeks/index
+
+ActionView::TemplateError (index 4137 out of string) on line #2 of app/views/layouts/_badi_staff_navigation.html.erb:
+1: <ul>
+2:   <li><%= link_to_unless_current t'help.title', help_path %></li>
+3: 	<li><%= link_to_unless_current t'people.index.title', people_path %></li>
+4:   <li><%= link_to_unless_current t'weeks.index.title', weeks_path %></li>
+5: 	<%= yield :links %>
+
+    app/views/layouts/_badi_staff_navigation.html.erb:2
+    app/views/layouts/_member_navigation.html.erb:2
+    app/views/layouts/_sidebar.html.erb:6
+    app/views/layouts/application.html.erb:17
+    app/controllers/weeks_controller.rb:13:in `index'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing WeeksController#index (for 127.0.0.1 at 2009-03-23 17:13:08) [GET]
+  Parameters: {"action"=>"index", "controller"=>"weeks"}
+Rendering template within layouts/application
+Rendering weeks/index
+
+ActionView::TemplateError (index 4137 out of string) on line #2 of app/views/layouts/_badi_staff_navigation.html.erb:
+1: <ul>
+2:   <li><%= link_to_unless_current t'help.title', help_path %></li>
+3: 	<li><%= link_to_unless_current t'people.index.title', people_path %></li>
+4:   <li><%= link_to_unless_current t'weeks.index.title', weeks_path %></li>
+5: 	<%= yield :links %>
+
+    app/views/layouts/_badi_staff_navigation.html.erb:2
+    app/views/layouts/_member_navigation.html.erb:2
+    app/views/layouts/_sidebar.html.erb:6
+    app/views/layouts/application.html.erb:17
+    app/controllers/weeks_controller.rb:13:in `index'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing WeeksController#index (for 127.0.0.1 at 2009-03-23 17:13:43) [GET]
+  Parameters: {"action"=>"index", "controller"=>"weeks"}
+Rendering template within layouts/application
+Rendering weeks/index
+
+ActionView::TemplateError (index 4137 out of string) on line #4 of app/views/layouts/_bottom_navi.html.erb:
+1: <% if logged_in? and current_person.is_badiStaff? %>
+2: 	<ul id="bottom_navi" class="actions">
+3: 
+4: 	  <li><%= link_to_unless_current( t'weeks.index.title', weeks_path ) do end %></li>
+5: 
+6: 	  <%= yield :links %>
+7: 
+
+    app/views/layouts/_bottom_navi.html.erb:4
+    app/views/layouts/_main.html.erb:11
+    app/views/layouts/application.html.erb:18
+    app/controllers/weeks_controller.rb:13:in `index'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing WeeksController#index (for 127.0.0.1 at 2009-03-23 17:15:27) [GET]
+  Parameters: {"action"=>"index", "controller"=>"weeks"}
+Rendering template within layouts/application
+Rendering weeks/index
+Completed in 44ms (View: 16, DB: 4) | 200 OK [http://localhost/home]
+
+
+Processing PeopleController#index (for 127.0.0.1 at 2009-03-23 17:18:02) [GET]
+  Parameters: {"action"=>"index", "controller"=>"people"}
+Rendering template within layouts/application
+Rendering people/index
+Completed in 235ms (View: 39, DB: 20) | 200 OK [http://localhost/people]
+
+
+Processing WeeksController#index (for 127.0.0.1 at 2009-03-23 17:18:54) [GET]
+  Parameters: {"action"=>"index", "controller"=>"weeks"}
+Rendering template within layouts/application
+Rendering weeks/index
+Completed in 22ms (View: 10, DB: 1) | 200 OK [http://localhost/weeks]
+
+
+Processing HelpController#contact (for 127.0.0.1 at 2009-03-23 17:18:55) [GET]
+  Parameters: {"action"=>"contact", "controller"=>"help"}
+Rendering template within layouts/application
+Rendering help/contact
+Completed in 146ms (View: 11, DB: 13) | 200 OK [http://localhost/help]
+
+
+Processing PeopleController#edit (for 127.0.0.1 at 2009-03-23 17:18:58) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"people"}
+Rendering template within layouts/application
+Rendering people/edit
+Completed in 63ms (View: 54, DB: 3) | 200 OK [http://localhost/people/2/edit]
+
+
+Processing PeopleController#find_location (for 127.0.0.1 at 2009-03-23 17:19:10) [POST]
+  Parameters: {"zip"=>"33", "action"=>"find_location", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"people"}
+Completed in 8ms (View: 1, DB: 1) | 200 OK [http://localhost/people/find_location]
+
+
+Processing PeopleController#find_location (for 127.0.0.1 at 2009-03-23 17:19:10) [POST]
+  Parameters: {"zip"=>"3309", "action"=>"find_location", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"people"}
+Completed in 205ms (View: 1, DB: 1) | 200 OK [http://localhost/people/find_location]
+
+
+Processing PeopleController#find_location (for 127.0.0.1 at 2009-03-23 17:19:15) [POST]
+  Parameters: {"zip"=>"330", "action"=>"find_location", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"people"}
+Completed in 7ms (View: 1, DB: 1) | 200 OK [http://localhost/people/find_location]
+
+
+Processing PeopleController#find_location (for 127.0.0.1 at 2009-03-23 17:19:16) [POST]
+  Parameters: {"zip"=>"3312", "action"=>"find_location", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"people"}
+Completed in 482ms (View: 2, DB: 1) | 200 OK [http://localhost/people/find_location]
+
+
+Processing PeopleController#find_location (for 127.0.0.1 at 2009-03-23 17:19:22) [POST]
+  Parameters: {"zip"=>"", "action"=>"find_location", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"people"}
+Completed in 7ms (View: 1, DB: 1) | 200 OK [http://localhost/people/find_location]
+
+
+Processing PeopleController#find_location (for 127.0.0.1 at 2009-03-23 17:19:23) [POST]
+  Parameters: {"zip"=>"3", "action"=>"find_location", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"people"}
+Completed in 7ms (View: 1, DB: 1) | 200 OK [http://localhost/people/find_location]
+
+
+Processing PeopleController#find_location (for 127.0.0.1 at 2009-03-23 17:19:24) [POST]
+  Parameters: {"zip"=>"33", "action"=>"find_location", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"people"}
+Completed in 7ms (View: 1, DB: 1) | 200 OK [http://localhost/people/find_location]
+
+
+Processing PeopleController#find_location (for 127.0.0.1 at 2009-03-23 17:19:24) [POST]
+  Parameters: {"zip"=>"331", "action"=>"find_location", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"people"}
+Completed in 7ms (View: 1, DB: 1) | 200 OK [http://localhost/people/find_location]
+
+
+Processing PeopleController#find_location (for 127.0.0.1 at 2009-03-23 17:19:25) [POST]
+  Parameters: {"zip"=>"3312", "action"=>"find_location", "authenticity_token"=>"DkN5T7hwxZUSEytvU0CH0bvrR/X63da0kk1DNXKukls=", "controller"=>"people"}
+Completed in 86ms (View: 1, DB: 1) | 200 OK [http://localhost/people/find_location]
+
+
+Processing ShiftsController#my_shifts (for 127.0.0.1 at 2009-03-23 17:19:46) [GET]
+  Parameters: {"action"=>"my_shifts", "controller"=>"shifts"}
+
+NoMethodError (undefined method `date' for nil:NilClass):
+  app/controllers/shifts_controller.rb:110:in `my_shifts'
+  app/controllers/shifts_controller.rb:110:in `my_shifts'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing WeeksController#index (for 127.0.0.1 at 2009-03-23 17:21:26) [GET]
+  Parameters: {"action"=>"index", "controller"=>"weeks"}
+Rendering template within layouts/application
+Rendering weeks/index
+Completed in 84ms (View: 33, DB: 16) | 200 OK [http://localhost/weeks]
+
+
+Processing WeeksController#show (for 127.0.0.1 at 2009-03-23 17:21:34) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"weeks"}
+Rendering template within layouts/application
+Rendering weeks/show
+
+ActionView::TemplateError (week_url failed to generate from {:controller=>"weeks", :id=>nil, :action=>"show"}, expected: {:controller=>"weeks", :action=>"show"}, diff: {:id=>nil}) on line #5 of app/views/weeks/_week_jumper.html.erb:
+2: <% after  = Week.find_by_number( week.number + 1 ) %>
+3: 
+4: <div class="week_jumper">
+5: 	<%= link_to_unless( before.nil?, "←", week_path( before ) ) %>
+6: 	<% for week in Week.find(:all, :order => "number") %>
+7: 		<%= link_to_unless_current( content_tag(:span, week.number ), week_path( week ), :class => "jumplink" )%>
+8:   <% end %>
+
+    (eval):16:in `week_path'
+    app/views/weeks/_week_jumper.html.erb:5
+    app/views/weeks/show.html.erb:3
+    app/controllers/weeks_controller.rb:53:in `show'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)

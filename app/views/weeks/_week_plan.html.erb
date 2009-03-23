@@ -1,4 +1,4 @@
-<% content_for( :title, lc('title', :wnum => @week.number) )%>
+<% content_for( :title, t('weeks.title', :wnum => @week.number) )%>
 
 <% 
 	header_height = 35
@@ -9,14 +9,14 @@
 <span id="week_plan">
 	<span style="float: left; font-size: 75px; line-height: 1em; margin: -8px 16px 3px 3px;"> <%= @week.number.to_s %> </span>
 	
-		<h2><%=lc 'caption', :begin_date => h(@days.first.date_str "%d.%m."), :end_date => h(@days.last.date_str "%d.%m.%Y") %></h2>
+		<h2><%=t 'weeks.caption', :begin_date => h(@days.first.date_str "%d.%m."), :end_date => h(@days.last.date_str "%d.%m.%Y") %></h2>
 		
-		<h3><%=l 'weeks','responsability' %>:
+		<h3><%=t 'weeks.responsability' %>:
 			<% if @week.person.nil? %>
 				<% if !current_person.is_badiStaff? or current_person.is_badiAdmin? %>
 					vakant
 				<% else %>
-  			  <%= link_to( l('weeks','sign_up'), edit_week_path(@week) ) unless @printout %>
+  			  <%= link_to( t('weeks.sign_up'), edit_week_path(@week) ) unless @printout %>
 				<% end %>
 			<% else %>
 				<%=h "#{@week.person.name},  #{@week.person.phone}#{",  "+@week.person.phone2 unless @week.person.phone2.nil? or @week.person.phone2.empty?}" %>
@@ -28,5 +28,5 @@
 		<%= render( :partial => 'week_plan_day', :collection => @days, :locals => { :header_height => header_height, :hour_height => hour_height, :day_width => day_width, :printout => @printout } )%>
 	  <%= render( :partial => 'week_plan_times', :object => @week,   :locals => { :header_height => header_height, :hour_height => hour_height, :h_offset => 55 + @days.size * (day_width+5) } )%>
 	</div>
-	<div><p><%=lc 'badi_tel' %></p></div>
+	<div><p><%=t 'weeks.badi_tel' %></p></div>
 </span>

@@ -1,22 +1,22 @@
-<% content_for :title, @title = lc('title', :description => full_descr(@shiftinfo)) %>
+<% content_for :title, @title = t('shiftinfos.title', :description => full_descr(@shiftinfo)) %>
 <% content_for :admin_links do %>
-	<li><%= link_to l('shiftinfos','edit','title') , edit_shiftinfo_path(@shiftinfo) %></li>
-	<li><%= link_to l('shiftinfos','new','title') , new_shiftinfo_path %></li>
-	<li><%= link_to l('shiftinfos','index','title') , shiftinfos_path %></li>
+	<li><%= link_to t('shiftinfos.edit.title') , edit_shiftinfo_path(@shiftinfo) %></li>
+	<li><%= link_to t('shiftinfos.new.title') , new_shiftinfo_path %></li>
+	<li><%= link_to t('shiftinfos.index.title') , shiftinfos_path %></li>
 <% end %>
 
 
 <p>
-  <b><%=l 'shiftinfo','description' %>:</b>
+  <b><%=t 'shiftinfo.description' %>:</b>
   <%=h @shiftinfo.description %>
 </p>
 
 <p>
-  <b><%=l 'shiftinfo','begin' %>:</b>
+  <b><%=t 'shiftinfo.begin' %>:</b>
   <%=h @shiftinfo.begin.strftime( '%H:%M' ) %>
 </p>
 
 <p>
-  <b><%=l 'shiftinfo','end' %>:</b>
+  <b><%=t 'shiftinfo.end' %>:</b>
   <%=h @shiftinfo.end.strftime( '%H:%M' ) %>
 </p>

@@ -1,15 +1,15 @@
-<% content_for :title, @title = 'title'.lc %>
+<% content_for :title, @title = t('help.contact.title') %>
 
 <%= render( :partial => 'list_people' , 
- :locals => { :title => 'badiAdmins'.lc,  :people => @badi_admins  } ) %>
+ :locals => { :title => t('help.contact.badiAdmins'),  :people => @badi_admins  } ) %>
 
 <%= render( :partial => 'list_people' , 
- :locals => { :title => 'kioskAdmins'.lc, :people => @kiosk_admins } ) %>
+ :locals => { :title => t('help.contact.kioskAdmins'), :people => @kiosk_admins } ) %>
 
 <%= render( :partial => 'list_people' , 
- :locals => { :title => 'webmasters'.lc,  :people => @webmasters   } ) %>
+ :locals => { :title => t('help.contact.webmasters'),  :people => @webmasters   } ) %>
 
-<h2><%=lc 'location' %></h2>
+<h2><%=t 'help.contact.location' %></h2>
 <div>
-  <%=l 'phone_short' %>: 031 767 81 41
+  <%=t 'phone_short' %>: 031 767 81 41
 </div>

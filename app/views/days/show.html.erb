@@ -1,5 +1,5 @@
-<% content_for :links do %><li><%= link_to l('weeks','show','title') , week_path(@week) %></li><% end %>
-<% content_for :title, @title = lc('title', :date_str => @day.date_str) %>
+<% content_for :links do %><li><%= link_to t'weeks.show.title' , week_path(@week) %></li><% end %>
+<% content_for :title, @title = t('days.show.title', :date_str => @day.date_str) %>
 
 <%= render( :partial => 'day_jumper', :object => @day )%>
 
@@ -8,8 +8,8 @@
 <% if current_person.is_badiAdmin? %>
 	
   <% form_for(@day, :url => week_day_path(@week,@day)) do |f| %>
-	  <table title="<%=l 'shifts', 'n' %>" cellpadding="15px">
-	    <tr><th><%=l 'shifts','n' %>:</th><th><%=l 'shifts','responsible_person' %>:</th></tr>
+	  <table title="<%=t 'shifts.n' %>" cellpadding="15px">
+	    <tr><th><%=t 'shifts.n' %>:</th><th><%=t 'shifts.responsible_person' %>:</th></tr>
 		    <% for shift in @day.shifts %>
 		      <tr valign="middle">
 		      	<% fields_for "day[shift_attributes][]", shift do |g| %>
@@ -19,14 +19,14 @@
 					</tr>
 				<% end %>
 		</table>
-		<br /><%= submit_tag l('Save') %><br />
+		<br /><%= submit_tag t'Save' %><br />
 	<% end %>
-	<br /><%= link_to('edit_shiftinfos'.lc, shiftinfos_path) %>
+	<br /><%= link_to(t('shifts.show.edit_shiftinfos'), shiftinfos_path) %>
 		
 <% else %>
     
-  <table title="<%=l 'shifts','n' %>" cellpadding="15px">
-    <tr><th><%=l 'shifts','n' %>:</th><th><%=l 'shifts','responsible_person' %>:</th></tr>
+  <table title="<%=t 'shifts.n' %>" cellpadding="15px">
+    <tr><th><%=t 'shifts.n' %>:</th><th><%=t 'shifts.responsible_person' %>:</th></tr>
     <%= render( :partial => 'shift_tr', :collection => @day.shifts )%>
   </table>
 		

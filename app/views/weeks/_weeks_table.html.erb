@@ -1,11 +1,11 @@
 <% weeks = weeks_table %>
 <table class="weeks_table">
     <tr>
-        <th class="weeknum_header" style="padding-right: 1em;"><em><%=lc 'weeknum_header' %></em></th>
+        <th class="weeknum_header" style="padding-right: 1em;"><em><%=t 'weeks.weeks_table.weeknum_header' %></em></th>
         <% for dayname in Date::DAYNAMES %>
             <th class="day_header"><%= dayname %></th>
 	      <% end %>
-				<th> <%=l 'weeks','responsability' %> </th>
+				<th> <%=t 'weeks.responsability' %> </th>
     </tr>
     <%= render :partial => "weeks_table_tr", :collection => weeks %>
 </table>

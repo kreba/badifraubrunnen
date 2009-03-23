@@ -15,7 +15,7 @@
 			<br/>Tel2: <%=h person.phone2 %>
 		<% end %>
   </p><p>
-	  Mail: <%= mail_to( "#{person.name} <#{person.email}>", person.email, :subject => l('mail','subject'), 
+	  Mail: <%= mail_to( "#{person.name} <#{person.email}>", person.email, :subject => t('mail.subject'),
               :encode => "hex", :replace_at => "æ", :replace_dot => "·" )%>
 	</p>
 </div>

@@ -31,7 +31,7 @@ class ShiftinfosController < ApplicationController
 
     respond_to do |format|
       if @shiftinfo.save
-        flash[:notice] = 'success'.lc
+        flash[:notice] = t'shiftinfos.create.success'
         format.html { redirect_to shiftinfos_path }
         format.xml  { render :xml => @shiftinfo, :status => :created, :location => @shiftinfo }
       else
@@ -64,7 +64,7 @@ class ShiftinfosController < ApplicationController
 
     respond_to do |format|
       if @shiftinfo.update_attributes(params[:shiftinfo])
-        flash[:notice] = 'success'.lc
+        flash[:notice] = t'shiftinfos.update.success'
         format.html { redirect_to shiftinfos_path }
         format.xml  { head :ok }
       else

@@ -16,10 +16,10 @@ class SessionsController < ApplicationController
         current_person.remember_me unless current_person.remember_token?
         cookies[:auth_token] = { :value => self.current_person.remember_token , :expires => self.current_person.remember_token_expires_at }
       end
-      flash[:notice] = 'access_granted'.lc
+      flash[:notice] = t('sessions.create.access_granted')
       redirect_back_or_default('/')
     else
-      flash.now[:error] = 'access_denied'.lc
+      flash.now[:error] = t('sessions.create.access_denied')
       render :action => 'new'
     end
   end
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
     self.current_person.forget_me if logged_in?
     cookies.delete :auth_token
     reset_session
-    flash[:notice] = 'logged_out'.lc
+    flash[:notice] = t('sessions.destroy.logged_out')
     redirect_to login_path
   end
   

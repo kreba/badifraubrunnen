@@ -1,7 +1,7 @@
-<% content_for :admin_links do %><li><%= link_to( l('weeks','new','title'), new_week_path )%></li><% end %>
+<% content_for :admin_links do %><li><%= link_to( t('weeks.new.title'), new_week_path )%></li><% end %>
 
 <%= render( :partial => 'week_jumper', :locals => { :week => @week } )%>
 
 <%= render( :partial => 'week_plan' )%>
 
-<%= link_to( lc('printout'), { :action => "render_week_plan", :id => @week }, :popup => true )%>
+<%= link_to( t('weeks.printout'), { :action => "render_week_plan", :id => @week }, :popup => true )%>

@@ -50,7 +50,7 @@ class Day < ActiveRecord::Base
             self.shifts << Shift.create( :shiftinfo_id => i ) 
           end
         else
-          errors.add_to_base('wrong_number'.lc)
+          errors.add_to_base(I18n.translate'day.assert_3_shifts.wrong_number')
           return false
         end
       end

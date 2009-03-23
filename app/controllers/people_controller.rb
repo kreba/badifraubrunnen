@@ -26,7 +26,7 @@ class PeopleController < ApplicationController
     end
     
     if @person.save
-      flash[:notice] = 'success'.lc
+      flash[:notice] = t'people.create.success'
       self.current_person = @person unless logged_in? # admin can create people without losing his login
       redirect_back_or_default(people_path)
     else
@@ -50,7 +50,7 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
 
     if @person.update_attributes(params[:person])
-      flash[:notice] = 'success'.lc
+      flash[:notice] = t'people.update.success'
       render :action => "edit" #pointing there on purpose
     else
       render :action => "edit"

@@ -34,7 +34,7 @@ class WeeksController < ApplicationController
     
     respond_to do |format|
       if @week.save 
-        flash[:notice] = 'success'.lc
+        flash[:notice] = t'weeks.create.success'
         format.html { redirect_to(@week) }
         format.xml  { render :xml => @week, :status => :created, :location => @week }
       else
@@ -69,7 +69,7 @@ class WeeksController < ApplicationController
     
     respond_to do |format|
       if @week.update_attributes(params[:week])
-        flash[:notice] = 'success'.lc
+        flash[:notice] = t'weeks.update.success'
         format.html { redirect_to(weeks_path) }
         #format.html { redirect_to(@week) }
         format.xml  { head :ok }
@@ -87,7 +87,7 @@ class WeeksController < ApplicationController
     @week.destroy()
     
     respond_to do |format|
-      flash[:notice] = 'success'.lc
+      flash[:notice] = t'weeks.destroy.success'
       format.html { redirect_to(weeks_url) }
       format.xml  { head :ok }
     end

@@ -37,7 +37,7 @@ class ShiftsController < ApplicationController
 
     respond_to do |format|
       if @shift.save
-        flash[:notice] = 'success'.lc
+        flash[:notice] = t'shifts.create.success'
         format.html { redirect_to(@shift) }
         format.xml  { render :xml => @shift, :status => :created, :location => @shift }
       else
@@ -75,14 +75,14 @@ class ShiftsController < ApplicationController
     @week = @day.week
 
     unless @shift.free? or current_person.is_badiAdmin?
-      flash[:error] = 'already_taken'.lc
+      flash[:error] = t'shifts.update.already_taken'
       redirect_to :back
       return
     end
 
     respond_to do |format|
       if @shift.update_attributes(params[:shift])
-        flash[:notice] = 'success'.lc
+        flash[:notice] = t'shifts.update.success'
         format.html { redirect_to( week_path(@week) ) }
         format.xml  { head :ok }
       else
@@ -122,7 +122,7 @@ class ShiftsController < ApplicationController
       s = Shift.find(params[:id])
       shift_end = s.day.date + s.shiftinfo.end.seconds_since_midnight.seconds
       if shift_end < Time.now 
-        flash[:error] = 'cant_change_past'.lc        
+        flash[:error] = t'shifts.future_required.cant_change_past'
         redirect_to :back
         return false
       end

@@ -1,29 +1,29 @@
-<% content_for :title, @title = lc('title') %>
-<% content_for :links do %><li><%= link_to( l('weeks','show','title'), @week )%></li><% end %>
+<% content_for :title, @title = t('weeks.title') %>
+<% content_for :links do %><li><%= link_to( t('weeks.show.title'), @week )%></li><% end %>
 
 
 <% form_for(@week) do |f| %>
   <p>
     <% if current_person.is_badiAdmin? %>
-      <b><%=l 'weeks','responsability' %>:</b><br />
+      <b><%=t 'weeks','responsability' %>:</b><br />
       <%= f.select( :person_id, @people.collect {|p| [ p.name, p.id ] }, { :include_blank => true } ) %>
     <% else %>
-	    <h2><%=h lc('general_advice', :wnum => @week.number.to_s ) %></h2>
+	    <h2><%=h t('weeks.general_advice', :wnum => @week.number.to_s ) %></h2>
 	    <%= f.hidden_field :person_id, :value => current_person.id %>
 		<% end %>
   </p>
 	
 	<p>
-	  <%= f.submit l('Save') %><br />
+	  <%= f.submit t('Save') %><br />
 	</p>
 <% end %>
-<p><br /><%= button_to( l('Abort'), week_day_path(@week,@day) ) %></p>
+<p><br /><%= button_to( t('Abort'), week_day_path(@week,@day) ) %></p>
 
 <% unless current_person.is_badiAdmin? %>
 	<p><em>
-		<%= lc('warning', :badiAdmin => @admin_names).gsub("\n","<br />") %><br />
-		<%= link_to( l('help','contact','title') , :controller => 'help', :action => 'contact' )%><br />
+		<%= t('weeks.warning', :badiAdmin => @admin_names).gsub("\n","<br />") %><br />
+		<%= link_to( t('help.contact.title') , :controller => 'help', :action => 'contact' )%><br />
 		<br />
-		<%=lc 'how_to_abort' %>
+		<%=t 'weeks.how_to_abort' %>
 	</em></p>
 <% end %>

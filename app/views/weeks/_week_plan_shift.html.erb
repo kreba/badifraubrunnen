@@ -11,7 +11,7 @@
 		<% if !current_person.is_badiStaff? or current_person.is_badiAdmin? %>
 			vakant
 		<% else %>
-			<%= block_link_to( l('shifts','sing_up') , edit_week_day_shift_path(shift.day.week, shift.day, shift), :padding => "15px 3px" ) unless printout %>
+			<%= block_link_to( t('shifts.sing_up') , edit_week_day_shift_path(shift.day.week, shift.day, shift), :padding => "15px 3px" ) unless printout %>
 		<% end %>
 	<% else %>
 		<%= "#{shift.person.name}<br />#{shift.person.phone}" %>

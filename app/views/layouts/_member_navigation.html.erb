@@ -2,7 +2,7 @@
   <%= render( :partial => 'layouts/badi_staff_navigation' )%>
 <% else %>
 	<ul>
-		<li><%= link_to( l('sessions','logout'), logout_path )%></li>
-    <li><%= link_to_unless_current( l('weeks','index','title'), weeks_path )%></li>
+		<li><%= link_to( t('sessions.logout'), logout_path )%></li>
+    <li><%= link_to_unless_current( t('weeks.index.title'), weeks_path )%></li>
 	</ul>
 <% end %>

@@ -1,9 +1,9 @@
 <% week = weeks_table_tr %>
 <tr>
   <th style="padding-right: 1em;">
-  	<em class="week_number"><%= link_to( week.number, week_path(week), :title => l('weeks','show','title') )%></em>
+  	<em class="week_number"><%= link_to( week.number, week_path(week), :title => t('weeks.show.title') )%></em>
 		<% if current_person.is_webmaster? %>
-			<br /><%= link_to( l('Delete'), week, :confirm => l('weeks','confirm_delete'), :method => :delete )%>
+			<br /><%= link_to( t('Delete'), week, :confirm => t('weeks.confirm_delete'), :method => :delete )%>
 		<% end %>
 	</th>
 	
@@ -13,10 +13,10 @@
 		<td>
 			<%=h week.person.name %><br />
 			<%=h week.person.phone %><br />
-			<%= link_to( l('Edit'), edit_week_path(week) ) if current_person.is_badiAdmin? %>
+			<%= link_to( t('Edit'), edit_week_path(week) ) if current_person.is_badiAdmin? %>
 		</td>
 	<% else %>
-		<td> frei <br /><%= link_to( ' ' + l('weeks','sign_up') + ' ' , edit_week_path(week) ) if current_person.is_badiStaff? %></td>
+		<td> frei <br /><%= link_to( ' ' + t('weeks.sign_up') + ' ' , edit_week_path(week) ) if current_person.is_badiStaff? %></td>
 	<% end %>
 	
 </tr>

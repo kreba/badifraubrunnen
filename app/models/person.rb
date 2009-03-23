@@ -28,10 +28,10 @@ class Person < ActiveRecord::Base
   validates_length_of       :email,    :maximum => 100
   validates_length_of       :address,  :maximum =>  50,                                      :allow_blank => true
   validates_length_of       :location, :maximum =>  30,                                      :allow_blank => true
-  validates_format_of       :postal_code, :with => /\A([1-9][0-9]{3})\Z/,                    :allow_blank => true, :message => 'invalid_zip'.lc
-  validates_format_of       :phone2, :with => /\A(0[1-9]{2} [0-9]{3} [0-9]{2} [0-9]{2})\Z/i, :allow_blank => true, :message => 'invalid_phone'.lc
-  validates_format_of       :phone,  :with => /\A(0[1-9]{2} [0-9]{3} [0-9]{2} [0-9]{2})\Z/i,                       :message => 'invalid_phone'.lc
-  validates_email_veracity_of :email, :message => 'invalid_email'.lc
+  validates_format_of       :postal_code, :with => /\A([1-9][0-9]{3})\Z/,                    :allow_blank => true, :message => I18n.translate('person.invalid_zip')
+  validates_format_of       :phone2, :with => /\A(0[1-9]{2} [0-9]{3} [0-9]{2} [0-9]{2})\Z/i, :allow_blank => true, :message => I18n.translate('person.invalid_phone')
+  validates_format_of       :phone,  :with => /\A(0[1-9]{2} [0-9]{3} [0-9]{2} [0-9]{2})\Z/i,                       :message => I18n.translate('person.invalid_phone')
+  validates_email_veracity_of :email, :message => I18n.translate('person.invalid_email')
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.

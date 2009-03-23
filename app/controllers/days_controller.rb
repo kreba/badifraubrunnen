@@ -4,7 +4,7 @@ class DaysController < ApplicationController
   
   # GET /weeks/1/days
   def index
-    flash[:error] = 'not_available'.lc 
+    flash[:error] = t'days.index.not_available'
     redirect_to weeks_path and return false 
     
     # that is not executed:
@@ -22,7 +22,7 @@ class DaysController < ApplicationController
     @day = Day.new(params[:day])
     
     if @day.save
-      flash[:notice] = 'success'.lc 
+      flash[:notice] = t'days.create.success'
       redirect_to(@day)
     else
       # validation error messages are displayed automatically
@@ -47,7 +47,7 @@ class DaysController < ApplicationController
     @day = Day.find(params[:id])
     
     if @day.update_attributes(params[:day])
-      flash[:notice] = 'success'.lc
+      flash[:notice] = t('days.update.success')
       redirect_back_or_default(weeks_path)
     else
       # validation error messages are displayed automatically

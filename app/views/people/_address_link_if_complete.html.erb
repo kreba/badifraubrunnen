@@ -1,6 +1,6 @@
 <% if !!person.postal_code and !person.address.empty? %>
 	<%= link_to( person.full_address_str, "http://map.search.ch/#{person.postal_code}/#{person.address.untaint}",
-							 :title => l('people','show_map'), :popup => true )%>
+							 :title => t('people.show_map'), :popup => true )%>
 <% else %>
 	<%=h person.full_address_str %>
 <% end %>

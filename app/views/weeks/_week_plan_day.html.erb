@@ -11,7 +11,7 @@
 		<span style="float: left;  padding-left:  5px; font-size:   1.6em;"><%= day_name %></span>
 		<span style="float: right; padding-right: 5px; padding-top: 0.5em;"><%= day.date_str('%d.%m.') %></span>
 	<% end %>
-	<%= link_to_unless( printout, yield("day_header_#{day_name}") , week_day_path( day.week, day ), {:title => l('days','show','title'), :class => "block"} ) %>
+	<%= link_to_unless( printout, yield("day_header_#{day_name}") , week_day_path( day.week, day ), {:title => t('days.show.title'), :class => "block"} ) %>
 </span>
 <span style="position: absolute; left: <%= left %>px; top: <%= header_height %>px; 
 						 width: <%= day_width %>px;">

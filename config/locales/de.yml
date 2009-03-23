@@ -1,6 +1,45 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 de:
+# -----------------------------------------------------------------------------
+# models
+# -----------------------------------------------------------------------------
+  person:
+    name: Person
+    attributes:
+      name: Name
+      login: Login-Name
+      password: Passwort
+      address: Adresse
+      postal_code: PLZ
+      location: Ort
+      email: Mailadresse
+      phone: Telefonnummer
+      phone2: Zweite Telefonnummer
+      preferences: Vorlieben
+    # in models
+    invalid_email: ist ungültig. Bitte auf Tippfehler kontrollieren!
+    invalid_phone: muss von der Form "0xx xxx xx xx" sein
+    invalid_zip:   muss vierstellig sein
+
+  shiftinfo:
+    name: Schichtentyp
+    attributes:
+      description: Beschreibung
+      begin: Beginn
+      end: Ende
+
+  shift:
+    name: Schicht
+    attributes:
+      day: Datum
+      shiftinfo: Zeit
+      person: Belegung
+
+
+# -----------------------------------------------------------------------------
+# app
+# -----------------------------------------------------------------------------
   and: und
   badiAdmin: Badi-Admin
   badiStaff: Aufsichtsperson
@@ -14,95 +53,23 @@ de:
   mail:
     subject: Badi2010
 
-  # in controllers (access with lc)
   application:
-    access_restricted: Das darf nur, wer :role ist.
+    access_restricted: Das darf nur, wer {{role}} ist.
 
   days:
+    # in controllers
     index:
       not_available: Nicht verfügbar. Siehe Wochenansicht.
     create:
       success: Tag wurde erfolgreich erstellt.
     update:
       success: Änderungen am Tag erfolgreich gespeichert.
-
-  people:
-    create:
-      success: Person erfolgreich eingetragen.
-    update:
-      success: Personendetails erfolgreich gespeichert.
-
-  sessions:
-    create:
-      access_granted: Einloggen erfolgreich.
-      access_denied: Zugriff verweigert. Benutzername oder Passwort falsch.
-    destroy:
-      logged_out: Logout erfolgreich. Auf bald! ;)
-
-  shiftinfos:
-    create:
-      success: Neuen Schichtentyp erfolgreich erstellt.
-    show:
-      title: Detailansicht Schichtentyp :description
-    update:
-      success: Änderungen gespeichert.
-
-  shifts:
-    create:
-      success: Schicht erfolgreich erstellt.
-    update:
-      already_taken: Besetzt! Änderungsanträge bitte ans Hüterwesen (siehe "Hilfe!")
-      success: Änderung erfolgreich.
-    future_required:
-      cant_change_past: Vergangene Schichten können nicht mehr geändert werden.
-
-  weeks:
-    create:
-      success: Woche erfolgreich erstellt.
-    update:
-      success: Änderung erfolgreich.
-    destroy:
-      success: Woche gelöscht. Die Daten sind noch vorhanden und werden automatisch wieder angezeigt, wenn wieder eine Woche mit derselben Nummer erstellt wird.
-
-  welcome:
-    greeting: Herzlich willkommen!
-
-  # in models (access with lc)
-  # (some custom active_record_messages)
-  day:
-    assert_3_shifts:
-      wrong_number: Der Tag muss drei Schichten haben.
-
-  person:
-    invalid_email: ist ungültig. Bitte auf Tippfehler kontrollieren!
-    invalid_phone: muss von der Form "0xx xxx xx xx" sein
-    invalid_zip:   muss vierstellig sein
-
-  week:
-    too_many_days: Eine Woche kann nicht mehr als sieben Tage haben!
-
-  # in the view (access with lc)
-  Abort: Abbrechen
-  Delete: Löschen
-  Edit: Bearbeiten
-  phone_short: Tel.
-  Save: Speichern
-  save_button_remark: Änderungen werden nur bei einem Klick auf diesen Knopf gespeichert.
-
-  days:
+    # in the view
     day_jumper:
       back: gestern
       forth: morgen
     show:
-      title: Tagesansicht für den :date_str
-
-  help:
-    title: Hilfe!
-    contact:
-      title: Kontakt
-      badiAdmins: Verantwortlich Hüterwesen
-      kioskAdmins: Verantwortlich Kiosk
-      webmasters: Verantwortlich Website
+      title: Tagesansicht für den {{date_str}}
 
   people:
     password_label: Passwort ändern (sonst leer lassen)
@@ -113,36 +80,62 @@ de:
       title: Personenliste
     create:
       title: Neue Person eintragen
+      success: Person erfolgreich eingetragen.
     destroy:
       confirm: Bitte Rausschmiss nochmal bestätigen. Sämtliche Daten gehen verloren!
     edit:
       title:
         badiStaff: Meine Personalien
         badiAdmin: Personalien bearbeiten
+    update:
+      success: Personendetails erfolgreich gespeichert.
 
   sessions:
+    # in controllers
+    create:
+      access_granted: Einloggen erfolgreich.
+      access_denied: Zugriff verweigert. Benutzername oder Passwort falsch.
+    destroy:
+      logged_out: Logout erfolgreich. Auf bald! ;)
+    # in the view
     login: Einloggen
     logout: Ausloggen
 
+
   shiftinfos:
+    # in controllers
+    create:
+      success: Neuen Schichtentyp erfolgreich erstellt.
+    update:
+      success: Änderungen gespeichert.
+    # in the view
     description_label: Beschreibung (üblicherweise 'Morgen', 'Pikett' oder 'Abend')
     new:
       title: Neuen Schichtentyp erstellen
     edit:
-      title: Schichtentyp :description bearbeiten
+      title: Schichtentyp {{description}} bearbeiten
     index:
       title: Alle Schichtentypen auflisten
     show:
-      title: Schichtentyp :description
+      title: Detailansicht Schichtentyp {{description}}
 
   shifts:
+    # in controllers
+    create:
+      success: Schicht erfolgreich erstellt.
+    update:
+      already_taken: Besetzt! Änderungsanträge bitte ans Hüterwesen (siehe "Hilfe!")
+      success: Änderung erfolgreich.
+    future_required:
+      cant_change_past: Vergangene Schichten können nicht mehr geändert werden.
+    # in the view
     free: frei
     n: Schichten
     responsible_person: Belegung
     sign_up: Eintragen
     taken: besetzt
     edit:
-      title: Schicht :shift am :date
+      title: Schicht {{shift}} am {{date}}
       badiAdmin_advice: Du kannst HüterInnen nur in der Tagesansicht neu zuordnen.
       general_advice: Du bist dabei, dich für eine Schicht einzutragen. Bitte bestätigen.
       how_to_abort: Um abzubrechen, einfach den Zurück-Knopf des Browsers benutzen.
@@ -155,13 +148,21 @@ de:
       edit_shiftinfos: Schichtentypen bearbeiten
 
   weeks:
+    # in controllers
+    create:
+      success: Woche erfolgreich erstellt.
+    update:
+      success: Änderung erfolgreich.
+    destroy:
+      success: Woche gelöscht. Die Daten sind noch vorhanden und werden automatisch wieder angezeigt, wenn wieder eine Woche mit derselben Nummer erstellt wird.
+    # in the view
     confirm_delete: Jää, bisch de sicher? (Daten zu den Tagen bleiben erhalten)
     past_weeks: Vergangene Wochen
     responsability: Wochenverantwortung
     sign_up: Eintragen
     edit:
       title: Woche bearbeiten
-      general_advice: Du bist dabei, dich für Woche :wnum als Wochenverantwortliche/r zu melden. Bitte bestätigen.
+      general_advice: Du bist dabei, dich für Woche {{wnum}} als Wochenverantwortliche/r zu melden. Bitte bestätigen.
       warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Woche als Wochenverantwortliche/r! \nUm dich wieder auszutragen, melde dich bei Doris Luginbühl, denn nur sie kann dich wieder austragen.'
     index:
       title: Saisonübersicht
@@ -175,6 +176,39 @@ de:
     weeks_table:
       weeknum_header: Woche
     week_plan:
-      title: Einsatzplan Woche :wnum
+      title: Einsatzplan Woche {{wnum}}
       badi_tel: 'Tel. Badi: 031 767 81 41'
-      caption: Einsatzplan Badihüten vom :begin_date bis :end_date
+      caption: Einsatzplan Badihüten vom {{begin_date}} bis {{end_date}}
+
+  welcome:
+    # in controllers
+    greeting: Herzlich willkommen!
+
+  day:
+    # in models
+    assert_3_shifts:
+      wrong_number: Der Tag muss drei Schichten haben.
+
+  week:
+    # in models
+    too_many_days: Eine Woche kann nicht mehr als sieben Tage haben!
+
+  # -------------------------------------
+  # in the view
+  # -------------------------------------
+  Abort: Abbrechen
+  Delete: Löschen
+  Edit: Bearbeiten
+  phone_short: Tel.
+  Save: Speichern
+  save_button_remark: Änderungen werden nur bei einem Klick auf diesen Knopf gespeichert.
+    
+  help:
+    # in the view
+    title: Hilfe!
+    contact:
+      title: Kontakt
+      badiAdmins: Verantwortlich Hüterwesen
+      kioskAdmins: Verantwortlich Kiosk
+      webmasters: Verantwortlich Website
+      location: Badi Fraubrunnen
