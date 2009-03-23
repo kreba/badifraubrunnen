@@ -1,37 +1,63 @@
-require 'mongrel_cluster/recipes'
+#############################################################
+#	Application
+#############################################################
 
 set :application, "badi2010"
-set :server_url, "www.badifraubrunnen.ch"
-set :repository,  "http://drunkencrab/repos/trunk/#{application}"
+set :deploy_to, "/var/rails/#{application}" # NOT /var/www/...
 
-# If you aren't deploying to /u/apps/#{application} on the target
-# servers (which is the default), you can specify the actual location
-# via the :deploy_to variable:
-set :deploy_to, "/var/rails/#{application}"
-set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
-#set :use_sudo, true
+#depend :local,  :gem, "xyz"
+#depend :remote, :gem, "xyz"
+
+#############################################################
+#	Remote command execution setup
+#############################################################
+
+default_run_options[:pty] = true
+set :use_sudo, false  # deploying to a debian machine
 set :runner, "kreba"
-#set :user, "xy" # set the user on the deployment machines ("remote user account name")
-#set :runner, :user # set the sudo runner user to whatever the connecting user is 
+# set :user,  "kreba"
+# set :group, "rails"
 
-# If you aren't using Subversion to manage your source code, specify
-# your SCM below:
-# set :scm, :subversion
-# set :svn, "/usr/bin/svn"
-set :deploy_via, :export  #default is 'checkout' ('export' omits .svn files)
+#############################################################
+#	Servers
+#############################################################
 
-role :app, "#{server_url}"
-role :web, "#{server_url}"
-role :db,  "#{server_url}", :primary => true
+set :domain, "badifraubrunnen.ch"
+server domain, :app, :web
+role :db, domain, :primary => true
 
-depend :local, :command, "svn"
-depend :remote, :command, "svn"
-depend :remote, :gem, "gem_plugin"
-depend :remote, :gem, "mongrel"
-depend :remote, :gem, "mongrel_cluster"
+#############################################################
+#	Version Control System
+#############################################################
 
-before "deploy:restart", :restart_web_server
+# depend :remote,  :command, "hg"  # checked by the hg plugin
 
-task :restart_web_server, :roles => :web do
-  #sudo "/etc/init.d/apache2 restart"
+# Make the repository available for the target host with
+# 'hg serve --port 8007 --daemon' (in the project directory)
+
+set :scm, :mercurial
+set :scm_user, "Raffael Krebs <kreba@gmx.ch>"
+set :repository, "http://novocrab.crabnet:8007/"
+set :scm_checkout, "export"  # nonetheless 'clone' is used!?!
+
+namespace :deploy do
+  desc "Symlink shared configs and folders on each release."
+  task :symlink_shared do
+    run "ln -snf #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+  end
 end
+after 'deploy:update_code', 'deploy:symlink_shared'
+
+#############################################################
+#	Passenger (overrides the default restart task)
+#############################################################
+
+namespace :deploy do
+  desc "Tell Passenger to restart Application"
+  task :restart do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+end
+
+
+
