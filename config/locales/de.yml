@@ -1,0 +1,180 @@
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+de:
+  and: und
+  badiAdmin: Badi-Admin
+  badiStaff: Aufsichtsperson
+  kioskAdmin: Kiosk-Admin
+  kioskStaff: Kioskpersonal
+  navigation: Navigation
+  or: oder
+  webmaster: Webmaster
+  assignments: Einsätze
+
+  mail:
+    subject: Badi2010
+
+  # in controllers (access with lc)
+  application:
+    access_restricted: Das darf nur, wer :role ist.
+
+  days:
+    index:
+      not_available: Nicht verfügbar. Siehe Wochenansicht.
+    create:
+      success: Tag wurde erfolgreich erstellt.
+    update:
+      success: Änderungen am Tag erfolgreich gespeichert.
+
+  people:
+    create:
+      success: Person erfolgreich eingetragen.
+    update:
+      success: Personendetails erfolgreich gespeichert.
+
+  sessions:
+    create:
+      access_granted: Einloggen erfolgreich.
+      access_denied: Zugriff verweigert. Benutzername oder Passwort falsch.
+    destroy:
+      logged_out: Logout erfolgreich. Auf bald! ;)
+
+  shiftinfos:
+    create:
+      success: Neuen Schichtentyp erfolgreich erstellt.
+    show:
+      title: Detailansicht Schichtentyp :description
+    update:
+      success: Änderungen gespeichert.
+
+  shifts:
+    create:
+      success: Schicht erfolgreich erstellt.
+    update:
+      already_taken: Besetzt! Änderungsanträge bitte ans Hüterwesen (siehe "Hilfe!")
+      success: Änderung erfolgreich.
+    future_required:
+      cant_change_past: Vergangene Schichten können nicht mehr geändert werden.
+
+  weeks:
+    create:
+      success: Woche erfolgreich erstellt.
+    update:
+      success: Änderung erfolgreich.
+    destroy:
+      success: Woche gelöscht. Die Daten sind noch vorhanden und werden automatisch wieder angezeigt, wenn wieder eine Woche mit derselben Nummer erstellt wird.
+
+  welcome:
+    greeting: Herzlich willkommen!
+
+  # in models (access with lc)
+  # (some custom active_record_messages)
+  day:
+    assert_3_shifts:
+      wrong_number: Der Tag muss drei Schichten haben.
+
+  person:
+    invalid_email: ist ungültig. Bitte auf Tippfehler kontrollieren!
+    invalid_phone: muss von der Form "0xx xxx xx xx" sein
+    invalid_zip:   muss vierstellig sein
+
+  week:
+    too_many_days: Eine Woche kann nicht mehr als sieben Tage haben!
+
+  # in the view (access with lc)
+  Abort: Abbrechen
+  Delete: Löschen
+  Edit: Bearbeiten
+  phone_short: Tel.
+  Save: Speichern
+  save_button_remark: Änderungen werden nur bei einem Klick auf diesen Knopf gespeichert.
+
+  days:
+    day_jumper:
+      back: gestern
+      forth: morgen
+    show:
+      title: Tagesansicht für den :date_str
+
+  help:
+    title: Hilfe!
+    contact:
+      title: Kontakt
+      badiAdmins: Verantwortlich Hüterwesen
+      kioskAdmins: Verantwortlich Kiosk
+      webmasters: Verantwortlich Website
+
+  people:
+    password_label: Passwort ändern (sonst leer lassen)
+    password_confirmation_label: Neues Passwort wiederholen
+    preferences_label: Spontan anfragen für (z.B. "Mo Abend und WE, ausser Wochen 23-25")
+    show_map: Kartensuche
+    index:
+      title: Personenliste
+    create:
+      title: Neue Person eintragen
+    destroy:
+      confirm: Bitte Rausschmiss nochmal bestätigen. Sämtliche Daten gehen verloren!
+    edit:
+      title:
+        badiStaff: Meine Personalien
+        badiAdmin: Personalien bearbeiten
+
+  sessions:
+    login: Einloggen
+    logout: Ausloggen
+
+  shiftinfos:
+    description_label: Beschreibung (üblicherweise 'Morgen', 'Pikett' oder 'Abend')
+    new:
+      title: Neuen Schichtentyp erstellen
+    edit:
+      title: Schichtentyp :description bearbeiten
+    index:
+      title: Alle Schichtentypen auflisten
+    show:
+      title: Schichtentyp :description
+
+  shifts:
+    free: frei
+    n: Schichten
+    responsible_person: Belegung
+    sign_up: Eintragen
+    taken: besetzt
+    edit:
+      title: Schicht :shift am :date
+      badiAdmin_advice: Du kannst HüterInnen nur in der Tagesansicht neu zuordnen.
+      general_advice: Du bist dabei, dich für eine Schicht einzutragen. Bitte bestätigen.
+      how_to_abort: Um abzubrechen, einfach den Zurück-Knopf des Browsers benutzen.
+      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Schicht als HüterIn! \nUm dich wieder auszutragen, melde dich bei :badiAdmin, denn nur sie kann dich wieder austragen.'
+    index:
+      title: Alle Schichten
+    myshifts:
+      title: Meine Einsätze
+    show:
+      edit_shiftinfos: Schichtentypen bearbeiten
+
+  weeks:
+    confirm_delete: Jää, bisch de sicher? (Daten zu den Tagen bleiben erhalten)
+    past_weeks: Vergangene Wochen
+    responsability: Wochenverantwortung
+    sign_up: Eintragen
+    edit:
+      title: Woche bearbeiten
+      general_advice: Du bist dabei, dich für Woche :wnum als Wochenverantwortliche/r zu melden. Bitte bestätigen.
+      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Woche als Wochenverantwortliche/r! \nUm dich wieder auszutragen, melde dich bei Doris Luginbühl, denn nur sie kann dich wieder austragen.'
+    index:
+      title: Saisonübersicht
+    new:
+      title: Woche hinzufügen
+      taken_numbers: Vergebene Nummern
+      week_number_label: Kalenderwoche Nr.
+    show:
+      title: Wochenansicht
+      printout: Druckversion
+    weeks_table:
+      weeknum_header: Woche
+    week_plan:
+      title: Einsatzplan Woche :wnum
+      badi_tel: 'Tel. Badi: 031 767 81 41'
+      caption: Einsatzplan Badihüten vom :begin_date bis :end_date

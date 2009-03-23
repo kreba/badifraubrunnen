@@ -1,0 +1,38 @@
+Noch zu implementieren:
+
+ - Änderungsantrag Hüten
+ - ActionMailer
+ - Feedback
+ - Namenskürzel auf Saisonübersicht
+
+ - zugang nicht nur von logged_in?, sondern auch von is_badiStaff? abhängig machen (before filter!)
+ - introduce subscribe actions
+
+ - Elemente in Listen, welche in der Vergangenheit liegen, verstecken/kennzeichnen (Wochen, Einsätze)
+ - Wochenansicht als PDF
+
+ - embed localization in a way that makes .html.erb files more readable  (page titles, ...)
+ - localization: refrain for those capitalize calls?
+ - localization: "Pikett" in week plan files
+ 
+ - find a better way of handling overlapping shift(info)s  (localization!)
+ - überschneiden morgen/abend mit pikett verhindern (beim eintragen)
+ - http://www.meteoschweiz.ch/cgi-bin/plz.cgi?language=de&plz=3312 einbinden
+
+ - mydays action which displays only the days in wich the current person has signed up for a shift
+ - myweeks action which displays only the weeks in wich the current person has signed up for a shift
+
+ - Woche: Tage hinzufügen/entfernen über webinterface (nur webmaster) (bzw. saisonstart und -ende festlegen)
+ - allow deleting shiftinfos
+ - extract person select partial
+
+ - Get that thing with the flash messages right
+ - more specific flash message for failed login
+
+ - Why is assignment of person_id = 0 possible? (occurs when entering text in the appropriate form field)
+ 
+ - add some default data when the database is migrated (created) (fixtures?)
+ 
+ -----
+ - is it possible to update the shifts of a day trough day[shifts][] directly (instead of days[shifts_attributes][])
+ - how can i get rid of the offset that eats my padding? (concerns block_link_to)

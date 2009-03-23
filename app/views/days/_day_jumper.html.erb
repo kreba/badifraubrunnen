@@ -1,0 +1,7 @@
+<% before = day_jumper.yesterday %>
+<% after  = day_jumper.tomorrow %>
+
+<div class="day_jumper">
+	<%= link_to( '<< ' + 'back'.lc , week_day_path( before.week, before ) ) unless before.nil? %>
+  <%= link_to( 'forth'.lc + ' >>'  , week_day_path(  after.week, after  ) ) unless  after.nil? %>
+</div>

@@ -1,0 +1,13 @@
+<% if logged_in? and current_person.is_badiStaff? %>
+	<ul id="bottom_navi" class="actions">
+
+	  <li><%= link_to_unless_current( l('weeks','index','title'), weeks_path ) do end %></li>
+
+	  <%= yield :links %>
+
+		<% if current_person.is_badiAdmin? %>
+		  <%= yield :admin_links %>
+		<% end %>
+
+	</ul>
+<% end %>

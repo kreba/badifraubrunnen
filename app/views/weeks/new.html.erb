@@ -1,0 +1,17 @@
+<% content_for :title, @title = lc('title') %>
+
+
+<%= error_messages_for :week %>
+
+<%=lc 'taken_numbers' %>: <%=h Week.find(:all).collect(&:number).sort.join(', ') %>
+
+<% form_for(@week) do |f| %>
+  <p>
+    <b><%=lc 'week_number_label' %></b><br />
+    <%= f.text_field :number %>
+  </p>
+
+  <p>
+    <%= f.submit l('Save') %>
+  </p>
+<% end %>

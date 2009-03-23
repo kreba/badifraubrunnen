@@ -1,0 +1,12 @@
+<% shift = shift_tr %>
+<tr>
+	
+  <td><%=h shift.day.date_str('%a %d.%m.') %></td>
+  <td><%=h "#{shift.shiftinfo.description},  #{shift.shiftinfo.times_str}"  %></td>
+  <td><%=h shift.free? ? '<' + l('shifts','free') + '>' : shift.person.name %></td>
+	
+  <% if current_person.is_badiAdmin? %>
+		<td><%= link_to( l('Edit') , edit_week_day_shift_path(shift.day.week,shift.day,shift) )%></td>
+	<% end %>
+	
+</tr>

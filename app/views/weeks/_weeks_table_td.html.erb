@@ -1,0 +1,14 @@
+<% day = weeks_table_td %>
+<% if !day %>
+	<td class="weeks_table_td"></td>
+<% else %>
+	<% 
+		bg    = day.date >= Date.today ? "background=\"#{day.status_image_path}\"" : "" 
+		color = day.date >= Date.today ? "" : "color: #333333;"
+	%>
+	<td class="weeks_table_td" <%= bg %>>
+ 	  <%= link_to( day.date.strftime( "%d.%m." ) , week_day_path(week,day) , { 
+							:title => tooltip_for(day),
+							:style => color } )%>
+	</td>
+<% end %>

@@ -1,0 +1,33 @@
+<% content_for :title, @title = l('people','index','title') %>
+<% content_for :admin_links do %><li><%= link_to l('people','create','title'), new_person_path %></li><% end %>
+
+
+<table id="people_list">
+  <tr>
+    <th><%=l 'person','attributes','name' %></th>
+<% if current_person.is_badiAdmin? %>
+  	<th>#<%=l 'assignments' %></th>
+    <th><%=l 'person','attributes','preferences' %></th>
+<% else %>
+    <th><%=l 'person','attributes','phone' %></th>
+    <th><%=l 'person','attributes','phone2' %></th>
+    <th><%=l 'person','attributes','address' %></th>
+<% end %>
+  </tr>
+
+<% for person in @people %>
+  <tr>
+    <td><%=h person.name %></td>
+<% if current_person.is_badiAdmin? %>
+  	<td><%=h person.shifts.size.to_s %>
+  	<td><%=h person.preferences.to_s %>
+    <td><%= link_to l('Edit'), edit_person_path(person) %></td>
+    <td><%= link_to l('Delete'), person, :confirm => l('people','destroy','confirm'), :method => :delete %></td>
+<% else %>
+    <td><%=h person.phone %></td>
+    <td><%=h person.phone2 %></td>
+    <td><%= render( :partial => 'address_link_if_complete', :locals => { :person => person }, :title => l('people','show_map') )%></td>
+<% end %>
+  </tr>
+<% end %>
+</table>

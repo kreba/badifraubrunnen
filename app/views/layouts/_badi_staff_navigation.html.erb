@@ -1,0 +1,32 @@
+<ul>
+  <li><%= link_to_unless_current l('help','title'), help_path %></li>
+	<li><%= link_to_unless_current l('people','index','title'), people_path %></li>
+  <li><%= link_to_unless_current l('weeks','index','title'), weeks_path %></li>
+	<%= yield :links %>
+</ul>
+<br />
+<h3><%=h current_person.name %></h3>
+<ul>
+	<li><%= link_to_unless_current( l('people','edit','title','badiStaff'), edit_person_path(current_person) )%></li>
+	<li><%= link_to_unless_current( l('shifts','myshifts','title'), myshifts_path )%></li>
+	<li><%= link_to( l('sessions','logout'), logout_path )%></li>
+</ul>
+
+<% if current_person.is_badiAdmin? %>
+	<br />
+	<h3><%=l 'badiAdmin' %></h3>
+  <ul>
+	  <li><%= link_to_unless_current l('shifts','index','title'), shifts_path %></li>
+		<li><%= link_to_unless_current l('shiftinfos','index','title'), shiftinfos_path %></li>
+		<%= yield :admin_links %>
+	</ul>
+<% end %>
+
+<% if current_person.is_webmaster? %>
+	<br />
+	<h3><%=l 'webmaster' %></h3>
+  <ul>
+		<%= yield :webmaster_links %>
+	</ul>
+<% end %>
+

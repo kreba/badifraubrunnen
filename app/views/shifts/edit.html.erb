@@ -1,0 +1,23 @@
+<% content_for :title, @title = lc('title', :shift => @shift.shiftinfo.description, :date => @day.date_str) %>
+<% content_for :links do %><li><%= link_to l('weeks','show','title') , week_path(@week) %></li><% end %>
+<% content_for :links do %><li><%= link_to l('days','show','title') , week_day_path(@week,@day) %></li><% end %>
+
+<%= error_messages_for :shift %>
+
+<% form_for(@shift) do |f| %>
+	<% if current_person.is_badiAdmin? %>
+	  <p><%=lc 'badiAdmin_advice' %></p>
+	<% end %>
+	<h2><%=lc 'general_advice' %></h2>
+	<%= f.hidden_field :person_id, :value => current_person.id %>
+	<%= f.hidden_field :shiftinfo_id %>
+  <p>
+    <%= f.submit l('Save') %><br />
+  </p>
+<% end %>
+<p><br /><em>
+	<%= lc('warning', :badiAdmin => @admin_names).gsub("\n","<br />") %><br />
+	<%= link_to( l('help','contact','title') , :controller => 'help', :action => 'contact' )%><br />
+	<br />
+	<%=lc 'how_to_abort' %>
+</em></p>

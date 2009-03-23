@@ -1,0 +1,5 @@
+<% content_for( :title, @title = lc('title','badiAdmin') )%>
+
+<%= error_messages_for :person %>
+
+<p><%= render( :partial => 'person_form', :locals => { :person => @person } )%></p>

@@ -1,0 +1,7 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+kw19_d1:
+  id: 1
+  date: 2008-05-05
+  week_id: 1
+  

@@ -1,0 +1,39 @@
+<% 
+	week = week_plan_times
+	time_height = 20  #css: height=17px + padding+border=3px
+	
+	toptops, endtops = {}, {}
+	week.days.each {|day| day.shifts.each {|shift| 
+		si = shift.shiftinfo
+		v_offset = header_height + (si.description.eql?("Pikett") ? -0.5*hour_height : -9.5*hour_height)
+		toptops[si.begin] ||= v_offset + hour_height * (si.begin.hour + si.begin.min/60.0)
+		endtops[si.end]   ||= v_offset + hour_height * (si.end.hour + si.end.min/60.0) - time_height
+	} }
+	end_times   = (endtops.reject {|time, top| endtops.values.detect {|x| top - x > 0 and top - x < time_height } }).keys
+	begin_times = (toptops.reject {|time, top| toptops.values.detect {|x| x - top > 0 and x - top < time_height } }).keys
+	begin_times.reject! {|t| end_times.detect {|x| x - t > 0 and x - t < time_height} }
+  # TODO: refactor out to controller
+%>
+
+<% for time in begin_times do %>
+	<span class="time_begin" style="top: <%=h toptops[time]-1 %>px; left: <%=h h_offset %>px;">
+		<%= time.strftime( "%H:%M" )%>
+	</span>
+<% end %>
+
+<% for time in end_times do %>
+	<span class="time_end" style="top: <%=h endtops[time] %>px; left: <%=h h_offset %>px;">
+		<%= time.strftime( "%H:%M" )%>
+	</span>
+<% end %>
+
+
+
+<!--
+<span class="time_begin" style="margin: 0; padding: 1px; top: <%=h header_height + hour_height *  2.0 %>px; height: 15px; width: 50px;">11:00</span>
+<span class="time_end"   style="margin: 0; padding: 1px; top: <%=h header_height + hour_height *  6.5 %>px; height: 15px; width: 50px;">15:30</span>
+<span class="time_end"   style="margin: 0; padding: 1px; top: <%=h header_height + hour_height * 11.0 %>px; height: 15px; width: 50px;">20:00</span>
+
+<span class="time_begin" style="margin: 0; padding: 1px; top: <%=h header_height + hour_height *  4.5 %>px; height: 15px; width: 50px;">13:30</span>
+<span class="time_end"   style="margin: 0; padding: 1px; top: <%=h header_height + hour_height *  9.0 %>px; height: 15px; width: 50px;">18:00</span>
+-->

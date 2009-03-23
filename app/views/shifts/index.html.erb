@@ -1,0 +1,15 @@
+<% content_for :title, @title = lc('title') %>
+
+
+<h2>Schichten total: <%=h @shifts.size %></h2>
+
+<table>
+  <tr>
+    <th><%=l 'shift','attributes','day' %></th>
+    <th><%=l 'shift','attributes','shiftinfo' %></th>
+    <th><%=l 'shift','attributes','person' %></th>
+  </tr>
+
+  <%= render( :partial => "shift_tr", :collection => @shifts ) %>
+</table>
+

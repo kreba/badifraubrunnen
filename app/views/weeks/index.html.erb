@@ -1,0 +1,5 @@
+<% content_for :title, @title = 'Saisonübersicht' %>
+<% content_for :webmaster_links do %><li><%= link_to 'Woche hinzufügen', new_week_path %></li><% end %>
+
+<%= render :partial => 'weeks_past_view', :object => @past_weeks %>
+<%= render :partial => 'weeks_table', :object => @future_weeks %>

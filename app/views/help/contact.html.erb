@@ -1,0 +1,15 @@
+<% content_for :title, @title = 'title'.lc %>
+
+<%= render( :partial => 'list_people' , 
+ :locals => { :title => 'badiAdmins'.lc,  :people => @badi_admins  } ) %>
+
+<%= render( :partial => 'list_people' , 
+ :locals => { :title => 'kioskAdmins'.lc, :people => @kiosk_admins } ) %>
+
+<%= render( :partial => 'list_people' , 
+ :locals => { :title => 'webmasters'.lc,  :people => @webmasters   } ) %>
+
+<h2><%=lc 'location' %></h2>
+<div>
+  <%=l 'phone_short' %>: 031 767 81 41
+</div>

@@ -1,0 +1,908 @@
+# Logfile created on Fri Jul 11 13:25:20 +0200 2008DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2008-07-11 13:25:27) [GET]
+  Session ID: 13f0898857024b40438fe594bab9c29b
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+  [4;36;1mSQL (0.018123)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.015807)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Redirected to http://localhost:3000/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.00105 (954 reqs/sec) | DB: 0.03393 (3237%) | 302 Found [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-07-11 13:25:27) [GET]
+  Session ID: BAh7BzoOcmV0dXJuX3RvIgYvIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVy
+OjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--7982c7ff0c2d45f7c4fc9f663dfe0448a3e67572
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered layouts/_banner (0.00003)
+Rendered layouts/_sidebar (0.00037)
+Rendered layouts/_bottom_navi (0.00389)
+Rendered layouts/_main (0.00581)
+Rendered layouts/_footer (0.00003)
+Completed in 0.06675 (14 reqs/sec) | Rendering: 0.05175 (77%) | DB: 0.00000 (0%) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2008-07-11 13:25:43) [POST]
+  Session ID: BAh7CDoMY3NyZl9pZCIlOTc4NTNlMzNiNDI1ZmEwNTY4NDVmZWVkZTYyY2U4
+ODQ6DnJldHVybl90byIGLyIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6
+Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA==--a382e8d1aa3edf14ddf28f1925ab83de0e19fa03
+  Parameters: {"commit"=>"Einloggen", "action"=>"create", "authenticity_token"=>"320434347a673bf9c04735fdee9870c25836b1eb", "controller"=>"sessions", "login"=>"kreba", "password"=>"[FILTERED]"}
+  [4;36;1mPerson Columns (0.200529)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mPerson Load (0.092395)[0m   [0mSELECT * FROM `people` WHERE (`people`.`login` = 'kreba') LIMIT 1[0m
+  [4;36;1mPerson Load (0.015777)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 2) [0m
+  [4;35;1mRole Load (0.006813)[0m   [0mSELECT `roles`.*, t0.person_id as _parent_record_id FROM `roles` INNER JOIN `people_roles` as t0 ON `roles`.id = t0.role_id WHERE (t0.person_id IN (2)) [0m
+  [4;36;1mRole Columns (0.001295)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+Redirected to http://localhost:3000/
+Completed in 0.40518 (2 reqs/sec) | DB: 0.31681 (78%) | 302 Found [http://localhost/session]
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2008-07-11 13:25:43) [GET]
+  Session ID: BAh7CToMY3NyZl9pZCIlOTc4NTNlMzNiNDI1ZmEwNTY4NDVmZWVkZTYyY2U4
+ODQ6DnJldHVybl90bzA6DnBlcnNvbl9pZGkHIgpmbGFzaElDOidBY3Rpb25D
+b250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewY6C25vdGljZSIaRWlubG9n
+Z2VuIGVyZm9sZ3JlaWNoBjoKQHVzZWR7BjsJRg==--ad111f71bf3e014cc3896ace4792c84f5689fda5
+  Parameters: {"action"=>"index", "controller"=>"welcome"}
+  [4;35;1mPerson Columns (0.001447)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mPerson Load (0.000454)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 2) LIMIT 1[0m
+  [4;35;1mPerson Load (0.000186)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 2) [0m
+  [4;36;1mRole Load (0.000174)[0m   [0;1mSELECT `roles`.*, t0.person_id as _parent_record_id FROM `roles` INNER JOIN `people_roles` as t0 ON `roles`.id = t0.role_id WHERE (t0.person_id IN (2)) [0m
+  [4;35;1mRole Columns (0.000881)[0m   [0mSHOW FIELDS FROM `roles`[0m
+Redirected to http://localhost:3000/home
+Completed in 0.15612 (6 reqs/sec) | DB: 0.00314 (2%) | 302 Found [http://localhost/]
+
+
+Processing WeeksController#index (for 127.0.0.1 at 2008-07-11 13:25:43) [GET]
+  Session ID: BAh7CToMY3NyZl9pZCIlOTc4NTNlMzNiNDI1ZmEwNTY4NDVmZWVkZTYyY2U4
+ODQ6DnJldHVybl90bzA6DnBlcnNvbl9pZGkHIgpmbGFzaElDOidBY3Rpb25D
+b250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewY6C25vdGljZSIZSGVyemxp
+Y2ggd2lsbGtvbW1lbiEGOgpAdXNlZHsGOwlG--eb21cd4584cd2b1844eb836df050678c6e2b8b36
+  Parameters: {"action"=>"index", "controller"=>"weeks"}
+  [4;36;1mPerson Columns (0.001238)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mPerson Load (0.000158)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPerson Load (0.000158)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 2) [0m
+  [4;35;1mRole Load (0.000166)[0m   [0mSELECT `roles`.*, t0.person_id as _parent_record_id FROM `roles` INNER JOIN `people_roles` as t0 ON `roles`.id = t0.role_id WHERE (t0.person_id IN (2)) [0m
+  [4;36;1mRole Columns (0.000849)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mWeek Load (0.014143)[0m   [0mSELECT * FROM `weeks` ORDER BY number[0m
+  [4;36;1mWeek Columns (0.000759)[0m   [0;1mSHOW FIELDS FROM `weeks`[0m
+  [4;35;1mDay Load (0.005742)[0m   [0mSELECT `days`.* FROM `days` WHERE (`days`.week_id IN (5,2,3,4,7,6)) [0m
+  [4;36;1mDay Columns (0.000881)[0m   [0;1mSHOW FIELDS FROM `days`[0m
+  [4;35;1mShift Load (0.002135)[0m   [0mSELECT `shifts`.* FROM `shifts` WHERE (`shifts`.day_id IN (29,30,31,32,33,34,35,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,43,44,45,46,47,48,49,36,37,38,39,40,41,42)) [0m
+  [4;36;1mShift Columns (0.000950)[0m   [0;1mSHOW FIELDS FROM `shifts`[0m
+  [4;35;1mShiftinfo Load (0.022722)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.id IN ('6','1','2','3','4','5')) [0m
+  [4;36;1mShiftinfo Columns (0.000810)[0m   [0;1mSHOW FIELDS FROM `shiftinfos`[0m
+Rendering template within layouts/application
+Rendering weeks/index
+
+
+ActionView::TemplateError (Missing template weeks/_weeks_past_view.html.erb in view path /home/kreba/eclipse/workspace/badi2010/app/views) on line #4 of weeks/index.html.erb:
+1: <% content_for :title, @title = 'Saisonübersicht' %>
+2: <% content_for :webmaster_links do %><li><%= link_to 'Woche hinzufügen', new_week_path %></li><% end %>
+3: 
+4: <%= render :partial => 'weeks_past_view', :object => @weeks.select(&:past) %>
+5: <%= render :partial => 'weeks_table', :object => @weeks.select{|w| !w.past} %>
+
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/template.rb:85:in `raise_missing_template_exception'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/template.rb:78:in `set_extension_and_file_name'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/template.rb:15:in `initialize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/partial_template.rb:8:in `initialize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/partials.rb:110:in `new'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/partials.rb:110:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/base.rb:273:in `render'
+    app/views/weeks/index.html.erb:4:in `_run_erb_47app47views47weeks47index46html46erb'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/base.rb:338:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/base.rb:338:in `execute'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/template_handlers/compilable.rb:29:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/template_handlers/compilable.rb:29:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/template.rb:35:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/template.rb:22:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_view/base.rb:245:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1108:in `render_for_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:865:in `render_with_no_layout'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:880:in `render_with_no_layout'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/layout.rb:251:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:51:in `render'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:51:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:131:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:131:in `custom'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:160:in `call'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:160:in `respond'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:154:in `each'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:154:in `respond'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:107:in `respond_to'
+    app/controllers/weeks_controller.rb:11:in `index'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/webrick_server.rb:78:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/webrick_server.rb:62:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/commands/servers/webrick.rb:66
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+    -e:2:in `load'
+    -e:2
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing WeeksController#index (for 127.0.0.1 at 2008-07-11 13:30:01) [GET]
+  Session ID: BAh7CToMY3NyZl9pZCIlOTc4NTNlMzNiNDI1ZmEwNTY4NDVmZWVkZTYyY2U4
+ODQ6DnJldHVybl90bzA6DnBlcnNvbl9pZGkHIgpmbGFzaElDOidBY3Rpb25D
+b250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewY6C25vdGljZSIZSGVyemxp
+Y2ggd2lsbGtvbW1lbiEGOgpAdXNlZHsGOwlU--3e4f28f0dafe9ebfaf21a9e43b31e8f567c119ed
+  Parameters: {"action"=>"index", "controller"=>"weeks"}
+  [4;35;1mPerson Columns (0.002259)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mPerson Load (0.000173)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 2) LIMIT 1[0m
+  [4;35;1mPerson Load (0.000176)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 2) [0m
+  [4;36;1mRole Load (0.000161)[0m   [0;1mSELECT `roles`.*, t0.person_id as _parent_record_id FROM `roles` INNER JOIN `people_roles` as t0 ON `roles`.id = t0.role_id WHERE (t0.person_id IN (2)) [0m
+  [4;35;1mRole Columns (0.000825)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mWeek Load (0.000196)[0m   [0;1mSELECT * FROM `weeks` ORDER BY number[0m
+  [4;35;1mWeek Columns (0.001993)[0m   [0mSHOW FIELDS FROM `weeks`[0m
+  [4;36;1mDay Load (0.000156)[0m   [0;1mSELECT `days`.* FROM `days` WHERE (`days`.week_id IN (5,2,3,4,7,6)) [0m
+  [4;35;1mDay Columns (0.000782)[0m   [0mSHOW FIELDS FROM `days`[0m
+  [4;36;1mShift Load (0.000209)[0m   [0;1mSELECT `shifts`.* FROM `shifts` WHERE (`shifts`.day_id IN (29,30,31,32,33,34,35,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,43,44,45,46,47,48,49,36,37,38,39,40,41,42)) [0m
+  [4;35;1mShift Columns (0.000942)[0m   [0mSHOW FIELDS FROM `shifts`[0m
+  [4;36;1mShiftinfo Load (0.000171)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.id IN ('6','1','2','3','4','5')) [0m
+  [4;35;1mShiftinfo Columns (0.000771)[0m   [0mSHOW FIELDS FROM `shiftinfos`[0m
+Rendering template within layouts/application
+Rendering weeks/index
+Rendered weeks/_weeks_past_view (0.00053)
+  [4;36;1mRole Load (0.000562)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'webmaster') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_weeks_table_td (0.00461)
+Rendered weeks/_weeks_table_td (0.00231)
+Rendered weeks/_weeks_table_td (0.00233)
+Rendered weeks/_weeks_table_td (0.00233)
+Rendered weeks/_weeks_table_td (0.00623)
+Rendered weeks/_weeks_table_td (0.00251)
+Rendered weeks/_weeks_table_td (0.00297)
+  [4;35;1mRole Load (0.000535)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_weeks_table_tr (0.03389)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'webmaster') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_weeks_table_td (0.00337)
+Rendered weeks/_weeks_table_td (0.00259)
+  [4;35;1mPerson Load (0.000439)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 6) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 6) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 6) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 6) [0m
+Rendered weeks/_weeks_table_td (0.00473)
+Rendered weeks/_weeks_table_td (0.00241)
+Rendered weeks/_weeks_table_td (0.00231)
+Rendered weeks/_weeks_table_td (0.00901)
+Rendered weeks/_weeks_table_td (0.00233)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_weeks_table_tr (0.03340)
+Rendered weeks/_weeks_table (0.07388)
+Rendered layouts/_banner (0.00002)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mRole Load (0.000569)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'webmaster') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered layouts/_badi_staff_navigation (0.00341)
+Rendered layouts/_member_navigation (0.00865)
+Rendered layouts/_sidebar (0.01543)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered layouts/_bottom_navi (0.00226)
+Rendered layouts/_main (0.00259)
+Rendered layouts/_footer (0.00003)
+Completed in 0.38673 (2 reqs/sec) | Rendering: 0.11082 (28%) | DB: 0.01092 (2%) | 200 OK [http://localhost/home]
+
+
+Processing WeeksController#index (for 127.0.0.1 at 2008-07-11 13:30:47) [GET]
+  Session ID: BAh7CToMY3NyZl9pZCIlOTc4NTNlMzNiNDI1ZmEwNTY4NDVmZWVkZTYyY2U4
+ODQ6DnJldHVybl90bzA6DnBlcnNvbl9pZGkHIgpmbGFzaElDOidBY3Rpb25D
+b250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--52ecf516e1682fd554c6c8271e933b7c418adddc
+  Parameters: {"action"=>"index", "controller"=>"weeks"}
+  [4;36;1mPerson Columns (0.001286)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mPerson Load (0.000165)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPerson Load (0.000175)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 2) [0m
+  [4;35;1mRole Load (0.000150)[0m   [0mSELECT `roles`.*, t0.person_id as _parent_record_id FROM `roles` INNER JOIN `people_roles` as t0 ON `roles`.id = t0.role_id WHERE (t0.person_id IN (2)) [0m
+  [4;36;1mRole Columns (0.000829)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mWeek Load (0.000152)[0m   [0mSELECT * FROM `weeks` ORDER BY number[0m
+  [4;36;1mWeek Columns (0.000743)[0m   [0;1mSHOW FIELDS FROM `weeks`[0m
+  [4;35;1mDay Load (0.000166)[0m   [0mSELECT `days`.* FROM `days` WHERE (`days`.week_id IN (5,2,3,4,7,6)) [0m
+  [4;36;1mDay Columns (0.000769)[0m   [0;1mSHOW FIELDS FROM `days`[0m
+  [4;35;1mShift Load (0.000208)[0m   [0mSELECT `shifts`.* FROM `shifts` WHERE (`shifts`.day_id IN (29,30,31,32,33,34,35,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,43,44,45,46,47,48,49,36,37,38,39,40,41,42)) [0m
+  [4;36;1mShift Columns (0.000915)[0m   [0;1mSHOW FIELDS FROM `shifts`[0m
+  [4;35;1mShiftinfo Load (0.000170)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.id IN ('6','1','2','3','4','5')) [0m
+  [4;36;1mShiftinfo Columns (0.000800)[0m   [0;1mSHOW FIELDS FROM `shiftinfos`[0m
+Rendering template within layouts/application
+Rendering weeks/index
+Rendered weeks/_weeks_past_view (0.00051)
+  [4;35;1mRole Load (0.000161)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'webmaster') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_weeks_table_td (0.00411)
+Rendered weeks/_weeks_table_td (0.00307)
+Rendered weeks/_weeks_table_td (0.00618)
+Rendered weeks/_weeks_table_td (0.00224)
+Rendered weeks/_weeks_table_td (0.00333)
+Rendered weeks/_weeks_table_td (0.00231)
+Rendered weeks/_weeks_table_td (0.00225)
+  [4;36;1mRole Load (0.000176)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_weeks_table_tr (0.03179)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'webmaster') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_weeks_table_td (0.00231)
+Rendered weeks/_weeks_table_td (0.00226)
+  [4;36;1mPerson Load (0.000176)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 6) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 2) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 6) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 6) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 6) [0m
+Rendered weeks/_weeks_table_td (0.00494)
+Rendered weeks/_weeks_table_td (0.00637)
+Rendered weeks/_weeks_table_td (0.11517)
+Rendered weeks/_weeks_table_td (0.00320)
+Rendered weeks/_weeks_table_td (0.00256)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_weeks_table_tr (0.14349)
+Rendered weeks/_weeks_table (0.17573)
+Rendered layouts/_banner (0.00002)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mRole Load (0.000159)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'webmaster') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered layouts/_badi_staff_navigation (0.00728)
+Rendered layouts/_member_navigation (0.00891)
+Rendered layouts/_sidebar (0.00920)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered layouts/_bottom_navi (0.00234)
+Rendered layouts/_main (0.00268)
+Rendered layouts/_footer (0.00004)
+Completed in 0.30911 (3 reqs/sec) | Rendering: 0.19610 (63%) | DB: 0.00720 (2%) | 200 OK [http://localhost/home]
+
+
+Processing WeeksController#index (for 127.0.0.1 at 2008-07-11 13:31:18) [GET]
+  Session ID: BAh7CToMY3NyZl9pZCIlOTc4NTNlMzNiNDI1ZmEwNTY4NDVmZWVkZTYyY2U4
+ODQ6DnJldHVybl90bzA6DnBlcnNvbl9pZGkHIgpmbGFzaElDOidBY3Rpb25D
+b250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--52ecf516e1682fd554c6c8271e933b7c418adddc
+  Parameters: {"action"=>"index", "controller"=>"weeks"}
+  [4;35;1mPerson Columns (0.001859)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mPerson Load (0.000165)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 2) LIMIT 1[0m
+  [4;35;1mPerson Load (0.000161)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 2) [0m
+  [4;36;1mRole Load (0.000169)[0m   [0;1mSELECT `roles`.*, t0.person_id as _parent_record_id FROM `roles` INNER JOIN `people_roles` as t0 ON `roles`.id = t0.role_id WHERE (t0.person_id IN (2)) [0m
+  [4;35;1mRole Columns (0.000824)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mWeek Load (0.000169)[0m   [0;1mSELECT * FROM `weeks` ORDER BY number[0m
+  [4;35;1mWeek Columns (0.001372)[0m   [0mSHOW FIELDS FROM `weeks`[0m
+  [4;36;1mDay Load (0.000143)[0m   [0;1mSELECT `days`.* FROM `days` WHERE (`days`.week_id IN (5,2,3,4,7,6)) [0m
+  [4;35;1mDay Columns (0.000759)[0m   [0mSHOW FIELDS FROM `days`[0m
+  [4;36;1mShift Load (0.000198)[0m   [0;1mSELECT `shifts`.* FROM `shifts` WHERE (`shifts`.day_id IN (29,30,31,32,33,34,35,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,43,44,45,46,47,48,49,36,37,38,39,40,41,42)) [0m
+  [4;35;1mShift Columns (0.001669)[0m   [0mSHOW FIELDS FROM `shifts`[0m
+  [4;36;1mShiftinfo Load (0.000162)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.id IN ('6','1','2','3','4','5')) [0m
+  [4;35;1mShiftinfo Columns (0.000783)[0m   [0mSHOW FIELDS FROM `shiftinfos`[0m
+Rendering template within layouts/application
+Rendering weeks/index
+Rendered weeks/_weeks_past_view (0.00055)
+  [4;36;1mRole Load (0.000171)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'webmaster') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_weeks_table_td (0.00843)
+Rendered weeks/_weeks_table_td (0.00246)
+Rendered weeks/_weeks_table_td (0.00252)
+Rendered weeks/_weeks_table_td (0.00263)
+Rendered weeks/_weeks_table_td (0.00243)
+Rendered weeks/_weeks_table_td (0.00328)
+Rendered weeks/_weeks_table_td (0.00293)
+  [4;35;1mRole Load (0.000183)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_weeks_table_tr (0.03329)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'webmaster') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_weeks_table_td (0.00658)
+Rendered weeks/_weeks_table_td (0.00250)
+  [4;35;1mPerson Load (0.000173)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 6) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 6) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 6) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 6) [0m
+Rendered weeks/_weeks_table_td (0.00436)
+Rendered weeks/_weeks_table_td (0.00250)
+Rendered weeks/_weeks_table_td (0.00237)
+Rendered weeks/_weeks_table_td (0.00313)
+Rendered weeks/_weeks_table_td (0.00266)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_weeks_table_tr (0.03085)
+Rendered weeks/_weeks_table (0.06462)
+Rendered layouts/_banner (0.00002)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mRole Load (0.000178)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'webmaster') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered layouts/_badi_staff_navigation (0.00670)
+Rendered layouts/_member_navigation (0.00823)
+Rendered layouts/_sidebar (0.00853)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered layouts/_bottom_navi (0.00218)
+Rendered layouts/_main (0.00251)
+Rendered layouts/_footer (0.00004)
+Completed in 0.32870 (3 reqs/sec) | Rendering: 0.08482 (25%) | DB: 0.00914 (2%) | 200 OK [http://localhost/home]
+
+
+Processing WeeksController#show (for 127.0.0.1 at 2008-07-11 13:32:23) [GET]
+  Session ID: BAh7CToMY3NyZl9pZCIlOTc4NTNlMzNiNDI1ZmEwNTY4NDVmZWVkZTYyY2U4
+ODQ6DnJldHVybl90bzA6DnBlcnNvbl9pZGkHIgpmbGFzaElDOidBY3Rpb25D
+b250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--52ecf516e1682fd554c6c8271e933b7c418adddc
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"weeks"}
+  [4;36;1mPerson Columns (0.001182)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mPerson Load (0.000166)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPerson Load (0.000183)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 2) [0m
+  [4;35;1mRole Load (0.000170)[0m   [0mSELECT `roles`.*, t0.person_id as _parent_record_id FROM `roles` INNER JOIN `people_roles` as t0 ON `roles`.id = t0.role_id WHERE (t0.person_id IN (2)) [0m
+  [4;36;1mRole Columns (0.000873)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mWeek Columns (0.000830)[0m   [0mSHOW FIELDS FROM `weeks`[0m
+  [4;36;1mWeek Load (0.000411)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mDay Load (0.000416)[0m   [0mSELECT * FROM `days` WHERE (`days`.week_id = 7) [0m
+  [4;36;1mDay Columns (0.000751)[0m   [0;1mSHOW FIELDS FROM `days`[0m
+Rendering template within layouts/application
+Rendering weeks/show
+  [4;35;1mWeek Load (0.000432)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`number` = 28) LIMIT 1[0m
+  [4;36;1mWeek Load (0.003941)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`number` = 30) LIMIT 1[0m
+  [4;35;1mWeek Load (0.000137)[0m   [0mSELECT * FROM `weeks` ORDER BY number[0m
+Rendered weeks/_week_jumper (0.00841)
+  [4;36;1mRole Load (0.000178)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mRole Load (0.000149)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mShift Load (0.000500)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 43) [0m
+  [4;35;1mShift Columns (0.000831)[0m   [0mSHOW FIELDS FROM `shifts`[0m
+  [4;36;1mShiftinfo Columns (0.000865)[0m   [0;1mSHOW FIELDS FROM `shiftinfos`[0m
+  [4;35;1mShiftinfo Load (0.000401)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mShiftinfo Load (0.000426)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mShiftinfo Load (0.001037)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;36;1mShift Load (0.000499)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 44) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;36;1mShift Load (0.000483)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 45) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;36;1mShift Load (0.000488)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 46) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;36;1mShift Load (0.000492)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 47) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;36;1mShift Load (0.000480)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 48) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;36;1mShift Load (0.000537)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 49) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+Rendered weeks/_week_plan_times (0.05174)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mDay Load (0.000405)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 43) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00601)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 43) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00365)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 43) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00372)
+Rendered weeks/_week_plan_day (0.01747)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mDay Load (0.000446)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 44) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00438)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 44) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00771)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 44) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00384)
+Rendered weeks/_week_plan_day (0.01805)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mDay Load (0.000413)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 45) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00505)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 45) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00360)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 45) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00387)
+Rendered weeks/_week_plan_day (0.01466)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mDay Load (0.000403)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 46) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00445)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 46) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00359)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 46) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00758)
+Rendered weeks/_week_plan_day (0.01770)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mDay Load (0.000412)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 47) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.11094)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 47) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00894)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 47) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00413)
+Rendered weeks/_week_plan_day (0.12620)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mDay Load (0.000432)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 48) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00912)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 48) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00385)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 48) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00429)
+Rendered weeks/_week_plan_day (0.01950)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mDay Load (0.000404)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 49) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00474)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 49) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00373)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 49) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00383)
+Rendered weeks/_week_plan_day (0.01430)
+Rendered weeks/_week_plan_times (0.00261)
+Rendered weeks/_week_plan (0.30221)
+Rendered layouts/_banner (0.00004)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mRole Load (0.000179)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'webmaster') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered layouts/_badi_staff_navigation (0.00296)
+Rendered layouts/_member_navigation (0.00820)
+Rendered layouts/_sidebar (0.00848)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered layouts/_bottom_navi (0.00225)
+Rendered layouts/_main (0.00261)
+Rendered layouts/_footer (0.00003)
+Completed in 0.65659 (1 reqs/sec) | Rendering: 0.33295 (50%) | DB: 0.01995 (3%) | 200 OK [http://localhost/weeks/7]
+
+
+Processing WeeksController#show (for 127.0.0.1 at 2008-07-11 13:34:15) [GET]
+  Session ID: BAh7CToMY3NyZl9pZCIlOTc4NTNlMzNiNDI1ZmEwNTY4NDVmZWVkZTYyY2U4
+ODQ6DnJldHVybl90bzA6DnBlcnNvbl9pZGkHIgpmbGFzaElDOidBY3Rpb25D
+b250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--52ecf516e1682fd554c6c8271e933b7c418adddc
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"weeks"}
+  [4;36;1mPerson Columns (0.001225)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mPerson Load (0.000162)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPerson Load (0.000168)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 2) [0m
+  [4;35;1mRole Load (0.000171)[0m   [0mSELECT `roles`.*, t0.person_id as _parent_record_id FROM `roles` INNER JOIN `people_roles` as t0 ON `roles`.id = t0.role_id WHERE (t0.person_id IN (2)) [0m
+  [4;36;1mRole Columns (0.000823)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mWeek Columns (0.000905)[0m   [0mSHOW FIELDS FROM `weeks`[0m
+  [4;36;1mWeek Load (0.000132)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mDay Load (0.000543)[0m   [0mSELECT * FROM `days` WHERE (`days`.week_id = 7) [0m
+  [4;36;1mDay Columns (0.000825)[0m   [0;1mSHOW FIELDS FROM `days`[0m
+Rendering template within layouts/application
+Rendering weeks/show
+  [4;35;1mWeek Load (0.000173)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`number` = 28) LIMIT 1[0m
+  [4;36;1mWeek Load (0.000122)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`number` = 30) LIMIT 1[0m
+  [4;35;1mWeek Load (0.000120)[0m   [0mSELECT * FROM `weeks` ORDER BY number[0m
+Rendered weeks/_week_jumper (0.00493)
+  [4;36;1mRole Load (0.000179)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mRole Load (0.000174)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mShift Load (0.000149)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 43) [0m
+  [4;35;1mShift Columns (0.000906)[0m   [0mSHOW FIELDS FROM `shifts`[0m
+  [4;36;1mShiftinfo Columns (0.000825)[0m   [0;1mSHOW FIELDS FROM `shiftinfos`[0m
+  [4;35;1mShiftinfo Load (0.000115)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mShiftinfo Load (0.000155)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mShiftinfo Load (0.000135)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;36;1mShift Load (0.000144)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 44) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;36;1mShift Load (0.000159)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 45) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;36;1mShift Load (0.000155)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 46) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;36;1mShift Load (0.000162)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 47) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;36;1mShift Load (0.000148)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 48) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;36;1mShift Load (0.000152)[0m   [0;1mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 49) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+Rendered weeks/_week_plan_times (0.05039)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mDay Load (0.000165)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 43) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00544)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 43) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00372)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 43) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00377)
+Rendered weeks/_week_plan_day (0.01516)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mDay Load (0.000163)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 44) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00928)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 44) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00373)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 44) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00593)
+Rendered weeks/_week_plan_day (0.02253)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mDay Load (0.000266)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 45) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00571)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 45) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00521)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 45) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00868)
+Rendered weeks/_week_plan_day (0.02167)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mDay Load (0.000159)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 46) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00593)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 46) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00382)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 46) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00550)
+Rendered weeks/_week_plan_day (0.01735)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mDay Load (0.000166)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 47) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00397)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 47) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00380)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 47) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00762)
+Rendered weeks/_week_plan_day (0.01746)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mDay Load (0.000161)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 48) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00394)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 48) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00355)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `days` WHERE (`days`.`id` = 48) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00360)
+Rendered weeks/_week_plan_day (0.01324)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mDay Load (0.000150)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 49) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00399)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 49) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.11595)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `days` WHERE (`days`.`id` = 49) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+Rendered weeks/_week_plan_shift (0.00423)
+Rendered weeks/_week_plan_day (0.12608)
+Rendered weeks/_week_plan_times (0.00183)
+Rendered weeks/_week_plan (0.29384)
+Rendered layouts/_banner (0.00002)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mRole Load (0.000185)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'webmaster') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered layouts/_badi_staff_navigation (0.00310)
+Rendered layouts/_member_navigation (0.00472)
+Rendered layouts/_sidebar (0.00503)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered layouts/_bottom_navi (0.00237)
+Rendered layouts/_main (0.00275)
+Rendered layouts/_footer (0.00003)
+Completed in 0.50807 (1 reqs/sec) | Rendering: 0.30599 (60%) | DB: 0.01034 (2%) | 200 OK [http://localhost/weeks/7]
+
+
+Processing WeeksController#render_week_plan (for 127.0.0.1 at 2008-07-11 13:35:00) [GET]
+  Session ID: BAh7CToMY3NyZl9pZCIlOTc4NTNlMzNiNDI1ZmEwNTY4NDVmZWVkZTYyY2U4
+ODQ6DnJldHVybl90bzA6DnBlcnNvbl9pZGkHIgpmbGFzaElDOidBY3Rpb25D
+b250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA--52ecf516e1682fd554c6c8271e933b7c418adddc
+  Parameters: {"action"=>"render_week_plan", "id"=>"7", "controller"=>"weeks"}
+  [4;36;1mPerson Columns (0.005050)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mPerson Load (0.000225)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 2) LIMIT 1[0m
+  [4;36;1mPerson Load (0.003138)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 2) [0m
+  [4;35;1mRole Load (0.000271)[0m   [0mSELECT `roles`.*, t0.person_id as _parent_record_id FROM `roles` INNER JOIN `people_roles` as t0 ON `roles`.id = t0.role_id WHERE (t0.person_id IN (2)) [0m
+  [4;36;1mRole Columns (0.000914)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mWeek Columns (0.016271)[0m   [0mSHOW FIELDS FROM `weeks`[0m
+  [4;36;1mWeek Load (0.001782)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mDay Load (0.003939)[0m   [0mSELECT * FROM `days` WHERE (`days`.week_id = 7) [0m
+  [4;36;1mDay Columns (0.004651)[0m   [0;1mSHOW FIELDS FROM `days`[0m
+Rendering template within layouts/popup
+Rendering weeks/_week_plan
+  [4;35;1mRole Load (0.000171)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mRole Load (0.000166)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mShift Load (0.000167)[0m   [0mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 43) [0m
+  [4;36;1mShift Columns (0.006475)[0m   [0;1mSHOW FIELDS FROM `shifts`[0m
+  [4;35;1mShiftinfo Columns (0.007084)[0m   [0mSHOW FIELDS FROM `shiftinfos`[0m
+  [4;36;1mShiftinfo Load (0.000134)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;35;1mShiftinfo Load (0.000159)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;36;1mShiftinfo Load (0.000132)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;35;1mShift Load (0.003601)[0m   [0mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 44) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;35;1mShift Load (0.000154)[0m   [0mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 45) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;35;1mShift Load (0.000156)[0m   [0mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 46) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;35;1mShift Load (0.000151)[0m   [0mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 47) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;35;1mShift Load (0.000211)[0m   [0mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 48) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+  [4;35;1mShift Load (0.000158)[0m   [0mSELECT * FROM `shifts` WHERE (`shifts`.day_id = 49) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 1) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 2) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `shiftinfos` WHERE (`shiftinfos`.`id` = 3) [0m
+Rendered weeks/_week_plan_times (0.08553)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00278)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00257)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00252)
+Rendered weeks/_week_plan_day (0.01829)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00637)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00252)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00252)
+Rendered weeks/_week_plan_day (0.02072)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00264)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00271)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.01439)
+Rendered weeks/_week_plan_day (0.02182)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00400)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00255)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00247)
+Rendered weeks/_week_plan_day (0.01356)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00299)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00283)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00249)
+Rendered weeks/_week_plan_day (0.01425)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00253)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00629)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00248)
+Rendered weeks/_week_plan_day (0.01328)
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `weeks` WHERE (`weeks`.`id` = 7) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00257)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00249)
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiStaff') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `roles` INNER JOIN `people_roles` ON `roles`.id = `people_roles`.role_id WHERE (`roles`.`name` = 'badiAdmin') AND (`people_roles`.person_id = 2 ) LIMIT 1[0m
+Rendered weeks/_week_plan_shift (0.00254)
+Rendered weeks/_week_plan_day (0.00944)
+Rendered weeks/_week_plan_times (0.00167)
+Completed in 0.69211 (1 reqs/sec) | Rendering: 0.23000 (33%) | DB: 0.05516 (7%) | 200 OK [http://localhost/weeks/render_week_plan/7]
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+Initialized Simple Localization plugin:
+  languages: de_ch
+  language file directories: /home/kreba/eclipse/workspace/badi2010/vendor/plugins/simple_localization/lib/../languages, /home/kreba/eclipse/workspace/badi2010/app/languages
+  features: localized_application_extensions, localized_models, localized_application, localized_date_and_time, extended_error_messages, localized_active_record_helpers, reload_lang_file, interface_shortcut, localized_models_by_lang_file, localized_form_options_helpers, localized_array, localized_column_human_name, localized_number_helpers, localized_error_messages, localized_model_attributes, localized_date_helpers
+  disabled features: localized_templates, class_based_field_error_proc
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+Initialized Simple Localization plugin:
+  languages: de_ch
+  language file directories: /home/kreba/eclipse/workspace/badi2010/vendor/plugins/simple_localization/lib/../languages, /home/kreba/eclipse/workspace/badi2010/app/languages
+  features: localized_application_extensions, localized_models, localized_application, localized_date_and_time, extended_error_messages, localized_active_record_helpers, reload_lang_file, interface_shortcut, localized_models_by_lang_file, localized_form_options_helpers, localized_array, localized_column_human_name, localized_number_helpers, localized_error_messages, localized_model_attributes, localized_date_helpers
+  disabled features: localized_templates, class_based_field_error_proc
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+Initialized Simple Localization plugin:
+  languages: de_ch
+  language file directories: /home/kreba/eclipse/workspace/badi2010/vendor/plugins/simple_localization/lib/../languages, /home/kreba/eclipse/workspace/badi2010/app/languages
+  features: localized_application_extensions, localized_models, localized_application, localized_date_and_time, extended_error_messages, localized_active_record_helpers, reload_lang_file, interface_shortcut, localized_models_by_lang_file, localized_form_options_helpers, localized_array, localized_column_human_name, localized_number_helpers, localized_error_messages, localized_model_attributes, localized_date_helpers
+  disabled features: localized_templates, class_based_field_error_proc
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+Initialized Simple Localization plugin:
+  languages: de_ch
+  language file directories: /home/kreba/eclipse/workspace/badi2010/vendor/plugins/simple_localization/lib/../languages, /home/kreba/eclipse/workspace/badi2010/app/languages
+  features: localized_application_extensions, localized_models, localized_application, localized_date_and_time, extended_error_messages, localized_active_record_helpers, reload_lang_file, interface_shortcut, localized_models_by_lang_file, localized_form_options_helpers, localized_array, localized_column_human_name, localized_number_helpers, localized_error_messages, localized_model_attributes, localized_date_helpers
+  disabled features: localized_templates, class_based_field_error_proc
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+Initialized Simple Localization plugin:
+  languages: de_ch
+  language file directories: /home/kreba/eclipse/workspace/badi2010/vendor/plugins/simple_localization/lib/../languages, /home/kreba/eclipse/workspace/badi2010/app/languages
+  features: localized_application_extensions, localized_models, localized_application, localized_date_and_time, extended_error_messages, localized_active_record_helpers, reload_lang_file, interface_shortcut, localized_models_by_lang_file, localized_form_options_helpers, localized_array, localized_column_human_name, localized_number_helpers, localized_error_messages, localized_model_attributes, localized_date_helpers
+  disabled features: localized_templates, class_based_field_error_proc
+  [4;36;1mSQL (0.000213)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000103)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPerson Load (0.027735)[0m   [0;1mSELECT * FROM `people` LIMIT 1[0m
+  [4;35;1mPerson Columns (0.009441)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mPerson Load (0.000239)[0m   [0;1mSELECT * FROM `people` LIMIT 1[0m
+DEPRECATION WARNING: ActiveRecord::Errors.default_error_messages has been deprecated. Please use I18n.translate('activerecord.errors.messages').. (called from default_error_messages at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/validations.rb:24)
+DEPRECATION WARNING: ActiveRecord::Errors.default_error_messages has been deprecated. Please use I18n.translate('activerecord.errors.messages').. (called from default_error_messages at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/validations.rb:24)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPerson Load (0.0ms)[0m   [0;1mMysql::Error: Table 'badi2010_development.people' doesn't exist: SELECT * FROM `people` [0m
+DEPRECATION WARNING: ActiveRecord::Errors.default_error_messages has been deprecated. Please use I18n.translate('activerecord.errors.messages').. (called from default_error_messages at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/validations.rb:24)
+DEPRECATION WARNING: ActiveRecord::Errors.default_error_messages has been deprecated. Please use I18n.translate('activerecord.errors.messages').. (called from default_error_messages at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/validations.rb:24)
+DEPRECATION WARNING: ActiveRecord::Errors.default_error_messages has been deprecated. Please use I18n.translate('activerecord.errors.messages').. (called from default_error_messages at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/validations.rb:24)
+DEPRECATION WARNING: ActiveRecord::Errors.default_error_messages has been deprecated. Please use I18n.translate('activerecord.errors.messages').. (called from default_error_messages at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/validations.rb:24)
+DEPRECATION WARNING: ActiveRecord::Errors.default_error_messages has been deprecated. Please use I18n.translate('activerecord.errors.messages').. (called from default_error_messages at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/validations.rb:24)

@@ -1,0 +1,19 @@
+<% 
+	shift = week_plan_shift
+	v_offset = shift.shiftinfo.description == "Pikett" ? -0.5*hour_height : -9.5*hour_height
+	bg_color = shift.free? ? "#aaffaa" : "#eeeeee"
+	top = hour_height * shift.mins_to_begin/60.0 + v_offset - 1 #border
+	height = hour_height * shift.duration/60.0 #padding 
+%>
+
+<span class="week_plan_shift" style="<%= "top: #{top}px; height: #{height}px; background: #{bg_color};" %>">
+	<% if shift.free? %>
+		<% if !current_person.is_badiStaff? or current_person.is_badiAdmin? %>
+			vakant
+		<% else %>
+			<%= block_link_to( l('shifts','sing_up') , edit_week_day_shift_path(shift.day.week, shift.day, shift), :padding => "15px 3px" ) unless printout %>
+		<% end %>
+	<% else %>
+		<%= "#{shift.person.name}<br />#{shift.person.phone}" %>
+	<% end %>
+</span> 

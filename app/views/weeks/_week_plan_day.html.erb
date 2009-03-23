@@ -1,0 +1,20 @@
+<% 
+	day = week_plan_day 
+	index = (day.date.wday-1) % 7
+	day_name = day.date.strftime '%a'
+	left = 55 + index * (day_width+5) 
+%>
+
+<span style="position: absolute; left: <%= left %>px; top: 0px;
+						 width: <%= day_width %>px; height: <%= header_height-3 %>px; text-align: center;">
+	<% content_for "day_header_#{day_name}" do %>
+		<span style="float: left;  padding-left:  5px; font-size:   1.6em;"><%= day_name %></span>
+		<span style="float: right; padding-right: 5px; padding-top: 0.5em;"><%= day.date_str('%d.%m.') %></span>
+	<% end %>
+	<%= link_to_unless( printout, yield("day_header_#{day_name}") , week_day_path( day.week, day ), {:title => l('days','show','title'), :class => "block"} ) %>
+</span>
+<span style="position: absolute; left: <%= left %>px; top: <%= header_height %>px; 
+						 width: <%= day_width %>px;">
+	<%= render( :partial => 'week_plan_shift', :collection => day.shifts.sort_by {|s| s.shiftinfo.begin }, 
+							:locals => { :hour_height => hour_height, :printout => printout } )%>
+</span>

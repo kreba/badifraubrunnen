@@ -1,0 +1,17 @@
+<% shift = shift_tr %>
+<tr valign="middle">
+	<th align="left"><%=h shift.shiftinfo.description %><br><%=h shift.times_str %></th>
+
+	<% if current_person.is_badiStaff? %>
+		<% if shift.free? %>
+			<td align="center"> frei </td>
+	    <td align="left"><%= link_to( ' '+l('shifts','sign_up')+' ' , edit_week_day_shift_path(@week,@day,shift) ) %></td>
+		<% else %>
+			<td align="center"><%= "#{shift.person.name}<br />#{shift.person.phone}" %></td>
+			<td align="left" style="color: gray"> -<%=l 'shifts', 'taken' %>- </td>
+		<% end %>
+	<% else %>
+			<td align="center"><%= "#{shift.person.name}<br />#{shift.person.phone}" unless shift.free? %></td>
+	<% end %>
+
+</tr>
