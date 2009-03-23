@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # :secret => '45107402ef6b55939694954cda1a3cc8'
 
   def set_user_language
-    I18n.locale = 'de'
-    #I18n.locale = current_user.language if logged_in?
+    # TODO: not yet implemented (environment.rb defaults to de_ch)
+    # I18n.locale = current_user.language if logged_in?
   end
 
   def ApplicationController.year

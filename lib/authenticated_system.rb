@@ -1,6 +1,6 @@
 module AuthenticatedSystem
   protected
-    # Returns true or false if the person is logged in.
+    # Returns true or false depending on whether the user is logged in.
     # Preloads @current_person with the person model if they're logged in.
     def logged_in?
       !!current_person
