@@ -1,5 +1,10 @@
+\.rej$
+\.chg\..*$
+config/database.yml
+log/production.log
+\.conflict\~$
+log/test.log
+log/server.log
+log/development.log
 \.orig$
 \.orig\..*$
-\.chg\..*$
-\.rej$
-\.conflict\~$
