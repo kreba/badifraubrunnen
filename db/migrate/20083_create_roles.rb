@@ -9,7 +9,6 @@ class CreateRoles < ActiveRecord::Migration
     create_table :roles, :force => true do |t|
       t.string  :name, :authorizable_type, :limit => 40
       t.integer :authorizable_id
-      t.timestamps
     end
   end
 

@@ -1,0 +1,5 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+2009:
+  begin: 2009-03-30
+  end:   2009-09-30
