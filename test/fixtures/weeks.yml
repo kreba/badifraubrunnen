@@ -1,21 +1,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 kw19:
-  id: 1
   number: 19
-  
+
 kw20:
-  id: 2
   number: 20  
-  
+
 kw21:
-  id: 3
-  number: 21  
-  
+  number: 21
+
 kw22:
-  id: 4
-  number: 23  
-  
-kw23:
-  id: 5
   number: 22
+
+kw23:
+  number: 23
+

@@ -1,3 +1,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-# <none>
+webmaster:
+  name: webmaster
+
+badiAdmin:
+  name: badiAdmin
+
+badiStaff:
+  name: badiStaff
+
+kioskAdmin:
+  name: kioskAdmin
+
+kioskStaff:
+  name: kioskStaff
+

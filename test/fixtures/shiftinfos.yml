@@ -1,34 +1,28 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 morgen_lang:
-  id: 1
   description: Morgen
   begin: 09:30
   end:   15:00
 morgen_kurz:
-  id: 2
   description: Morgen
   begin: 11:00
   end:   15:30
 
 pikett_lang:
-  id: 3
   description: Pikett
   begin: 11:30
   end:   17:00
 pikett_kurz:
-  id: 4
   description: Pikett
   begin: 11:30
   end:   16:00
 
 abend_lang:
-  id: 5
   description: Abend
   begin: 15:00
   end:   20:30
 abend_kurz:
-  id: 6
   description: Abend
   begin: 15:30
   end:   20:00
