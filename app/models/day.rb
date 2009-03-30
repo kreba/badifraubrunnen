@@ -1,5 +1,4 @@
 class Day < ActiveRecord::Base
-  before_validation_on_create :assert_3_shifts
   after_destroy :destroy_all_shifts
   
   belongs_to :week
@@ -8,10 +7,6 @@ class Day < ActiveRecord::Base
   # Authorization plugin
   acts_as_authorizable
   
-  #attr_accessible :updated_at
-  #attr_readonly :created_at
-
-  validates_size_of    :shifts, :is => 3
   validates_associated :shifts
   validates_presence_of :date
   

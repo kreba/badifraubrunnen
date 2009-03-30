@@ -42,8 +42,4 @@ class Week < ActiveRecord::Base
       end
     end
   
-    #def destroy_all_days
-    #  self.days.each { |day| day.destroy() }
-    #end
-  
 end
