@@ -1,13 +1,13 @@
-<% content_for :links do %><li><%= link_to t'weeks.show.title' , week_path(@week) %></li><% end %>
+<% content_for :links do %><li><%= link_to t('weeks.show.title'), @week %></li><% end %>
 <% content_for :title, @title = t('days.show.title', :date_str => @day.date_str) %>
 
 <%= render( :partial => 'day_jumper', :object => @day )%>
 
-<h3><%=h @day.date.strftime('%A') + " KW " + @week.number.to_s %></h3>
+<h3><%=h t('date.day_names')[@day.date.wday % 7] + " KW " + @week.number.to_s %></h3>
 
 <% if current_person.is_badiAdmin? %>
 	
-  <% form_for(@day, :url => week_day_path(@week,@day)) do |f| %>
+  <% form_for @day do |f| %>
 	  <table title="<%=t 'shifts.n' %>" cellpadding="15px">
 	    <tr><th><%=t 'shifts.n' %>:</th><th><%=t 'shifts.responsible_person' %>:</th></tr>
 		    <% for shift in @day.shifts %>

@@ -1,13 +1,13 @@
-<% content_for :title, @title = t('weeks.title') %>
+<% content_for :title, @title = t('weeks.new.title') %>
 
 
 <%= error_messages_for :week %>
 
-<%=t 'weeks.taken_numbers' %>: <%=h Week.find(:all).collect(&:number).sort.join(', ') %>
+<%=t 'weeks.new.taken_numbers' %>: <%=h Week.find(:all).collect(&:number).sort.join(', ') %>
 
 <% form_for(@week) do |f| %>
   <p>
-    <b><%=t 'weeks.week_number_label' %></b><br />
+    <b><%=t 'weeks.new.week_number_label' %></b><br />
     <%= f.text_field :number %>
   </p>
 

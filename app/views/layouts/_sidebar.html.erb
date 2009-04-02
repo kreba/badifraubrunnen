@@ -2,13 +2,20 @@
 
   <h3><%=t 'navigation' %></h3>
 
-	<% if logged_in? %> 
-    <%= render( :partial => 'layouts/member_navigation' )%>	
-	<% else %>
-		<ul>
-			<li><%= link_to_unless_current( t('sessions.login'), login_path )%></li>
-		  <li><%= link_to_unless_current( t('help.title'), help_path )%></li>
-		</ul>
-	<% end %>
+  <% if logged_in? %>
+    <%= render( :partial => 'layouts/member_navigation' )%>
+    
+    <h3><%=h current_person.name %></h3>
+    <ul>
+      <li><%= link_to_unless_current( t('people.edit.title.badiStaff'), edit_person_path(current_person) )%></li>
+      <li><%= link_to_unless_current( t('shifts.myshifts.title'), myshifts_path )%></li>
+      <li><%= link_to( t('sessions.logout'), logout_path )%></li>
+    </ul>
+  <% else %>
+    <ul>
+      <li><%= link_to_unless_current( t('sessions.login'), login_path )%></li>
+      <li><%= link_to_unless_current( t('help.title'), help_path )%></li>
+    </ul>
+  <% end %>
 
 </div>

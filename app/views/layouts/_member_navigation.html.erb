@@ -1,8 +1,27 @@
 <% if current_person.is_badiStaff? %>
   <%= render( :partial => 'layouts/badi_staff_navigation' )%>
 <% else %>
-	<ul>
-		<li><%= link_to( t('sessions.logout'), logout_path )%></li>
+  <ul>
+    <li><%= link_to( t('sessions.logout'), logout_path )%></li>
     <li><%= link_to_unless_current( t('weeks.index.title'), weeks_path )%></li>
-	</ul>
+  </ul>
 <% end %>
+
+<% if current_person.is_badiAdmin? %>
+  <br />
+  <h3><%=t 'badiAdmin' %></h3>
+  <ul>
+    <li><%= link_to_unless_current t('shifts.index.title'), shifts_path %></li>
+    <li><%= link_to_unless_current t('shiftinfos.index.title'), shiftinfos_path %></li>
+    <%= yield :admin_links %>
+  </ul>
+<% end %>
+
+<% if current_person.is_webmaster? %>
+  <br />
+  <h3><%=t 'webmaster' %></h3>
+  <ul>
+    <%= yield :webmaster_links %>
+  </ul>
+<% end %>
+

@@ -1,8 +1,9 @@
 <% 
 	day = week_plan_day 
 	index = (day.date.wday-1) % 7
-	day_name = day.date.strftime '%a'
-	left = 55 + index * (day_width+5) 
+	#day_name = day.date.strftime '%a'
+	day_name = t('date.abbr_day_names')[day.date.wday]
+	left = 55 + index * (day_width+5)
 %>
 
 <span style="position: absolute; left: <%= left %>px; top: 0px;
@@ -11,7 +12,7 @@
 		<span style="float: left;  padding-left:  5px; font-size:   1.6em;"><%= day_name %></span>
 		<span style="float: right; padding-right: 5px; padding-top: 0.5em;"><%= day.date_str('%d.%m.') %></span>
 	<% end %>
-	<%= link_to_unless( printout, yield("day_header_#{day_name}") , week_day_path( day.week, day ), {:title => t('days.show.title'), :class => "block"} ) %>
+	<%= link_to_unless( printout, yield("day_header_#{day_name}") , day, {:title => t('days.show.title', :date_str => day.date_str), :class => "block"} ) %>
 </span>
 <span style="position: absolute; left: <%= left %>px; top: <%= header_height %>px; 
 						 width: <%= day_width %>px;">

@@ -1,14 +1,14 @@
-<% content_for :title, @title = t('shifts.title', :shift => @shift.shiftinfo.description, :date => @day.date_str) %>
-<% content_for :links do %><li><%= link_to t('weeks.show.title') , week_path(@week) %></li><% end %>
-<% content_for :links do %><li><%= link_to t('days.show.title') , week_day_path(@week,@day) %></li><% end %>
+<% content_for :title, @title = t('shifts.edit.title', :shift => @shift.shiftinfo.description, :date => @day.date_str) %>
+<% content_for :links do %><li><%= link_to t('weeks.show.title'), @week %></li><% end %>
+<% content_for :links do %><li><%= link_to t('days.show.title', :date_str => @day.date_str), @day %></li><% end %>
 
 <%= error_messages_for :shift %>
 
 <% form_for(@shift) do |f| %>
 	<% if current_person.is_badiAdmin? %>
-	  <p><%=t 'shifts.badiAdmin_advice' %></p>
+	  <p><%=t 'shifts.edit.badiAdmin_advice' %></p>
 	<% end %>
-	<h2><%=t 'shifts.general_advice' %></h2>
+	<h2><%=t 'shifts.edit.general_advice' %></h2>
 	<%= f.hidden_field :person_id, :value => current_person.id %>
 	<%= f.hidden_field :shiftinfo_id %>
   <p>
@@ -16,8 +16,8 @@
   </p>
 <% end %>
 <p><br /><em>
-	<%= t('shifts.warning', :badiAdmin => @admin_names).gsub("\n","<br />") %><br />
+	<%= t('shifts.edit.warning', :badiAdmin => @admin_names).gsub("\n","<br />") %><br />
 	<%= link_to( t('help.contact.title') , :controller => 'help', :action => 'contact' )%><br />
 	<br />
-	<%=t 'shifts.how_to_abort' %>
+	<%=t 'shifts.edit.how_to_abort' %>
 </em></p>

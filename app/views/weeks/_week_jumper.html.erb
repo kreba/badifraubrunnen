@@ -2,9 +2,9 @@
 <% after  = Week.find_by_number( week.number + 1 ) %>
 
 <div class="week_jumper">
-	<%= link_to_unless( before.nil?, "←", week_path( before ) ) %>
+	<%= link_to_unless( before.nil?, "←", before ) %>
 	<% for week in Week.find(:all, :order => "number") %>
 		<%= link_to_unless_current( content_tag(:span, week.number ), week_path( week ), :class => "jumplink" )%>
   <% end %>
-  <%= link_to_unless( after.nil?, "→", week_path( after ) ) %>
+  <%= link_to_unless( after.nil?, "→", after ) %>
 </div>

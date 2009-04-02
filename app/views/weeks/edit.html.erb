@@ -1,11 +1,11 @@
-<% content_for :title, @title = t('weeks.title') %>
+<% content_for :title, @title = t('weeks.edit.title') %>
 <% content_for :links do %><li><%= link_to( t('weeks.show.title'), @week )%></li><% end %>
 
 
 <% form_for(@week) do |f| %>
   <p>
     <% if current_person.is_badiAdmin? %>
-      <b><%=t 'weeks','responsability' %>:</b><br />
+      <b><%=t 'weeks.responsability' %>:</b><br />
       <%= f.select( :person_id, @people.collect {|p| [ p.name, p.id ] }, { :include_blank => true } ) %>
     <% else %>
 	    <h2><%=h t('weeks.general_advice', :wnum => @week.number.to_s ) %></h2>
@@ -17,7 +17,7 @@
 	  <%= f.submit t('Save') %><br />
 	</p>
 <% end %>
-<p><br /><%= button_to( t('Abort'), week_day_path(@week,@day) ) %></p>
+<p><br /><%= button_to( t('Abort'), @day ) %></p>
 
 <% unless current_person.is_badiAdmin? %>
 	<p><em>
