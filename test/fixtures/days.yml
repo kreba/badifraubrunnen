@@ -2,142 +2,142 @@
 
 kw19_d1: # MO
   date: 2009-05-04
-  week_id: kw_19
+  week: kw_19
 
 kw19_d2: # TU
   date: 2009-05-05
-  week_id: kw_19
+  week: kw_19
 
 kw19_d3: # WE
   date: 2009-05-06
-  week_id: kw_19
+  week: kw_19
 
 kw19_d4: # TH
   date: 2009-05-07
-  week_id: kw_19
+  week: kw_19
 
 kw19_d5: # FR
   date: 2009-05-08
-  week_id: kw_19
+  week: kw_19
 
 kw19_d6: # SA
   date: 2009-05-09
-  week_id: kw_19
+  week: kw_19
 
 kw19_d7: #SO
   date: 2009-05-10
-  week_id: kw_19
+  week: kw_19
 
 kw20_d1: # MO
   date: 2009-05-11
-  week_id: kw_20
+  week: kw_20
 
 kw20_d2: # TU
   date: 2009-05-12
-  week_id: kw_20
+  week: kw_20
 
 kw20_d3: # WE
   date: 2009-05-13
-  week_id: kw_20
+  week: kw_20
 
 kw20_d4: # TH
   date: 2009-05-14
-  week_id: kw_20
+  week: kw_20
 
 kw20_d5: # FR
   date: 2009-05-15
-  week_id: kw_20
+  week: kw_20
 
 kw20_d6: # SA
   date: 2009-05-16
-  week_id: kw_20
+  week: kw_20
 
 kw20_d7: #SO
   date: 2009-05-17
-  week_id: kw_20
+  week: kw_20
 
 kw21_d1: # MO
   date: 2009-05-18
-  week_id: kw_21
+  week: kw_21
 
 kw21_d2: # TU
   date: 2009-05-19
-  week_id: kw_21
+  week: kw_21
 
 kw21_d3: # WE
   date: 2009-05-20
-  week_id: kw_21
+  week: kw_21
 
 kw21_d4: # TH
   date: 2009-05-21
-  week_id: kw_21
+  week: kw_21
 
 kw21_d5: # FR
   date: 2009-05-22
-  week_id: kw_21
+  week: kw_21
 
 kw21_d6: # SA
   date: 2009-05-23
-  week_id: kw_21
+  week: kw_21
 
 kw21_d7: #SO
   date: 2009-05-24
-  week_id: kw_21
+  week: kw_21
 
 kw22_d1: # MO
   date: 2009-05-25
-  week_id: kw_22
+  week: kw_22
 
 kw22_d2: # TU
   date: 2009-05-26
-  week_id: kw_22
+  week: kw_22
 
 kw22_d3: # WE
   date: 2009-05-27
-  week_id: kw_22
+  week: kw_22
 
 kw22_d4: # TH
   date: 2009-05-28
-  week_id: kw_22
+  week: kw_22
 
 kw22_d5: # FR
   date: 2009-05-29
-  week_id: kw_22
+  week: kw_22
 
 kw22_d6: # SA
   date: 2009-05-30
-  week_id: kw_22
+  week: kw_22
 
 kw22_d7: #SO
   date: 2009-05-31
-  week_id: kw_22
+  week: kw_22
 
 kw23_d1: # MO
   date: 2009-06-01
-  week_id: kw_23
+  week: kw_23
 
 kw23_d2: # TU
   date: 2009-06-02
-  week_id: kw_23
+  week: kw_23
 
 kw23_d3: # WE
   date: 2009-06-03
-  week_id: kw_23
+  week: kw_23
 
 kw23_d4: # TH
   date: 2009-06-04
-  week_id: kw_23
+  week: kw_23
 
 kw23_d5: # FR
   date: 2009-06-05
-  week_id: kw_23
+  week: kw_23
 
 kw23_d6: # SA
   date: 2009-06-06
-  week_id: kw_23
+  week: kw_23
 
 kw23_d7: #SO
   date: 2009-06-07
-  week_id: kw_23
+  week: kw_23
 
 

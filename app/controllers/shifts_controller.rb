@@ -63,7 +63,7 @@ class ShiftsController < ApplicationController
     @week = @day.week
     
     @people = Person.find(:all, :order => "name").select(&:is_badiStaff?)
-    @admin_names = Person.find(:all).select(&:is_badiAdmin?).collect(&:name).to_sentence( :connector => l('or') )
+    @admin_names = Person.find(:all).select(&:is_badiAdmin?).collect(&:name).to_sentence( :connector => t('or') )
     @shiftinfos = Shiftinfo.find(:all, :order => "description DESC" )
   end
 

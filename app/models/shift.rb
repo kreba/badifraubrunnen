@@ -8,11 +8,14 @@ class Shift < ActiveRecord::Base
   
   validates_presence_of :shiftinfo
   
+  after_update  :update_status_image_of_my_day
+
 #  attr_accessible :person, :shiftinfo
 #  attr_readonly :day
 
+
   def free?
-    return person == nil
+    return person.nil?
   end
   
   def forget_person!
@@ -23,13 +26,18 @@ class Shift < ActiveRecord::Base
     return shiftinfo.times_str
   end
   
-  def mins_to_begin
-    return shiftinfo.begin.hour * 60 + shiftinfo.begin.min
+  def time_to_begin
+    return shiftinfo.begin.seconds_since_midnight
   end
-  def mins_to_end
-    return shiftinfo.end.hour * 60 + shiftinfo.end.min
+  def time_to_end
+    return shiftinfo.end.seconds_since_midnight
   end
   def duration
-    return mins_to_end - mins_to_begin
+    return time_to_end - time_to_begin
+  end
+
+  private
+  def update_status_image_of_my_day
+    day.create_status_image
   end
 end

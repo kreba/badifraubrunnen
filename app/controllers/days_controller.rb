@@ -1,6 +1,6 @@
 class DaysController < ApplicationController
   
-  before_filter :except => [:show, :edit, :update] do |c| c.restrict_access 'webmaster', ['a','b','c'] end
+  before_filter :except => [:show, :edit, :update] do |c| c.restrict_access 'webmaster' end
   
   # GET /weeks/1/days
   def index
@@ -32,8 +32,8 @@ class DaysController < ApplicationController
 
   # GET /weeks/1/days/1
   def show
-    @week = Week.find(params[:week_id])
     @day = Day.find(params[:id])
+    @week = @day.week
 
     if current_person.is_badiAdmin?
       @people = Person.find(:all, :order => "name").select(&:is_badiStaff?)

@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :weeks do |week|
+  map.resources :weeks, :shallow => true do |week|
     week.resources :days do |shift| 
       shift.resources :shifts
     end

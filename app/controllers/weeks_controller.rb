@@ -30,7 +30,7 @@ class WeeksController < ApplicationController
   # POST /weeks
   # POST /weeks.xml
   def create
-    @week = Week.create( params[:week] )
+    @week = Week.new( params[:week] )
     
     respond_to do |format|
       if @week.save 

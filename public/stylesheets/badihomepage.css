@@ -117,7 +117,7 @@ table.weeks_table .week_number a {
 }
 
 table.weeks_table .weeks_table_td {
-    width: 80px;
+    width: 80px;  /* synchronize with day.create_status_image */
     height: 80px;
     padding: 1px;
 		font-size: 1.5em;

@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ApplicationController.year
-    return 2008
+    return 2009
   end
   
   # example: restrict_access 'a', ['b', 'c']
@@ -29,18 +29,21 @@ class ApplicationController < ActionController::Base
   def restrict_access( *needed_role_sets )
     person_is_authorized = needed_role_sets.all? {|role_set| role_set.any? {|role| current_person.has_role? role }}
     unless person_is_authorized
-      flash[:error] = t('application.access_restricted', :role => l_sentence(needed_role_sets))
+      flash[:error] = t('application.access_restricted', :role => sentence(needed_role_sets))
       redirect_back_or_default( '/home' ) and return false
     end
   end
   
-  def l_sentence( role_arrays )
-    role_arrays.collect {|role_set| 
-      if role_set.to_a.size > 1
-        "(" + role_set.collect(&:l).to_sentence( :connector => t('or') ) + ")"
-      elsif
-        role_set.first.l
-      end
-    }.to_sentence( :connector => t('and') )
+  def sentence( role_arrays )   
+    single_role = role_arrays
+    t(single_role)
+# TODO: adapt to multiple roles as documented above
+#    role_arrays.collect {|role_set|
+#      if role_set.to_a.size > 1
+#        "(" + role_set.collect{|r| I18n.t(r.name)}.to_sentence( :connector => I18n.t('or') ) + ")"
+#      elsif
+#        I18n.t(role_set.first.name)
+#      end
+#    }.to_sentence( :connector => I18n.t('and') )
   end
 end
