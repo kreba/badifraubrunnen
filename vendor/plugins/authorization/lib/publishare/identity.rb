@@ -13,6 +13,8 @@ require File.dirname(__FILE__) + '/exceptions'
 #   model.has_members                   --> Returns array of users which have role "member" on that model
 #   model.has_members?                  --> Returns true/false
 #
+#   TODO: missing something like  model.find_members
+#
 module Authorization
   module Identity
 

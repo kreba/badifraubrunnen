@@ -1,0 +1,10 @@
+<%
+  shift = shift_for_saison
+%>
+
+<tr valign="middle">
+  <% fields_for "day[shift_attributes][]", shift do |g| %>
+    <td><%= g.select( :shiftinfo_id, @shiftinfos[saison.name].collect {|si| [ "#{si.description}, #{si.times_str}" , si.id ] } ) %></td>
+    <td><%= g.select( :person_id, @people[saison.name].collect {|p| [ p.name, p.id ] }, :include_blank => true ) %></td>
+  <% end %>
+</tr>

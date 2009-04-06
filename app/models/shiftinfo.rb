@@ -1,14 +1,16 @@
 class Shiftinfo < ActiveRecord::Base
+  # Authorization plugin
+  acts_as_authorizable  #  TODO: WHY?
+
+  belongs_to :saison
   has_many :shifts
   
-  # Authorization plugin
-  acts_as_authorizable
-  
+  # after_update :update_status_image_of_all_days_of_associated_shifts
+
+  validates_presence_of :saison
   validates_presence_of :description, :begin, :end
   validates_length_of :description, :within => 1..10
   
-  after_update  :update_status_image_of_all_days_of_associated_shifts
-
 #  attr_accessible :description, :begin, :end, :shifts
 
   def times_str
@@ -17,6 +19,6 @@ class Shiftinfo < ActiveRecord::Base
 
   private
   def update_status_image_of_all_days_of_associated_shifts
-    shifts.each { |shift| shift.day.create_status_image }
+    shifts.each { |shift| shift.day.create_status_image(saison) }
   end
 end

@@ -7,19 +7,19 @@
 %>
 
 <span id="week_plan">
-	<span style="float: left; font-size: 75px; line-height: 1em; margin: -8px 16px 3px 3px;"> <%= @week.number.to_s %> </span>
+	<span style="float: left; font-size: 75px; line-height: 1em; margin: -8px 16px 3px 3px;"> <%= @week.number.to_s if @printout %> </span>
 	
 		<h2><%=t('weeks.week_plan.caption', :begin_date => h(@days.first.date_str "%d.%m."), :end_date => h(@days.last.date_str "%d.%m.%Y"))%></h2>
 		
 		<h3><%=t 'weeks.responsability' %>:
 			<% if @week.person.nil? %>
-				<% if !current_person.is_badiStaff? or current_person.is_badiAdmin? %>
-					vakant
+				<% if current_person.is_staff_for?(@saison) or current_person.is_admin_for?(@saison) %>
+                    <%= link_to( t('weeks.sign_up'), edit_week_path(@week) ) %>
 				<% else %>
-  			  <%= link_to( t('weeks.sign_up'), edit_week_path(@week) ) unless @printout %>
-				<% end %>
+					vakant
+				<% end unless @printout %>
 			<% else %>
-				<%=h "#{@week.person.name},  #{@week.person.phone}#{",  "+@week.person.phone2 unless @week.person.phone2.nil? or @week.person.phone2.empty?}" %>
+				<%=h @week.person.name %> <%# + (@printout? phone_str(@week.person) : "") %>
 			<% end %>
 		</h3>
 	

@@ -1,5 +1,5 @@
-<% content_for( :title, @title = t('people.edit.title.badiAdmin') )%>
-
+<% content_for( :title, @title = t('people.edit.title.admin') )%>
+<p><%= "#{t 'role.n'}:  #{@person.roles_str}" %></p>
 <%= error_messages_for :person %>
 
 <p><%= render( :partial => 'person_form', :locals => { :person => @person } )%></p>

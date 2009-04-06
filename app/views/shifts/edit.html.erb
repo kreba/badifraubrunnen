@@ -5,8 +5,8 @@
 <%= error_messages_for :shift %>
 
 <% form_for(@shift) do |f| %>
-	<% if current_person.is_badiAdmin? %>
-	  <p><%=t 'shifts.edit.badiAdmin_advice' %></p>
+	<% if current_person.has_role? 'admin' %>
+	  <p><%=t 'shifts.edit.admin_advice' %></p>
 	<% end %>
 	<h2><%=t 'shifts.edit.general_advice' %></h2>
 	<%= f.hidden_field :person_id, :value => current_person.id %>
@@ -16,8 +16,8 @@
   </p>
 <% end %>
 <p><br /><em>
-	<%= t('shifts.edit.warning', :badiAdmin => @admin_names).gsub("\n","<br />") %><br />
+	<%= t('shifts.edit.warning', :admin_names => @admin_names).gsub("\n","<br />") %><br />
 	<%= link_to( t('help.contact.title') , :controller => 'help', :action => 'contact' )%><br />
 	<br />
-	<%=t 'shifts.edit.how_to_abort' %>
+	<%=t 'abort_with_backbutton' %>
 </em></p>

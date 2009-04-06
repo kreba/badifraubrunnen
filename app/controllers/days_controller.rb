@@ -35,9 +35,9 @@ class DaysController < ApplicationController
     @day = Day.find(params[:id])
     @week = @day.week
 
-    if current_person.is_badiAdmin?
-      @people = Person.find(:all, :order => "name").select(&:is_badiStaff?)
-      @shiftinfos = Shiftinfo.find(:all, :order => "begin")
+    if current_person.has_role? 'admin'
+      @people = Saison.staff_by_saison
+      @shiftinfos = Saison.shiftinfos_by_saison
     end # TODO: refactor to edit
   end
 

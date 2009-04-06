@@ -4,8 +4,8 @@ module ShiftinfosHelper
   end
 
 protected
-  def self.daytime_limits
-    times = Shiftinfo.find :all
+  def self.daytime_limits(saison)
+    times = saison.shiftinfos
     min = times.min_by(&:begin).begin.seconds_since_midnight
     max = times.max_by(&:end).end.seconds_since_midnight
     return min, max

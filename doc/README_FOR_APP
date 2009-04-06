@@ -1,13 +1,13 @@
 Use this README file to introduce your application and point to useful places in the API for learning more.
 Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
 
+
 Badi2010  -  technische Überlegungen
 
 Start- und Enddatum der Saison sind implizit gegeben durch den ersten und 
 letzten erstellten Tag (desselben Jahres). Evtl trotzdem als Attribut speichern.
 
-Tage sind demnach die zentrale Einheit der Datenbank, obwohl die Kalenderwochen 
-organisatorisch gesehen wichtiger sind. Jeder Tag gehört zu einer Woche.
+Jeder Tag gehört zu einer Woche.
 Die Organisation benutzt Wochenpläne, welche als PDF an die Helfer gemailt, 
 sowie ausgedruck und in der Badi angeschlagen werden. Jede Woche hat eine 
 verantwortliche Person (Wochenverantwortliche/r). Ausserdem können Wochen en
@@ -15,8 +15,8 @@ bloc 'vergeben' werden. Aus diesem Grund soll auch nicht die gesamte Saison von
 anfang an verfügbar sein, d.h. Tage sollen 'inaktiviert' werden können, nachdem
 sie erstellt wurden.
 Evtl. explizite und implizite inaktivierung. Explizit durch Administrator
-(Datenbankattribut für Schichten); implizit durch Datum (z.B. von heute bis
-zum 1.7.09; Eigenschaften einer 'Saison').
+(Datenbankattribut für Schichten; Sammelaktion für Tag); implizit durch Datum
+(z.B. von heute bis zum 1.7.09; Eigenschaften einer 'Saison').
 
 Ein Tag ist im wesentlichen ein Kalenderdatum. Dazu gehören mehrere Schichten,
 welche wiederum eine Start- und Endzeit sowie eine verantwortliche Person
@@ -27,11 +27,12 @@ mehrere Schichten/Tage/Wochen gleichzeitig)
 Personen können nebst ihrer Identität (inkl. Name, Adresse) auch
 mehrere Rollen haben.
 
-badiStaff kann
+Für die Badi:
+staff kann
 - an mehreren Tagen hüten und für mehrere Wochen verantwortlich sein.
 - seine/ihre belegten Schichten auflisten
 
-badiAdmin kann
+admin kann
 - Saison-Daten festlegen (nur badi)
 - Schichten pro Tag und deren Schichtenzeiten bearbeiten (nur badi)
 - Tage explizit inaktivieren (nur badi) (Schichteneigenschaft; Sammelaktion pro Tag)
@@ -39,12 +40,13 @@ badiAdmin kann
 - Wochen    Personen zuweisen oder freigeben
 - Personalien von badiStaff-Personen bearbeiten (inkl. Passwort)
 
+Die Rollen staff und admin gibt es auch für den Kiosk, jedoch auf einem separaten
+Satz Schichten (Eigenschaft badi/kiosk als attribut der shiftinfos). Badi und
+Kiosk sind (in der DB persistierte) instanzen eines Saison-Objekts
+
 webmaster kann
 - alle administrativen Aufgaben für badi + kiosk ausführen
 
-kioskStaff und kioskAdmin sind analog zu badiStaff und kioskAdmin, jedoch auf
-einem separaten Satz Schichten (Eigenschaft badi/kiosk implizit durch
-Datenbank-Tabelle (evtl. stattdessen in shiftinfo)  + separate Saisons)
 
 Ohne spezielle Rolle kann jeder angemeldete Benutzer
 - Die Planung einsehen (Saisonübersicht/Wochenansicht/Tagesansicht(/Schichtansicht))

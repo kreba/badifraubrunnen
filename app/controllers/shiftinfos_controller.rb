@@ -1,6 +1,6 @@
 class ShiftinfosController < ApplicationController
 
-  before_filter do |c| c.restrict_access 'badiAdmin' end
+  before_filter do |c| c.restrict_access 'admin' end
 
   # GET /shiftinfos
   # GET /shiftinfos.xml

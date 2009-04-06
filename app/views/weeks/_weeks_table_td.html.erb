@@ -3,7 +3,7 @@
 	<td class="weeks_table_td"></td>
 <% else %>
 	<% 
-		bg    = day.date >= Date.today ? "background=\"#{day.status_image_path}\"" : "" 
+		bg    = day.date >= Date.today ? "background=\"#{day.status_image_path(@saison)}\"" : ""
 		style = day.date >= Date.today ? "" : "color: #333333;"
 	%>
 	<td class="weeks_table_td" <%= bg %>>

@@ -1,7 +1,7 @@
 <% content_for :title, @title = t('shifts.index.title') %>
 
 
-<h2>Schichten total: <%=h @shifts.size %></h2>
+<h2><%= t('shifts.index.summary', :total => @shifts.size, :enabled => @shifts.collect(&:enabled).size) %></h2>
 
 <table>
   <tr>

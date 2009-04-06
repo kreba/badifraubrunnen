@@ -39,15 +39,11 @@ de_ch:
 # -----------------------------------------------------------------------------
 # app
 # -----------------------------------------------------------------------------
+  abort_with_backbutton: Um abzubrechen, einfach den Zurück-Knopf des Browsers benutzen.
   and: und
-  badiAdmin: Badi-Admin
-  badiStaff: Aufsichtsperson
-  kioskAdmin: Kiosk-Admin
-  kioskStaff: Kioskpersonal
-  navigation: Navigation
   or: oder
-  webmaster: Webmaster
   assignments: Einsätze
+  navigation: Navigation
 
   mail:
     subject: Badi2010
@@ -84,10 +80,20 @@ de_ch:
       confirm: Bitte Rausschmiss nochmal bestätigen. Sämtliche Daten gehen verloren!
     edit:
       title:
-        badiStaff: Meine Personalien
-        badiAdmin: Personalien bearbeiten
+        staff: Meine Personalien
+        admin: Personalien bearbeiten
     update:
       success: Personendetails erfolgreich gespeichert.
+
+  role:
+    admin: Administrator
+    badiAdmin: Badi-Admin
+    kioskAdmin: Kiosk-Admin
+    staff: HelferIn
+    badiStaff: Aufsichtsperson
+    kioskStaff: Kioskpersonal
+    webmaster: Webmaster
+    n: Rollen
 
   sessions:
     # in controllers
@@ -135,12 +141,12 @@ de_ch:
     taken: besetzt
     edit:
       title: Schicht {{shift}} am {{date}}
-      badiAdmin_advice: Du kannst HüterInnen nur in der Tagesansicht neu zuordnen.
+      admin_advice: Du kannst HelferInnen nur in der Tagesansicht neu zuordnen.
       general_advice: Du bist dabei, dich für eine Schicht einzutragen. Bitte bestätigen.
-      how_to_abort: Um abzubrechen, einfach den Zurück-Knopf des Browsers benutzen.
-      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Schicht als HüterIn! \nUm dich wieder auszutragen, melde dich bei :badiAdmin, denn nur sie kann dich wieder austragen.'
+      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Schicht als HüterIn! \nUm dich wieder auszutragen, melde dich bei {{admin_names}}.'
     index:
       title: Alle Schichten
+      summary: Total {{total}} Schichten, davon {{enabled}} zurzeit aktiv
     myshifts:
       title: Meine Einsätze
     show:
@@ -157,12 +163,12 @@ de_ch:
     # in the view
     confirm_delete: Jää, bisch de sicher? Die Daten zu den Tagen werden unwiederbringlich gelöscht!
     past_weeks: Vergangene Wochen
-    responsability: Wochenverantwortung
+    responsability: Wochenverantwortung fürs Badihüten
     sign_up: Eintragen
     edit:
       title: Woche bearbeiten
       general_advice: Du bist dabei, dich für Woche {{wnum}} als Wochenverantwortliche/r zu melden. Bitte bestätigen.
-      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Woche als Wochenverantwortliche/r! \nUm dich wieder auszutragen, melde dich bei Doris Luginbühl, denn nur sie kann dich wieder austragen.'
+      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Woche als Wochenverantwortliche/r! <br />Um dich wieder auszutragen, melde dich bei {{admin_names}}.'
     index:
       title: Saisonübersicht
     new:
@@ -176,8 +182,8 @@ de_ch:
       weeknum_header: Woche
     week_plan:
       title: Einsatzplan Woche {{wnum}}
+      caption: Einsatzplan vom {{begin_date}} bis zum {{end_date}}
       badi_tel: 'Tel. Badi: 031 767 81 41'
-      caption: Einsatzplan Badihüten vom {{begin_date}} bis {{end_date}}
 
   welcome:
     # in controllers
@@ -304,15 +310,15 @@ de_ch:
 
   support:
     array:
-      sentence_connector: "und"
+      two_words_connector: " und "
       skip_last_comma: true
 
   activerecord:
     errors:
       template:
         header:
-          one: "Konnte dieses {{model}} Objekt nicht speichern: 1 Fehler."
-          other: "Konnte dieses {{model}} Objekt nicht speichern: {{count}} Fehler."
+          one: "Konnte {{model}} nicht speichern: 1 Fehler."
+          other: "Konnte {{model}} nicht speichern: {{count}} Fehler."
         body: "Bitte überprüfen Sie die folgenden Felder:"
 
       messages:
@@ -335,4 +341,12 @@ de_ch:
         less_than_or_equal_to: "muss kleiner oder gleich {{count}} sein"
         odd: "muss ungerade sein"
         even: "muss gerade sein"
+
       models:
+        day: Tag
+        person: Person
+        role: Rolle
+        saison: Saison
+        shift: Schicht
+        shiftinfo: Schichtdetails
+        week: Woche

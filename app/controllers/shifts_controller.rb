@@ -1,6 +1,6 @@
 class ShiftsController < ApplicationController
   
-  before_filter :only => :index do |c| c.restrict_access 'badiAdmin' end
+  before_filter :only => :index do |c| c.restrict_access 'admin' end
   before_filter :only => [:new, :create] do |c| c.restrict_access 'webmaster' end
   before_filter :future_required, :only => [:edit, :update]
 
@@ -63,7 +63,9 @@ class ShiftsController < ApplicationController
     @week = @day.week
     
     @people = Person.find(:all, :order => "name").select(&:is_badiStaff?)
-    @admin_names = Person.find(:all).select(&:is_badiAdmin?).collect(&:name).to_sentence( :connector => t('or') )
+    @admin_names = Person.find(:all).select{ |p|
+      p.is_admin_for? @shift.saison
+    }.collect(&:name).to_sentence( :connector => " #{t('or')} " )
     @shiftinfos = Shiftinfo.find(:all, :order => "description DESC" )
   end
 
@@ -74,7 +76,7 @@ class ShiftsController < ApplicationController
     @day = @shift.day
     @week = @day.week
 
-    unless @shift.free? or current_person.is_badiAdmin?
+    unless @shift.free? or current_person.is_admin_for? @shift.saison
       flash[:error] = t'shifts.update.already_taken'
       redirect_to :back
       return

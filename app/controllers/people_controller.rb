@@ -2,11 +2,11 @@ class PeopleController < ApplicationController
   
   # Do not allow anyone to subscribe by themselfes
   #skip_before_filter :login_required, :only => [:new, :create]
-  before_filter :except => [:edit, :find_location, :index, :update] do |c| c.restrict_access 'badiAdmin' end
+  before_filter :except => [:edit, :find_location, :index, :update] do |c| c.restrict_access 'admin' end
   
   # GET /people
   def index
-    @people = Person.find(:all).select(&:is_badiStaff?).sort_by(&:name)
+    @people = Person.find(:all, :order => "name").select{ |p| p.has_role? 'staff'}
   end
  
   # GET /people/new
@@ -59,7 +59,7 @@ class PeopleController < ApplicationController
 
   # GET /people/find_location  (used in ajax call)
   def find_location
-    @location = PeopleHelper::fetch_location_by_postal_code(params[:zip])
+    @location = PeopleHelper.fetch_location_by_postal_code(params[:zip])
 
     if @location.nil? or @location.empty?
       render :nothing => true
@@ -71,17 +71,18 @@ class PeopleController < ApplicationController
   end
 
   # PUT /people/1/set_roles
-  def act_as_various # TODO: make GUI
-    current_person.is_webmaster? || redirect_to( login_path ) and return false
-    render :update do
-      for role in "badiAdmin badiStaff kioskAdmin kioskStaff".split(' ') # TODO: automatically find all by DOM 
-        if page["toggle_"+role].value
-          current_person.has_role role
-        else
-          current_person.has_no_role role
-        end
-      end
-    end
-  end
+  # What is this method good for?
+#  def act_as_various # TODO: make GUI
+#    current_person.is_webmaster? || redirect_to( login_path ) and return false
+#    render :update do
+#      for role in "badiAdmin badiStaff kioskAdmin kioskStaff".split(' ') # TODO: automatically find all by DOM
+#        if page["toggle_"+role].value
+#          current_person.has_role role
+#        else
+#          current_person.has_no_role role
+#        end
+#      end
+#    end
+#  end
 
 end

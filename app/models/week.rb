@@ -1,13 +1,13 @@
 class Week < ActiveRecord::Base
-  before_validation_on_create :assign_7_days
-  after_destroy :destroy_all_days
+  # Authorization plugin
+  acts_as_authorizable
 
   has_many :days
   belongs_to :person  #Wochenverantwortliche/r
 
-  # Authorization plugin
-  acts_as_authorizable
-  
+  before_validation_on_create :assign_7_days
+  after_destroy :destroy_all_days
+
   validates_size_of    :days, :is => 7, :message => 'wrong_number_(expecting_{{count}})'
   validates_associated :days
   validates_presence_of     :number, :on => :create

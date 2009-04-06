@@ -22,7 +22,7 @@
 						:frequency => 0.5,
 						:with => "'zip='+escape(value)" )%>
 		
-		<% if current_person.is_badiAdmin? %>
+		<% if current_person.has_role? 'admin' %>
 			<p><label for="preferences"><%=t 'people.preferences_label' %></label><br />
 			<%= f.text_field( :preferences, :rows => 4, :size => 67 )%></p>
 		<% end %>

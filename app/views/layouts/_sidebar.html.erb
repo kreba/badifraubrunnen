@@ -7,7 +7,7 @@
     
     <h3><%=h current_person.name %></h3>
     <ul>
-      <li><%= link_to_unless_current( t('people.edit.title.badiStaff'), edit_person_path(current_person) )%></li>
+      <li><%= link_to_unless_current( t('people.edit.title.staff'), edit_person_path(current_person) )%></li>
       <li><%= link_to_unless_current( t('shifts.myshifts.title'), myshifts_path )%></li>
       <li><%= link_to( t('sessions.logout'), logout_path )%></li>
     </ul>

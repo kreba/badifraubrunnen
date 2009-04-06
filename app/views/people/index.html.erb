@@ -5,7 +5,7 @@
 <table id="people_list">
   <tr>
     <th><%=t 'person.attributes.name' %></th>
-<% if current_person.is_badiAdmin? %>
+<% if current_person.has_role? 'admin' %>
   	<th>#<%=t 'assignments' %></th>
     <th><%=t 'person.attributes.preferences' %></th>
 <% else %>
@@ -18,11 +18,13 @@
 <% for person in @people %>
   <tr>
     <td><%=h person.name %></td>
-<% if current_person.is_badiAdmin? %>
+<% if current_person.has_role? 'admin' %>
+  <% if current_person.administrates? person %>
   	<td><%=h person.shifts.size.to_s %>
   	<td><%=h person.preferences.to_s %>
     <td><%= link_to t('Edit'), edit_person_path(person) %></td>
     <td><%= link_to t('Delete'), person, :confirm => t('people.destroy.confirm'), :method => :delete %></td>
+  <% end %>
 <% else %>
     <td><%=h person.phone %></td>
     <td><%=h person.phone2 %></td>

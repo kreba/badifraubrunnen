@@ -1,14 +1,16 @@
 class WeeksController < ApplicationController
   
-  before_filter :only => [:new, :create] do |c| c.restrict_access 'webmaster' end
+  before_filter :only => [:new, :create]  do |c| c.restrict_access 'webmaster' end
+  # TODO: somehow prevent staff people from overwriting the inscription
   
   # GET /weeks
   # GET /weeks.xml
   def index
+    @saison = Saison.find_by_name("badi")  # TODO: SUPPORT MULTIPLE SAISONS
     @weeks = Week.find(:all, :order => "number", :include => {:days => {:shifts => :shiftinfo}})
     # :include causes "eager loading"
     @past_weeks   = @weeks.select(&:past?)
-    @future_weeks = @weeks.select{|w| !w.past?}
+    @future_weeks = @weeks.reject(&:past?)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -58,8 +60,10 @@ class WeeksController < ApplicationController
   
   # GET /weeks/1/edit
   def edit
+    @saison = Saison.find_by_name("badi")  # TODO: SUPPORT MULTIPLE SAISONS
+    @admin_names = Saison.admins_by_saison[@saison.name].collect(&:name)
     @week = Week.find(params[:id])
-    @people = Person.find(:all, :order => "name").select(&:is_badiStaff?)
+    @people = Person.find(:all, :order => "name").select{ |p| p.is_staff_for? @saison }
   end
   
   # PUT /weeks/1

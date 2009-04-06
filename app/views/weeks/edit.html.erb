@@ -4,26 +4,26 @@
 
 <% form_for(@week) do |f| %>
   <p>
-    <% if current_person.is_badiAdmin? %>
+    <% if current_person.has_role? 'admin' %>
       <b><%=t 'weeks.responsability' %>:</b><br />
       <%= f.select( :person_id, @people.collect {|p| [ p.name, p.id ] }, { :include_blank => true } ) %>
     <% else %>
-	    <h2><%=h t('weeks.general_advice', :wnum => @week.number.to_s ) %></h2>
-	    <%= f.hidden_field :person_id, :value => current_person.id %>
-		<% end %>
+      <h2><%=h t('weeks.edit.general_advice', :wnum => @week.number.to_s ) %></h2>
+      <%= f.hidden_field :person_id, :value => current_person.id %>
+    <% end %>
   </p>
-	
-	<p>
-	  <%= f.submit t('Save') %><br />
-	</p>
+
+  <p>
+    <%= f.submit t('Save') %><br />
+  </p>
 <% end %>
 <p><br /><%= button_to( t('Abort'), @day ) %></p>
 
-<% unless current_person.is_badiAdmin? %>
-	<p><em>
-		<%= t('weeks.warning', :badiAdmin => @admin_names).gsub("\n","<br />") %><br />
-		<%= link_to( t('help.contact.title') , :controller => 'help', :action => 'contact' )%><br />
-		<br />
-		<%=t 'weeks.how_to_abort' %>
-	</em></p>
+<% unless current_person.has_role? 'admin'  %>
+  <p><em>
+      <%= t('weeks.edit.warning', :admin_names => @admin_names).gsub("\n","<br />") %><br />
+      <%= link_to( t('help.contact.title') , :controller => 'help', :action => 'contact' )%><br />
+      <br />
+      <%=t 'abort_with_backbutton' %>
+  </em></p>
 <% end %>

@@ -3,10 +3,9 @@ class HelpController < ApplicationController
   
   # GET /contact
   def contact
-    people = Person.find(:all)
-    @badi_admins  = people.select(&:is_badiAdmin?)
-    @kiosk_admins = people.select(&:is_kioskAdmin?)
-    @webmasters   = people.select(&:is_webmaster?)
+    @admins = Saison.admins_by_saison
+    @webmasters = Person.find_by_role 'webmaster'
+
   end
   
 end

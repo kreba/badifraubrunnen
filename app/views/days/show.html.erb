@@ -5,29 +5,22 @@
 
 <h3><%=h t('date.day_names')[@day.date.wday % 7] + " KW " + @week.number.to_s %></h3>
 
-<% if current_person.is_badiAdmin? %>
-	
+<% if current_person.is_admin? %>
+
   <% form_for @day do |f| %>
-	  <table title="<%=t 'shifts.n' %>" cellpadding="15px">
-	    <tr><th><%=t 'shifts.n' %>:</th><th><%=t 'shifts.responsible_person' %>:</th></tr>
-		    <% for shift in @day.shifts %>
-		      <tr valign="middle">
-		      	<% fields_for "day[shift_attributes][]", shift do |g| %>
-			        <td><%= g.select( :shiftinfo_id, @shiftinfos.collect {|si| [ "#{si.description}, #{si.times_str}" , si.id ] } ) %></td>
-			        <td><%= g.select( :person_id, @people.collect {|p| [ p.name, p.id ] }, { :include_blank => true } ) %></td>
-					  <% end %>
-					</tr>
-				<% end %>
-		</table>
-		<br /><%= submit_tag t'Save' %><br />
-	<% end %>
-	<br /><%= link_to(t('shifts.show.edit_shiftinfos'), shiftinfos_path) %>
-		
+    <table title="<%=t 'shifts.n' %>">
+      <%= render( :partial => 'shifts_for_saison', :collection => current_person.is_admin_for_what )%>
+    </table>
+    <br /><%= submit_tag t'Save' %><br />
+  <% end %>
+  <br />
+  <%= link_to(t('shifts.show.edit_shiftinfos'), shiftinfos_path) %>
+
 <% else %>
-    
+
   <table title="<%=t 'shifts.n' %>" cellpadding="15px">
     <tr><th><%=t 'shifts.n' %>:</th><th><%=t 'shifts.responsible_person' %>:</th></tr>
     <%= render( :partial => 'shift_tr', :collection => @day.shifts )%>
   </table>
-		
+
 <% end %>
