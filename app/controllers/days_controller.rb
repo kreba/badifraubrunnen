@@ -31,6 +31,8 @@ class DaysController < ApplicationController
   end
 
   # GET /weeks/1/days/1
+  # TODO: ATTENTION: people that are admin for any saison should not be staff
+  #       for any other saison, since they can't subscribe to such shifts...
   def show
     @day = Day.find(params[:id])
     @week = @day.week

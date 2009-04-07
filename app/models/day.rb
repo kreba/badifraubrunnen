@@ -19,9 +19,14 @@ class Day < ActiveRecord::Base
     self.shifts.update(attrs.keys, attrs.values)
     #self.create_status_image is invoked on a shift update
   end
-  
-  def status_image_path(saison)
-    "/images/#{saison.name}_#{date.strftime '%Y-%m-%d'}.png"
+
+  def find_shifts_by_saison( saison )
+    # note: self.shifts.find_by_saison  is not possible, since the saison attibute is a delegate to the shiftinfo
+    self.shifts.select { |shift| shift.saison.eql? saison }
+  end
+
+  def status_image_name( saison )
+    "#{saison.name}_#{date.strftime '%Y-%m-%d'}.png"
   end
 
   def create_status_image( saison )
@@ -43,7 +48,7 @@ class Day < ActiveRecord::Base
     }
     #result = result.blur_image(0,3)
 
-    result.write RAILS_ROOT + "/public" + status_image_path(saison)
+    result.write RAILS_ROOT + "/public/images/" + status_image_name(saison)
   end
   
   def date_str fmt = '%A %d.%m.%Y'
@@ -57,6 +62,10 @@ class Day < ActiveRecord::Base
 
   def tomorrow
     return Day.find_by_date( self.date.tomorrow )
+  end
+
+  def active?
+    self.shifts.select(&:active?).any?
   end
 
   private

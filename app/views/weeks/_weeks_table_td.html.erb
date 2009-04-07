@@ -1,14 +1,10 @@
-<% day = weeks_table_td %>
-<% if !day %>
-	<td class="weeks_table_td"></td>
-<% else %>
-	<% 
-		bg    = day.date >= Date.today ? "background=\"#{day.status_image_path(@saison)}\"" : ""
-		style = day.date >= Date.today ? "" : "color: #333333;"
-	%>
-	<td class="weeks_table_td" <%= bg %>>
- 	  <%= link_to( day.date.strftime( "%d.%m." ) , day , { 
-							:title => tooltip_for(day),
-							:style => style } )%>
-	</td>
-<% end %>
+<% 
+  day   = weeks_table_td
+  bg    = day.active? ? "background=\"#{images_path + day.status_image_name(@saison)}\"" : ""
+  style = day.active? ? "" : "background-color:#dddddd; color:#ffffff;"
+%>
+<td class="weeks_table_td" <%= bg %>>
+  <%= link_to( day.date.strftime( "%d.%m." ) , day , {
+      :title => tooltip_for(day),
+      :style => style } )%>
+</td>

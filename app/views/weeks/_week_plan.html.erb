@@ -1,7 +1,7 @@
 <% content_for( :title, t('weeks.week_plan.title', :wnum => @week.number) )%>
 
-<% 
-	header_height = 35
+<%
+    header_height = 35
 	day_height = 17.5*(hour_height = 24) 
 	day_width  = 105
 %>
@@ -10,18 +10,8 @@
 	<span style="float: left; font-size: 75px; line-height: 1em; margin: -8px 16px 3px 3px;"> <%= @week.number.to_s if @printout %> </span>
 	
 		<h2><%=t('weeks.week_plan.caption', :begin_date => h(@days.first.date_str "%d.%m."), :end_date => h(@days.last.date_str "%d.%m.%Y"))%></h2>
-		
-		<h3><%=t 'weeks.responsability' %>:
-			<% if @week.person.nil? %>
-				<% if current_person.is_staff_for?(@saison) or current_person.is_admin_for?(@saison) %>
-                    <%= link_to( t('weeks.sign_up'), edit_week_path(@week) ) %>
-				<% else %>
-					vakant
-				<% end unless @printout %>
-			<% else %>
-				<%=h @week.person.name %> <%# + (@printout? phone_str(@week.person) : "") %>
-			<% end %>
-		</h3>
+
+        <%= render( :partial => 'week_plan_responsability' ) if @saison.name.eql? "badi" %>
 	
 	<div style="position: relative; height: <%= header_height + day_height %>px; margin: 2em 0em">
 		<%= render( :partial => 'week_plan_times', :object => @week,   :locals => { :header_height => header_height, :hour_height => hour_height, :h_offset => 0 } )%>

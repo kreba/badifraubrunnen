@@ -1,5 +1,6 @@
 <% 
-	day = week_plan_day 
+	day = week_plan_day
+    @shifts = day.find_shifts_by_saison(@saison).sort_by {|s| s.shiftinfo.begin }
 	index = (day.date.wday-1) % 7
 	#day_name = day.date.strftime '%a'
 	day_name = t('date.abbr_day_names')[day.date.wday]
@@ -16,6 +17,6 @@
 </span>
 <span style="position: absolute; left: <%= left %>px; top: <%= header_height %>px; 
 						 width: <%= day_width %>px;">
-	<%= render( :partial => 'week_plan_shift', :collection => day.shifts.sort_by {|s| s.shiftinfo.begin }, 
+	<%= render( :partial => 'week_plan_shift', :collection => @shifts,
 							:locals => { :hour_height => hour_height, :printout => printout } )%>
 </span>

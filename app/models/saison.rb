@@ -10,7 +10,7 @@ class Saison < ActiveRecord::Base
   attr_accessible :begin, :end
   attr_readonly :name
 
-  def self.shiftinfos_by_saison( collection = Shiftinfo.find(:all, :include => :saison) )
+  def self.shiftinfos_by_saison( collection = Shiftinfo.find(:all, :order => :begin, :include => :saison) )
     hash_by_saison(collection){ |shiftinfo, saison|
       shiftinfo.saison.eql? saison
     }

@@ -1,17 +1,21 @@
-<% shift = shift_tr %>
+<% 
+shift = shift_tr
+%>
 <tr valign="middle">
-	<th align="left"><%=h shift.shiftinfo.description %><br><%=h shift.times_str %></th>
+  <th align="left"><%=h shift.shiftinfo.description %><br><%=h shift.times_str %></th>
 
-	<% if current_person.is_badiStaff? %>
-		<% if shift.free? %>
-			<td align="center"> frei </td>
-	    <td align="left"><%= link_to( " #{t 'shifts.sign_up'} " , edit_shift_path(shift) ) %></td>
-		<% else %>
-			<td align="center"><%= "#{shift.person.name}<br />#{shift.person.phone}" %></td>
-			<td align="left" style="color: gray"> -<%=t 'shifts.taken' %>- </td>
-		<% end %>
-	<% else %>
-			<td align="center"><%= "#{shift.person.name}<br />#{shift.person.phone}" unless shift.free? %></td>
-	<% end %>
+  <% if shift.free? %>
+    <td align="center"> frei </td>
+  <% else %>
+    <td align="center"><%= "#{shift.person.name}<br />#{shift.person.phone}" %></td>
+  <% end %>
+
+  <% if current_person.is_staff_for? shift.saison %>
+    <% if shift.free? %>
+      <td align="left"><%= link_to( " #{t 'shifts.sign_up'} " , edit_shift_path(shift) ) %></td>
+    <% else %>
+      <td align="left" style="color: gray"> -<%=t 'shifts.taken' %>- </td>
+    <% end %>
+  <% end %>
 
 </tr>

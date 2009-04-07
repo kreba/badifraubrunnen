@@ -1,9 +1,12 @@
 <div id="side">
 
   <h3><%=t 'navigation' %></h3>
+  <ul>
+    <li><%= link_to_unless_current( t('help.title'), help_path )%></li>
+  </ul>
 
   <% if logged_in? %>
-    <%= render( :partial => 'layouts/member_navigation' )%>
+    <%= render( :partial => 'layouts/role_specific_navigation' )%>
     
     <h3><%=h current_person.name %></h3>
     <ul>
@@ -14,8 +17,13 @@
   <% else %>
     <ul>
       <li><%= link_to_unless_current( t('sessions.login'), login_path )%></li>
-      <li><%= link_to_unless_current( t('help.title'), help_path )%></li>
     </ul>
   <% end %>
 
+<h3><%=t 'external_links.title' %></h3>
+    <ul>
+      <li><a href="http://www.meteoschweiz.ch/cgi-bin/plz.cgi?language=de&plz=3312"><%=t 'external_links.meteo' %></a></li>
+      <li><a href="http://www.fraubrunnen.ch/xml_1/internet/de/application/d8/f63.cfm"><%=t 'external_links.official' %></a></li>
+      <li><a href="http://www.blacktanga.ch/oase/fraubrunnen.html"><%=t 'external_links.blacktanga' %></a></li>
+    </ul>
 </div>

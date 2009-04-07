@@ -1,5 +1,15 @@
-<% content_for :title, @title = 'Saisonübersicht' %>
-<% content_for :webmaster_links do %><li><%= link_to 'Woche hinzufügen', new_week_path %></li><% end %>
+<% content_for :title, @title = t('weeks.index.title') %>
+<% content_for :webmaster_links do %><li><%= link_to  t('weeks.new.title'), new_week_path %></li><% end %>
 
-<%= render :partial => 'weeks_past_view', :object => @past_weeks   %>
-<%= render :partial => 'weeks_table'    , :object => @future_weeks %>
+<%= render(:partial => 'weeks_past_view', :object => @past_weeks) unless @past_weeks.empty?  %>
+
+<% for @saison in @saisons do %>
+  
+  <% if @saisons.size > 1 %>
+    <h2><%=t "saisons.#{@saison.name}" %></h2>
+  <% end %>
+
+  <%= render :partial => 'weeks_table', :object => @future_weeks %>
+  <h2><br /></h2>
+
+<% end %>

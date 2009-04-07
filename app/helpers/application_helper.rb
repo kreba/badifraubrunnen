@@ -9,4 +9,7 @@ module ApplicationHelper
       { :style =>           "width: inherit; height: inherit; padding: 0px" } ) 
       #html_options.merge({:style => (html_options[:style] || "")+"padding: 0px"}) )
   end
+  def images_url
+    "#{Rails.configuration.action_controller.relative_url_root}/images/"
+  end
 end

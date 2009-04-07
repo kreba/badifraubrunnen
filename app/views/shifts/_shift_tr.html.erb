@@ -6,7 +6,7 @@
   <td><%=h shift.free? ? '<' + t('shifts.free') + '>' : shift.person.name %></td>
 
   <% if current_person.is_admin_for? shift.saison %>
-    <td><%= link_to( t('Edit') , edit_shift_path(shift) )%></td>
+    <td><%= link_to( t('Edit') , shift.day )%></td>
   <% end %>
 
 </tr>

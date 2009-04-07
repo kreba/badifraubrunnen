@@ -44,6 +44,11 @@ de_ch:
   or: oder
   assignments: Einsätze
   navigation: Navigation
+  external_links:
+    title: Links zu anderen Seiten
+    meteo: Wetterbericht
+    official: Gemeinde
+    blacktanga: BV blacktanga
 
   mail:
     subject: Badi2010
@@ -84,7 +89,11 @@ de_ch:
         admin: Personalien bearbeiten
     update:
       success: Personendetails erfolgreich gespeichert.
-
+  
+  saisons:
+    badi: Badi
+    kiosk: Kiosk
+    
   role:
     admin: Administrator
     badiAdmin: Badi-Admin
@@ -121,6 +130,7 @@ de_ch:
       title: Schichtentyp {{description}} bearbeiten
     index:
       title: Alle Schichtentypen auflisten
+      none: Noch keine Schichtentypen definiert.
     show:
       title: Detailansicht Schichtentyp {{description}}
 
@@ -143,10 +153,11 @@ de_ch:
       title: Schicht {{shift}} am {{date}}
       admin_advice: Du kannst HelferInnen nur in der Tagesansicht neu zuordnen.
       general_advice: Du bist dabei, dich für eine Schicht einzutragen. Bitte bestätigen.
-      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Schicht als HüterIn! \nUm dich wieder auszutragen, melde dich bei {{admin_names}}.'
+      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Schicht als HüterIn!<br />Nur {{admin_names}} können dich wieder austragen.'
     index:
       title: Alle Schichten
-      summary: Total {{total}} Schichten, davon {{enabled}} zurzeit aktiv
+      summary: Total {{total}} Schichten
+#      summary: Total {{total}} Schichten, davon {{enabled}} zurzeit aktiv
     myshifts:
       title: Meine Einsätze
     show:
@@ -187,7 +198,7 @@ de_ch:
 
   welcome:
     # in controllers
-    greeting: Herzlich willkommen!
+    greeting: Herzlich willkommen, {{person_name}}!
 
   day:
     # in models
@@ -196,7 +207,7 @@ de_ch:
 
   week:
     # in models
-    too_many_days: Eine Woche kann nicht mehr als sieben Tage haben!
+    too_many_days: Eine Woche muss sieben Tage haben!
 
   # -------------------------------------
   # in the view
@@ -292,7 +303,7 @@ de_ch:
       delimiter: '.'
     currency:
       format:
-        unit: '€'
+        unit: 'CHF'
         format: '%n%u'
         separator:
         delimiter:
@@ -310,6 +321,8 @@ de_ch:
 
   support:
     array:
+      words_connector: ", "
+      last_word_connector: " und "
       two_words_connector: " und "
       skip_last_comma: true
 

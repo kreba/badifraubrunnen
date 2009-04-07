@@ -34,7 +34,12 @@ class Shift < ActiveRecord::Base
   def duration
     return time_to_end - time_to_begin
   end
-  
+
+  def active?
+    in_active_saison = (self.saison.begin..self.saison.end).include? self.day.date
+    self.enabled and in_active_saison and !self.day.date.past?
+  end
+
   private
   def update_status_image_of_my_day
     day.create_status_image(saison)

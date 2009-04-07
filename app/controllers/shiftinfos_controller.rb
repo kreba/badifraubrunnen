@@ -5,7 +5,7 @@ class ShiftinfosController < ApplicationController
   # GET /shiftinfos
   # GET /shiftinfos.xml
   def index
-    @shiftinfos = Shiftinfo.find(:all).sort_by(&:begin)
+    @shiftinfos = Saison.shiftinfos_by_saison
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,6 +28,11 @@ class ShiftinfosController < ApplicationController
   # POST /shiftinfos.xml
   def create
     @shiftinfo = Shiftinfo.new(params[:shiftinfo])
+    if current_person.is_admin_for_what.one?
+      @shiftinfo.saison = current_person.is_admin_for_what.first
+    else
+      # TODO: add shiftinfo to user-defined saison
+    end
 
     respond_to do |format|
       if @shiftinfo.save

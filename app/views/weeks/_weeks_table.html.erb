@@ -5,7 +5,9 @@
     <% for wday in 1..7 %>
       <th class="day_header"><%= t('date.abbr_day_names')[wday % 7] %></th>
     <% end %>
-    <th> <%=t 'weeks.responsability' %> </th>
+    <% if @saison.name.eql? "badi" %>
+      <th> <%=t 'weeks.responsability' %> </th>
+    <% end %>
   </tr>
   <%= render :partial => "weeks_table_tr", :collection => weeks %>
 </table>

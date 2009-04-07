@@ -104,6 +104,10 @@ class Person < ActiveRecord::Base
     self.roles.collect{ |role| role.translate }.to_sentence
   end
 
+  def saisons
+    self.roles.collect(&:authorizable).flatten.uniq.compact
+  end
+
   def self.find_by_role role_name
     roles = Role.find_all_by_name(role_name, :include => :people)
     roles.collect{ |role| role.people }.flatten.uniq.sort_by(&:name)

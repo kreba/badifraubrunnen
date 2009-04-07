@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   
   def sentence( role_arrays )   
     single_role = role_arrays
-    t(single_role)
+    t("role.#{single_role}")
 # TODO: adapt to multiple roles as documented above
 #    role_arrays.collect {|role_set|
 #      if role_set.to_a.size > 1

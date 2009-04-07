@@ -4,20 +4,21 @@
 
 <%= error_messages_for :shift %>
 
-<% form_for(@shift) do |f| %>
-	<% if current_person.has_role? 'admin' %>
-	  <p><%=t 'shifts.edit.admin_advice' %></p>
-	<% end %>
-	<h2><%=t 'shifts.edit.general_advice' %></h2>
-	<%= f.hidden_field :person_id, :value => current_person.id %>
-	<%= f.hidden_field :shiftinfo_id %>
-  <p>
-    <%= f.submit t'Save' %><br />
-  </p>
+<% if current_person.is_admin_for? @shift.saison %>
+  <p><%=t 'shifts.edit.admin_advice' %></p>
+<% else %>
+  <% form_for(@shift) do |f| %>
+    <h2><%=t 'shifts.edit.general_advice' %></h2>
+    <%= f.hidden_field :person_id, :value => current_person.id %>
+    <%= f.hidden_field :shiftinfo_id %>
+    <p>
+      <%= f.submit t'Save' %><br />
+    </p>
+  <% end %>
+  <p><br /><em>
+      <%= t('shifts.edit.warning', :admin_names => @admin_names) %><br />
+      <%= link_to( t('help.contact.title') , :controller => 'help', :action => 'contact' )%><br />
+      <br />
+      <%=t 'abort_with_backbutton' %>
+  </em></p>
 <% end %>
-<p><br /><em>
-	<%= t('shifts.edit.warning', :admin_names => @admin_names).gsub("\n","<br />") %><br />
-	<%= link_to( t('help.contact.title') , :controller => 'help', :action => 'contact' )%><br />
-	<br />
-	<%=t 'abort_with_backbutton' %>
-</em></p>

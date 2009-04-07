@@ -1,22 +1,23 @@
 <% week = weeks_table_tr %>
 <tr>
   <th style="padding-right: 1em;">
-  	<em class="week_number"><%= link_to( week.number, week, :title => t('weeks.show.title') )%></em>
-		<% if current_person.is_webmaster? %>
-			<br /><%= link_to( t('Delete'), week, :confirm => t('weeks.confirm_delete'), :method => :delete )%>
-		<% end %>
-	</th>
-	
+    <em class="week_number"><%= link_to( week.number, week, :title => t('weeks.show.title') )%></em>
+    <% if current_person.is_webmaster? %>
+      <br /><%= link_to( t('Delete'), week, :confirm => t('weeks.confirm_delete'), :method => :delete )%>
+    <% end %>
+  </th>
+
   <%= render( :partial => 'weeks_table_td', :collection => week.weekdays, :locals => { :week => week } ) %>
-	
-	<% if !!week.person %>
-		<td>
-			<%=h week.person.name %><br />
-			<%=h week.person.phone %><br />
-			<%= link_to( t('Edit'), edit_week_path(week) ) if current_person.is_admin_for? @saison %>
-		</td>
-	<% else %>
-		<td> frei <br /><%= link_to( ' ' + t('weeks.sign_up') + ' ' , edit_week_path(week) ) if current_person.is_badiStaff? %></td>
-	<% end %>
-	
+
+  <% if @saison.name.eql? "badi" %>
+    <% if !!week.person %>
+      <td>
+        <%=h week.person.name %><br />
+        <%=h week.person.phone %><br />
+        <%= link_to( t('Edit'), edit_week_path(week) ) if current_person.is_admin_for? @saison %>
+      </td>
+    <% else %>
+      <td> frei <br /><%= link_to( ' ' + t('weeks.sign_up') + ' ' , edit_week_path(week) ) if current_person.is_badiStaff? %></td>
+    <% end %>
+  <% end %>
 </tr>

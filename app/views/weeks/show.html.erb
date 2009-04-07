@@ -2,6 +2,17 @@
 
 <%= render( :partial => 'week_jumper', :locals => { :week => @week } )%>
 
-<%= render( :partial => 'week_plan' )%>
+<% for @saison in @saisons %>
 
-<%= link_to( t('weeks.show.printout'), { :action => "render_week_plan", :id => @week }, :popup => true )%>
+  <% if @saisons.size > 1 %>
+    <h2><%=t "saisons.#{@saison.name}" %></h2>
+  <% end %>
+
+  <%= render( :partial => 'week_plan' )%>
+  <%= link_to( t('weeks.show.printout'), 
+    { :action => "render_week_plan", :id => @week, :saison_id => @saison }, :popup => true )%>
+  <h2><br /></h2>
+
+<% end %>
+
+<%# TODO: allow printing of either badi or kiosk plan %>

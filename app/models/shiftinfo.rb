@@ -1,6 +1,6 @@
 class Shiftinfo < ActiveRecord::Base
   # Authorization plugin
-  acts_as_authorizable  #  TODO: WHY?
+  #acts_as_authorizable  #  TODO: Why should it??
 
   belongs_to :saison
   has_many :shifts
@@ -12,6 +12,7 @@ class Shiftinfo < ActiveRecord::Base
   validates_length_of :description, :within => 1..10
   
 #  attr_accessible :description, :begin, :end, :shifts
+#  attr_protected :saison
 
   def times_str
     return self.begin.strftime( '%H:%M' ) + ' - ' + self.end.strftime( '%H:%M' )

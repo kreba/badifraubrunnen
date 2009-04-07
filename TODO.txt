@@ -11,7 +11,7 @@ Noch zu implementieren:
  - Elemente in Listen, welche in der Vergangenheit liegen, verstecken/kennzeichnen (Wochen, Einsätze)
  - Wochenansicht als PDF
 
- - localization: refrain for those capitalize calls?
+ - localization: refrain from those capitalize calls?
  - localization: "Pikett" in week plan files
  
  - find a better way of handling overlapping shift(info)s  (localization!)

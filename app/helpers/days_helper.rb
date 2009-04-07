@@ -24,7 +24,7 @@ module DaysHelper
         }
     
     #img.display
-    img.write("/images/gradientfill.gif")
+    img.write(RAILS_ROOT+"/images/gradientfill.gif")
     #exit
   end
 end

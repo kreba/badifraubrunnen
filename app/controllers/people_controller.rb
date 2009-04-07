@@ -21,8 +21,8 @@ class PeopleController < ApplicationController
     # uncomment at your own risk
     # reset_session
     @person = Person.new(params[:person])
-    for role in current_person.roles.select {|r| r.name.include?('Admin') } 
-      @person.has_role role.name.gsub('Admin','Staff')
+    for saison in current_person.is_admin_for_what
+      @person.is_staff_for saison
     end
     
     if @person.save

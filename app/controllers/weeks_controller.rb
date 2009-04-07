@@ -6,7 +6,7 @@ class WeeksController < ApplicationController
   # GET /weeks
   # GET /weeks.xml
   def index
-    @saison = Saison.find_by_name("badi")  # TODO: SUPPORT MULTIPLE SAISONS
+    @saisons = current_person.saisons
     @weeks = Week.find(:all, :order => "number", :include => {:days => {:shifts => :shiftinfo}})
     # :include causes "eager loading"
     @past_weeks   = @weeks.select(&:past?)
@@ -49,6 +49,7 @@ class WeeksController < ApplicationController
   # GET /weeks/1
   # GET /weeks/1.xml
   def show
+    @saisons = current_person.roles.collect(&:authorizable).flatten.uniq.compact
     @week = Week.find(params[:id])
     @days = @week.days.sort_by(&:date)
     
@@ -100,6 +101,7 @@ class WeeksController < ApplicationController
   # GET /weeks/1/render_week_plan
   # TODO: replace by media-aware CSS
   def render_week_plan
+    @saison = Saison.find(params[:saison_id])
     @week = Week.find(params[:id])
     @days = @week.days.sort_by(&:date)
     

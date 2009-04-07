@@ -1,0 +1,11 @@
+<h3><%=t 'weeks.responsability' %>:
+  <% if @week.person.nil? %>
+    <% if current_person.is_staff_for?(@saison) or current_person.is_admin_for?(@saison) %>
+      <%= link_to( t('weeks.sign_up'), edit_week_path(@week) ) %>
+    <% else %>
+      vakant
+    <% end unless @printout %>
+  <% else %>
+    <%=h @week.person.name %> <%# + (@printout? phone_str(@week.person) : "") %>
+  <% end %>
+</h3>

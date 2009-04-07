@@ -2,18 +2,27 @@
 <% content_for :admin_links do %><li><%= link_to t('shiftinfos.new.title'), new_shiftinfo_path %></li><% end %>
 
 
-<table>
-  <tr>
-    <th><%=t 'shiftinfo.attributes.description' %></th>
-    <th><%=t 'shiftinfo.attributes.begin' %></th>
-    <th><%=t 'shiftinfo.attributes.end' %></th>
-  </tr>
 
-<% for shiftinfo in @shiftinfos %>
-  <tr>
-    <td><%=h shiftinfo.description %></td>
-    <td><%=h shiftinfo.times_str %></td>
-    <td><%= link_to( t('Edit'), edit_shiftinfo_path(shiftinfo) )%></td>
-  </tr>
+<% for saison in current_person.is_admin_for_what %>
+  <% if current_person.is_admin_for_what.many? %>
+    <h2><%=t "saisons.#{saison.name}" %></h2>
+  <% end %>
+  <% if saison.shiftinfos.any? %>
+    <table>
+      <tr>
+        <th><%=t 'shiftinfo.attributes.description' %></th>
+        <th><%=t 'shiftinfo.attributes.begin' %></th>
+        <th><%=t 'shiftinfo.attributes.end' %></th>
+      </tr>
+      <% for shiftinfo in @shiftinfos[saison.name] %>
+        <tr>
+          <td><%=h shiftinfo.description %></td>
+          <td><%=h shiftinfo.times_str %></td>
+          <td><%= link_to( t('Edit'), edit_shiftinfo_path(shiftinfo) )%></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p><%=t 'shiftinfos.index.none' %></p>
+  <% end %>
 <% end %>
-</table>
