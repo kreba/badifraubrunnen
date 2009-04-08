@@ -136,13 +136,6 @@ table.weeks_table .weeks_table_td a {
 }
 
 /* Styles for other partials */
-div.day_jumper {
-	margin-bottom: 2em;
-} 
-div.day_jumper jumper a {
-	margin: 0em 1em;
-}
-
 div.week_jumper {
 	font-size: 2.8em;
 	line-height: 100%;

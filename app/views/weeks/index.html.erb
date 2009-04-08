@@ -1,5 +1,8 @@
 <% content_for :title, @title = t('weeks.index.title') %>
-<% content_for :webmaster_links do %><li><%= link_to  t('weeks.new.title'), new_week_path %></li><% end %>
+<% content_for :dynamic_links_for_webmaster do %>
+  <%= navigation_link t('weeks.new.title'), new_week_path %>
+<% end %>
+
 
 <%= render(:partial => 'weeks_past_view', :object => @past_weeks) unless @past_weeks.empty?  %>
 

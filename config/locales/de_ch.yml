@@ -47,7 +47,7 @@ de_ch:
   external_links:
     title: Links zu anderen Seiten
     meteo: Wetterbericht
-    official: Gemeinde
+    official: Infoseite der Gemeinde
     blacktanga: BV blacktanga
 
   mail:
@@ -66,8 +66,10 @@ de_ch:
       success: Änderungen am Tag erfolgreich gespeichert.
     # in the view
     day_jumper:
-      back: gestern
-      forth: morgen
+      back_one_week: letzte Woche
+      back_one_day: gestern
+      forth_one_day: morgen
+      forth_one_week: nächste Woche
     show:
       title: Tagesansicht für den {{date_str}}
 

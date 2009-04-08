@@ -1,0 +1,25 @@
+<% content_for :static_links_for_admin do %>
+  <%= navigation_link_unless_current t('shifts.index.title'), shifts_path %>
+  <%= navigation_link_unless_current t('shiftinfos.index.title'), shiftinfos_path %>
+<% end %>
+<% content_for :static_links_for_staff do %>
+  <%= navigation_link_unless_current t('people.index.title'), people_path %>
+<% end %>
+<% content_for :static_links_for_webmaster do %>
+<% end %>
+
+
+<ul>
+  <%= navigation_link_unless_current( t('weeks.index.title'), weeks_path )%>
+  <%= yield :navigation %>
+</ul>
+
+<%= render :partial => 'layouts/role_specific_navigation',
+           :collection => %w"staff admin webmaster", :as => :rolename %>
+
+<h3><%=h current_person.name %></h3>
+<ul>
+  <%= navigation_link_unless_current( t('people.edit.title.staff'), edit_person_path(current_person) )%>
+  <%= navigation_link_unless_current( t('shifts.myshifts.title'), myshifts_path )%>
+  <%= navigation_link( t('sessions.logout'), logout_path )%>
+</ul>

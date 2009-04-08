@@ -21,6 +21,10 @@ class Shift < ActiveRecord::Base
     self.person = nil
   end
 
+  def person_str_or_free
+    free? ? " "+I18n.t('shifts.free')+" " : "#{person.name}<br />#{person.phone}"
+  end
+
   def times_str
     return shiftinfo.times_str
   end

@@ -1,5 +1,9 @@
 # Settings specified here will take precedence over those in config/environment.rb
 
+# Specify that your app is run in a subdirectory. You will want to use
+# this for example if you are using passenger's RailsBaseURI directive
+config.action_controller.relative_url_root = "/badi2010"
+
 # The production environment is meant for finished, "live" apps.
 # Code is not reloaded between requests
 config.cache_classes = true

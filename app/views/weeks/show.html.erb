@@ -1,4 +1,7 @@
-<% content_for :admin_links do %><li><%= link_to( t('weeks.new.title'), new_week_path )%></li><% end %>
+<% content_for :dynamic_links_for_admin do %>
+  <%= navigation_link t('weeks.new.title'), new_week_path %>
+<% end %>
+
 
 <%= render( :partial => 'week_jumper', :locals => { :week => @week } )%>
 

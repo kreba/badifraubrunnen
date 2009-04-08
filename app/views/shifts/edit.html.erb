@@ -1,6 +1,8 @@
 <% content_for :title, @title = t('shifts.edit.title', :shift => @shift.shiftinfo.description, :date => @day.date_str) %>
-<% content_for :links do %><li><%= link_to t('weeks.show.title'), @week %></li><% end %>
-<% content_for :links do %><li><%= link_to t('days.show.title', :date_str => @day.date_str), @day %></li><% end %>
+<% content_for :navigation do %>
+  <%= navigation_link t('weeks.show.title'), @week %>
+  <%= navigation_link t('days.show.title', :date_str => @day.date_str), @day %>
+<% end %>
 
 <%= error_messages_for :shift %>
 

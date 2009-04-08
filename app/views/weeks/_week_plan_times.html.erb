@@ -16,13 +16,13 @@
   # TODO: only show times for the adjacent day (this is, Monday or Sunday)
 %>
 
-<% for time in begin_times do %>
+<% begin_times.each do |time| %>
 	<span class="time_begin" style="top: <%=h toptops[time]-1 %>px; left: <%=h h_offset %>px;">
 		<%= time.strftime( "%H:%M" )%>
 	</span>
 <% end %>
 
-<% for time in end_times do %>
+<% end_times.each do |time|  %>
 	<span class="time_end" style="top: <%=h endtops[time] %>px; left: <%=h h_offset %>px;">
 		<%= time.strftime( "%H:%M" )%>
 	</span>

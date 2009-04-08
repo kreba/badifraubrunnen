@@ -1,5 +1,7 @@
 <% content_for :title, @title = t('shiftinfos.edit.title',:description => full_descr(@shiftinfo)) %>
-<% content_for :links do %><li><%= link_to t('shiftinfos.index.title') , shiftinfos_path %></li><% end %>
+<% content_for :navigation do %>
+  <%= navigation_link t('shiftinfos.index.title') , shiftinfos_path %>
+<% end %>
 
 
 <%= error_messages_for :shiftinfo %>

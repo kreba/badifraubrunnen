@@ -51,10 +51,6 @@ Rails::Initializer.run do |config|
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug
 
-  # Specify that your app is run in a subdirectory. You will want to use
-  # this for example if you are using passenger's RailsBaseURI directive
-  config.action_controller.relative_url_root = "/badi2010"
-
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!
   # Make sure the secret is at least 30 characters and all random, 

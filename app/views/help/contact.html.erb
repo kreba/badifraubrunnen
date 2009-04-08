@@ -1,12 +1,17 @@
 <% content_for :title, @title = t('help.contact.title') %>
 
+
 <% for saison in Saison.all %>
-  <%= render( :partial => 'list_people' ,
-    :locals => { :title => t("help.contact.#{saison.name}Admins"), :people => @admins[saison.name] } ) %>
+  <%= render( :partial => 'list_people', 
+              :locals => {
+                :title => t("help.contact.#{saison.name}Admins"),
+                :people => @admins[saison.name] } ) %>
 <% end %>
 
-<%= render( :partial => 'list_people' , 
- :locals => { :title => t('help.contact.webmasters'), :people => @webmasters } ) %>
+<%= render( :partial => 'list_people', 
+            :locals => {
+              :title => t('help.contact.webmasters'),
+              :people => @webmasters } ) %>
 
 <h2><%=t 'help.contact.location' %></h2>
 <div>

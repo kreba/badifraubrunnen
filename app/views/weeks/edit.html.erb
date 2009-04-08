@@ -1,5 +1,7 @@
 <% content_for :title, @title = t('weeks.edit.title') %>
-<% content_for :links do %><li><%= link_to( t('weeks.show.title'), @week )%></li><% end %>
+<% content_for :navigation do %>
+  <%= navigation_link( t('weeks.show.title'), @week )%>
+<% end %>
 
 
 <% form_for(@week) do |f| %>

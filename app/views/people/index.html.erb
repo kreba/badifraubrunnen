@@ -1,5 +1,7 @@
 <% content_for :title, @title = t('people.index.title') %>
-<% content_for :admin_links do %><li><%= link_to t('people.create.title'), new_person_path %></li><% end %>
+<% content_for :dynamic_links_for_admin do %>
+  <%= navigation_link t('people.create.title'), new_person_path %>
+<% end %>
 
 
 <table id="people_list">

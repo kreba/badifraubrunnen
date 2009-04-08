@@ -1,0 +1,9 @@
+<%
+  shifts = @day.find_shifts_by_saison saison
+  return if shifts.empty?
+%>
+
+<tr><td><br /><%=t "role.#{saison.name}Staff" %><td></tr>
+<%= render :partial => 'shift_for_saison', :as => :shift,
+           :collection => shifts,
+           :locals => {:saison => saison}%>

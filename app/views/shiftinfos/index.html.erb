@@ -1,6 +1,7 @@
 <% content_for :title, @title = t('shiftinfos.index.title') %>
-<% content_for :admin_links do %><li><%= link_to t('shiftinfos.new.title'), new_shiftinfo_path %></li><% end %>
-
+<% content_for :dynamic_links_for_admin do %>
+  <%= navigation_link t('shiftinfos.new.title'), new_shiftinfo_path %>
+<% end %>
 
 
 <% for saison in current_person.is_admin_for_what %>

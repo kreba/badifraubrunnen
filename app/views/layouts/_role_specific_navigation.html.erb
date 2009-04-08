@@ -1,27 +1,7 @@
-<% if current_person.has_role? 'staff' %>
-  <%= render( :partial => 'layouts/badi_staff_navigation' )%>
-<% else %>
+<% if current_person.has_role? rolename %>
+  <h3><%=  t('role')[rolename] %></h3>
   <ul>
-    <li><%= link_to_unless_current( t('weeks.index.title'), weeks_path )%></li>
-    <%= yield :staff_links %>
+    <%= yield  'static_links_for_' + rolename %>
+    <%= yield 'dynamic_links_for_' + rolename %>
   </ul>
 <% end %>
-
-<% if current_person.has_role? 'admin' %>
-  <br />
-  <h3><%=t 'role.admin' %></h3>
-  <ul>
-    <li><%= link_to_unless_current t('shifts.index.title'), shifts_path %></li>
-    <li><%= link_to_unless_current t('shiftinfos.index.title'), shiftinfos_path %></li>
-    <%= yield :admin_links %>
-  </ul>
-<% end %>
-
-<% if current_person.is_webmaster? %>
-  <br />
-  <h3><%=t 'role.webmaster' %></h3>
-  <ul>
-    <%= yield :webmaster_links %>
-  </ul>
-<% end %>
-

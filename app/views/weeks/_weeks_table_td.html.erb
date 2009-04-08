@@ -1,6 +1,6 @@
 <% 
   day   = weeks_table_td
-  bg    = day.active? ? "background=\"#{images_path + day.status_image_name(@saison)}\"" : ""
+  bg    = day.active? ? "background=\"#{images_url + day.status_image_name(@saison)}\"" : ""
   style = day.active? ? "" : "background-color:#dddddd; color:#ffffff;"
 %>
 <td class="weeks_table_td" <%= bg %>>

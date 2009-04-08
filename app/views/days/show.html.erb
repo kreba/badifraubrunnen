@@ -1,7 +1,9 @@
-<% content_for :links do %><li><%= link_to t('weeks.show.title'), @week %></li><% end %>
 <% content_for :title, @title = t('days.show.title', :date_str => @day.date_str) %>
+<% content_for :navigation do %>
+  <%= navigation_link t('weeks.show.title'), @week %>
+  <%= render( :partial => 'day_jumper', :object => @day ) %><%# :as => :day does not work (collections only)%>
+<% end %>
 
-<%= render( :partial => 'day_jumper', :object => @day )%>
 
 <h3><%=h t('date.day_names')[@day.date.wday % 7] + " KW " + @week.number.to_s %></h3>
 
@@ -9,7 +11,7 @@
 
   <% form_for @day do |f| %>
     <table title="<%=t 'shifts.n' %>">
-      <%= render( :partial => 'shifts_for_saison', :collection => current_person.is_admin_for_what )%>
+      <%= render( :partial => 'saison', :collection => current_person.is_admin_for_what )%>
     </table>
     <br /><%= submit_tag t'Save' %><br />
   <% end %>

@@ -56,12 +56,14 @@ class Day < ActiveRecord::Base
     # TODO: do better localization of weekday names
   end
 
-  def yesterday
-    return Day.find_by_date( self.date.yesterday )
+  # intended use: my_day.plus 1.day
+  def plus( time )
+    return Day.find_by_date( self.date + time )
   end
 
-  def tomorrow
-    return Day.find_by_date( self.date.tomorrow )
+  # intended use: my_day.minus 1.week
+  def minus( time )
+    return Day.find_by_date( self.date - time )
   end
 
   def active?

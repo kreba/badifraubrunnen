@@ -13,15 +13,15 @@ class Person < ActiveRecord::Base
   #before_create :make_activation_code
   after_destroy :free_all_shifts
 
-  validates_presence_of     :name, :login, :phone
   validates_uniqueness_of   :name, :login, :case_sensitive => false
+  validates_presence_of     :name, :login, :phone
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?
   validates_confirmation_of :password,                   :if => :password_required?
   validates_length_of       :password, :within => 4..40, :if => :password_required?
   validates_length_of       :name,     :within => 3..50
   validates_length_of       :login,    :within => 3..20
-  validates_length_of       :email,    :maximum => 100
+  validates_length_of       :email,    :maximum => 100,                                      :allow_blank => true
   validates_length_of       :address,  :maximum =>  50,                                      :allow_blank => true
   validates_length_of       :location, :maximum =>  30,                                      :allow_blank => true
   validates_format_of       :postal_code, :with => /\A([1-9][0-9]{3})\Z/,                    :allow_blank => true, :message => I18n.translate('person.invalid_zip')
@@ -36,7 +36,7 @@ class Person < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :name, :login, :phone, :phone2, :address, :postal_code, :location, 
                   :email, :preferences, :password, :password_confirmation
-  attr_protected  :shifts
+  # :shifts is protected because it is not on this list.
 
   def full_address_str
     str = ""
@@ -63,6 +63,7 @@ class Person < ActiveRecord::Base
   end
 
   def authenticated?(password)
+    #(RAILS_ENV == 'production')^(name =~ /test\d/) and
     crypted_password == encrypt(password)
   end
 

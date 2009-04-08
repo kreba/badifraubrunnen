@@ -4,11 +4,8 @@ shift = shift_tr
 <tr valign="middle">
   <th align="left"><%=h shift.shiftinfo.description %><br><%=h shift.times_str %></th>
 
-  <% if shift.free? %>
-    <td align="center"> frei </td>
-  <% else %>
-    <td align="center"><%= "#{shift.person.name}<br />#{shift.person.phone}" %></td>
-  <% end %>
+  
+    <td align="center"><%= shift.person_string_or_free %></td>
 
   <% if current_person.is_staff_for? shift.saison %>
     <% if shift.free? %>
