@@ -1,7 +1,0 @@
-<% if current_person.has_role? rolename %>
-  <h3><%=  t('role')[rolename] %></h3>
-  <ul>
-    <%= yield  'static_links_for_' + rolename %>
-    <%= yield 'dynamic_links_for_' + rolename %>
-  </ul>
-<% end %>

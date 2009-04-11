@@ -1,0 +1,9 @@
+<tr><td style="border-bottom: 3px solid <%= saison.color %>">
+  <br /><%=t "role.#{saison.name}Staff" %>
+<td></tr>
+
+<%= yield %>
+
+<% if @day_shifts[saison].empty? %>
+  <td style="border-left: 5px solid <%= saison.color %>; color: gray"> - <%=t 'shifts.none_for_today' %> - </td>
+<% end %>

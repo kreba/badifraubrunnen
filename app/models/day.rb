@@ -14,7 +14,7 @@ class Day < ActiveRecord::Base
   validates_presence_of :date
   # validates_presence_of :week  --  causes problems!
 
-  def shift_attributes=(attrs) # invoked on an update (that is, on submitting an update form)
+  def shift_attributes=( attrs ) # invoked on an update (that is, on submitting an update form)
     # assert existance
     self.shifts.update(attrs.keys, attrs.values)
     #self.create_status_image is invoked on a shift update
@@ -22,7 +22,15 @@ class Day < ActiveRecord::Base
 
   def find_shifts_by_saison( saison )
     # note: self.shifts.find_by_saison  is not possible, since the saison attibute is a delegate to the shiftinfo
-    self.shifts.select { |shift| shift.saison.eql? saison }
+#    self.shifts.find(:all, :include => [:person, {:shiftinfo => :saison}]).select { |shift| shift.saison.eql? saison }.sort_by {|s| s.shiftinfo.begin }
+    self.shifts.all.select { |shift| shift.saison.eql? saison }.sort_by {|s| s.shiftinfo.begin }
+  end
+  def shifts_mapped_by_saison
+    shifts = {}
+    Saison.all.each{ |saison|
+      shifts[saison] = self.find_shifts_by_saison(saison)
+    }
+    shifts
   end
 
   def status_image_name( saison )
@@ -31,7 +39,7 @@ class Day < ActiveRecord::Base
 
   def create_status_image( saison )
     width, height = 1, 90  # synchronize height with css!
-    min, max = ShiftinfosHelper.daytime_limits(saison)
+    min, max = saison.daytime_limits
     allday = (max-min).to_f
     result = Image.new(width, height) { self.background_color = "transparent" }
 
@@ -40,7 +48,7 @@ class Day < ActiveRecord::Base
       shift_offset = ((shift.time_to_begin - min) / allday * height).round
       #src = Image.read("gradient:green-transparent") {...}[0]
       src = Image.new(width, shift_height) {
-        self.background_color = shift.free? ? "rgba( 38, 162, 0, 0.6)" : "transparent"
+        self.background_color = shift.free? ? saison.color : "transparent"
         self.size = "#{width}x#{shift_height}+0+#{shift_offset}"
       }
       

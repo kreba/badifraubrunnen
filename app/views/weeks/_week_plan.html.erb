@@ -1,23 +1,21 @@
-<% content_for( :title, t('weeks.week_plan.title', :wnum => @week.number) )%>
-
-<%
-    header_height = 35
-	day_height = 17.5*(hour_height = 24) 
-	day_width  = 105
-%>
-
-
 <span id="week_plan">
-	<span style="float: left; font-size: 75px; line-height: 1em; margin: -8px 16px 3px 3px;"> <%= @week.number.to_s if @printout %> </span>
-	
-		<h2><%=t('weeks.week_plan.caption', :begin_date => h(@days.first.date_str "%d.%m."), :end_date => h(@days.last.date_str "%d.%m.%Y"))%></h2>
+  <span style="<%= @dd.style_for_wnum %>"> <%= @week.number.to_s if @printout %> </span>
 
-        <%= render( :partial => 'week_plan_responsability' ) if @saison.name.eql? "badi" %>
-	
-	<div style="position: relative; height: <%= header_height + day_height %>px; margin: 2em 0em">
-		<%= render( :partial => 'week_plan_times', :object => @week,   :locals => { :header_height => header_height, :hour_height => hour_height, :h_offset => 0 } )%>
-		<%= render( :partial => 'week_plan_day', :collection => @days, :locals => { :header_height => header_height, :hour_height => hour_height, :day_width => day_width, :printout => @printout } )%>
-	  <%= render( :partial => 'week_plan_times', :object => @week,   :locals => { :header_height => header_height, :hour_height => hour_height, :h_offset => 55 + @days.size * (day_width+5) } )%>
-	</div>
-	<div><p><%=t 'weeks.week_plan.badi_tel' %></p></div>
+  <h2><%=t('weeks.week_plan.caption', :begin_date => h(@days.first.date_str "%d.%m."), :end_date => h(@days.last.date_str "%d.%m.%Y"))%></h2>
+
+  <%= if saison.name.eql? "badi"; render( :partial => 'week_plan_responsability', :locals => {:saison => saison} ); end %>
+
+  <% @days.each do |day| unless yield "day_header_#{day.date.wday}" %>
+    <% content_for "day_header_#{day.date.wday}" do %>
+      <span style="float: left;  padding-left:  5px; font-size:   1.6em;"><%= @dd.day_name(day.date.wday) %></span>
+      <span style="float: right; padding-right: 5px; padding-top: 0.5em;"><%= day.date_str('%d.%m.') %></span>
+    <% end %>
+  <% end end %>
+
+  <div style="<%= @dd.style_for_day( saison ) %>">
+    <%= render( :partial => 'week_plan_times', :locals => { :side => :left } )%>
+    <%= render( :partial => 'week_plan_day',   :locals => { :printout => @printout }, :collection => @days, :as => :day )%>
+    <%= render( :partial => 'week_plan_times', :locals => { :side => :right } )%>
+  </div>
+  <div><p><%=t 'weeks.week_plan.badi_tel' %></p></div>
 </span>

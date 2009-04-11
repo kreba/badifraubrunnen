@@ -1,5 +1,5 @@
 <% content_for :title, @title = t('shifts.edit.title', :shift => @shift.shiftinfo.description, :date => @day.date_str) %>
-<% content_for :navigation do %>
+<% content_for :navigation_links do %>
   <%= navigation_link t('weeks.show.title'), @week %>
   <%= navigation_link t('days.show.title', :date_str => @day.date_str), @day %>
 <% end %>

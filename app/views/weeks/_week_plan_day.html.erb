@@ -1,22 +1,9 @@
-<% 
-	day = week_plan_day
-    @shifts = day.find_shifts_by_saison(@saison).sort_by {|s| s.shiftinfo.begin }
-	index = (day.date.wday-1) % 7
-	#day_name = day.date.strftime '%a'
-	day_name = t('date.abbr_day_names')[day.date.wday]
-	left = 55 + index * (day_width+5)
-%>
-
-<span style="position: absolute; left: <%= left %>px; top: 0px;
-						 width: <%= day_width %>px; height: <%= header_height-3 %>px; text-align: center;">
-	<% content_for "day_header_#{day_name}" do %>
-		<span style="float: left;  padding-left:  5px; font-size:   1.6em;"><%= day_name %></span>
-		<span style="float: right; padding-right: 5px; padding-top: 0.5em;"><%= day.date_str('%d.%m.') %></span>
-	<% end %>
-	<%= link_to_unless( printout, yield("day_header_#{day_name}") , day, {:title => t('days.show.title', :date_str => day.date_str), :class => "block"} ) %>
+<span style="<%= @dd.style_for_day_header(day) %>">
+  <%= link_to_unless( printout, yield("day_header_#{day.date.wday}") , day, {:title => t('days.show.title', :date_str => day.date_str), :class => "block"} ) %>
 </span>
-<span style="position: absolute; left: <%= left %>px; top: <%= header_height %>px; 
-						 width: <%= day_width %>px;">
-	<%= render( :partial => 'week_plan_shift', :collection => @shifts,
-							:locals => { :hour_height => hour_height, :printout => printout } )%>
+
+<span style="<%= @dd.style_for_day_body(day) %>">
+	<%= render( :partial => 'week_plan_shift',
+                :collection => day.find_shifts_by_saison(@saison), :as => :shift,
+				:locals => { :printout => printout } )%>
 </span>

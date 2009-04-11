@@ -1,6 +1,6 @@
 <h3><%=t 'weeks.responsability' %>:
   <% if @week.person.nil? %>
-    <% if current_person.is_staff_for?(@saison) or current_person.is_admin_for?(@saison) %>
+    <% if current_person.my_saisons.include? saison %>
       <%= link_to( t('weeks.sign_up'), edit_week_path(@week) ) %>
     <% else %>
       vakant

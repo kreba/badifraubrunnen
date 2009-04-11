@@ -53,9 +53,17 @@ after 'deploy:update_code', 'deploy:symlink_shared'
 #############################################################
 
 namespace :deploy do
-  desc "Tell Passenger to restart Application"
-  task :restart do
-    run "touch #{current_path}/tmp/restart.txt"
+  desc "Tell Passenger to restart the application"
+  task :restart, :roles => :app do
+    run "touch #{current_release}/tmp/restart.txt"
+  end
+
+  task :start, :roles => :app do
+    run "touch #{current_release}/tmp/restart.txt"
+  end
+
+  task :stop, :roles => :app do
+    # Do nothing.
   end
 end
 

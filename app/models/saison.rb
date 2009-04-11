@@ -10,8 +10,24 @@ class Saison < ActiveRecord::Base
   attr_accessible :begin, :end
   attr_readonly :name
 
-  def self.shiftinfos_by_saison( collection = Shiftinfo.find(:all, :order => :begin, :include => :saison) )
-    hash_by_saison(collection){ |shiftinfo, saison|
+  def color
+    case name
+    when "badi"
+      "rgba( 38, 162, 0, 0.6)"
+    when "kiosk"
+      "rgba(255, 255, 0, 0.6)"
+    end
+  end
+
+  def daytime_limits
+    times = self.shiftinfos
+    min = times.min_by(&:begin).begin.seconds_since_midnight
+    max = times.max_by(&:end).end.seconds_since_midnight
+    return min, max
+  end
+
+  def self.shiftinfos_by_saison( shiftinfos = Shiftinfo.find(:all, :order => :begin, :include => :saison) )
+    hash_by_saison(shiftinfos){ |shiftinfo, saison|
       shiftinfo.saison.eql? saison
     }
   end

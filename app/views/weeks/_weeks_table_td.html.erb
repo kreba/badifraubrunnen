@@ -5,6 +5,6 @@
 %>
 <td class="weeks_table_td" <%= bg %>>
   <%= link_to( day.date.strftime( "%d.%m." ) , day , {
-      :title => tooltip_for(day),
+      :title => tooltip_for(day, @saison),
       :style => style } )%>
 </td>

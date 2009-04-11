@@ -45,7 +45,7 @@ de_ch:
   assignments: Einsätze
   navigation: Navigation
   external_links:
-    title: Links zu anderen Seiten
+    title: Externe Links
     meteo: Wetterbericht
     official: Infoseite der Gemeinde
     blacktanga: BV blacktanga
@@ -97,7 +97,7 @@ de_ch:
     kiosk: Kiosk
     
   role:
-    admin: Administrator
+    admin: AdministratorIn
     badiAdmin: Badi-Admin
     kioskAdmin: Kiosk-Admin
     staff: HelferIn
@@ -148,6 +148,7 @@ de_ch:
     # in the view
     free: frei
     n: Schichten
+    none_for_today: heute keine Schichten
     responsible_person: Belegung
     sign_up: Eintragen
     taken: besetzt

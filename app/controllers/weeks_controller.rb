@@ -6,7 +6,7 @@ class WeeksController < ApplicationController
   # GET /weeks
   # GET /weeks.xml
   def index
-    @saisons = current_person.saisons
+    @saisons = current_person.all_saisons_but_mine_first
     @weeks = Week.find(:all, :order => "number", :include => {:days => {:shifts => :shiftinfo}})
     # :include causes "eager loading"
     @past_weeks   = @weeks.select(&:past?)
@@ -49,9 +49,11 @@ class WeeksController < ApplicationController
   # GET /weeks/1
   # GET /weeks/1.xml
   def show
-    @saisons = current_person.roles.collect(&:authorizable).flatten.uniq.compact
+    @saisons = current_person.all_saisons_but_mine_first
     @week = Week.find(params[:id])
     @days = @week.days.sort_by(&:date)
+
+    @dd = WeeksHelper::WeekPlanDisplayData.for @week
     
     respond_to do |format|
       format.html # show.html.erb
@@ -104,9 +106,11 @@ class WeeksController < ApplicationController
     @saison = Saison.find(params[:saison_id])
     @week = Week.find(params[:id])
     @days = @week.days.sort_by(&:date)
-    
+
+    @dd = WeeksHelper::WeekPlanDisplayData.for @week
     @printout = true
-    render( :template => 'weeks/_week_plan', :layout => 'popup' )
+
+    render( :template => 'weeks/_week_plan', :layout => 'popup', :locals => {:saison => @saison} )
   end
 
 end

@@ -12,7 +12,7 @@ class Shift < ActiveRecord::Base
   
 #  attr_accessible :person, :shiftinfo
 #  attr_readonly :day
-  delegate :saison, :saison=,   :to => :shiftinfo  # :allow_nil => true
+  delegate :saison, :saison=, :times_str,  :to => :shiftinfo  # :allow_nil => true
 
   def free?
     return person.nil?
@@ -21,14 +21,6 @@ class Shift < ActiveRecord::Base
     self.person = nil
   end
 
-  def person_str_or_free
-    free? ? " "+I18n.t('shifts.free')+" " : "#{person.name}<br />#{person.phone}"
-  end
-
-  def times_str
-    return shiftinfo.times_str
-  end
-  
   def time_to_begin
     return shiftinfo.begin.seconds_since_midnight
   end

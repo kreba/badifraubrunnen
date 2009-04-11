@@ -2,7 +2,7 @@
 <tr>
 
   <td><%=h shift.day.date_str('%a %d.%m.') %></td>
-  <td><%=h "#{shift.shiftinfo.description},  #{shift.shiftinfo.times_str}"  %></td>
+  <td><%=h full_descr(shift.shiftinfo, "%s,  %s") %></td>
   <td><%=h shift.free? ? '<' + t('shifts.free') + '>' : shift.person.name %></td>
 
   <% if current_person.is_admin_for? shift.saison %>

@@ -7,12 +7,12 @@
   <title><%=h "Badi2010 - #{ yield(:title) || controller.action_name }"%></title>
   <%= stylesheet_link_tag( 'badihomepage' )%>
   <%= stylesheet_link_tag( 'badihomepage', :media => :print )%>
-	<%= javascript_include_tag( 'prototype' )%>
+  <%= javascript_include_tag( 'prototype' )%>
 </head>
 <body>
 
 <div id="container" style="position: relative;">
-	<!-- those are composed using css -->
+	<!-- these are composed using css -->
 	<%= render( :partial => 'layouts/banner'  )%>
 	<%= render( :partial => 'layouts/sidebar' )%>
 	<%= render( :partial => 'layouts/main'    )%>

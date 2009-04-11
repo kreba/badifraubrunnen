@@ -1,5 +1,5 @@
 <% content_for :title, @title = t('days.show.title', :date_str => @day.date_str) %>
-<% content_for :navigation do %>
+<% content_for :navigation_links do %>
   <%= navigation_link t('weeks.show.title'), @week %>
   <%= render( :partial => 'day_jumper', :object => @day ) %><%# :as => :day does not work (collections only)%>
 <% end %>
@@ -7,22 +7,27 @@
 
 <h3><%=h t('date.day_names')[@day.date.wday % 7] + " KW " + @week.number.to_s %></h3>
 
-<% if current_person.is_admin? %>
+<table title="<%=t 'shifts.n' %>" cellpadding="15px" cellspacing="0px">
+  <tr style="padding: 0">
+    <th><%=t 'shifts.n' %>:</th>
+    <th><%=t 'shifts.responsible_person' %>:</th>
+  </tr>
 
-  <% form_for @day do |f| %>
-    <table title="<%=t 'shifts.n' %>">
-      <%= render( :partial => 'saison', :collection => current_person.is_admin_for_what )%>
-    </table>
-    <br /><%= submit_tag t'Save' %><br />
+  <% for saison in current_person.is_admin_for_what %>
+    <%= render :partial => 'saison_for_admin',
+               :layout => 'days/saison_wrapper',
+               :locals => {
+                 :saison => saison,
+                 :shifts => @day_shifts[saison] } %>
+    <br />
   <% end %>
-  <br />
-  <%= link_to(t('shifts.show.edit_shiftinfos'), shiftinfos_path) %>
 
-<% else %>
+  <% for saison in current_person.is_staff_for_what | current_person.unrelated_saisons %>
+    <%= render :partial => 'saison_for_others',
+               :layout => 'days/saison_wrapper',
+               :locals => {
+                 :saison => saison,
+                 :shifts => @day_shifts[saison] } %>
+  <% end %>
 
-  <table title="<%=t 'shifts.n' %>" cellpadding="15px">
-    <tr><th><%=t 'shifts.n' %>:</th><th><%=t 'shifts.responsible_person' %>:</th></tr>
-    <%= render( :partial => 'shift_tr', :collection => @day.shifts )%>
-  </table>
-
-<% end %>
+</table>

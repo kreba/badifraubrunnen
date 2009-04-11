@@ -1,10 +1,10 @@
 /* Global styles */
 td {
-	  padding: 2px 1em;
+    padding: 2px 1em;
 }
 
 .fieldWithErrors {
-	  border: solid red 2px;
+    border: solid red 2px;
 }
 
 /* ID styles */
@@ -14,26 +14,26 @@ div.flash {
     background-color: #cccccc;
     border: 2px solid #555555;
     font: bold smaller sans-serif;
-		color: #333333;
+    color: #333333;
 }
 #flash_notice {
     background-color: #f0fff0;
-		border-color: green;
-		color: green;
+    border-color: green;
+    color: green;
 }
 #flash_error {
     background-color: #fff0f0;
-		border-color: red;
-		color: red;
+    border-color: red;
+    color: red;
 }
 
 #container {
-	border: 1px solid #eeeeee;
+    border: 1px solid #eeeeee;
 }
 
 #banner {
     background: #0099cc;
-		padding: 8px;
+    padding: 8px;
     border-bottom: 4px solid;
     /* font: small-caps 50px/50px "Times New Roman", serif; */
     font: small-caps 38px/50px serif;
@@ -43,74 +43,78 @@ div.flash {
 
 #banner img {
     float: left;
-		margin: 10px;
-		/* height: 3em;
-		width: 2.22em; */
+    margin: 10px;
+    /* height: 3em;
+    width: 2.22em; */
 }
 
 #side {
     float:  left;
     width:  12em;
-		height: auto;
-		margin:  0em;
-    padding: 2em;
+    height: auto;
+    margin: 0em;
+    padding: 0 2em;
     background-color: #80a0f0;
 }
 
+#side h3,h4 {
+    margin-bottom: 0;
+}
 #side ul {
-		list-style-type: none;
-		padding-left: 1em;
+    margin-top: 0;
+    padding-left: 1em;
+    list-style-type: none;
 }
 
 #side ul li {
-		padding: 3px 0px;
-		margin: 2px;
+    padding: 3px 0px;
+    margin: 2px;
 }
 
 #main {
-		margin-left: 16em;
-		padding: 2em;
+    margin-left: 16em;
+    padding: 2em;
     background: white;
-		border-left: inherit;
+    border-left: inherit;
 }
 
 #main h1 {
     font: 150% sans-serif;
     color: #226;
     border-bottom: 3px dotted #77d;
-		margin-bottom: 1.5em;
+    margin-bottom: 1.5em;
 }
 
 #main ul.actions {
-   margin:  1em 0em;
-   padding: 0;
-	 list-style-type: none;
+    margin:  1em 0em;
+    padding: 0;
+    list-style-type: none;
 }
 #main ul.actions li {
-	 display: inline;
-	 margin: 2px 1em 2px 0em;
+    display: inline;
+    margin: 2px 1em 2px 0em;
 }
 
 #footer {
-		clear: both;
-		border-top: inherit;
-		padding: 0em 2em;
-		margin-bottom: 1em;
+    clear: both;
+    border-top: inherit;
+    padding: 0em 2em;
+    margin-bottom: 1em;
     text-align: right;
     color: #aaaaaa;
 }
 
 /* Styles for Saisonübersicht */
 table.weeks_table th.day_header {
-	font-size: 1em;
+    font-size: 1em;
 }
 
 table.weeks_table th.weeknum_header {
-	font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 table.weeks_table .week_number {
-	font-size: 3.2em;
+    font-size: 3.2em;
 }
 table.weeks_table .week_number a {
     text-decoration: none;
@@ -120,10 +124,10 @@ table.weeks_table .weeks_table_td {
     width: 80px;  /* synchronize with day.create_status_image */
     height: 80px;
     padding: 1px;
-		font-size: 1.5em;
+    font-size: 1.5em;
     text-align: center;
     line-height: 80px; /*vertical-align: middle;*/
-		background-color: #eeeeee;
+    background-color: #eeeeee;
     background-repeat: repeat-x;
     background-position: center;
 }
@@ -137,65 +141,65 @@ table.weeks_table .weeks_table_td a {
 
 /* Styles for other partials */
 div.week_jumper {
-	font-size: 2.8em;
-	line-height: 100%;
-	margin-bottom: 1em;
+    font-size: 2.8em;
+    line-height: 100%;
+    margin-bottom: 1em;
 }
 div.week_jumper .jumplink {
-	margin: 0px 3px;
-	font-size: 85%;
+    margin: 0px 3px;
+    font-size: 85%;
 }
 
 div.person_details {
-	margin-bottom: 3em;
+    margin-bottom: 3em;
 }
 
 span.time_begin {
-	position: absolute; 
-	border-top: 1px solid black; 
-	margin: 0; padding: 1px; 
-	height: 17px; width: 50px;
+    position: absolute;
+    border-top: 1px solid black;
+    margin: 0; padding: 1px;
+    height: 17px; width: 50px;
 }
 span.time_end {
-	position: absolute; 
-	border-bottom: 1px solid black; 
-	margin: 0; padding: 1px; 
-	height: 17px; width: 50px; 
+    position: absolute;
+    border-bottom: 1px solid black;
+    margin: 0; padding: 1px;
+    height: 17px; width: 50px;
 }
 span.week_plan_shift {
-	position: absolute; left: auto; 
-  width: 100%; 
-	text-align: center; 
-	vertical-align: middle; 
-	line-height: 2em;
-	border: 1px solid black; 
-	margin: 0;  
+    position: absolute; left: auto;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 2em;
+    border: 1px solid black;
+    margin: 0;
 }
 a.block {
-	display: block;
-	width: inherit;
-  height: inherit;
+    display: block;
+    width: inherit;
+    height: inherit;
 }
 
 /* printout styles
- *-- Remember to include 
- *-- <%= stylesheet_link_tag( 'badihomepage', :media => :print )%>
- *-- in every layout!
- */
+*-- Remember to include 
+*-- <%= stylesheet_link_tag( 'badihomepage', :media => :print )%>
+*-- in every layout!
+*/
 @media print {
-	
-	#banner, #side, #footer, #page_title, #bottom_navi {
-		display: none !important;
-	}
-	
-	#main {
-		margin: 0;
-		/* padding: 0; */
-		border: none;
-	}
-	
-	span.week_plan_shift {
-		line-height: 1.2em;
-	}
-	
+
+    #banner, #side, #footer, #page_title, #bottom_navi {
+        display: none !important;
+    }
+
+    #main {
+        margin: 0;
+        /* padding: 0; */
+        border: none;
+    }
+
+    span.week_plan_shift {
+        line-height: 1.2em;
+    }
+
 }

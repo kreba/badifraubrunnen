@@ -1,5 +1,12 @@
 module PeopleHelper
 
+  def render_people_list( title, people )
+    render( :partial => 'list_people', 
+              :locals => {
+                :title => title,
+                :people => people } )
+  end
+
   def self.fetch_location_by_postal_code(zip)
     return nil unless zip.to_s.size == 4
     begin
