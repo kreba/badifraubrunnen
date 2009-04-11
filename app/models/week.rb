@@ -30,19 +30,30 @@ class Week < ActiveRecord::Base
   def past?
     return Date.commercial( ApplicationController.year , self.number , 7 ) < Date.today;    
   end
-  
-  private
-    def assign_7_days
-      @year = ApplicationController.year
-      logger.debug( "(II) Creating 7 days for week #{self.number} in year #{@year}:" )
-      for wday in 1..7
-        @date = Date.commercial( @year , self.number , wday )
-        logger.debug( "(II)   Day #{wday}:  #{@date.strftime( "%d.%m." )}" )
-        self.days << (Day.find_by_date( @date ) || Day.create( :date => @date ))
-      end
-    end
 
-    def destroy_all_days
-      self.days.each(&:destroy)
+  def all_shifts( saison )
+    shifts = days.collect{|day| day.find_shifts_by_saison(saison)}.flatten
+    shifts.each{ |shift| yield(shift) }
+    shifts.each(&:save).all?
+  end
+  def all_shifts_disabled?( saison )
+    shifts = days.collect{|day| day.find_shifts_by_saison(saison)}.flatten
+    shifts.collect(&:enabled).none?
+  end
+
+  private
+  def assign_7_days
+    @year = ApplicationController.year
+    logger.debug( "(II) Creating 7 days for week #{self.number} in year #{@year}:" )
+    for wday in 1..7
+      @date = Date.commercial( @year , self.number , wday )
+      logger.debug( "(II)   Day #{wday}:  #{@date.strftime( "%d.%m." )}" )
+      self.days << (Day.find_by_date( @date ) || Day.create( :date => @date ))
     end
+  end
+
+  def destroy_all_days
+    self.days.each(&:destroy)
+  end
+
 end

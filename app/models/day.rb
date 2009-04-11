@@ -74,8 +74,8 @@ class Day < ActiveRecord::Base
     return Day.find_by_date( self.date - time )
   end
 
-  def active?
-    self.shifts.select(&:active?).any?
+  def active?( saison )
+    self.find_shifts_by_saison(saison).select(&:active?).any?
   end
 
   private

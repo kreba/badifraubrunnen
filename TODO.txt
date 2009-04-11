@@ -1,5 +1,7 @@
 Noch zu implementieren:
 
+ - Saisongrenzen durch Admin anpassbar; evtl. Sammelaktion zum inaktivieren aller Schichten einer Woche / eines Tags
+
  - Änderungsantrag Hüten
  - ActionMailer
  - Feedback

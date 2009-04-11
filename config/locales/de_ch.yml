@@ -46,7 +46,7 @@ de_ch:
   navigation: Navigation
   external_links:
     title: Externe Links
-    meteo: Wetterbericht
+    meteo: Wetterprognose
     official: Infoseite der Gemeinde
     blacktanga: BV blacktanga
 
@@ -131,7 +131,7 @@ de_ch:
     edit:
       title: Schichtentyp {{description}} bearbeiten
     index:
-      title: Alle Schichtentypen auflisten
+      title: Alle Schichtentypen
       none: Noch keine Schichtentypen definiert.
     show:
       title: Detailansicht Schichtentyp {{description}}
@@ -151,6 +151,7 @@ de_ch:
     none_for_today: heute keine Schichten
     responsible_person: Belegung
     sign_up: Eintragen
+    no_sign_up: Eintragen nicht erlaubt
     taken: besetzt
     edit:
       title: Schicht {{shift}} am {{date}}
@@ -198,6 +199,10 @@ de_ch:
       title: Einsatzplan Woche {{wnum}}
       caption: Einsatzplan vom {{begin_date}} bis zum {{end_date}}
       badi_tel: 'Tel. Badi: 031 767 81 41'
+    enable:
+      success: "Alle Schichten von Woche {{number}} sind jetzt aktiviert."
+    disable:
+      success: "Ganze Woche {{number}} ist jetzt deaktiviert."
 
   welcome:
     # in controllers

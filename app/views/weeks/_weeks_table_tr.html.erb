@@ -4,6 +4,10 @@
     <em class="week_number"><%= link_to( week.number, week, :title => t('weeks.show.title') )%></em>
     <% if current_person.is_webmaster? %>
       <br /><%= link_to( t('Delete'), week, :confirm => t('weeks.confirm_delete'), :method => :delete )%>
+    <% elsif current_person.is_admin_for? @saison %>
+      <br /><%= week.all_shifts_disabled?(@saison) ?
+                  link_to(  'Aktivieren', week_enable_path(week, @saison.name) ) :
+                  link_to('Deaktivieren', week_disable_path(week, @saison.name) ) %>
     <% end %>
   </th>
 

@@ -24,26 +24,33 @@ class ApplicationController < ActionController::Base
     return 2009
   end
   
-  # example: restrict_access 'a', ['b', 'c']
-  # is interpreted as: the person must have roles  a and (b or c)
-  def restrict_access( *needed_role_sets )
-    person_is_authorized = needed_role_sets.all? {|role_set| role_set.any? {|role| current_person.has_role? role }}
-    unless person_is_authorized
-      flash[:error] = t('application.access_restricted', :role => sentence(needed_role_sets))
+def restrict_access( role_name, for_saison = nil )
+    unless current_person.has_role? role_name, for_saison ? Saison.find_by_name(params[:saison_name]) : nil
+      role_descr = t('role.' + (for_saison ? params[:saison_name] + role_name.capitalize : role_name))
+      flash[:error] = t('application.access_restricted', :role => role_descr)
       redirect_back_or_default( '/home' ) and return false
     end
-  end
-  
-  def sentence( role_arrays )   
-    single_role = role_arrays
-    t("role.#{single_role}")
-# TODO: adapt to multiple roles as documented above
-#    role_arrays.collect {|role_set|
-#      if role_set.to_a.size > 1
-#        "(" + role_set.collect{|r| I18n.t(r.name)}.to_sentence( :connector => I18n.t('or') ) + ")"
-#      elsif
-#        I18n.t(role_set.first.name)
-#      end
-#    }.to_sentence( :connector => I18n.t('and') )
-  end
+end
+#  # example: restrict_access 'a', ['b', 'c']
+#  # is interpreted as: the person must have roles  a and (b or c)
+#  def restrict_access( *needed_role_sets )
+#    person_is_authorized = needed_role_sets.all? {|role_set| role_set.any? {|role| current_person.has_role? role }}
+#    unless person_is_authorized
+#      flash[:error] = t('application.access_restricted', :role => sentence(needed_role_sets))
+#      redirect_back_or_default( '/home' ) and return false
+#    end
+#  end
+#
+#  def sentence( role_arrays )
+#    single_role = role_arrays
+#    t("role.#{single_role}")
+## TO DO: adapt to multiple roles as documented above
+##    role_arrays.collect {|role_set|
+##      if role_set.to_a.size > 1
+##        "(" + role_set.collect{|r| I18n.t(r.name)}.to_sentence( :connector => I18n.t('or') ) + ")"
+##      elsif
+##        I18n.t(role_set.first.name)
+##      end
+##    }.to_sentence( :connector => I18n.t('and') )
+#  end
 end

@@ -48,6 +48,9 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "welcome"
   map.connect '/home', :controller => 'weeks'
 
+  map.week_enable  'weeks/enable/:id/:saison_name',  :controller => 'weeks', :action => 'enable'
+  map.week_disable 'weeks/disable/:id/:saison_name', :controller => 'weeks', :action => 'disable'
+
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.

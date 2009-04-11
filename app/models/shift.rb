@@ -9,7 +9,8 @@ class Shift < ActiveRecord::Base
   after_update  :update_status_image_of_my_day
 
   validates_presence_of :shiftinfo
-  
+
+  attr_protected :enabled
 #  attr_accessible :person, :shiftinfo
 #  attr_readonly :day
   delegate :saison, :saison=, :times_str,  :to => :shiftinfo  # :allow_nil => true

@@ -112,7 +112,13 @@ class Person < ActiveRecord::Base
     my_saisons | Saison.find(:all, :order => :name)
   end
   def unrelated_saisons
-    Saison.all - my_saisons
+    Saison.find(:all, :order => :name) - my_saisons
+  end
+  def admin_saisons
+    is_admin_for_what.sort_by(&:name)
+  end
+  def non_admin_saisons
+    (is_staff_for_what - is_admin_for_what) | unrelated_saisons
   end
 
   def self.find_by_role role_name

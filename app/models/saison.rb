@@ -10,7 +10,7 @@ class Saison < ActiveRecord::Base
   attr_accessible :begin, :end
   attr_readonly :name
 
-  def color
+  def color # move this information to the database?
     case name
     when "badi"
       "rgba( 38, 162, 0, 0.6)"

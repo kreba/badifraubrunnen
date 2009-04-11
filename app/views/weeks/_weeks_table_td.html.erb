@@ -1,10 +1,10 @@
 <% 
   day   = weeks_table_td
-  bg    = day.active? ? "background=\"#{images_url + day.status_image_name(@saison)}\"" : ""
-  style = day.active? ? "" : "background-color:#dddddd; color:#ffffff;"
+  bg    = day.active?(@saison) ? "background=\"#{images_url + day.status_image_name(@saison)}\"" : ""
+  style = day.active?(@saison) ? "" : "background-color:#dddddd; color:#ffffff;"
 %>
 <td class="weeks_table_td" <%= bg %>>
-  <%= link_to( day.date.strftime( "%d.%m." ) , day , {
+  <%= link_to( day.date.strftime( "%d.%m." ), day, {
       :title => tooltip_for(day, @saison),
       :style => style } )%>
 </td>

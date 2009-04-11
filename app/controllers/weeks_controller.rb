@@ -1,6 +1,7 @@
 class WeeksController < ApplicationController
   
   before_filter :only => [:new, :create]  do |c| c.restrict_access 'webmaster' end
+  before_filter :only => [:enable, :disable]  do |c| c.restrict_access 'admin', true end
   # TODO: somehow prevent staff people from overwriting the inscription
   
   # GET /weeks
@@ -111,6 +112,31 @@ class WeeksController < ApplicationController
     @printout = true
 
     render( :template => 'weeks/_week_plan', :layout => 'popup', :locals => {:saison => @saison} )
+  end
+
+  # POST /weeks/1/enable
+  def enable
+    @week = Week.find(params[:id])
+    @saison = Saison.find_by_name(params[:saison_name])
+
+    if @week.all_shifts(@saison){ |shift| shift.enabled = true }
+      flash[:notice] = t 'weeks.enable.success', :number => @week.number
+    else
+      flash[:error] = 'Fehler. Bitte Raffi anrufen.'
+    end
+    redirect_back_or_default(weeks_path)
+  end
+  # POST /weeks/1/disable
+  def disable
+    @week = Week.find(params[:id])
+    @saison = Saison.find_by_name(params[:saison_name])
+
+    if @week.all_shifts(@saison){ |shift| shift.enabled = false }
+      flash[:notice] = t 'weeks.disable.success', :number => @week.number
+    else
+      flash[:error] = 'Fehler. Bitte Raffi anrufen.'
+    end
+    redirect_back_or_default(weeks_path)
   end
 
 end
