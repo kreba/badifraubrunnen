@@ -1,6 +1,6 @@
 class Shift < ActiveRecord::Base
   # Authorization plugin
-  acts_as_authorizable
+  acts_as_authorizable  # Why?!
 
   belongs_to :day
   belongs_to :shiftinfo

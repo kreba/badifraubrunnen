@@ -1,7 +1,7 @@
 class WeeksController < ApplicationController
   
   before_filter :only => [:new, :create]  do |c| c.restrict_access 'webmaster' end
-  before_filter :only => [:enable, :disable]  do |c| c.restrict_access 'admin', true end
+  before_filter :only => [:enable, :disable]  do |c| c.restrict_access 'admin' end
   # TODO: somehow prevent staff people from overwriting the inscription
   
   # GET /weeks

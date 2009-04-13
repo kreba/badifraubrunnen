@@ -17,28 +17,22 @@ class Week < ActiveRecord::Base
   #attr_accessible :person
   #attr_readonly :number, :days
 
+  # returns all days, monday first
   def weekdays
-    # can contain nil values
-    return (1..7).collect{|wday| self.weekday wday}
-  end
-  
-  def weekday( wday )
-    # return value can be nil, if no such day exists in the database
-    return self.days.detect{|d| d.date.wday == wday % 7 }
+    days.sort_by{ |day| day.date }
   end
   
   def past?
     return Date.commercial( ApplicationController.year , self.number , 7 ) < Date.today;    
   end
 
-  def all_shifts( saison )
+  def all_shifts( saison ) #expecting a block
     shifts = days.collect{|day| day.find_shifts_by_saison(saison)}.flatten
     shifts.each{ |shift| yield(shift) }
-    shifts.each(&:save).all?
+    shifts.all?(&:save)
   end
-  def all_shifts_disabled?( saison )
-    shifts = days.collect{|day| day.find_shifts_by_saison(saison)}.flatten
-    shifts.collect(&:enabled).none?
+  def enabled?( saison )
+    days.any?{ |d| d.enabled?(saison) }
   end
 
   private

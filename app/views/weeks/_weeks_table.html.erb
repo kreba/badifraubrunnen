@@ -1,13 +1,13 @@
-<% weeks = weeks_table %>
 <table class="weeks_table">
   <tr>
     <th class="weeknum_header" style="padding-right: 1em;"><em><%=t 'weeks.weeks_table.weeknum_header' %></em></th>
     <% for wday in 1..7 %>
       <th class="day_header"><%= t('date.abbr_day_names')[wday % 7] %></th>
     <% end %>
-    <% if @saison.name.eql? "badi" %>
+    <% if saison.name.eql? "badi" %>
       <th> <%=t 'weeks.responsability' %> </th>
     <% end %>
   </tr>
-  <%= render :partial => "weeks_table_tr", :collection => weeks %>
+  <%= render :partial => "weeks_table_tr", :collection => weeks, :as => :week,
+             :locals => {:saison => saison} %>
 </table>

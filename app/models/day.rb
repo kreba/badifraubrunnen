@@ -22,15 +22,8 @@ class Day < ActiveRecord::Base
 
   def find_shifts_by_saison( saison )
     # note: self.shifts.find_by_saison  is not possible, since the saison attibute is a delegate to the shiftinfo
-#    self.shifts.find(:all, :include => [:person, {:shiftinfo => :saison}]).select { |shift| shift.saison.eql? saison }.sort_by {|s| s.shiftinfo.begin }
-    self.shifts.all.select { |shift| shift.saison.eql? saison }.sort_by {|s| s.shiftinfo.begin }
-  end
-  def shifts_mapped_by_saison
-    shifts = {}
-    Saison.all.each{ |saison|
-      shifts[saison] = self.find_shifts_by_saison(saison)
-    }
-    shifts
+    #self.shifts.find(:all, :include => [:person, {:shiftinfo => :saison}]).select { |shift| shift.saison.eql? saison }.sort_by {|s| s.shiftinfo.begin }
+    self.shifts.all.select { |shift| shift.saison.eql? saison }
   end
 
   def status_image_name( saison )
@@ -64,18 +57,22 @@ class Day < ActiveRecord::Base
     # TODO: do better localization of weekday names
   end
 
-  # intended use: my_day.plus 1.day
+  # intended use: my_day.plus  1.day
+  # or            my_day.minus 1.week
   def plus( time )
-    return Day.find_by_date( self.date + time )
+    return Day.find_by_date( self.date + time ) || raise("No such day!")
   end
-
-  # intended use: my_day.minus 1.week
   def minus( time )
-    return Day.find_by_date( self.date - time )
+    return Day.find_by_date( self.date - time ) || raise("No such day!")
   end
 
   def active?( saison )
-    self.find_shifts_by_saison(saison).select(&:active?).any?
+    saison_shifts = self.shifts.group_by(&:saison)[saison]
+    saison_shifts && saison_shifts.any?(&:active?)
+  end
+  def enabled?( saison )
+    saison_shifts = self.shifts.group_by(&:saison)[saison]
+    saison_shifts && saison_shifts.any?(&:enabled?)
   end
 
   private

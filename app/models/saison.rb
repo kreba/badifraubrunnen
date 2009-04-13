@@ -38,6 +38,22 @@ class Saison < ActiveRecord::Base
     people_by_saison_for_role('admin', people)
   end
 
+  #How I populated the kiosk saison with shifts:
+  #kiosk = Saison.find_by_name('kiosk')
+  #y Shiftinfo.find_all_by_saison_id(kiosk)
+  #[7,10].each{|n| Saison.long_days.each{|day| Shift.create!(:shiftinfo_id => n, :day_id => day.id); day.save!}}
+  #[8,9].each{|n| Saison.short_days.each{|day| Shift.create!(:shiftinfo_id => n, :day_id => day.id); day.save!}}
+  #Day.all.each{|day| day.create_status_image(kiosk)}
+  def self.long_days
+    high_saison = Day.all.select{ |day| (25..35).include?(day.week.number) }
+    week_end    = Day.all.select{ |day| %w'Sat Sun'.include? day.date.strftime( '%a' ) }
+
+    high_saison | week_end
+  end
+  def self.short_days
+    Day.all - long_days
+  end
+
   private
   def self.people_by_saison_for_role( role_name, people )
     hash_by_saison(people){ |person, saison|

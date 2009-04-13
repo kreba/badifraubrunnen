@@ -36,7 +36,7 @@ class DaysController < ApplicationController
   def show
     @day = Day.find(params[:id])
     @week = @day.week
-    @day_shifts = @day.shifts_mapped_by_saison
+    @day_shifts = @day.shifts.group_by(&:saison)
 
     if current_person.has_role? 'admin'
       @people     = Saison.staff_by_saison

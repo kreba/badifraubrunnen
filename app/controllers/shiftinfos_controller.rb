@@ -28,7 +28,7 @@ class ShiftinfosController < ApplicationController
   # POST /shiftinfos.xml
   def create
     @shiftinfo = Shiftinfo.new(params[:shiftinfo])
-    if current_person.is_admin_for_what.one?
+    if current_person.is_admin_for_what.size == 1
       @shiftinfo.saison = current_person.is_admin_for_what.first
     else
       # TODO: add shiftinfo to user-defined saison

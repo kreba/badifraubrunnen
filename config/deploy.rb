@@ -37,7 +37,7 @@ role :db, domain, :primary => true
 
 set :scm, :mercurial
 set :scm_user, "Raffael Krebs <kreba@gmx.ch>"
-set :repository, "http://novocrab.crabnet:8007/"
+set :repository, "http://novocrab.crabnet.intern:8007/"
 #set :scm_checkout, "export"  # nonetheless 'clone' is used!?!
 
 namespace :deploy do

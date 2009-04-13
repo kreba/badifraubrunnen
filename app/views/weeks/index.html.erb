@@ -6,13 +6,16 @@
 
 <%= render(:partial => 'weeks_past_view', :object => @past_weeks) unless @past_weeks.empty?  %>
 
-<% for @saison in @saisons do %>
+<% for saison in @saisons do %>
   
   <% if @saisons.size > 1 %>
-    <h2><%=t "saisons.#{@saison.name}" %></h2>
+    <h2><%=t "saisons.#{saison.name}" %></h2>
   <% end %>
 
-  <%= render :partial => 'weeks_table', :object => @future_weeks %>
+  <%= render :partial => 'weeks_table',
+             :locals => {
+               :weeks => @future_weeks,
+               :saison => saison} %>
   <h2><br /></h2>
 
 <% end %>
