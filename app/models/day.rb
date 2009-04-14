@@ -60,10 +60,10 @@ class Day < ActiveRecord::Base
   # intended use: my_day.plus  1.day
   # or            my_day.minus 1.week
   def plus( time )
-    return Day.find_by_date( self.date + time ) || raise("No such day!")
+    Day.find_by_date( self.date + time )
   end
   def minus( time )
-    return Day.find_by_date( self.date - time ) || raise("No such day!")
+    Day.find_by_date( self.date - time )
   end
 
   def active?( saison )
