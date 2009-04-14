@@ -4,6 +4,7 @@
 
 <%= yield %>
 
-<% if @day_shifts[saison] || @day_shifts[saison].empty? %>
+<%# The following call to empty? is legacy  ->  remove it? %>
+<% if @day_shifts[saison].nil? || @day_shifts[saison].empty? %>
   <td style="border-left: 5px solid <%= saison.color %>; color: gray"> - <%=t 'shifts.none_for_today' %> - </td>
 <% end %>
