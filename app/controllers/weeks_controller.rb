@@ -12,7 +12,7 @@ class WeeksController < ApplicationController
     # :include causes "eager loading"
     @past_weeks   = @weeks.select(&:past?)
     @future_weeks = @weeks.reject(&:past?)
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @weeks }

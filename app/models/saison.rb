@@ -10,6 +10,10 @@ class Saison < ActiveRecord::Base
   attr_accessible :begin, :end
   attr_readonly :name
 
+  def <=> other
+    self.name <=> other.name
+  end
+
   def color # move this information to the database?
     case name
     when "badi"
@@ -19,10 +23,16 @@ class Saison < ActiveRecord::Base
     end
   end
 
+  def self.daytime_limits
+      times = Shiftinfo.all
+      min = times.sort_by(&:begin).first.begin.seconds_since_midnight
+      max = times.sort_by(&:end).last.end.seconds_since_midnight
+    return min, max
+  end
   def daytime_limits
     times = self.shiftinfos
-    min = times.min_by(&:begin).begin.seconds_since_midnight
-    max = times.max_by(&:end).end.seconds_since_midnight
+    min = times.sort_by(&:begin).first.begin.seconds_since_midnight
+    max = times.sort_by(&:end).last.end.seconds_since_midnight
     return min, max
   end
 

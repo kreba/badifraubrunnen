@@ -27,12 +27,12 @@ class Week < ActiveRecord::Base
   end
 
   def all_shifts( saison ) #expecting a block
-    shifts = days.collect{|day| day.find_shifts_by_saison(saison)}.flatten
+    shifts = self.days.collect{|day| day.find_shifts_by_saison(saison)}.flatten
     shifts.each{ |shift| yield(shift) }
     shifts.all?(&:save)
   end
   def enabled?( saison )
-    days.any?{ |d| d.enabled?(saison) }
+    self.days.any?{ |day| day.enabled?(saison) }
   end
 
   private

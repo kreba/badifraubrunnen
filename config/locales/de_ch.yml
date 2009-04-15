@@ -41,14 +41,15 @@ de_ch:
 # -----------------------------------------------------------------------------
   abort_with_backbutton: Um abzubrechen, einfach den Zurück-Knopf des Browsers benutzen.
   and: und
-  or: oder
   assignments: Einsätze
-  navigation: Navigation
   external_links:
     title: Externe Links
     meteo: Wetterprognose
     official: Infoseite der Gemeinde
     blacktanga: BV blacktanga
+  or: oder
+  navigation: Navigation
+  noscript: Diese Seite macht mehr Spass mit JavaScript!
 
   mail:
     subject: Badi2010

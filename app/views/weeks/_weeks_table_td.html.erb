@@ -1,14 +1,2 @@
-<% 
-  bg, style = "", ""
-  if day.active?(saison)
-    bg    = "background=\"#{images_url + day.status_image_name(saison)}\""
-  else
-    style = "background-color:#dddddd; color:#ffffff;"
-  end
-  #TODO: refactor day.active? to be less expensive in terms of time!!!
-%>
-<td class="weeks_table_td" <%= bg %>>
-  <%= link_to( day.date.strftime( "%d.%m." ), day, {
-      :title => tooltip_for(day, saison),
-      :style => style } )%>
-</td>
+<%= day_td(day) %>
+<%= tooltip_div(day) %>

@@ -27,4 +27,31 @@ module DaysHelper
     img.write(RAILS_ROOT+"/images/gradientfill.gif")
     #exit
   end
+
+  def tooltip_div( day )
+    content_tag(:div, html_tooltip_for(day), :id => tooltip_id(day),
+      :class => "xstooltip", :style => "margin: 0px; padding: 0px;")
+  end
+  def tooltip_id( day )
+    "tooltip_#{day.date_str("%Y-%m-%d")}"
+  end
+  def html_tooltip_for( day )
+    day.shifts.group_by(&:saison).collect{ |saison, shifts|
+      content_tag(:div, :style => "padding: 3px; background-color: #{saison.color};" ) do
+        content_tag(:strong, I18n.t("saisons.#{saison.name}")) + "<br />" +
+        shifts.sort_by{ |s| s.shiftinfo.begin}.collect{ |shift|
+          " #{shift.shiftinfo.description}: #{shift.free? ? 'frei' : shift.person.name}"
+        }.join('<br />')
+      end
+    }.join
+  end
+  def text_tooltip_for( day )
+    day.shifts.group_by(&:saison).collect{ |saison, shifts|
+      I18n.t("saisons.#{saison.name}") + ": " +
+        shifts.sort_by{ |s| s.shiftinfo.begin}.collect{ |shift|
+          " #{shift.shiftinfo.description}: #{shift.free? ? 'frei' : shift.person.name}"
+        }.join(' ··· ')
+    }.join(' ||| ')
+  end
+
 end

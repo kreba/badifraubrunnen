@@ -20,36 +20,30 @@ class Day < ActiveRecord::Base
     #self.create_status_image is invoked on a shift update
   end
 
-  def find_shifts_by_saison( saison )
-    # note: self.shifts.find_by_saison  is not possible, since the saison attibute is a delegate to the shiftinfo
-    #self.shifts.find(:all, :include => [:person, {:shiftinfo => :saison}]).select { |shift| shift.saison.eql? saison }.sort_by {|s| s.shiftinfo.begin }
-    self.shifts.all.select { |shift| shift.saison.eql? saison }
+  def status_image_name
+    "#{date.strftime '%Y-%m-%d'}.png"
   end
 
-  def status_image_name( saison )
-    "#{saison.name}_#{date.strftime '%Y-%m-%d'}.png"
-  end
-
-  def create_status_image( saison )
-    width, height = 1, 90  # synchronize height with css!
-    min, max = saison.daytime_limits
+  def create_status_image
+    width, height = 1, 80  # synchronize height with css!
+    min, max = Saison.daytime_limits
     allday = (max-min).to_f
     result = Image.new(width, height) { self.background_color = "transparent" }
 
-    self.shifts.select{|s|s.saison.eql?(saison)}.each { |shift|
+    self.shifts.sort_by(&:saison).reverse.each { |shift|  # sorting => yellow first
       shift_height = ((shift.duration           ) / allday * height).round
       shift_offset = ((shift.time_to_begin - min) / allday * height).round
       #src = Image.read("gradient:green-transparent") {...}[0]
       src = Image.new(width, shift_height) {
-        self.background_color = shift.free? ? saison.color : "transparent"
+        self.background_color = shift.free? ? shift.saison.color : "transparent"
         self.size = "#{width}x#{shift_height}+0+#{shift_offset}"
       }
-      
+
       result = result.composite(src, 0, shift_offset, Magick::OverCompositeOp)
     }
     #result = result.blur_image(0,3)
 
-    result.write RAILS_ROOT + "/public/images/" + status_image_name(saison)
+    result.write RAILS_ROOT + "/public/images/" + self.status_image_name
   end
   
   def date_str fmt = '%A %d.%m.%Y'
@@ -66,13 +60,18 @@ class Day < ActiveRecord::Base
     Day.find_by_date( self.date - time )
   end
 
-  def active?( saison )
-    saison_shifts = self.shifts.group_by(&:saison)[saison]
-    saison_shifts && saison_shifts.any?(&:active?)
+  def active?
+    self.shifts.select(&:active?).any?
   end
   def enabled?( saison )
     saison_shifts = self.shifts.group_by(&:saison)[saison]
     saison_shifts && saison_shifts.any?(&:enabled?)
+  end
+
+  def find_shifts_by_saison( saison )
+    # note: self.shifts.find_by_saison  is not possible, since the saison attibute is a delegate to the shiftinfo
+    #self.shifts.find(:all, :include => [:person, {:shiftinfo => :saison}]).select { |shift| shift.saison.eql? saison }.sort_by {|s| s.shiftinfo.begin }
+    self.shifts.all.select { |shift| shift.saison.eql? saison }
   end
 
   private

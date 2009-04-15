@@ -6,7 +6,7 @@ class PeopleController < ApplicationController
   
   # GET /people
   def index
-    @people = Person.find(:all, :order => "name").select{ |p| p.has_role? 'staff'}
+    @people = Person.find(:all, :order => "name")
   end
  
   # GET /people/new

@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
         cookies[:auth_token] = { :value => self.current_person.remember_token , :expires => self.current_person.remember_token_expires_at }
       end
       flash[:notice] = t('sessions.create.access_granted')
-      redirect_back_or_default('/')
+      redirect_back_or_default('/welcome')
     else
       flash.now[:error] = t('sessions.create.access_denied')
       render :action => 'new'

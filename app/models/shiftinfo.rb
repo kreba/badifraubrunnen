@@ -20,6 +20,6 @@ class Shiftinfo < ActiveRecord::Base
 
   private
   def update_status_image_of_all_days_of_associated_shifts
-    shifts.each { |shift| shift.day.create_status_image(saison) }
+    shifts.each { |shift| shift.day.create_status_image }
   end
 end

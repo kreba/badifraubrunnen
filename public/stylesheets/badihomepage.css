@@ -139,6 +139,22 @@ table.weeks_table .weeks_table_td a {
     text-decoration: none;
 }
 
+/* Shamelessly stolen from http://www.texsoft.it/index.php?c=software&m=sw.js.htmltooltip */
+.xstooltip
+{
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+    font: normal 8pt sans-serif;
+    padding: 3px;
+    border: solid 1px;
+
+    background-color: white;
+}
+
 /* Styles for other partials */
 div.week_jumper {
     font-size: 2.8em;

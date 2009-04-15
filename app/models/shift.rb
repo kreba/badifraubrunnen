@@ -37,8 +37,8 @@ class Shift < ActiveRecord::Base
     self.enabled and in_active_saison and !self.day.date.past?
   end
 
-  private
+  protected
   def update_status_image_of_my_day
-    day.create_status_image(saison)
+    day.create_status_image
   end
 end

@@ -1,16 +1,35 @@
 module WeeksHelper
 
-  def tooltip_for( day, saison )
-    shifts = day.find_shifts_by_saison( saison ).sort_by {|s| s.shiftinfo.begin}
-    lines = shifts.collect {|shift| "#{shift.shiftinfo.description}: #{shift.free? ? 'frei' : shift.person.name}"}
-    return lines.join(' ··· ')
-    #return "<html>#{lines.join('<br/>')}</html>"
-  end
-
   def phone_str( person )
     "#{person.phone}#{",  "+person.phone2 unless person.phone2.nil? or person.phone2.empty?}"
   end
+  def day_td( day )
+    content_tag(:td,
+      link_to( day.date.strftime( "%d.%m." ), day,
+               :style => "color:inherit;" ),
+      self.day_td_html_options(day)
+    )
+  end
+  def day_td_html_options( day )
+    options = {
+      :class       => "weeks_table_td",
+#      :id          => day.date.strftime('%Y-%m-%d'),
+#      :title       => text_tooltip_for(day)
+#      :onmouseover => "xstooltip_show('#{tooltip_id(day)}', '#{day.date.strftime('%Y-%m-%d')}', 76, -8);",
+      :onmouseover => "xstooltip_show('#{tooltip_id(day)}', '#{week_html_id(day.week)}', -8, -8);",
+      :onmouseout  => "xstooltip_hide('#{tooltip_id(day)}');"
+# the html tooltips appear and look nice, but they don't disappear any more!
+    }
 
+    if day.active? #TODO: refactor day.active? to be less expensive in terms of time
+      options.merge :background => images_url + day.status_image_name
+    else
+      options.merge :style => "background-color:#dddddd; color:#ffffff;"
+    end
+  end
+  def week_html_id( week )
+    "week_#{week.number}"
+  end
   class WeekPlanDisplayData
     extend ActiveSupport::Memoizable
 
@@ -22,14 +41,13 @@ module WeeksHelper
     
     attr_accessor :week
 
-    
+
     def self.for( week )
       instance = self.new
       instance.week = week
       return instance
     end
     
-
     def day_name( wday )
       I18n.translate('date.abbr_day_names')[wday]
     end
@@ -114,12 +132,12 @@ module WeeksHelper
 
     protected
     def day_height( saison )
-       case saison.name
-       when "badi"
-         17.5 * @@hour_height
-       when "kiosk"
-         10 * @@hour_height
-       end
+      case saison.name
+      when "badi"
+        17.5 * @@hour_height
+      when "kiosk"
+        10 * @@hour_height
+      end
     end
     def h_offset_day_count( number_of_days )
       @@time_width + number_of_days * (@@day_width + 5)
