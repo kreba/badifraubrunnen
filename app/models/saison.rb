@@ -17,9 +17,9 @@ class Saison < ActiveRecord::Base
   def color # move this information to the database?
     case name
     when "badi"
-      "rgba( 38, 162, 0, 0.6)"
+      "rgba( 38, 158, 0, 0.5)"
     when "kiosk"
-      "rgba(255, 255, 0, 0.6)"
+      "rgba(255, 255, 0, 0.5)"
     end
   end
 
@@ -62,6 +62,13 @@ class Saison < ActiveRecord::Base
   end
   def self.short_days
     Day.all - long_days
+  end
+
+  def self.badi
+    find_by_name("badi")
+  end
+  def self.kiosk
+    find_by_name("kiosk")
   end
 
   private

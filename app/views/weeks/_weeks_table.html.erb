@@ -6,6 +6,7 @@
     <% for wday in 1..7 %>
       <th class="day_header"><%= t('date.abbr_day_names')[wday % 7] %></th>
     <% end %>
+    <th> <%=t 'weeks.responsability' %> </th>
   </tr>
   <%= render :partial => "weeks_table_tr", :collection => @future_weeks, :as => :week %>
 </table>

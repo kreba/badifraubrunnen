@@ -30,7 +30,7 @@ class Day < ActiveRecord::Base
     allday = (max-min).to_f
     result = Image.new(width, height) { self.background_color = "transparent" }
 
-    self.shifts.sort_by(&:saison).reverse.each { |shift|  # sorting => yellow first
+    self.shifts.select(&:enabled).sort_by(&:saison).each { |shift|  # sorting => yellow first
       shift_height = ((shift.duration           ) / allday * height).round
       shift_offset = ((shift.time_to_begin - min) / allday * height).round
       #src = Image.read("gradient:green-transparent") {...}[0]

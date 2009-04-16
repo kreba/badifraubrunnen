@@ -18,6 +18,10 @@ class Shiftinfo < ActiveRecord::Base
     return self.begin.strftime( '%H:%M' ) + ' - ' + self.end.strftime( '%H:%M' )
   end
 
+  def self.list
+    Shiftinfo.all.collect{|si| "%2d: %6s, %s - %s  %s"% [si.id, si.begin.strftime("%X"), si.end.strftime("%X"), si.saison.name]}
+  end
+
   private
   def update_status_image_of_all_days_of_associated_shifts
     shifts.each { |shift| shift.day.create_status_image }
