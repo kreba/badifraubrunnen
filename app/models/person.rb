@@ -98,7 +98,7 @@ class Person < ActiveRecord::Base
   end
 
   def administrates? person
-    self.eql? person || (self.is_admin_for_what & person.is_staff_for_what).any?
+    (self.is_admin_for_what & person.is_staff_for_what).any?
   end
 
   def roles_str
