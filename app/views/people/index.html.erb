@@ -7,29 +7,33 @@
 <table id="people_list">
   <tr>
     <th><%=t 'person.attributes.name' %></th>
-    <th><%=t 'person.attributes.phone' %></th>
-    <th><%=t 'person.attributes.phone2' %></th>
-    <th><%=t 'person.attributes.address' %></th>
 <% if current_person.has_role? 'admin' %>
   	<th>#<%=t 'assignments' %></th>
     <th><%=t 'person.attributes.preferences' %></th>
 <% end %>
+    <th><%=t 'person.attributes.phone' %></th>
+    <th><%=t 'person.attributes.address' %></th>
   </tr>
 
 <% for person in @people %>
-  <tr>
-    <td><%=h person.name %></td>
-    <td><%=h person.phone %></td>
-    <td><%=h person.phone2 %></td>
-    <td><%= render( :partial => 'address_link_if_complete', :locals => { :person => person }, :title => t('people.show_map') )%></td>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <td>
+      <%=h person.name %>
+      <% if current_person.administrates? person %><br/><span class="person_actions_for_admin">
+        <%= link_to t('Edit'), edit_person_path(person) %>
+        <%= link_to t('Delete'), person, :confirm => t('people.destroy.confirm'), :method => :delete %>
+      </span><% end %>
+    </td>
+<% if current_person.has_role? 'admin' %>
   <% if current_person.administrates? person %>
   	<td><%=h person.shifts.size.to_s %>
   	<td><%=h person.preferences.to_s %>
-    <td><%= link_to t('Edit'), edit_person_path(person) %></td>
-    <td><%= link_to t('Delete'), person, :confirm => t('people.destroy.confirm'), :method => :delete %></td>
-  <% elsif current_person.eql? person %>
-    <td><%= link_to t('Edit'), edit_person_path(person) %></td>
+  <% else %>
+    <td></td><td></td>
   <% end %>
+<% end %>
+    <td><%= person.phone + ("#{person.phone2}".empty? ? "" : " , #{person.phone2}") %></td>
+    <td><%= render( :partial => 'address_link_if_complete', :locals => { :person => person }, :title => t('people.show_map') )%></td>
   </tr>
 <% end %>
 </table>

@@ -197,6 +197,16 @@ a.block {
     height: inherit;
 }
 
+span.person_actions_for_admin {
+    font-size: smaller;
+}
+tr.odd {
+    background-color: #fafafa;
+}
+tr.even {
+    background-color: #f2f2f2;
+}
+
 /* printout styles
 *-- Remember to include 
 *-- <%= stylesheet_link_tag( 'badihomepage', :media => :print )%>
