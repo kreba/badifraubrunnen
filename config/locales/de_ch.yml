@@ -201,9 +201,11 @@ de_ch:
       caption: Einsatzplan vom {{begin_date}} bis zum {{end_date}}
       badi_tel: 'Tel. Badi: 031 767 81 41'
     enable:
-      success: "Alle Schichten von Woche {{number}} sind jetzt aktiviert."
+      success: Alle Schichten von Woche {{number}} sind jetzt aktiviert.
     disable:
-      success: "Ganze Woche {{number}} ist jetzt deaktiviert."
+      success: Ganze Woche {{number}} ist jetzt deaktiviert.
+    imagine:
+      title: Bilder neu erzeugen
 
   welcome:
     # in controllers

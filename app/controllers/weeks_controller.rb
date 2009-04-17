@@ -1,6 +1,6 @@
 class WeeksController < ApplicationController
   
-  before_filter :only => [:new, :create]  do |c| c.restrict_access 'webmaster' end
+  before_filter :only => [:new, :create, :imagine]  do |c| c.restrict_access 'webmaster' end
   before_filter :only => [:enable, :disable]  do |c| c.restrict_access 'admin' end
   # TODO: somehow prevent staff people from overwriting the inscription
   
@@ -132,6 +132,12 @@ class WeeksController < ApplicationController
     @week.all_shifts(@saison){ |shift| shift.update_attribute(:enabled, false) }
     #@week.days.each(&:create_status_image)
     flash[:notice] = t 'weeks.disable.success', :number => @week.number
+    redirect_back_or_default(weeks_path)
+  end
+
+  # POST /weeks/imagine
+  def imagine
+    Day.all.each(&:create_status_image)
     redirect_back_or_default(weeks_path)
   end
 

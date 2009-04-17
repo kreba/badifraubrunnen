@@ -26,13 +26,13 @@
     </td>
 <% if current_person.has_role? 'admin' %>
   <% if current_person.administrates? person %>
-  	<td><%=h person.shifts.size.to_s %>
+  	<td><%= person.shifts.size.to_s %>
   	<td><%=h person.preferences.to_s %>
   <% else %>
     <td></td><td></td>
   <% end %>
 <% end %>
-    <td><%= person.phone + ("#{person.phone2}".empty? ? "" : " , #{person.phone2}") %></td>
+    <td><%= [person.phone, person.phone2].compact.join(' , ') %></td>
     <td><%= render( :partial => 'address_link_if_complete', :locals => { :person => person }, :title => t('people.show_map') )%></td>
   </tr>
 <% end %>

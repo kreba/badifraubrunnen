@@ -19,7 +19,7 @@ class Shiftinfo < ActiveRecord::Base
   end
 
   def self.list
-    Shiftinfo.all.collect{|si| "%2d: %6s, %s - %s  %s"% [si.id, si.begin.strftime("%X"), si.end.strftime("%X"), si.saison.name]}
+    Shiftinfo.all.collect{|si| "%2d: %6s, %s - %s  %s"% [si.id, si.description, si.begin.strftime("%X"), si.end.strftime("%X"), si.saison.name]}
   end
 
   private
