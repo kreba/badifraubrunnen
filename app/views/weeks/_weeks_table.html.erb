@@ -1,4 +1,7 @@
 <noscript><%= content_tag(:div, t('noscript'), :class => "flash", :id => "flash_noscript") -%></noscript>
+<%= Day.all.collect{ |day|
+  tooltip_div(day)
+}.join %>
 
 <table class="weeks_table">
   <tr>

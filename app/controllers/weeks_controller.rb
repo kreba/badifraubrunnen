@@ -135,4 +135,10 @@ class WeeksController < ApplicationController
     redirect_back_or_default(weeks_path)
   end
 
+  # POST /weeks/imagine
+  def imagine
+    Day.all.each(&:create_status_image)
+    redirect_back_or_default(weeks_path)
+  end
+
 end

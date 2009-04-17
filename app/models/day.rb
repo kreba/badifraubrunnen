@@ -25,27 +25,9 @@ class Day < ActiveRecord::Base
   end
 
   def create_status_image
-    width, height = 1, 80  # synchronize height with css!
-    min, max = Saison.daytime_limits
-    allday = (max-min).to_f
-    result = Image.new(width, height) { self.background_color = "transparent" }
-
-    self.shifts.select(&:enabled).sort_by(&:saison).each { |shift|  # sorting => yellow first
-      shift_height = ((shift.duration           ) / allday * height).round
-      shift_offset = ((shift.time_to_begin - min) / allday * height).round
-      #src = Image.read("gradient:green-transparent") {...}[0]
-      src = Image.new(width, shift_height) {
-        self.background_color = shift.free? ? shift.saison.color : "transparent"
-        self.size = "#{width}x#{shift_height}+0+#{shift_offset}"
-      }
-
-      result = result.composite(src, 0, shift_offset, Magick::OverCompositeOp)
-    }
-    #result = result.blur_image(0,3)
-
-    result.write RAILS_ROOT + "/public/images/" + self.status_image_name
+    self.create_status_image_stacked
   end
-  
+
   def date_str fmt = '%A %d.%m.%Y'
     return self.date.strftime( fmt )
     # TODO: do better localization of weekday names
@@ -73,6 +55,48 @@ class Day < ActiveRecord::Base
     #self.shifts.find(:all, :include => [:person, {:shiftinfo => :saison}]).select { |shift| shift.saison.eql? saison }.sort_by {|s| s.shiftinfo.begin }
     self.shifts.all.select { |shift| shift.saison.eql? saison }
   end
+
+
+  protected
+    def create_status_image_stacked
+    width, height = 1, 80  # synchronize height with css!
+    shift_height = (height.to_f / self.shifts.count.to_f).round
+    result = Image.new(width, height) { self.background_color = "transparent" }
+
+    self.shifts.sort_by(&:saison).each_with_index { |shift, index|
+      shift_offset = index * shift_height
+      src = Image.new(width, shift_height - 1) {
+        self.background_color = (shift.free? and shift.enabled) ? shift.saison.color : "transparent"
+        self.size = "#{width}x#{shift_height}+0+#{shift_offset}"
+      }
+      #result.border!(0,1,"gray")
+      result.composite!(src, 0, shift_offset, Magick::OverCompositeOp)
+    }
+    result.write RAILS_ROOT + "/public/images/" + self.status_image_name
+  end
+
+  def create_status_image_overlapping
+    width, height = 1, 80  # synchronize height with css!
+    min, max = Saison.daytime_limits
+    allday = (max-min).to_f
+    result = Image.new(width, height) { self.background_color = "transparent" }
+
+    self.shifts.select(&:enabled).sort_by(&:saison).each { |shift|  # sorting => yellow first
+      shift_height = ((shift.duration           ) / allday * height).round
+      shift_offset = ((shift.time_to_begin - min) / allday * height).round
+      #src = Image.read("gradient:green-transparent") {...}[0]
+      src = Image.new(width, shift_height) {
+        self.background_color = shift.free? ? shift.saison.color : "transparent"
+        self.size = "#{width}x#{shift_height}+0+#{shift_offset}"
+      }
+
+      result.composite!(src, 0, shift_offset, Magick::OverCompositeOp)
+    }
+    #result = result.blur_image(0,3)
+
+    result.write RAILS_ROOT + "/public/images/" + self.status_image_name
+  end
+
 
   private
   def shifts_str

@@ -1,5 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
 
+  map.week_enable  'weeks/enable/:id/:saison_name',  :controller => 'weeks', :action => 'enable'
+  map.week_disable 'weeks/disable/:id/:saison_name', :controller => 'weeks', :action => 'disable'
+  map.imagine_days 'weeks/imagine',                  :controller => 'weeks', :action => 'imagine'
+
   map.resources :weeks, :shallow => true do |week|
     week.resources :days do |shift| 
       shift.resources :shifts
@@ -47,9 +51,6 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   map.root :controller => "welcome"
   map.connect '/home', :controller => 'weeks'
-
-  map.week_enable  'weeks/enable/:id/:saison_name',  :controller => 'weeks', :action => 'enable'
-  map.week_disable 'weeks/disable/:id/:saison_name', :controller => 'weeks', :action => 'disable'
 
   # See how all your routes lay out with "rake routes"
 

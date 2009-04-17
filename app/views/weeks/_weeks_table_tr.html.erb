@@ -10,7 +10,9 @@
     <% end %>
   </th>
 
-  <%= render( :partial => 'weeks_table_td', :collection => week.weekdays, :as => :day ) %>
+  <%= week.weekdays.collect{ |day|
+    day_td(day)
+  }.join %>
 
   <% if !!week.person %>
     <td>

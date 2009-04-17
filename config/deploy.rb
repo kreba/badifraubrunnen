@@ -2,7 +2,7 @@
 #	Application
 #############################################################
 
-set :application, "badi2010"
+set :application, "badi2010-prototyp1"
 set :deploy_to, "/var/rails/#{application}" # NOT /var/www/...
 
 #depend :local,  :gem, "xyz"
@@ -37,7 +37,7 @@ role :db, domain, :primary => true
 
 set :scm, :mercurial
 set :scm_user, "Raffael Krebs <kreba@gmx.ch>"
-set :repository, "http://novocrab.crabnet.intern:8007/"
+set :repository, "http://novocrab.crabnet.intern:8001/"
 #set :scm_checkout, "export"  # nonetheless 'clone' is used!?!
 
 namespace :deploy do
