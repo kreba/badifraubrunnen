@@ -1,9 +1,3 @@
-<% 
-	week = week_plan_times
-  # TODO: only show times for the adjacent day (this is, Monday or Sunday)
-%>
-
-
 <% @dd.begin_times(@saison).each do |time| %>
     <span class="time_begin" style="top: <%=h @dd.toptops(@saison)[time]-1 %>px; left: <%=h @dd.h_offset_times[side] %>px;">
 		<%= time.strftime( "%H:%M" )%>
