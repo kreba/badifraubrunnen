@@ -61,7 +61,9 @@ class Day < ActiveRecord::Base
   end
 
   def active?
-    self.shifts.any?(&:active?)
+    !self.date.past? and
+    Saison.all.any?{ |saison| self.date.between? saison.begin, saison.end }
+    #self.shifts.any?(&:active?)
   end
 
   def find_shifts_by_saison( saison )
