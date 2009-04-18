@@ -2,7 +2,7 @@
 
 
 <h2><%= t('shifts.index.summary', :total => @shifts.size, :enabled => @shifts.collect(&:enabled).size) %></h2>
-
+<p><em><%=  t('shifts.index.advice_weeks_responsability_not_listed') %></em></p>
 <table>
   <tr>
     <th><%=t 'shift.attributes.day' %></th>

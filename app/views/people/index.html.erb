@@ -32,7 +32,7 @@
     <td></td><td></td>
   <% end %>
 <% end %>
-    <td><%= [person.phone, person.phone2].compact.join(' , ') %></td>
+    <td><%= [person.phone, person.phone2].compact.reject(&:empty?).join(' , ') %></td>
     <td><%= render( :partial => 'address_link_if_complete', :locals => { :person => person }, :title => t('people.show_map') )%></td>
   </tr>
 <% end %>

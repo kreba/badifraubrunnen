@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20084) do
+ActiveRecord::Schema.define(:version => 20090417220010) do
 
   create_table "days", :force => true do |t|
     t.integer "week_id"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(:version => 20084) do
     t.integer "authorizable_id"
   end
 
+  create_table "saisons", :force => true do |t|
+    t.date     "begin"
+    t.date     "end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
   create_table "shiftinfos", :force => true do |t|
     t.string   "description"
     t.time     "begin"
@@ -70,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20084) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "enabled_saisons", :limit => 3, :default => ""
   end
 
 end

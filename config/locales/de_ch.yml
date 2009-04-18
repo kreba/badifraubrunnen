@@ -163,6 +163,7 @@ de_ch:
       title: Alle Schichten
       summary: Total {{total}} Schichten
 #      summary: Total {{total}} Schichten, davon {{enabled}} zurzeit aktiv
+      advice_weeks_responsability_not_listed: "Achtung: Einsätze als Wochenverantwortung werden nicht aufgelistet"
     myshifts:
       title: Meine Einsätze
     show:

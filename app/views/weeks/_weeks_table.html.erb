@@ -8,5 +8,5 @@
     <% end %>
     <th> <%=t 'weeks.responsability' %> </th>
   </tr>
-  <%= render :partial => "weeks_table_tr", :collection => @future_weeks, :as => :week %>
+  <%= render :partial => "weeks_table_row", :collection => @future_weeks, :as => :week %>
 </table>

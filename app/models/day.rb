@@ -61,25 +61,14 @@ class Day < ActiveRecord::Base
   end
 
   def active?
-    self.shifts.select(&:active?).any?
-  end
-  def enabled?( saison )
-    saison_shifts = self.shifts.group_by(&:saison)[saison]
-    saison_shifts && saison_shifts.any?(&:enabled?)
+    self.shifts.any?(&:active?)
   end
 
   def find_shifts_by_saison( saison )
-    # note: self.shifts.find_by_saison  is not possible, since the saison attibute is a delegate to the shiftinfo
-    #self.shifts.find(:all, :include => [:person, {:shiftinfo => :saison}]).select { |shift| shift.saison.eql? saison }.sort_by {|s| s.shiftinfo.begin }
-    self.shifts.all.select { |shift| shift.saison.eql? saison }
+    self.shifts.all.select{ |shift| shift.shiftinfo.saison.eql? saison }
   end
 
-  private
-  def shifts_str
-    return (self.shifts.sort_by {|s| s.shiftinfo.begin}).inject('') {
-      |str, shift| str << (shift.free? ? '1' : '0') }
-  end
-
+  protected
   def destroy_all_shifts
     self.shifts.each { |shift| shift.destroy() }
   end

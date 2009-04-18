@@ -119,8 +119,7 @@ class WeeksController < ApplicationController
     @week = Week.find(params[:id])
     @saison = Saison.find_by_name(params[:saison_name])
 
-    @week.all_shifts(@saison){ |shift| shift.update_attribute(:enabled, true) }
-    #@week.days.each(&:create_status_image)
+    @week.enable(@saison)
     flash[:notice] = t 'weeks.enable.success', :number => @week.number
     redirect_back_or_default(weeks_path)
   end
@@ -129,8 +128,7 @@ class WeeksController < ApplicationController
     @week = Week.find(params[:id])
     @saison = Saison.find_by_name(params[:saison_name])
 
-    @week.all_shifts(@saison){ |shift| shift.update_attribute(:enabled, false) }
-    #@week.days.each(&:create_status_image)
+    @week.disable(@saison)
     flash[:notice] = t 'weeks.disable.success', :number => @week.number
     redirect_back_or_default(weeks_path)
   end
