@@ -36,10 +36,11 @@ module DaysHelper
     "tooltip_#{day.date_str("%Y-%m-%d")}"
   end
   def html_tooltip_for( day )
-    day.shifts.group_by(&:saison).collect{ |saison, shifts|
+    all_shifts = day.shifts.group_by(&:saison)
+    all_shifts.keys.sort.collect{ |saison|
       content_tag(:div, :style => "padding: 3px; background-color: #{saison.color};" ) do
         content_tag(:strong, I18n.t("saisons.#{saison.name}")) + "<br />" +
-        shifts.sort_by{ |s| s.shiftinfo.begin}.collect{ |shift|
+        all_shifts[saison].sort_by{ |s| s.shiftinfo.begin}.collect{ |shift|
           " #{shift.shiftinfo.description}: #{shift.free? ? 'frei' : shift.person.name}"
         }.join('<br />')
       end

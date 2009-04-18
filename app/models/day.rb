@@ -59,21 +59,23 @@ class Day < ActiveRecord::Base
 
   protected
     def create_status_image_stacked
-    width, height = 1, 80  # synchronize height with css!
-    shift_height = (height.to_f / self.shifts.count.to_f).round
-    result = Image.new(width, height) { self.background_color = "transparent" }
+      width, height = 1, 80  # synchronize height with css!
+      shift_height = self.shifts.any? ? (height.to_f / self.shifts.count.to_f).round : 0
+      result = Image.new(width, height) { self.background_color = "transparent" }
 
-    self.shifts.sort_by(&:saison).each_with_index { |shift, index|
-      shift_offset = index * shift_height
-      src = Image.new(width, shift_height - 1) {
-        self.background_color = (shift.free? and shift.enabled) ? shift.saison.color : "transparent"
-        self.size = "#{width}x#{shift_height}+0+#{shift_offset}"
+      self.shifts.sort{ |a, b| 
+        a.saison.eql?(b.saison) ? a.shiftinfo.begin <=> b.shiftinfo.begin : a.saison <=> b.saison
+      }.each_with_index { |shift, index|
+        shift_offset = index * shift_height
+        src = Image.new(width, shift_height - 1) {
+          self.background_color = (shift.free? and shift.enabled) ? shift.saison.color : "transparent"
+          self.size = "#{width}x#{shift_height}+0+#{shift_offset}"
+        }
+        #result.border!(0,1,"gray")
+        result.composite!(src, 0, shift_offset, Magick::OverCompositeOp)
       }
-      #result.border!(0,1,"gray")
-      result.composite!(src, 0, shift_offset, Magick::OverCompositeOp)
-    }
-    result.write RAILS_ROOT + "/public/images/" + self.status_image_name
-  end
+      result.write RAILS_ROOT + "/public/images/" + self.status_image_name
+    end
 
   def create_status_image_overlapping
     width, height = 1, 80  # synchronize height with css!
