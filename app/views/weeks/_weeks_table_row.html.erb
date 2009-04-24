@@ -10,9 +10,7 @@
     <% end %>
   </th>
 
-  <%= week.weekdays.collect{ |day|
-    day_td(day)
-  }.join %>
+  <%= render( :partial => 'weeks_table_cell', :collection => week.weekdays, :as => :day ) %>
 
   <% if !!week.person %>
     <td>
@@ -20,7 +18,9 @@
       <%=h week.person.phone %><br />
       <%= link_to( t('Edit'), edit_week_path(week) ) if current_person.is_admin_for? Saison.find_by_name('badi') %>
     </td>
+  <% elsif current_person.is_admin_for? Saison.badi or (current_person.is_staff_for? Saison.badi and week.enabled?(Saison.badi)) %>
+    <td> frei <br /><%= link_to( ' ' + t('weeks.sign_up') + ' ' , edit_week_path(week) ) %></td>
   <% else %>
-    <td> frei <br /><%= link_to( ' ' + t('weeks.sign_up') + ' ' , edit_week_path(week) ) if current_person.is_staff_for? Saison.find_by_name('badi') %></td>
+    <td> vakant </td>
   <% end %>
 </tr>

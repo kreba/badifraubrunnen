@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 def restrict_access( role_name )
   saison_if_given = Saison.find_by_name(params[:saison_name])
   unless current_person.has_role? role_name, saison_if_given
-    role_descr = t('role.' + (for_saison ? params[:saison_name] + role_name.capitalize : role_name))
+    role_descr = t('role.' + (saison_if_given ? params[:saison_name] + role_name.capitalize : role_name))
     flash[:error] = t('application.access_restricted', :role => role_descr)
     redirect_back_or_default( '/home' ) and return false
   end

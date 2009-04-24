@@ -1,6 +1,6 @@
 class Week < ActiveRecord::Base
   # Authorization plugin
-  acts_as_authorizable
+  acts_as_authorizable #Why???
 
   has_many :days
   belongs_to :person  #Wochenverantwortliche/r
@@ -26,15 +26,32 @@ class Week < ActiveRecord::Base
     return Date.commercial( ApplicationController.year , self.number , 7 ) < Date.today;    
   end
 
+  def enabled?( saison )
+    self.enabled_saisons.split(Week.enabled_saisons_delimiter).include? saison.id.to_s
+  end
+  def enable( saison )
+    old = self.enabled_saisons.split(Week.enabled_saisons_delimiter)
+    new = (old | [saison.id.to_s]).join(Week.enabled_saisons_delimiter)
+    self.update_attribute(:enabled_saisons, new)
+    self.all_shifts( saison ) { |shift| shift.enabled = true }
+  end
+  def disable( saison )
+    old = self.enabled_saisons.split(Week.enabled_saisons_delimiter)
+    new = (old - [saison.id.to_s]).join(Week.enabled_saisons_delimiter)
+    self.update_attribute(:enabled_saisons, new)
+    self.all_shifts( saison ) { |shift| shift.enabled = false }
+  end
+  def self.enabled_saisons_delimiter
+    ','
+  end
+
+  protected
   def all_shifts( saison ) #expecting a block
     shifts = self.days.collect{|day| day.find_shifts_by_saison(saison)}.flatten
     shifts.each{ |shift| yield(shift) }
     shifts.all?(&:save)
   end
-  def enabled?( saison )
-    self.days.any?{ |day| day.enabled?(saison) }
-  end
-
+  
   private
   def assign_7_days
     @year = ApplicationController.year

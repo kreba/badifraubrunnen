@@ -4,22 +4,19 @@
 <% end %>
 
 
-<% for saison in current_person.is_admin_for_what %>
-  <% if current_person.is_admin_for_what.many? %>
-    <h2><%=t "saisons.#{saison.name}" %></h2>
-  <% end %>
+<% for saison in Saison.all %>
+  <h2><%=t "saisons.#{saison.name}" %></h2>
   <% if saison.shiftinfos.any? %>
     <table>
       <tr>
         <th><%=t 'shiftinfo.attributes.description' %></th>
-        <th><%=t 'shiftinfo.attributes.begin' %></th>
-        <th><%=t 'shiftinfo.attributes.end' %></th>
+        <th><%=t 'shiftinfos.index.time_span' %></th>
       </tr>
       <% for shiftinfo in @shiftinfos[saison.name] %>
         <tr>
           <td><%=h shiftinfo.description %></td>
           <td><%=h shiftinfo.times_str %></td>
-          <td><%= link_to( t('Edit'), edit_shiftinfo_path(shiftinfo) )%></td>
+          <%= content_tag(:td, link_to( t('Edit'), edit_shiftinfo_path(shiftinfo) ) ) if current_person.is_admin_for? saison %>
         </tr>
       <% end %>
     </table>

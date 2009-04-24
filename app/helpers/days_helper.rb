@@ -49,7 +49,7 @@ module DaysHelper
   def text_tooltip_for( day )
     day.shifts.group_by(&:saison).collect{ |saison, shifts|
       I18n.t("saisons.#{saison.name}") + ": " +
-        shifts.sort_by{ |s| s.shiftinfo.begin}.collect{ |shift|
+        shifts.sort_by{ |s| s.shiftinfo.begin }.collect{ |shift|
           " #{shift.shiftinfo.description}: #{shift.free? ? 'frei' : shift.person.name}"
         }.join(' ··· ')
     }.join(' ||| ')

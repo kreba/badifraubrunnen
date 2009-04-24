@@ -100,14 +100,14 @@ class Day < ActiveRecord::Base
   end
 
 
-  private
-  def shifts_str
-    return (self.shifts.sort_by {|s| s.shiftinfo.begin}).inject('') {
-      |str, shift| str << (shift.free? ? '1' : '0') }
+  def find_shifts_by_saison( saison )
+    self.shifts.all.select{ |shift| shift.shiftinfo.saison.eql? saison }
   end
 
+  protected
   def destroy_all_shifts
     self.shifts.each { |shift| shift.destroy() }
   end
 
 end
+
