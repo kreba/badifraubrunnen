@@ -27,6 +27,7 @@ de_ch:
       description: Beschreibung
       begin: Beginn
       end: Ende
+      saison: Saison
 
   shift:
     name: Schicht
@@ -134,6 +135,7 @@ de_ch:
     index:
       title: Alle Schichtentypen
       none: Noch keine Schichtentypen definiert.
+      time_span: Zeitspanne
     show:
       title: Detailansicht Schichtentyp {{description}}
 
