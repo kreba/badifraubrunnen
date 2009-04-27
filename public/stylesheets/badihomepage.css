@@ -189,9 +189,15 @@ span.week_plan_shift {
     width: 100%;
     text-align: center;
     vertical-align: middle;
-    line-height: 2em;
     border: 1px solid black;
     margin: 0;
+}
+span.week_plan_shift .person_name {
+    line-height: 1.5em;
+    margin-bottom: 0px;
+}
+span.week_plan_shift .person_phone_numbers {
+    font-size: x-small;
 }
 a.block {
     display: block;
@@ -226,8 +232,11 @@ tr.even {
         border: none;
     }
 
-    span.week_plan_shift {
+    span.week_plan_shift .person_name {
         line-height: 1.2em;
     }
-
+    span.week_plan_shift .phone_numbers {
+        line-height: normal;
+        font-size: smaller;
+    }
 }

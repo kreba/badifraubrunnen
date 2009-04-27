@@ -1,7 +1,11 @@
 <span id="week_plan">
   <span style="<%= @dd.style_for_wnum %>"> <%= @week.number.to_s if @printout %> </span>
 
-  <h2><%=t('weeks.week_plan.caption', :begin_date => h(@days.first.date_str "%d.%m."), :end_date => h(@days.last.date_str "%d.%m.%Y"))%></h2>
+  <h2 style="margin-bottom: 5px;">
+    <%=t( 'weeks.week_plan.caption',
+          :begin_date => h(@days.first.date_str "%d.%m."),
+          :end_date => h(@days.last.date_str "%d.%m.%Y"))%>
+  </h2>
 
   <%= if saison.name.eql? "badi"; render( :partial => 'week_plan_responsability', :locals => {:saison => saison} ); end %>
 
@@ -14,8 +18,11 @@
 
   <div style="<%= @dd.style_for_day( saison ) %>">
     <%= render( :partial => 'week_plan_times', :locals => { :side => :left } )%>
-    <%= render( :partial => 'week_plan_day',   :locals => { :printout => @printout }, :collection => @days, :as => :day )%>
+    <%= render( :partial => 'week_plan_day',   :locals => { :saison => saison }, :collection => @days, :as => :day )%>
     <%= render( :partial => 'week_plan_times', :locals => { :side => :right } )%>
   </div>
+
+  <% if @printout %>
   <div><p><%=t 'weeks.week_plan.badi_tel' %></p></div>
+  <% end %>
 </span>

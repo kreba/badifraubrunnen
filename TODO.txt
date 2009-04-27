@@ -1,6 +1,6 @@
 Noch zu implementieren:
 
- - Telefonnummern wieder in Wochenansicht aufnehmen? (css: font-size: smaller;)
+ - make sure signing up for weeks is handled (e.g. disabled) correctly
 
  - Änderungsantrag Hüten
  - ActionMailer

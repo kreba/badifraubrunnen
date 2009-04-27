@@ -14,7 +14,8 @@
 
   <%= render( :partial => 'week_plan', :locals => {:saison => @saison} )%>
   <%= link_to( t('weeks.show.printout'), 
-    { :action => "render_week_plan", :id => @week, :saison_id => @saison }, :popup => true )%>
+    { :action => "render_week_plan", :id => @week, :saison_id => @saison },
+    :popup => true )%>
   <h2><br /></h2>
 
 <% end %>

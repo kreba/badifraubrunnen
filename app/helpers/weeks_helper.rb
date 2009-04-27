@@ -1,7 +1,9 @@
 module WeeksHelper
 
-  def phone_str( person )
-    "#{person.phone}#{",  "+person.phone2 unless person.phone2.nil? or person.phone2.empty?}"
+  def phone_str( person, options = {} )
+    options.reverse_merge! :delimiter => ', '
+#    "#{person.phone}#{",  "+person.phone2 unless person.phone2.nil? or person.phone2.empty?}"
+    [person.phone, person.phone2].compact.reject(&:empty?).join(options[:delimiter])
   end
   def day_td( day )
     content_tag(:td,
@@ -72,7 +74,7 @@ module WeeksHelper
     def style_for_day( saison )
       "position: relative; 
        height:   #{@@header_height + self.day_height(saison)}px;
-       margin:   2em 0em"
+       margin:   1em 0em 2em 0em;"
     end
     def style_for_day_header( day )
       "position: absolute; 
