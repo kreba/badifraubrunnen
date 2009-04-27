@@ -1,7 +1,5 @@
 Noch zu implementieren:
 
- - Change names of day images to be unique not for a certain date but for a 
-   certain combination of enabled shifts. This will solve browser caching problems.
  - Telefonnummern wieder in Wochenansicht aufnehmen? (css: font-size: smaller;)
 
  - Änderungsantrag Hüten

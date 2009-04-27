@@ -21,7 +21,11 @@ class Day < ActiveRecord::Base
   end
 
   def status_image_name
-    "#{date.strftime '%Y-%m-%d'}.png"
+    last_saison = nil
+    str = self.shifts_sorted_for_status_image.collect{ |shift|
+      shift.can_staff_sign_up? ? shift.saison.name.chars.first : '0'
+    }
+    "day_status_#{str}.png"
   end
 
   def create_status_image
@@ -43,7 +47,7 @@ class Day < ActiveRecord::Base
   end
 
   def active?
-    self.shifts.select(&:active?).any?
+    self.shifts.select(&:can_staff_sign_up?).any?
   end
   def enabled?( saison )
     saison_shifts = self.shifts.group_by(&:saison)[saison]
@@ -56,26 +60,35 @@ class Day < ActiveRecord::Base
     self.shifts.all.select { |shift| shift.saison.eql? saison }
   end
 
+  def find_shifts_by_saison( saison )
+    self.shifts.all.select{ |shift| shift.shiftinfo.saison.eql? saison }
+  end
+
 
   protected
-    def create_status_image_stacked
-      width, height = 1, 80  # synchronize height with css!
-      shift_height = self.shifts.any? ? (height.to_f / self.shifts.count.to_f).round : 0
-      result = Image.new(width, height) { self.background_color = "transparent" }
+  def shifts_sorted_for_status_image
+    self.shifts.sort{ |a, b|
+      a.saison.eql?(b.saison) ? a.shiftinfo.begin <=> b.shiftinfo.begin : a.saison <=> b.saison
+    }
+  end
 
-      self.shifts.sort{ |a, b| 
-        a.saison.eql?(b.saison) ? a.shiftinfo.begin <=> b.shiftinfo.begin : a.saison <=> b.saison
-      }.each_with_index { |shift, index|
-        shift_offset = index * shift_height
-        src = Image.new(width, shift_height - 1) {
-          self.background_color = (shift.free? and shift.enabled) ? shift.saison.color : "transparent"
-          self.size = "#{width}x#{shift_height}+0+#{shift_offset}"
-        }
-        #result.border!(0,1,"gray")
-        result.composite!(src, 0, shift_offset, Magick::OverCompositeOp)
+  def create_status_image_stacked
+    width, height = 1, 80  # synchronize height with css!
+    shift_height = self.shifts.any? ? (height.to_f / self.shifts.count.to_f).round : 0
+    result = Image.new(width, height) { self.background_color = "transparent" }
+
+    shift_offset = 0
+    self.shifts_sorted_for_status_image.each{ |shift|
+      src = Image.new(width, shift_height - 1) {
+        self.background_color = shift.can_staff_sign_up? ? shift.saison.color : "transparent"
+        self.size = "#{width}x#{shift_height}+0+#{shift_offset}"
       }
-      result.write RAILS_ROOT + "/public/images/" + self.status_image_name
-    end
+      #result.border!(0,1,"gray")
+      result.composite!(src, 0, shift_offset, Magick::OverCompositeOp)
+      shift_offset += shift_height
+    }
+    result.write RAILS_ROOT + "/public/images/" + self.status_image_name
+  end
 
   def create_status_image_overlapping
     width, height = 1, 80  # synchronize height with css!
@@ -99,12 +112,6 @@ class Day < ActiveRecord::Base
     result.write RAILS_ROOT + "/public/images/" + self.status_image_name
   end
 
-
-  def find_shifts_by_saison( saison )
-    self.shifts.all.select{ |shift| shift.shiftinfo.saison.eql? saison }
-  end
-
-  protected
   def destroy_all_shifts
     self.shifts.each { |shift| shift.destroy() }
   end

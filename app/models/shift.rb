@@ -37,6 +37,9 @@ class Shift < ActiveRecord::Base
     !self.day.date.past? and
     self.day.date.between? self.saison.begin, self.saison.end
   end
+  def can_staff_sign_up?
+    self.free? and self.active?
+  end
 
   protected
   def update_status_image_of_my_day
