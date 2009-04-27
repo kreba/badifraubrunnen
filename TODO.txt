@@ -1,5 +1,9 @@
 Noch zu implementieren:
 
+ - Change names of day images to be unique not for a certain date but for a 
+   certain combination of enabled shifts. This will solve browser caching problems.
+ - Telefonnummern wieder in Wochenansicht aufnehmen? (css: font-size: smaller;)
+
  - Änderungsantrag Hüten
  - ActionMailer
  - Feedback
@@ -10,8 +14,6 @@ Noch zu implementieren:
 
  - Wochenansicht als PDF
 
- - Person soll sich nur für ENTWEDER morgen/abend ODER pikett eintragen können
-
  - implement shiftinfos manipulation
 
  - more specific flash message for failed login
@@ -20,4 +22,3 @@ Noch zu implementieren:
  
  -----
  - is it possible to update the shifts of a day trough day[shifts][] directly (instead of days[shifts_attributes][])
- - how can i get rid of the offset that eats my padding? (concerns block_link_to)
