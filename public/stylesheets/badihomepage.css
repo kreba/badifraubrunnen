@@ -127,7 +127,7 @@ table.weeks_table .weeks_table_td {
     font-size: 1.5em;
     text-align: center;
     line-height: 80px; /*vertical-align: middle;*/
-    background-color: #eeeeee;
+    background-color: #e0e0e0;
     background-repeat: repeat-x;
     background-position: center;
 }

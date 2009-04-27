@@ -22,7 +22,8 @@ class Day < ActiveRecord::Base
 
   def status_image_name
     str = self.shifts_sorted_for_status_image.collect{ |shift|
-      shift.can_staff_sign_up? ? shift.saison.name.chars.first : '0'
+      shift.can_staff_sign_up? ? shift.saison.name.chars.first.upcase :
+        (shift.enabled? ? '0': shift.saison.name.chars.first.downcase)
     }
     "day_status_#{str}.png"
   end
@@ -76,10 +77,12 @@ class Day < ActiveRecord::Base
     shift_offset = 0
     self.shifts_sorted_for_status_image.each{ |shift|
       src = Image.new(width, shift_height - 1) {
-        self.background_color = shift.can_staff_sign_up? ? shift.saison.color : "transparent"
+        self.background_color = shift.free? ? shift.saison.color : "transparent"
         self.size = "#{width}x#{shift_height}+0+#{shift_offset}"
       }
-      #result.border!(0,1,"gray")
+      unless shift.enabled?
+        src = src.modulate(1.5, 0.5, 0.95)  # brightness, saturation, hue
+      end
       result.composite!(src, 0, shift_offset, Magick::OverCompositeOp)
       shift_offset += shift_height
     }
