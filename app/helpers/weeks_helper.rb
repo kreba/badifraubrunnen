@@ -15,15 +15,13 @@ module WeeksHelper
   def day_td_html_options( day )
     options = {
       :class       => "weeks_table_td",
-#      :id          => day.date.strftime('%Y-%m-%d'),
 #      :title       => text_tooltip_for(day)
-#      :onmouseover => "xstooltip_show('#{tooltip_id(day)}', '#{day.date.strftime('%Y-%m-%d')}', 76, -8);",
       :onmouseover => "xstooltip_show('#{tooltip_id(day)}', '#{week_html_id(day.week)}', -8, -8);",
       :onmouseout  => "xstooltip_hide('#{tooltip_id(day)}');"
 # the html tooltips appear and look nice, but they don't disappear any more!
     }
 
-    if day.active? #TODO: refactor day.active? to be less expensive in terms of time
+    if day.active?
       options.merge :background => images_url + day.status_image_name
     else
       options.merge :style => "background-color:#dddddd; color:#ffffff;"
@@ -74,7 +72,7 @@ module WeeksHelper
     def style_for_day( saison )
       "position: relative; 
        height:   #{@@header_height + self.day_height(saison)}px;
-       margin:   1em 0em 2em 0em;"
+       margin:   2em 0em;"
     end
     def style_for_day_header( day )
       "position: absolute; 

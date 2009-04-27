@@ -21,7 +21,6 @@ class Day < ActiveRecord::Base
   end
 
   def status_image_name
-    last_saison = nil
     str = self.shifts_sorted_for_status_image.collect{ |shift|
       shift.can_staff_sign_up? ? shift.saison.name.chars.first : '0'
     }
@@ -47,7 +46,8 @@ class Day < ActiveRecord::Base
   end
 
   def active?
-    self.shifts.select(&:can_staff_sign_up?).any?
+    !self.date.past? and
+    Saison.all.any?{ |saison| self.date.between? saison.begin, saison.end }
   end
   def enabled?( saison )
     saison_shifts = self.shifts.group_by(&:saison)[saison]

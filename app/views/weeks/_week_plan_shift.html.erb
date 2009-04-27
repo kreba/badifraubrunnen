@@ -1,11 +1,13 @@
 <span class="week_plan_shift" style="<%= @dd.style_for_shift(shift) %>">
   <% if shift.free? %>
     <% if not @printout %>
-      <% if current_person.my_saisons.include?(saison) %>
         <br />
-        <%= block_link_to( t('shifts.sign_up'), edit_shift_path(shift), :padding => "15px 3px" ) %>
+      <% if current_person.is_admin_for?(saison) %>
+        <%= block_link_to( t('shifts.sign_up'), day_path(shift.day) ) %>
+      <% elsif current_person.is_staff_for?(saison) and shift.can_staff_sign_up? %>
+        <%= block_link_to( t('shifts.sign_up'), edit_shift_path(shift) ) %>
       <% else %>
-        <p>vakant</p>
+        vakant
       <% end %>
     <% end %>
   <% else %>
