@@ -27,7 +27,7 @@
                :layout => 'days/saison_wrapper',
                :locals => {
                  :saison => saison,
-                 :shifts => @day_shifts[saison] } %>
+                 :shifts => @day_shifts[saison].sort_by{ |shift| shift.shiftinfo.begin } } %>
   <% end %>
 
 </table>
