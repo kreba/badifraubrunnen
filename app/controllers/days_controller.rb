@@ -51,7 +51,7 @@ class DaysController < ApplicationController
     
     if @day.update_attributes(params[:day])
       flash[:notice] = t('days.update.success')
-      redirect_back_or_default(weeks_path)
+      redirect_back_or_default(@day.week)
     else
       # validation error messages are displayed automatically
       render :action => "edit"

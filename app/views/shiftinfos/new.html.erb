@@ -22,12 +22,16 @@
     <%= f.text_field :end %>
   </p>
 
-  <% if current_person.is_admin_for_what.size > 1 %><p>
+  <p>
     <b><%=t 'shiftinfo.attributes.saison' %></b><br />
-    <%= f.select( :saison_id, current_person.is_admin_for_what.sort.collect { |saison|
+    <% if current_person.is_admin_for_what.size > 1 %>
+      <%= f.select( :saison_id, current_person.is_admin_for_what.sort.collect { |saison|
           [ t("saisons.#{saison.name}"), saison.id ]
         } ) %>
-  </p><% end %>
+    <% else %>
+      <%= t("saisons.#{current_person.is_admin_for_what.first.name}") %>
+    <% end %>
+  </p>
 
   <p>
     <%= f.submit t'Save' %>
