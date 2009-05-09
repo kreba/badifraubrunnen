@@ -35,7 +35,7 @@ module WeeksHelper
 
     @@hour_height   = 24
     @@header_height = 35
-    @@day_width     = 105
+    @@day_width     = 125
     @@time_height   = 20  #css: height=17px + 2*border=2px
     @@time_width    = 50 + 5
     
