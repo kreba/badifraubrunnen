@@ -33,7 +33,6 @@ class Shift < ActiveRecord::Base
   end
 
   def active?
-    self.enabled and
     !self.day.date.past? and
     self.day.date.between? self.saison.begin, self.saison.end
   end

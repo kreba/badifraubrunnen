@@ -6,16 +6,6 @@
   <td align="center"><%= person_string_or_free( shift ) %></td>
 
   <% if current_person.is_staff_for? shift.saison %>
-    <td align="left">
-      <% if shift.free? %>
-        <% if shift.active? %>
-          <%= link_to( " #{t 'shifts.sign_up'} " , edit_shift_path(shift) ) %>
-        <% else %>
-          <span style="color: gray"> - <%=t 'shifts.no_sign_up' %> - </span>
-        <% end %>
-      <% else %>
-        <span style="color: gray"> - <%=t 'shifts.taken' %> - </span>
-      <% end %>
-    </td>
+    <td align="left"><%= subscription_link_or_text( shift ) %></td>
   <% end %>
 </tr>
