@@ -102,33 +102,35 @@ module WeeksHelper
     end
 
 
-    def begin_times( saison )
-      begin_times = (self.toptops(saison).reject {|time, top| self.toptops(saison).values.detect {|x| x - top > 0 and x - top < @@time_height } }).keys
-      return begin_times.reject {|t| self.end_times(saison).detect {|x| x - t > 0 and x - t < @@time_height} }
+    def begin_times( saison, side )
+      begin_times = (self.toptops(saison, side).reject {|time, top| self.toptops(saison, side).values.detect {|x| x - top > 0 and x - top < @@time_height } }).keys
+      return begin_times.reject {|t| self.end_times(saison, side).detect {|x| x - t > 0 and x - t < @@time_height} }
     end
-    def end_times( saison )
-      end_times = (self.endtops(saison).reject {|time, top| self.endtops(saison).values.detect {|x| top - x > 0 and top - x < @@time_height } }).keys
+    def end_times( saison, side )
+      end_times = (self.endtops(saison, side).reject {|time, top| self.endtops(saison, side).values.detect {|x| top - x > 0 and top - x < @@time_height } }).keys
       return end_times
     end
-    def toptops( saison )
+    def toptops( saison, side )
       toptops = {}
-      self.week.days.each {|day| day.find_shifts_by_saison(saison).each {|shift|
+      self.shifts_by(saison, side).each {|shift|
           si = shift.shiftinfo
           toptops[si.begin] ||= @@header_height + self.v_offset(si.description, si.begin)
         } 
-      }
       toptops
     end
-    def endtops( saison )
+    def endtops( saison, side )
       endtops = {}
-      self.week.days.each {|day| day.find_shifts_by_saison(saison).each {|shift|
+        self.shifts_by(saison, side).each{ |shift|
           si = shift.shiftinfo
           endtops[si.end] ||= @@header_height + self.v_offset(si.description, si.end) - @@time_height
         }
-      }
       endtops
     end
-    memoize :begin_times, :end_times, :toptops, :endtops
+    def shifts_by( saison, side )
+      day = side == :left ? self.week.days.first : (side == :right ? self.week.days.last : raise('no such side'))
+      day.find_shifts_by_saison(saison)
+    end
+    memoize :begin_times, :end_times, :toptops, :endtops, :shifts_by
 
     protected
     def day_height( saison )

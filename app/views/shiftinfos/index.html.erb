@@ -19,6 +19,11 @@
           <%= content_tag(:td, link_to( t('Edit'), edit_shiftinfo_path(shiftinfo) ) ) if current_person.is_admin_for? saison %>
         </tr>
       <% end %>
+      <% if current_person.is_admin_for? saison %>
+      <tr>
+        <td colspan="3"><%= link_to(t('shiftinfos.new.title'), new_shiftinfo_path) %></td>
+      </tr>
+      <% end %>
     </table>
   <% else %>
     <p><%=t 'shiftinfos.index.none' %></p>

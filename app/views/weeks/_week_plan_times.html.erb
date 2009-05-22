@@ -1,11 +1,11 @@
-<% @dd.begin_times(@saison).each do |time| %>
-    <span class="time_begin" style="top: <%=h @dd.toptops(@saison)[time]-1 %>px; left: <%=h @dd.h_offset_times[side] %>px;">
+<% @dd.begin_times(saison, side).each do |time| %>
+    <span class="time_begin" style="top: <%=h @dd.toptops(saison, side)[time]-1 %>px; left: <%=h @dd.h_offset_times[side] %>px;">
 		<%= time.strftime( "%H:%M" )%>
 	</span>
 <% end %>
 
-<% @dd.end_times(@saison).each do |time|  %>
-	<span class="time_end" style="top: <%=h @dd.endtops(@saison)[time] %>px; left: <%=h @dd.h_offset_times[side] %>px;">
+<% @dd.end_times(saison, side).each do |time|  %>
+	<span class="time_end" style="top: <%=h @dd.endtops(saison, side)[time] %>px; left: <%=h @dd.h_offset_times[side] %>px;">
 		<%= time.strftime( "%H:%M" )%>
 	</span>
 <% end %>
