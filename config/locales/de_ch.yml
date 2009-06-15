@@ -155,6 +155,7 @@ de_ch:
     responsible_person: Belegung
     sign_up: Eintragen
     no_sign_up: Eintragen nicht erlaubt
+    no_sign_up_admin: Woche deaktiviert.<br /> Du als Admin kannst aber<br /> trotzdem Leute eintragen.
     taken: besetzt
     edit:
       title: Schicht {{shift}} am {{date}}

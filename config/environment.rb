@@ -10,7 +10,7 @@ RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-# Authorization plugin for role based access control
+  # Authorization plugin for role based access control
   # You can override default authorization system constants here.
 
   # Can be 'object roles' or 'hardwired'
@@ -34,6 +34,10 @@ Rails::Initializer.run do |config|
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
   # See Rails::Configuration for more options.
+
+  # The following line enables a cool profiling tool
+  #config.gem 'fiveruns_tuneup'  -> edit deploy.rb, too!
+  # as an alternative Rack::Bug could be used
 
   # Skip frameworks you're not going to use (only works if using vendor/rails).
   # To use Rails without a database, you must remove the Active Record framework

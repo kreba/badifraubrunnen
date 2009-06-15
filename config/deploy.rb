@@ -5,7 +5,7 @@
 set :application, "badi2010"
 set :deploy_to, "/var/rails/#{application}" # NOT /var/www/...
 
-#depend :local,  :gem, "xyz"
+#depend :local,  :gem, "fiveruns_tuneup" -> edit environment.rb, too!
 #depend :remote, :gem, "xyz"
 
 #############################################################

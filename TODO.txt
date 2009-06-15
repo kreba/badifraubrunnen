@@ -1,22 +1,15 @@
 Noch zu implementieren:
 
- - make sure signing up for weeks is handled (e.g. disabled) correctly
-
  - Änderungsantrag Hüten
  - ActionMailer
  - Feedback
- - Namenskürzel auf Saisonübersicht
 
- - zugang nicht nur von logged_in?, sondern auch von is_badiStaff? abhängig machen (before filter!)
  - introduce subscribe actions
 
  - Wochenansicht als PDF
 
- - implement shiftinfos manipulation
+ - implement shiftinfos manipulation for administrators
+ - implement role deactivation for admin/webmaster (see act_as_various in people_controller.rb)
 
- - more specific flash message for failed login
-
- - Why is assignment of person_id = 0 possible? (occurs when entering text in the appropriate form field)
- 
  -----
  - is it possible to update the shifts of a day trough day[shifts][] directly (instead of days[shifts_attributes][])

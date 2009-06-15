@@ -22,10 +22,11 @@ class Day < ActiveRecord::Base
 
   def status_image_name
     str = self.shifts_sorted_for_status_image.collect{ |shift|
-      shift.can_staff_sign_up? ? (
-        shift.enabled ?
+      (shift.free? and shift.active?) ?
+        (shift.enabled ?
           shift.saison.name.chars.first.upcase :
-          shift.saison.name.chars.first.downcase ) :
+          shift.saison.name.chars.first.downcase
+        ) :
         '0'
     }
     "day_status_#{str}.png"

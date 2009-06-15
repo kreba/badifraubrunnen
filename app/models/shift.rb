@@ -33,11 +33,11 @@ class Shift < ActiveRecord::Base
   end
 
   def active?
-    !self.day.date.past? and
-    self.day.date.between? self.saison.begin, self.saison.end
+    !self.day.date.past? &&
+    self.day.date.between?(self.saison.begin, self.saison.end)
   end
   def can_staff_sign_up?
-    self.free? and self.active?
+    self.enabled? and self.free? and self.active?
   end
 
   protected

@@ -40,7 +40,13 @@ module DaysHelper
     all_shifts.keys.sort.collect{ |saison|
       content_tag(:div, :style => "padding: 3px; background-color: #{saison.color};" ) do
         content_tag(:strong, I18n.t("saisons.#{saison.name}")) + "<br />" +
-        (day.enabled?(saison) ? html_tooltip_shifts(all_shifts[saison]) : I18n.t("shifts.no_sign_up"))
+        (day.enabled?(saison) ? 
+          html_tooltip_shifts(all_shifts[saison]) : 
+          content_tag(:em, current_person.is_admin_for?(saison) ?
+            I18n.t("shifts.no_sign_up_admin") :
+            I18n.t("shifts.no_sign_up")
+          )
+        )
       end
     }.join
   end
