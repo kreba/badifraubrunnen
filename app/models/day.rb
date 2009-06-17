@@ -34,6 +34,7 @@ class Day < ActiveRecord::Base
 
   def create_status_image
     self.create_status_image_stacked
+    # use  self.create_status_image_sorted  in the future
   end
 
   def date_str fmt = '%A %d.%m.%Y'
@@ -91,6 +92,63 @@ class Day < ActiveRecord::Base
       shift_offset += shift_height
     }
     result.write RAILS_ROOT + "/public/images/" + self.status_image_name
+  end
+
+  # This method heavily depends on certain shiftinfo descriptions and saison names!
+  def create_status_image_sorted
+    width, height = 80, 80  # synchronize with css!
+    geometries = self.geometries_for_sorted_status_image
+    result = Image.new(width, height) { self.background_color = "transparent" }
+
+    self.shifts.each{ |shift|
+      geometry = geometries[shift.shiftinfo]
+      src = Image.new(geometry[:w], geometry[:h]) {
+        self.background_color = shift.free? ? shift.saison.color : "transparent"
+        self.size = geometry[:string]
+      }
+      unless shift.enabled?
+        src = src.modulate(1.5, 0.5, 0.95)  # brightness, saturation, hue
+      end
+      result.composite!(src, geometry[:x], geometry[:y], Magick::OverCompositeOp)
+    }
+    result.write RAILS_ROOT + "/public/images/" + self.status_image_name
+  end
+
+  def geometries_for_sorted_status_image
+      sis = self.shifts.collect(&:shiftinfo)
+      si = {
+        :badi   => sis.select{ |s| s.saison == Saison.badi and not s.description == "Pikett"},
+        :pikett => sis.select{ |s| s.saison == Saison.badi and s.description == "Pikett"},
+        :kiosk  => sis.select{ |s| s.saison == Saison.kiosk}
+      }
+      width = {
+        :badi   => 30,
+        :pikett => 15,
+        :kiosk  => 30
+      }
+      offset_x = {
+        :badi   =>  1,
+        :pikett => 32,
+        :kiosk  => 49
+      }
+
+      geo_hash = Hash.new
+      [:badi, :pikett, :kiosk].each{ |col|
+        if si[col] and si[col].any?
+          height = (80 / si[col].size).round
+          si[col].sort_by(&:begin).each_with_index do |shiftinfo, i|
+            offset_y = i * (height + 1)
+            geo_hash[shiftinfo] = {
+              :w => width[col],
+              :h => height,
+              :x => offset_x[col],
+              :y => offset_y,
+              :string => "#{width[col]}x#{height}+#{offset_x[col]}+#{offset_y}"
+            }
+          end
+        end
+      }
+      return geo_hash
   end
 
   def create_status_image_overlapping
