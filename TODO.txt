@@ -1,10 +1,14 @@
 Noch zu implementieren:
 
+ - do caching of the days' html tooltips
+ - replace my manual caching for images by a rails caching method (maybe fragment caching?)
+
+
  - Änderungsantrag Hüten
  - ActionMailer
  - Feedback
 
- - introduce subscribe actions
+ - introduce subscribe actions -> logging
 
  - Wochenansicht als PDF
 

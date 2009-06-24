@@ -2,7 +2,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.week_enable  'weeks/enable/:id/:saison_name',  :controller => 'weeks', :action => 'enable'
   map.week_disable 'weeks/disable/:id/:saison_name', :controller => 'weeks', :action => 'disable'
-  map.imagine_days 'weeks/imagine',                  :controller => 'weeks', :action => 'imagine'
+  
+  map.imagine_days 'days/imagine',                   :controller => 'weeks', :action => 'imagine'
 
   map.resources :weeks, :shallow => true do |week|
     week.resources :days do |shift| 

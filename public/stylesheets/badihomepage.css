@@ -147,6 +147,7 @@ table.weeks_table .weeks_table_td a {
     left: 0;
     z-index: 2;
 
+    text-align: left;
     font: normal 8pt sans-serif;
     padding: 3px;
     border: solid 1px;
