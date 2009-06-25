@@ -161,7 +161,7 @@ de_ch:
       title: Schicht {{shift}} am {{date}}
       admin_advice: Du kannst HelferInnen nur in der Tagesansicht neu zuordnen.
       general_advice: Du bist dabei, dich für eine Schicht einzutragen. Bitte bestätigen.
-      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Schicht als HüterIn!<br />Nur {{admin_names}} können dich wieder austragen.'
+      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Schicht als HüterIn!<br />Nur {{admin_names}} kann dich wieder austragen.'
     index:
       title: Alle Schichten
       summary: Total {{total}} Schichten
