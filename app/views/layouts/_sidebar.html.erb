@@ -1,4 +1,7 @@
 <div id="side">
+  <% unless RAILS_ENV == 'production' %>
+    <p style="margin: 1em 0; font-size: large; color: white;"><%= RAILS_ENV.upcase %></p>
+  <% end %>
 
   <h3><%=t 'navigation' %></h3>
   <% if logged_in? %>

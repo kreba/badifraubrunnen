@@ -23,6 +23,7 @@ module WeeksHelper
 
     if day.active?
       options.merge :background => images_url + day.status_image_name
+      # do something with an image_tag instead? (enables browser-side caching)
     else
       options.merge :style => "background-color:#dddddd; color:#ffffff;"
     end

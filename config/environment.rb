@@ -48,8 +48,10 @@ Rails::Initializer.run do |config|
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
+  # config.cache_store = :mem_cache_store  # not used because it does not support fragment expiring by regexp
+
   # Add additional load paths for your own custom dirs
-  # config.load_paths += %W( #{RAILS_ROOT}/extras )
+  # config.load_paths += %W( #{RAILS_ROOT}/sweepers ) # I put them in the models folder now (crappy NetBeans!)
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
@@ -69,6 +71,11 @@ Rails::Initializer.run do |config|
   # (create the session table with 'rake db:sessions:create')
   # config.action_controller.session_store = :active_record_store
 
+  # Change the location where cached fragments are stored (default: .../public/)
+  config.action_controller.page_cache_directory = RAILS_ROOT + "/public/cache/"
+  #(I'm not using page caching atm;
+  # action and fragment caching do not depend on this setting (they are in-memory per default))
+
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
   # like if you have constraints or database-specific column types
@@ -80,7 +87,7 @@ Rails::Initializer.run do |config|
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
 
-  # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+  # The default default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :de_ch
 end

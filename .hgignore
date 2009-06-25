@@ -1,8 +1,9 @@
-config/database.yml
-log/*$
-public/images
-\.orig\..*$
-\.rej$
-\.orig$
-\.conflict\~$
 \.chg\..*$
+\.rej$
+config/database.yml
+\.conflict\~$
+public/images
+log/*$
+\.orig\..*$
+\.orig$
+public/javascripts/all.js

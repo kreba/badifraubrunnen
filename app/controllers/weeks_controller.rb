@@ -1,14 +1,16 @@
 class WeeksController < ApplicationController
   
-  before_filter :only => [:new, :create, :imagine]  do |c| c.restrict_access 'webmaster' end
+  before_filter :only => [:new, :create]  do |c| c.restrict_access 'webmaster' end
   before_filter :only => [:enable, :disable]  do |c| c.restrict_access 'admin' end
   # TODO: somehow prevent staff people from overwriting the inscription
+  cache_sweeper :week_sweeper, :only => [:enable, :disable, :edit, :update, :destroy]
   
   # GET /weeks
   # GET /weeks.xml
   def index
     @saisons = current_person.all_saisons_but_mine_first
-    @weeks = Week.find(:all, :order => "number", :include => {:days => {:shifts => :shiftinfo}})
+    @weeks = Week.find(:all, :order => "number")
+#    @weeks = Week.find(:all, :order => "number", :include => {:days => {:shifts => :shiftinfo}})
     # :include causes "eager loading"
     @past_weeks   = @weeks.select(&:past?)
     @future_weeks = @weeks.reject(&:past?)
@@ -52,10 +54,12 @@ class WeeksController < ApplicationController
   def show
     @saisons = current_person.all_saisons_but_mine_first
     @week = Week.find(params[:id])
-    @days = @week.days.sort_by(&:date)
-
-    @dd = WeeksHelper::WeekPlanDisplayData.for @week
     
+    if !fragment_exist? "#{@week.key_for_cache}_plans_#{current_person.roles_key_for_cache}"
+      @days = @week.days.sort_by(&:date)
+      @dd = WeeksHelper::WeekPlanDisplayData.for @week
+    end
+  
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @week }

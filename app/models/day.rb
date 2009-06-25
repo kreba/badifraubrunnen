@@ -41,6 +41,9 @@ class Day < ActiveRecord::Base
     return self.date.strftime( fmt )
     # TODO: do better localization of weekday names
   end
+  def key_for_cache
+    self.date.strftime( '%Y%m%d' )
+  end
 
   # intended use: my_day.plus  1.day
   # or            my_day.minus 1.week

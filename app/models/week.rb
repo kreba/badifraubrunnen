@@ -45,6 +45,10 @@ class Week < ActiveRecord::Base
     ','
   end
 
+  def key_for_cache
+    "week_#{self.number}"
+  end
+  
   protected
   def all_shifts( saison ) #expecting a block
     shifts = self.days.collect{|day| day.find_shifts_by_saison(saison)}.flatten

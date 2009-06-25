@@ -1,6 +1,7 @@
 class DaysController < ApplicationController
   
-  before_filter :except => [:show, :edit, :update] do |c| c.restrict_access 'webmaster' end
+  before_filter :except => [:show, :edit, :update, :imagine] do |c| c.restrict_access 'webmaster' end
+  cache_sweeper :week_sweeper, :only => [:update, :imagine]
   
   # GET /weeks/1/days
   def index

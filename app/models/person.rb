@@ -104,6 +104,15 @@ class Person < ActiveRecord::Base
   def roles_str
     self.roles.collect{ |role| role.translate }.to_sentence
   end
+  def roles_key_for_cache
+    keys = Array.new
+    Saison.all.each{ |saison|
+      keys << saison.name.first.upcase   if self.is_admin_for?( saison )
+      keys << saison.name.first.downcase if self.is_staff_for?( saison )
+    }
+    keys << 'w' if self.is_webmaster?
+    keys.sort.join
+  end
 
   def my_saisons
     self.roles.collect(&:authorizable).flatten.uniq.compact.sort_by(&:name)
