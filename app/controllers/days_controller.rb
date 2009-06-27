@@ -1,11 +1,11 @@
 class DaysController < ApplicationController
   
-  before_filter :except => [:show, :edit, :update, :imagine] do |c| c.restrict_access 'webmaster' end
-  cache_sweeper :week_sweeper, :only => [:update, :imagine]
+  before_filter :except => [:show, :edit, :update] do |c| c.restrict_access 'webmaster' end
+  cache_sweeper :week_sweeper, :only => [:update]
   
   # GET /weeks/1/days
   def index
-    flash[:error] = t'days.index.not_available'
+    flash[:error] = t('days.index.not_available')
     redirect_to weeks_path and return false 
     
     # that is not executed:
@@ -23,7 +23,7 @@ class DaysController < ApplicationController
     @day = Day.new(params[:day])
     
     if @day.save
-      flash[:notice] = t'days.create.success'
+      flash[:notice] = t('days.create.success')
       redirect_to(@day)
     else
       # validation error messages are displayed automatically
@@ -32,8 +32,6 @@ class DaysController < ApplicationController
   end
 
   # GET /weeks/1/days/1
-  # TODO: ATTENTION: people that are admin for any saison should not be staff
-  #       for any other saison, since they can't subscribe to such shifts...
   def show
     @day = Day.find(params[:id])
     @week = @day.week
@@ -46,7 +44,6 @@ class DaysController < ApplicationController
   end
 
   # PUT /weeks/1/days/1
-  # PUT /weeks/1/days/1.xml
   def update
     @day = Day.find(params[:id])
     
@@ -57,12 +54,6 @@ class DaysController < ApplicationController
       # validation error messages are displayed automatically
       render :action => "edit"
     end
-  end
-
-  # POST /days/imagine
-  def imagine
-    Day.all.each(&:create_status_image)
-    redirect_back_or_default(weeks_path)
   end
 
 end

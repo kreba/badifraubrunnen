@@ -1,12 +1,28 @@
 <noscript><%= content_tag(:div, t('noscript'), :class => "flash", :id => "flash_noscript") -%></noscript>
 
 <table class="weeks_table">
-  <tr>
-    <th class="weeknum_header" style="padding-right: 1em;"><em><%=t 'weeks.weeks_table.weeknum_header' %></em></th>
-    <% for wday in 1..7 %>
-      <th class="day_header"><%= t('date.abbr_day_names')[wday % 7] %></th>
-    <% end %>
-    <th> <%=t 'weeks.responsability' %> </th>
-  </tr>
-  <%= render :partial => "weeks_table_row", :collection => @future_weeks, :as => :week %>
+  <thead>
+    <tr>
+      <th class="weeknum_header" style="padding-right: 1em;"><em><%=t 'weeks.weeks_table.weeknum_header' %></em></th>
+      <% for wday in 1..7 %>
+        <th class="day_header"><%= t('date.abbr_day_names')[wday % 7] %></th>
+      <% end %>
+      <th> <%=t 'weeks.responsability' %> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => "weeks_table_row", :collection => @future_weeks, :as => :week %>
+  </tbody>
 </table>
+
+<span id="day_tooltips">
+<% for week in @future_weeks %>
+  <% cache( :fragment => "#{week.key_for_cache}_tooltips_#{current_person.roles_key_for_cache}" ) do %>
+
+    <% for day in week.days %>
+      <%= tooltip_div(day) if day.active? %>
+    <% end %>
+
+  <% end %>
+<% end %>
+</span>

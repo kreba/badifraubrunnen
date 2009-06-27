@@ -101,6 +101,7 @@ class Day < ActiveRecord::Base
   def create_status_image_sorted
     width, height = 80, 80  # synchronize with css!
     geometries = self.geometries_for_sorted_status_image
+    #geometries = self.geometries_for_sorted_status_image_pikett
     result = Image.new(width, height) { self.background_color = "transparent" }
 
     self.shifts.each{ |shift|
@@ -117,7 +118,7 @@ class Day < ActiveRecord::Base
     result.write RAILS_ROOT + "/public/images/" + self.status_image_name
   end
 
-  def geometries_for_sorted_status_image
+  def geometries_for_sorted_status_image_pikett
       sis = self.shifts.collect(&:shiftinfo)
       si = {
         :badi   => sis.select{ |s| s.saison == Saison.badi and not s.description == "Pikett"},
@@ -137,6 +138,40 @@ class Day < ActiveRecord::Base
 
       geo_hash = Hash.new
       [:badi, :pikett, :kiosk].each{ |col|
+        if si[col] and si[col].any?
+          height = (80 / si[col].size).round
+          si[col].sort_by(&:begin).each_with_index do |shiftinfo, i|
+            offset_y = i * (height + 1)
+            geo_hash[shiftinfo] = {
+              :w => width[col],
+              :h => height,
+              :x => offset_x[col],
+              :y => offset_y,
+              :string => "#{width[col]}x#{height}+#{offset_x[col]}+#{offset_y}"
+            }
+          end
+        end
+      }
+      return geo_hash
+  end
+
+  def geometries_for_sorted_status_image
+      sis = self.shifts.collect(&:shiftinfo)
+      si = {
+        :badi   => sis.select{ |s| s.saison == Saison.badi },
+        :kiosk  => sis.select{ |s| s.saison == Saison.kiosk}
+      }
+      width = {
+        :badi   => 40,
+        :kiosk  => 35
+      }
+      offset_x = {
+        :badi   =>  1,
+        :kiosk  => 44
+      }
+
+      geo_hash = Hash.new
+      [:badi, :kiosk].each{ |col|
         if si[col] and si[col].any?
           height = (80 / si[col].size).round
           si[col].sort_by(&:begin).each_with_index do |shiftinfo, i|

@@ -1,7 +1,8 @@
 <% content_for :title, @title = t('weeks.index.title') %>
 <% content_for :dynamic_links_for_webmaster do %>
   <%#= navigation_link t('weeks.new.title'), new_week_path %>
-  <%= navigation_link t('weeks.imagine.title'), imagine_days_path %>
+  <%= navigation_link t('cache.imagine.title'), imagine_path %>
+  <%= navigation_link t('cache.sweep.title'), cachesweep_path %>
 <% end %>
 
 

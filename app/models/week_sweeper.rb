@@ -14,8 +14,9 @@ class WeekSweeper < ActionController::Caching::Sweeper
   def clear_days_cache( week )
     expire_fragment %r{week_#{week.number}_}
     # this matches fragments for the week's
-    #  - row in the weeks_table       (e.g. week_28_20090712_BKbw)
-    #  - plans (one for each saison)  (e.g. week_28_plans_BKbw)
+    #  - row in the weeks_table          (e.g. week_28_row_BKbw)
+    #  - day tooltips in the weeks_table (e.g. week_28_tooltips_BKbw)
+    #  - plans (one for each saison)     (e.g. week_28_plans_BKbw)
   end
 
 end

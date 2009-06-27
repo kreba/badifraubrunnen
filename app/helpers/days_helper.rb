@@ -42,10 +42,10 @@ module DaysHelper
         content_tag(:strong, I18n.t("saisons.#{saison.name}")) + "<br />" +
         (day.enabled?(saison) ? 
           html_tooltip_shifts(all_shifts[saison]) : 
-          content_tag(:em, current_person.is_admin_for?(saison) ?
+          content_tag(:em) { current_person.is_admin_for?(saison) ?
             I18n.t("shifts.no_sign_up_admin") :
             I18n.t("shifts.no_sign_up")
-          )
+          }
         )
       end
     }.join
@@ -61,8 +61,17 @@ module DaysHelper
 
   protected
   def html_tooltip_shifts( shifts )
-    shifts.sort_by{ |s| s.shiftinfo.begin }.collect{ |shift|
-      " #{shift.shiftinfo.description}: #{shift.free? ? 'frei' : shift.person.name}"
-    }.join('<br />')
+    content_tag(:table) do
+      shifts.sort_by{ |s| s.shiftinfo.begin }.collect{ |shift|
+        content_tag(:tr) {
+          content_tag(:td, shift.shiftinfo.description.first + ":" ) +
+          content_tag(:td) { shift.free? ?
+              (current_person.is_staff_for?(shift.saison) ? 'frei' : 'vakant') :
+              shift.person.name
+          }
+        }
+      }.join
+    end
   end
+  
 end

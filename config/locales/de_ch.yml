@@ -75,6 +75,14 @@ de_ch:
     show:
       title: Tagesansicht für den {{date_str}}
 
+  cache:
+    imagine:
+      title: Bilder neu erzeugen
+      success: "Alle Bilder wurden neu erzeugt. Hoffentlich stimmt alles ;) <br/>Nicht vergessen: Browser-Cache löschen! (F5)"
+    sweep:
+      title: Cache löschen
+      success: Alle Seitenfragmente im Server-Cache wurden gelöscht.
+
   people:
     password_label: Passwort ändern (sonst leer lassen)
     password_confirmation_label: Neues Passwort wiederholen
@@ -208,8 +216,6 @@ de_ch:
       success: Alle Schichten von Woche {{number}} sind jetzt aktiviert.
     disable:
       success: Ganze Woche {{number}} ist jetzt deaktiviert.
-    imagine:
-      title: Bilder neu erzeugen
 
   welcome:
     # in controllers
