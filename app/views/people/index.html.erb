@@ -19,10 +19,16 @@
   <tr class="<%= cycle('even', 'odd') %>">
     <td>
       <%=h person.name %>
-      <% if current_person.administrates? person %><br/><span class="person_actions_for_admin">
-        <%= link_to t('Edit'), edit_person_path(person) %>
-        <%= link_to t('Delete'), person, :confirm => t('people.destroy.confirm'), :method => :delete %>
-      </span><% end %>
+      <% if current_person.administrates? person %><br/>
+        <span class="person_actions">
+          <%= link_to t('Edit'), edit_person_path(person) %>
+          <%= link_to t('Delete'), person, :confirm => t('people.destroy.confirm'), :method => :delete %>
+        </span>
+      <% elsif current_person == person %><br/>
+        <span class="person_actions">
+          <%= link_to t('Edit'), edit_person_path(person) %>
+        </span>
+      <% end %>
     </td>
 <% if current_person.has_role? 'admin' %>
   <% if current_person.administrates? person %>
@@ -32,7 +38,7 @@
     <td></td><td></td>
   <% end %>
 <% end %>
-    <td><%= phone_str(person, :delimiter => ' , ') %></td>
+    <td><%= phone_str(person, :delimiter => '<br />') %></td>
     <td><%= render( :partial => 'address_link_if_complete', :locals => { :person => person }, :title => t('people.show_map') )%></td>
   </tr>
 <% end %>

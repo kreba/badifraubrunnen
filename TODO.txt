@@ -1,8 +1,6 @@
 Noch zu implementieren:
 
- - do caching of the days' html tooltips
- - replace my manual caching for images by a rails caching method (maybe fragment caching?)
-
+ - anständige Bilder generieren (badi/kiosk nebeneinander; Schichtenhöhe und -offset abhängig von Schichtenzeiten)
 
  - Änderungsantrag Hüten
  - ActionMailer
@@ -15,5 +13,5 @@ Noch zu implementieren:
  - implement shiftinfos manipulation for administrators
  - implement role deactivation for admin/webmaster (see act_as_various in people_controller.rb)
 
- -----
+-----
  - is it possible to update the shifts of a day trough day[shifts][] directly (instead of days[shifts_attributes][])

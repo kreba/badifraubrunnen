@@ -38,11 +38,12 @@ class Person < ActiveRecord::Base
                   :email, :preferences, :password, :password_confirmation
   # :shifts is protected because it is not on this list.
 
-  def full_address_str
+  def full_address_str( options = {} )
+    options.reverse_merge! :delimiter => ', '
     str = ""
     str << address unless !address  # must append instead of a direct assignment in order to get a copy
-    str << (str.empty? ? "" : ", ") + postal_code.to_s unless !postal_code 
-    str << (str.empty? ? "" : " ") + location unless !location
+    str << (str.empty? ? "" : options[:delimiter]) + postal_code.to_s if postal_code
+    str << (str.empty? ? "" : " ") + location if location
     return str
   end
 

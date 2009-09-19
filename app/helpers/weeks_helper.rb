@@ -2,7 +2,6 @@ module WeeksHelper
 
   def phone_str( person, options = {} )
     options.reverse_merge! :delimiter => ', '
-#    "#{person.phone}#{",  "+person.phone2 unless person.phone2.nil? or person.phone2.empty?}"
     [person.phone, person.phone2].compact.reject(&:empty?).join(options[:delimiter])
   end
   def day_td( day )

@@ -206,7 +206,7 @@ a.block {
     height: inherit;
 }
 
-span.person_actions_for_admin {
+#people_list span.person_actions {
     font-size: smaller;
 }
 tr.odd {
