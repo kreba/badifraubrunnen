@@ -6,7 +6,8 @@ set :application, "badi2010"
 set :deploy_to, "/var/rails/#{application}" # NOT /var/www/...
 
 #depend :local,  :gem, "fiveruns_tuneup" -> edit environment.rb, too!
-#depend :remote, :gem, "xyz"
+depend :remote, :gem, "passenger", ">=2.2"  # web server (apache plugin)
+depend :remote, :gem, "rmagick"             # image rendering (Saisonübersicht)
 
 #############################################################
 #	Remote command execution setup
@@ -37,7 +38,8 @@ role :db, domain, :primary => true
 
 set :scm, :mercurial
 set :scm_user, "Raffael Krebs <kreba@gmx.ch>"
-set :repository, "http://novocrab.crabnet.intern:8000/"
+#set :repository, "http://novocrab.crabnet.intern:8000/"
+set :repository, "http://localhost:8000/"
 #set :scm_checkout, "export"  # nonetheless 'clone' is used!?!
 
 namespace :deploy do

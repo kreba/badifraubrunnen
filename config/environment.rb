@@ -2,32 +2,13 @@
 
 # Uncomment below to force Rails into production mode when
 # you don't control web/app server and can't set it the proper way
-ENV['RAILS_ENV'] ||= 'production'
+ENV['RAILS_ENV'] ||= 'development'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
-
-  # Authorization plugin for role based access control
-  # You can override default authorization system constants here.
-
-  # Can be 'object roles' or 'hardwired'
-  AUTHORIZATION_MIXIN = "object roles"
-
-  # NOTE : If you use modular controllers like '/admin/products' be sure 
-  # to redirect to something like '/sessions' controller (with a leading slash)
-  # as shown in the example below or you will not get redirected properly
-  #
-  # This can be set to a hash or to an explicit path like '/login'
-  #
-  LOGIN_REQUIRED_REDIRECTION = { :controller => '/sessions', :action => 'new' }
-  PERMISSION_DENIED_REDIRECTION = { :controller => '/home', :action => 'index' }
-  
-  # The method your auth scheme uses to store the location to redirect back to 
-  STORE_LOCATION_METHOD = :store_location
-# end of Authorization plugin settings
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -39,9 +20,17 @@ Rails::Initializer.run do |config|
   #config.gem 'fiveruns_tuneup'  -> edit deploy.rb, too!
   # as an alternative Rack::Bug could be used
 
+  # Specify gems that this application depends on and have them installed with rake gems:install
+  # config.gem "bj"
+  # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
+  # config.gem "sqlite3-ruby", :lib => "sqlite3"
+  # config.gem "aws-s3", :lib => "aws/s3"
+  config.gem "mysql"
+
   # Skip frameworks you're not going to use (only works if using vendor/rails).
   # To use Rails without a database, you must remove the Active Record framework
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
+  #config.frameworks -= [ :action_mailer ]
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
