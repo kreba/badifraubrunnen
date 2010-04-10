@@ -6,7 +6,7 @@ set :application, "badi2010"
 set :deploy_to, "/var/rails/#{application}" # NOT /var/www/...
 
 #depend :local,  :gem, "fiveruns_tuneup" -> edit environment.rb, too!
-depend :remote, :gem, "passenger", ">=2.2"  # web server (apache plugin)
+depend :remote, :gem, "passenger", ">=2.1"  # web server (apache plugin)
 depend :remote, :gem, "fastthread",">=1.0"  # faster execution
 depend :remote, :gem, "rmagick",   ">=2.9"  # image rendering (Saisonübersicht)
 

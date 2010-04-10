@@ -55,7 +55,7 @@ module DaysHelper
       I18n.t("saisons.#{saison.name}") + ": " +
         shifts.sort_by{ |s| s.shiftinfo.begin }.collect{ |shift|
           " #{shift.shiftinfo.description}: #{shift.free? ? 'frei' : shift.person.name}"
-        }.join(' ··· ')
+        }.join(' / ')
     }.join(' ||| ')
   end
 

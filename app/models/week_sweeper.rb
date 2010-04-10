@@ -3,12 +3,13 @@ class WeekSweeper < ActionController::Caching::Sweeper
 
   #alias_method :after_save, :clear_days_cache
   def after_save( record )
-    case record
-    when Week  then clear_days_cache(record)
-    when Day   then clear_days_cache(record.week)
-    when Shift then clear_days_cache(record.day.week)
-    else raise "Can't handle objects of type #{record.class}. Expecting Day, Week or Shift."
-    end
+    week = case record
+             when Week  then record
+             when Day   then record.week
+             when Shift then record.day.week
+             else raise "Can't handle objects of type #{record.class}. Expecting Day, Week or Shift."
+           end
+    clear_days_cache(week) unless week.nil?
   end
   
   def clear_days_cache( week )
