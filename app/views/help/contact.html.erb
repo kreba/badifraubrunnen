@@ -1,13 +1,13 @@
 <% content_for :title, @title = t('help.contact.title') %>
 
 
+<h2><%=t 'help.contact.location' %></h2>
+<div>
+  <%=t 'phone_short' %>: 031 767 81 41
+</div>
+
 <% Saison.all.each do |saison| %>
   <%= render_people_list( t("help.contact.#{saison.name}Admins"), @admins[saison.name] )%>
 <% end %>
 
 <%= render_people_list( t('help.contact.webmasters'), @webmasters )%>
-
-<h2><%=t 'help.contact.location' %></h2>
-<div>
-  <%=t 'phone_short' %>: 031 767 81 41
-</div>

@@ -1,6 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  def block_link_to( text, target = {}, padding = "15px 3px" )
+  def block_link_to( text, target = {}, padding = "5px 3px" )
     content_tag(:p,
       link_to( 
         content_tag(:span, 

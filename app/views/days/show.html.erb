@@ -13,7 +13,7 @@
     <th><%=t 'shifts.responsible_person' %>:</th>
   </tr>
 
-  <% for saison in current_person.admin_saisons %>
+  <% for saison in (@day_shifts.keys & current_person.admin_saisons) %>
     <%= render :partial => 'saison_for_admin',
                :layout => 'days/saison_wrapper',
                :locals => {
@@ -22,7 +22,7 @@
     <br />
   <% end %>
 
-  <% for saison in current_person.non_admin_saisons %>
+  <% for saison in (@day_shifts.keys & current_person.non_admin_saisons) %>
     <%= render :partial => 'saison_for_others',
                :layout => 'days/saison_wrapper',
                :locals => {

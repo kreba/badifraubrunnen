@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ApplicationController.year
-    return 2010
+    return 2011
   end
   
 def restrict_access( role_name )
