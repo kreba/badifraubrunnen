@@ -5,9 +5,10 @@
 ENV['RAILS_ENV'] ||= 'development'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.14' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
+#require 'thread'
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
@@ -25,7 +26,8 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem "mysql"
+  config.gem "pg"
+#  config.gem "RMagick" must use system library instead
 
   # Skip frameworks you're not going to use (only works if using vendor/rails).
   # To use Rails without a database, you must remove the Active Record framework
@@ -51,8 +53,8 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random, 
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_badi2010_session',
-    :secret      => 'b779a5b29b95964a8b6d1ae92dadb4aa5d37aab43f51e61c4a8b5ca8f025bad87592f39f0f07512ca7006fc708a6151cbad141c3a138d53476a7636c428b76af'
+    :key    => '_badi2010_session',
+    :secret => 'b779a5b29b95964a8b6d1ae92dadb4aa5d37aab43f51e61c4a8b5ca8f025bad87592f39f0f07512ca7006fc708a6151cbad141c3a138d53476a7636c428b76af'
   }
 
   # Use the database for sessions instead of the cookie-based default,

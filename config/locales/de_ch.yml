@@ -56,7 +56,7 @@ de_ch:
     subject: Badi2010
 
   application:
-    access_restricted: Das darf nur, wer {{role}} ist.
+    access_restricted: Das darf nur, wer %{role} ist.
 
   days:
     # in controllers
@@ -73,7 +73,7 @@ de_ch:
       forth_one_day: morgen
       forth_one_week: nächste Woche
     show:
-      title: Tagesansicht für den {{date_str}}
+      title: Tagesansicht für den %{date_str}
 
   cache:
     imagine:
@@ -139,13 +139,13 @@ de_ch:
     new:
       title: Neuen Schichtentyp erstellen
     edit:
-      title: Schichtentyp {{description}} bearbeiten
+      title: Schichtentyp %{description} bearbeiten
     index:
       title: Alle Schichtentypen
       none: Noch keine Schichtentypen definiert.
       time_span: Zeitspanne
     show:
-      title: Detailansicht Schichtentyp {{description}}
+      title: Detailansicht Schichtentyp %{description}
 
   shifts:
     # in controllers
@@ -166,14 +166,14 @@ de_ch:
     no_sign_up_admin: Woche deaktiviert.<br /> Du als Admin kannst aber<br /> trotzdem Leute eintragen.
     taken: besetzt
     edit:
-      title: Schicht {{shift}} am {{date}}
+      title: Schicht %{shift} am %{date}
       admin_advice: Du kannst HelferInnen nur in der Tagesansicht neu zuordnen.
       general_advice: Du bist dabei, dich für eine Schicht einzutragen. Bitte bestätigen.
-      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Schicht als HüterIn!<br />Nur {{admin_names}} kann dich wieder austragen.'
+      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Schicht als HüterIn!<br />Nur %{admin_names} kann dich wieder austragen.'
     index:
       title: Alle Schichten
-      summary: Total {{total}} Schichten
-#      summary: Total {{total}} Schichten, davon {{enabled}} zurzeit aktiv
+      summary: Total %{total} Schichten
+#      summary: Total %{total} Schichten, davon %{enabled} zurzeit aktiv
       advice_weeks_responsability_not_listed: "Achtung: Einsätze als Wochenverantwortung werden nicht aufgelistet"
     myshifts:
       title: Meine Einsätze
@@ -195,8 +195,8 @@ de_ch:
     sign_up: Eintragen
     edit:
       title: Woche bearbeiten
-      general_advice: Du bist dabei, dich für Woche {{wnum}} als Wochenverantwortliche/r zu melden. Bitte bestätigen.
-      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Woche als Wochenverantwortliche/r! <br />Um dich wieder auszutragen, melde dich bei {{admin_names}}.'
+      general_advice: Du bist dabei, dich für Woche %{wnum} als Wochenverantwortliche/r zu melden. Bitte bestätigen.
+      warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Woche als Wochenverantwortliche/r! <br />Um dich wieder auszutragen, melde dich bei %{admin_names}.'
     index:
       title: Saisonübersicht
     new:
@@ -209,17 +209,17 @@ de_ch:
     weeks_table:
       weeknum_header: Woche
     week_plan:
-      title: Einsatzplan Woche {{wnum}}
-      caption: Einsatzplan vom {{begin_date}} bis zum {{end_date}}
+      title: Einsatzplan Woche %{wnum}
+      caption: Einsatzplan vom %{begin_date} bis zum %{end_date}
       badi_tel: 'Tel. Badi: 031 767 81 41'
     enable:
-      success: Alle Schichten von Woche {{number}} sind jetzt aktiviert.
+      success: Alle Schichten von Woche %{number} sind jetzt aktiviert.
     disable:
-      success: Ganze Woche {{number}} ist jetzt deaktiviert.
+      success: Ganze Woche %{number} ist jetzt deaktiviert.
 
   welcome:
     # in controllers
-    greeting: Herzlich willkommen, {{person_name}}!
+    greeting: Herzlich willkommen, %{person_name}!
 
   day:
     # in models
@@ -287,35 +287,35 @@ de_ch:
       less_than_x_seconds:
         zero: 'weniger als 1 Sekunde'
         one: 'weniger als 1 Sekunde'
-        other: 'weniger als {{count}} Sekunden'
+        other: 'weniger als %{count} Sekunden'
       x_seconds:
         one: '1 Sekunde'
-        other: '{{count}} Sekunden'
+        other: '%{count} Sekunden'
       less_than_x_minutes:
         zero: 'weniger als 1 Minute'
         one: 'weniger als eine Minute'
-        other: 'weniger als {{count}} Minuten'
+        other: 'weniger als %{count} Minuten'
       x_minutes:
         one: '1 Minute'
-        other: '{{count}} Minuten'
+        other: '%{count} Minuten'
       about_x_hours:
         one: 'etwa 1 Stunde'
-        other: 'etwa {{count}} Stunden'
+        other: 'etwa %{count} Stunden'
       x_days:
         one: '1 Tag'
-        other: '{{count}} Tage'
+        other: '%{count} Tage'
       about_x_months:
         one: 'etwa 1 Monat'
-        other: 'etwa {{count}} Monate'
+        other: 'etwa %{count} Monate'
       x_months:
         one: '1 Monat'
-        other: '{{count}} Monate'
+        other: '%{count} Monate'
       about_x_years:
         one: 'etwa 1 Jahr'
-        other: 'etwa {{count}} Jahre'
+        other: 'etwa %{count} Jahre'
       over_x_years:
         one: 'mehr als 1 Jahr'
-        other: 'mehr als {{count}} Jahre'
+        other: 'mehr als %{count} Jahre'
 
   number:
     format:
@@ -351,8 +351,8 @@ de_ch:
     errors:
       template:
         header:
-          one: "Konnte {{model}} nicht speichern: 1 Fehler."
-          other: "Konnte {{model}} nicht speichern: {{count}} Fehler."
+          one: "Konnte %{model} nicht speichern: 1 Fehler."
+          other: "Konnte %{model} nicht speichern: %{count} Fehler."
         body: "Bitte überprüfen Sie die folgenden Felder:"
 
       messages:
@@ -363,16 +363,16 @@ de_ch:
         accepted: "muss akzeptiert werden"
         empty: "muss ausgefüllt werden"
         blank: "muss ausgefüllt werden"
-        too_long: "ist zu lang (nicht mehr als {{count}} Zeichen)"
-        too_short: "ist zu kurz (nicht weniger als {{count}} Zeichen)"
-        wrong_length: "hat die falsche Länge (muss genau {{count}} Zeichen haben)"
+        too_long: "ist zu lang (nicht mehr als %{count} Zeichen)"
+        too_short: "ist zu kurz (nicht weniger als %{count} Zeichen)"
+        wrong_length: "hat die falsche Länge (muss genau %{count} Zeichen haben)"
         taken: "ist bereits vergeben"
         not_a_number: "ist keine Zahl"
-        greater_than: "muss größer als {{count}} sein"
-        greater_than_or_equal_to: "muss größer oder gleich {{count}} sein"
-        equal_to: "muss genau {{count}} sein"
-        less_than: "muss kleiner als {{count}} sein"
-        less_than_or_equal_to: "muss kleiner oder gleich {{count}} sein"
+        greater_than: "muss größer als %{count} sein"
+        greater_than_or_equal_to: "muss größer oder gleich %{count} sein"
+        equal_to: "muss genau %{count} sein"
+        less_than: "muss kleiner als %{count} sein"
+        less_than_or_equal_to: "muss kleiner oder gleich %{count} sein"
         odd: "muss ungerade sein"
         even: "muss gerade sein"
 
