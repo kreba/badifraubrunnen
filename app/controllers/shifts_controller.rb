@@ -8,7 +8,7 @@ class ShiftsController < ApplicationController
   # GET /shifts
   # GET /shifts.xml
   def index
-    @shifts = Shift.find(:all, :include => [:day, :shiftinfo]).sort_by {|s| s.day.date}
+    @shifts = Shift.find(:all, :include => [:day, :shiftinfo]).select{|s| current_person.is_admin_for? s.shiftinfo.saison }.sort_by {|s| s.day.date}
     # the eager loading of days and shiftinfos reduces the amount of database accesses while rendering the list
     # (but i think does not fasten it up, because larger amounts of data are fetched)
     

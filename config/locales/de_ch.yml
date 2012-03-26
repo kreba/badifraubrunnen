@@ -94,7 +94,9 @@ de_ch:
       title: Neue Person eintragen
       success: Person erfolgreich eingetragen.
     destroy:
-      confirm: Bitte Rausschmiss nochmal bestätigen. Sämtliche Daten gehen verloren!
+      confirm: Bitte Rausschmiss nochmal bestätigen. Sämtliche Daten von %{person_name} gehen verloren!
+      success: Sämtliche Daten von Benutzer %{person_name} wurden gelöscht.
+      webmaster_cannot_be_deleted_by_admin: HE! Ich bin der Webmaster hier, mich kannste nicht löschen! ;)
     edit:
       title:
         staff: Meine Personalien

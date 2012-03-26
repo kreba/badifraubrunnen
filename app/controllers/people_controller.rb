@@ -36,7 +36,14 @@ class PeopleController < ApplicationController
   
   def destroy
     @person = Person.find(params[:id])
-    @person.destroy
+
+    if @person.is_webmaster?
+      flash[:error] = t'people.destroy.webmaster_cannot_be_deleted_by_admin'
+    else
+      @person.destroy
+      flash[:notice] = t'people.destroy.success'
+    end
+
     redirect_back_or_default(people_path)
   end
 

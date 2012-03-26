@@ -22,7 +22,7 @@
       <% if current_person.administrates? person %><br/>
         <span class="person_actions">
           <%= link_to t('Edit'), edit_person_path(person) %>
-          <%= link_to t('Delete'), person, :confirm => t('people.destroy.confirm'), :method => :delete %>
+          <%= link_to t('Delete'), person, :confirm => t('people.destroy.confirm', :person_name => person.name), :method => :delete %>
         </span>
       <% elsif current_person == person %><br/>
         <span class="person_actions">

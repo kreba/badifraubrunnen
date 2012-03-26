@@ -18,8 +18,8 @@ class Shiftinfo < ActiveRecord::Base
     return self.begin.strftime( '%H:%M' ) + ' - ' + self.end.strftime( '%H:%M' )
   end
 
-  def self.list
-    Shiftinfo.all.collect{|si| "%d: %s, %s  %s"% [si.id, si.description, si.times_str, si.saison.name]}
+  def self.list(cond = {})
+    Shiftinfo.all(:conditions => cond).collect{|si| "%d: %s, %s  %s"% [si.id, si.description, si.times_str, si.saison.name]}
   end
 
   private
