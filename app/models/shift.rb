@@ -6,7 +6,7 @@ class Shift < ActiveRecord::Base
   belongs_to :shiftinfo
   belongs_to :person
   
-  after_update  :update_status_image_of_my_day
+  after_update :update_status_image_of_my_day
 
   validates_presence_of :shiftinfo
 

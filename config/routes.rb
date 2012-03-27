@@ -1,63 +1,89 @@
-ActionController::Routing::Routes.draw do |map|
+Badi2010::Application.routes.draw do
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes"
 
-  map.week_enable  'weeks/enable/:id/:saison_name',  :controller => 'weeks', :action => 'enable'
-  map.week_disable 'weeks/disable/:id/:saison_name', :controller => 'weeks', :action => 'disable'
-  
-  map.imagine    'sudo/imagine',    :controller => 'tasks', :action => 'imagine'
-  map.cachesweep 'sudo/cachesweep', :controller => 'tasks', :action => 'cachesweep'
+  root  to: 'welcome#index'#, via: :get superfluous?
+  match '/home' => 'weeks#index', via: :get, as: 'home'
 
-  map.resources :weeks, :shallow => true do |week|
-    week.resources :days do |shift| 
-      shift.resources :shifts
+
+  match 'weeks/enable/:id/:saison_name'  => 'weeks#enable',  as: 'week_enable'
+  match 'weeks/disable/:id/:saison_name' => 'weeks#disable', as: 'week_disable'
+
+  match 'sudo/imagine' => 'tasks#imagine', as: 'imagine'
+  match 'sudo/imagine' => 'tasks#imagine', as: 'imagine'
+  match 'sudo/cachesweep' => 'tasks#cachesweep', as: 'cachesweep'
+
+
+  resources :weeks, :shallow => true do
+    resources :days do
+      resources :shifts
     end
   end
-  map.resources :shifts
-  map.resources :shiftinfos
+  resources :shifts
+  resources :shiftinfos
 
-  map.resources :people
-  map.myshifts '/myshifts', :controller => 'shifts', :action => 'my_shifts'
-
-  map.resource :session
-#  map.activate '/activate/:activation_code', :controller => 'accounts', :action => 'activate', :activation_code => nil
-  map.signup '/signup', :controller => 'people',   :action => 'new'
-  map.login  '/login',  :controller => 'sessions', :action => 'new'
-  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  resources :people
   
-  map.help '/help', :controller => 'help', :action => 'contact'
+  match '/myshifts' => 'shifts#my_shifts', as: 'myshifts'
 
-  # The priority is based upon order of creation: first created -> highest priority.
+  resource :session, only: [:new, :create, :destroy]
+#  match '/activate/:activation_code' => 'accounts#activate', as: 'activate', :activation_code => nil
+  match '/signup' => 'people#new', as: 'signup'
+  match '/login' => 'sessions#new', as: 'login'
+  match '/logout' => 'sessions#destroy', as: 'logout'
+
+  match '/help' => 'help#contact', as: 'help'
+
+  # Install the default routes as the lowest priority.
+  # TODO: This is a legacy wild controller route that's not recommended for RESTful applications.
+  # Note: This route will make all actions in every controller accessible via GET requests.
+  match ':controller(/:action(/:id))(.:format)'
+
+
+
 
   # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
+  #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
+  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
+  #   resources :products
 
   # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
-
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
+  #   resources :products do
+  #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
+  #
+  #     collection do
+  #       get 'sold'
+  #     end
   #   end
 
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  map.root :controller => "welcome"
-  map.home '/home', :controller => 'weeks'
+  # Sample resource route with sub-resources:
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
 
-  # See how all your routes lay out with "rake routes"
+  # Sample resource route with more complex sub-resources
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get 'recent', :on => :collection
+  #     end
+  #   end
 
-  # Install the default routes as the lowest priority.
-  map.connect ':controller/:action'
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  # Sample resource route within a namespace:
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
+  #   end
+
 end

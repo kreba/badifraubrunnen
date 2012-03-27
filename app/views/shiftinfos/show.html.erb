@@ -8,15 +8,15 @@
 
 <p>
   <b><%=t 'shiftinfo.description' %>:</b>
-  <%=h @shiftinfo.description %>
+  <%= @shiftinfo.description %>
 </p>
 
 <p>
   <b><%=t 'shiftinfo.begin' %>:</b>
-  <%=h @shiftinfo.begin.strftime( '%H:%M' ) %>
+  <%= @shiftinfo.begin.strftime( '%H:%M' ) %>
 </p>
 
 <p>
   <b><%=t 'shiftinfo.end' %>:</b>
-  <%=h @shiftinfo.end.strftime( '%H:%M' ) %>
+  <%= @shiftinfo.end.strftime( '%H:%M' ) %>
 </p>

@@ -7,11 +7,17 @@
 %>
 
 <%# note: the navigation_link helper does not fit here (unless the arrows were inserted by css...) %>
+<%# TODO: Completely replace this with arrow images like  << < > >> %>
 
-<li><%= '↑ ' + link_to( t('days.day_jumper.back_one_week'), last_week )  unless last_week.nil? %></li>
+<li>
+  <% if last_week %>↑ <%= link_to( t('days.day_jumper.back_one_week'), last_week ) %><% end %>
+</li>
 
-<li><%= '← ' + link_to( t('days.day_jumper.back_one_day'), yesterday )   unless yesterday.nil? %>
-    <%# '|' if yesterday && tomorrow %>
-    <%= link_to( t('days.day_jumper.forth_one_day'), tomorrow ) + ' →'   unless tomorrow.nil?  %></li>
+<li>
+  <% if yesterday %>← <%= link_to( t('days.day_jumper.back_one_day'), yesterday ) %><% end %>
+  <% if tomorrow  %><%= link_to( t('days.day_jumper.forth_one_day'), tomorrow ) %> →<% end %>
+</li>
 
-<li><%= '↓ ' + link_to( t('days.day_jumper.forth_one_week'), next_week ) unless next_week.nil? %></li>
+<li>
+  <% if next_week %>↓ <%= link_to( t('days.day_jumper.forth_one_week'), next_week ) %><% end %>
+</li>

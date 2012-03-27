@@ -3,10 +3,10 @@ class AddTypeToSaison < ActiveRecord::Migration
     add_column :saisons, :name, :string
     add_column :shiftinfos, :saison_id, :integer
 
-    saison = Saison.find(:first) || Saison.new(:begin => '2009-03-01', :end => '2009-09-30')
+    saison = Saison.first || Saison.new(:begin => '2009-03-01', :end => '2009-09-30')
     saison.name = "badi"
     saison.save!
-    for si in Shiftinfo.find(:all)
+    for si in Shiftinfo.all
       si.saison = saison
       si.save!
     end

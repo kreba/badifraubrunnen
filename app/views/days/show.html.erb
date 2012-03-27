@@ -5,7 +5,7 @@
 <% end %>
 
 
-<h3><%=h t('date.day_names')[@day.date.wday % 7] + " KW " + @week.number.to_s %></h3>
+<h3><%= t('date.day_names')[@day.date.wday % 7] + " KW " + @week.number.to_s %></h3>
 
 <table title="<%=t 'shifts.n' %>" cellpadding="15px" cellspacing="0px">
   <tr style="padding: 0">

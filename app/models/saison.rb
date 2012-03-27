@@ -36,15 +36,15 @@ class Saison < ActiveRecord::Base
     return min, max
   end
 
-  def self.shiftinfos_by_saison( shiftinfos = Shiftinfo.find(:all, :order => :begin, :include => :saison) )
+  def self.shiftinfos_by_saison( shiftinfos = Shiftinfo.all(:order => :begin, :include => :saison) )
     hash_by_saison(shiftinfos){ |shiftinfo, saison|
       shiftinfo.saison.eql? saison
     }
   end
-  def self.staff_by_saison( people = Person.find(:all, :order => 'name') )
+  def self.staff_by_saison( people = Person.all(:order => 'name') )
     people_by_saison_for_role('staff', people)
   end
-  def self.admins_by_saison( people = Person.find(:all, :order => 'name') )
+  def self.admins_by_saison( people = Person.all(:order => 'name') )
     people_by_saison_for_role('admin', people)
   end
 

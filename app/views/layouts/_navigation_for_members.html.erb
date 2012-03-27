@@ -16,7 +16,7 @@
 <%= render :partial => 'layouts/navigation_for_role',
            :collection => %w"staff admin webmaster", :as => :rolename %>
 
-<h3><%=h current_person.name %></h3>
+<h3><%= current_person.name %></h3>
 <ul>
   <%= navigation_link_unless_current( t('people.edit.title.staff'), edit_person_path(current_person) )%>
   <%= navigation_link_unless_current( t('shifts.myshifts.title'), myshifts_path )%>

@@ -2,5 +2,5 @@
 	<%= link_to( person.full_address_str(:delimiter => '<br />'), "http://map.search.ch/#{person.postal_code}/#{person.address.untaint}",
 							 :title => t('people.show_map'), :popup => true )%>
 <% else %>
-	<%=h person.full_address_str %>
+	<%= person.full_address_str %>
 <% end %>

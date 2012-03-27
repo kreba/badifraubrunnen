@@ -106,7 +106,7 @@ in the code, investigate and change the model, AND then resume execution! Exampl
 
   class WeblogController < ActionController::Base
     def index
-      @posts = Post.find(:all)
+      @posts = Post.all
       debugger
     end
   end

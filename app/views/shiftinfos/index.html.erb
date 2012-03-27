@@ -14,8 +14,8 @@
       </tr>
       <% for shiftinfo in @shiftinfos[saison.name] %>
         <tr>
-          <td><%=h shiftinfo.description %></td>
-          <td><%=h shiftinfo.times_str %></td>
+          <td><%= shiftinfo.description %></td>
+          <td><%= shiftinfo.times_str %></td>
           <%= content_tag(:td, link_to( t('Edit'), edit_shiftinfo_path(shiftinfo) ) ) if current_person.is_admin_for? saison %>
         </tr>
       <% end %>

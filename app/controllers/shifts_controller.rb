@@ -8,7 +8,7 @@ class ShiftsController < ApplicationController
   # GET /shifts
   # GET /shifts.xml
   def index
-    @shifts = Shift.find(:all, :include => [:day, :shiftinfo]).select{|s| current_person.is_admin_for? s.shiftinfo.saison }.sort_by {|s| s.day.date}
+    @shifts = Shift.all(:include => [:day, :shiftinfo]).select{|s| current_person.is_admin_for? s.shiftinfo.saison }.sort_by {|s| s.day.date}
     # the eager loading of days and shiftinfos reduces the amount of database accesses while rendering the list
     # (but i think does not fasten it up, because larger amounts of data are fetched)
     
@@ -63,11 +63,11 @@ class ShiftsController < ApplicationController
     @day = @shift.day
     @week = @day.week
     
-    @people = Person.find(:all, :order => "name").select(&:is_badiStaff?)
-    @admin_names = Person.find(:all).select{ |p|
+    @people = Person.all(:order => "name").select(&:is_badiStaff?)
+    @admin_names = Person.all.select{ |p|
       p.is_admin_for? @shift.saison
-    }.collect(&:name).to_sentence( :connector => " #{t('or')} " )
-    @shiftinfos = Shiftinfo.find(:all, :order => "description DESC" )
+    }.collect(&:name).join(" #{t('or')} ")
+    @shiftinfos = Shiftinfo.all(:order => "description DESC" )
   end
 
   # PUT /shifts/1
@@ -85,6 +85,7 @@ class ShiftsController < ApplicationController
 
     respond_to do |format|
       if @shift.update_attributes(params[:shift])
+        @day.create_status_image
         flash[:notice] = t'shifts.update.success'
         format.html { redirect_to( week_path(@week) ) }
         format.xml  { head :ok }
@@ -111,7 +112,7 @@ class ShiftsController < ApplicationController
   # GET /myshifts.xml
   def my_shifts
     @shifts = current_person.shifts.sort_by {|s| s.day.date}
-#    @shifts = (Shift.find(:all).select{|s| s.person_id == current_person.id})
+#    @shifts = (Shift.all.select{|s| s.person_id == current_person.id})
     logger.debug( "Numer of shifts to display for person #{current_person.name}: #{@shifts.size.to_s}" )
     
     respond_to do |format|

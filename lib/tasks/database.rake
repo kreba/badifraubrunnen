@@ -41,7 +41,7 @@ namespace :db do
       puts "\nCollecting data for Model Class - #{model_name}"
 
       # Collect all the data from te production database
-      data[model_name] = klass.find(:all)
+      data[model_name] = klass.all
       puts "Found #{data[model_name].length} records in the #{sourcedb} database"
 
       unless batchmode
@@ -71,7 +71,7 @@ namespace :db do
 
       klass = Kernel.const_get model_name
 
-      olddata = klass.find(:all)
+      olddata = klass.all
 
       puts "\nFound #{olddata.length} #{model_name} records in the #{destdb} database"
       unless batchmode

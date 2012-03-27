@@ -1,6 +1,6 @@
 <span style="<%= @dd.style_for_day_header(day) %>">
   <%= link_to_unless( @printout,
-                      yield("day_header_#{day.date.wday}"),
+                      content_for("day_header_#{day.date.wday}"),
                       day,
                       {:title => t('days.show.title', :date_str => day.date_str), :class => "block"} ) %>
 </span>

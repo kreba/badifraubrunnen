@@ -9,12 +9,14 @@
 
   <%= if saison.name.eql? "badi"; render( :partial => 'week_plan_responsability', :locals => {:saison => saison} ); end %>
 
-  <% @days.each do |day| unless yield "day_header_#{day.date.wday}" %>
+  <% @days.each do |day| %>
+    <% unless content_for?("day_header_#{day.date.wday}") %>
     <% content_for "day_header_#{day.date.wday}" do %>
       <span style="float: left;  padding-left:  5px; font-size:   1.6em;"><%= @dd.day_name(day.date.wday) %></span>
       <span style="float: right; padding-right: 5px; padding-top: 0.5em;"><%= day.date_str('%d.%m.') %></span>
     <% end %>
-  <% end end %>
+    <% end %>
+  <% end %>
 
   <div style="<%= @dd.style_for_day( saison ) %>">
     <%= render( :partial => 'week_plan_times', :locals => { :saison => saison, :side => :left } )%>

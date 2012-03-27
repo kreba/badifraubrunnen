@@ -5,7 +5,7 @@ class Week < ActiveRecord::Base
   has_many :days
   belongs_to :person  #Wochenverantwortliche/r
 
-  before_validation_on_create :assign_7_days
+  before_validation :assign_7_days, on: :create
   after_destroy :destroy_all_days
 
   validates_size_of    :days, :is => 7, :message => 'wrong_number_(expecting_{{count}})'
@@ -57,6 +57,7 @@ class Week < ActiveRecord::Base
   end
   
   private
+
   def assign_7_days
     @year = ApplicationController.year
     logger.debug( "(II) Creating 7 days for week #{self.number} in year #{@year}:" )

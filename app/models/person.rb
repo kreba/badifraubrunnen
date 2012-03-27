@@ -27,7 +27,9 @@ class Person < ActiveRecord::Base
   validates_format_of       :postal_code, :with => /\A([1-9][0-9]{3})\Z/,                    :allow_blank => true, :message => I18n.translate('person.invalid_zip')
   validates_format_of       :phone2, :with => /\A(0[1-9]{2} [0-9]{3} [0-9]{2} [0-9]{2})\Z/i, :allow_blank => true, :message => I18n.translate('person.invalid_phone')
   validates_format_of       :phone,  :with => /\A(0[1-9]{2} [0-9]{3} [0-9]{2} [0-9]{2})\Z/i,                       :message => I18n.translate('person.invalid_phone')
-  validates_email_veracity_of :email, :message => I18n.translate('person.invalid_email')
+
+  # Uses Carsten Nielsen's email_veracity gem (see lib/EmailVeracityValidator.rb)
+  validates :email, :email_veracity => true
   
   # Virtual attribute for the unencrypted password
   attr_accessor :password
@@ -44,7 +46,7 @@ class Person < ActiveRecord::Base
     str << address unless !address  # must append instead of a direct assignment in order to get a copy
     str << (str.empty? ? "" : options[:delimiter]) + postal_code.to_s if postal_code
     str << (str.empty? ? "" : " ") + location if location
-    return str
+    return str.html_safe
   end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
@@ -84,13 +86,13 @@ class Person < ActiveRecord::Base
   def remember_me_until(time)
     self.remember_token_expires_at = time
     self.remember_token            = encrypt("#{email}--#{remember_token_expires_at}")
-    save(false)
+    save(validate: false)
   end
 
   def forget_me
     self.remember_token_expires_at = nil
     self.remember_token            = nil
-    save(false)
+    save(validate: false)
   end
 
   # Returns true if the user has just been activated.
@@ -119,10 +121,10 @@ class Person < ActiveRecord::Base
     self.roles.collect(&:authorizable).flatten.uniq.compact.sort_by(&:name)
   end
   def all_saisons_but_mine_first
-    my_saisons | Saison.find(:all, :order => :name)
+    my_saisons | Saison.all(:order => :name)
   end
   def unrelated_saisons
-    Saison.find(:all, :order => :name) - my_saisons
+    Saison.all(:order => :name) - my_saisons
   end
   def admin_saisons
     is_admin_for_what.sort_by(&:name)

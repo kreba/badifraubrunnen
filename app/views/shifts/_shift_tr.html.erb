@@ -1,9 +1,9 @@
 <% shift = shift_tr %>
 <tr>
 
-  <td><%=h shift.day.date_str('%a %d.%m.') %></td>
-  <td><%=h full_descr(shift.shiftinfo, "%s,  %s") %></td>
-  <td><%=h shift.free? ? '<' + t('shifts.free') + '>' : shift.person.name %></td>
+  <td><%= shift.day.date_str('%a %d.%m.') %></td>
+  <td><%= full_descr(shift.shiftinfo, "%s,  %s") %></td>
+  <td><%= shift.free? ? '<' + t('shifts.free') + '>' : shift.person.name %></td>
 
   <% if current_person.is_admin_for? shift.saison %>
     <td><%= link_to( t('Edit') , shift.day )%></td>

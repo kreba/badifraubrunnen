@@ -1,6 +1,6 @@
 <% content_for :title, @title = t('people.create.title') %>
 
 
-<p><%= error_messages_for :person %></p>
+<%= render( 'shared/error_messages', obj: @person ) %>
 
 <p><%= render( :partial => 'person_form', :locals => { :person => @person } )%></p>

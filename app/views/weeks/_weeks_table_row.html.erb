@@ -14,8 +14,8 @@
 
     <% if !!week.person %>
       <td>
-        <%=h week.person.name %><br />
-        <%=h week.person.phone %><br />
+        <%= week.person.name %><br />
+        <%= week.person.phone %><br />
         <%= link_to( t('Edit'), edit_week_path(week) ) if current_person.is_admin_for? Saison.find_by_name('badi') %>
       </td>
     <% elsif current_person.is_admin_for? Saison.badi or (current_person.is_staff_for? Saison.badi and week.enabled?(Saison.badi)) %>

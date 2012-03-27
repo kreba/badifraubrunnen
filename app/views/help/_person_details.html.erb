@@ -3,20 +3,21 @@
 
 <div class="person_details">
   <p>
-    <%=h person.name %>
+    <%= person.name %>
     <% unless person.address.nil? %>
-      <br/><%=h person.address %>
+      <br /><%= person.address %>
     <% end %>
     <% unless person.location.nil? or person.location.empty? %>
-      <br/><%=h "#{person.postal_code} #{person.location}" %>
+      <br /><%= "#{person.postal_code} #{person.location}" %>
     <% end %>
   </p><p>
-    Tel.: <%=h person.phone %>
+    Tel.: <%= person.phone %>
     <% unless person.phone2.nil? or person.phone2.empty? %>
-      <br/>Tel2: <%=h person.phone2 %>
+      <br />Tel2: <%= person.phone2 %>
     <% end %>
   </p><p>
-    Mail: <%= mail_to( "#{person.name} <#{person.email}>", person.email, :subject => t('mail.subject'),
-      :encode => "hex", :replace_at => "æ", :replace_dot => "·" )%>
+    Mail: <%= mail_to( "#{person.name} <#{person.email}>", person.email, :subject => t('mail.subject'), 
+                       # :encode => "hex", :replace_at => "æ", :replace_dot => "·" 
+          ) %>
   </p>
 </div>

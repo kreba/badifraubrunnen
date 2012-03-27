@@ -1,5 +1,5 @@
 <tr valign="middle">
-  <% fields_for "day[shift_attributes][]", shift do |g| %>
+  <%= fields_for "day[shift_attributes][]", shift do |g| %>
     <td style="border-left: 5px solid <%= shift.saison.color %>">
       <%= g.select( :shiftinfo_id, @shiftinfos[shift.saison.name].collect {|si| [ full_descr(si, "%s, %s") , si.id ] } ) %>
     </td><td>

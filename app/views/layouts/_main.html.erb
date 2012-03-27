@@ -1,12 +1,14 @@
 <div id="main">
 
-  <h1 id="page_title"><%= yield(:title) -%></h1>
+  <% if content_for? :title %>
+  <h1 id="page_title"><%= content_for(:title) %></h1>
+  <% end %>
 
 	<% flash.each do |level, message| %>
 	  <%= content_tag(:div, message, :class => "flash", :id => "flash_#{level}") -%>	
 	<% end %>
 	
-	<div id="main_content"><%= yield -%></div>
+	<div id="main_content"><%= yield %></div>
 
   <%= render( :partial => 'layouts/bottom_navi' ) -%>
 </div>

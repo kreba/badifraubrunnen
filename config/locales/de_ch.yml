@@ -1,4 +1,8 @@
+# encoding: utf-8
+
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+# TODO: Go over all views and use model.class.human_attribute_name, model.class.model_name.human & Co.
 
 de_ch:
 # -----------------------------------------------------------------------------
@@ -6,7 +10,7 @@ de_ch:
 # -----------------------------------------------------------------------------
   person:
     name: Person
-    attributes:
+    attributes: &person_attribute_names
       name: Name
       login: Login-Name
       password: Passwort
@@ -17,13 +21,19 @@ de_ch:
       phone: Telefonnummer
       phone2: Zweite Telefonnummer
       preferences: Vorlieben
-    invalid_email: ist ungültig. Bitte auf Tippfehler kontrollieren!
+    invalid_email: 
+      malformed: ist ungültig. Bitte auf Tippfehler kontrollieren!
+      blacklisted: Dieser Mailserver ist auf der schwarzen Liste. Bitte eine andere Mailadresse verwenden.
+      no_records: Diese Domain gibt es nicht.
+      no_address_servers: Diesen Mailserver gibt es nicht. 
+      no_exchange_servers: Diese Domain hat keinen Mailserver.
+      timed_out: Der Mailserver ist nicht erreichbar.
     invalid_phone: muss von der Form "0xx xxx xx xx" sein
     invalid_zip:   muss vierstellig sein
 
   shiftinfo:
     name: Schichtentyp
-    attributes:
+    attributes: &shiftinfo_attribute_names
       description: Beschreibung
       begin: Beginn
       end: Ende
@@ -31,7 +41,7 @@ de_ch:
 
   shift:
     name: Schicht
-    attributes:
+    attributes: &shift_attribute_names
       day: Datum
       shiftinfo: Zeit
       person: Belegung
@@ -78,7 +88,7 @@ de_ch:
   cache:
     imagine:
       title: Bilder neu erzeugen
-      success: "Alle Bilder wurden neu erzeugt. Hoffentlich stimmt alles ;) <br/>Nicht vergessen: Browser-Cache löschen! (F5)"
+      success: "Alle Bilder wurden neu erzeugt. Hoffentlich stimmt alles ;) <br />Nicht vergessen: Browser-Cache löschen! (F5)"
     sweep:
       title: Cache löschen
       success: Alle Seitenfragmente im Server-Cache wurden gelöscht.
@@ -271,7 +281,11 @@ de_ch:
     abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
     month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
     abbr_month_names: [~, Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
-    order: [ :day, :month, :year ]
+#    order: [:day, :month, :year] seems to cause trouble with the default YAML parser
+    order:
+      - :day
+      - :month
+      - :year
 
   time:
     formats:
@@ -350,11 +364,16 @@ de_ch:
       skip_last_comma: true
 
   activerecord:
+    attributes:
+      person:
+        <<: *person_attribute_names
+      shiftinfo:
+        <<: *shiftinfo_attribute_names
+      shift:
+        <<: *shift_attribute_names
     errors:
       template:
-        header:
-          one: "Konnte %{model} nicht speichern: 1 Fehler."
-          other: "Konnte %{model} nicht speichern: %{count} Fehler."
+        header: "Konnte %{model} nicht speichern: %{count} Fehler."
         body: "Bitte überprüfen Sie die folgenden Felder:"
 
       messages:

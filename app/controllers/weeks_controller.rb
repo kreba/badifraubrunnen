@@ -9,8 +9,8 @@ class WeeksController < ApplicationController
   # GET /weeks.xml
   def index
     @saisons = current_person.all_saisons_but_mine_first
-    @weeks = Week.find(:all, :order => "number")
-#    @weeks = Week.find(:all, :order => "number", :include => {:days => {:shifts => :shiftinfo}})
+    @weeks = Week.all( :order => "number" )
+#    @weeks = Week.all(:order => "number", :include => {:days => {:shifts => :shiftinfo}})
     # :include causes "eager loading"
     @past_weeks   = @weeks.select(&:past?)
     @future_weeks = @weeks.reject(&:past?)
@@ -71,7 +71,7 @@ class WeeksController < ApplicationController
     @saison = Saison.find_by_name("badi")  # TODO: SUPPORT MULTIPLE SAISONS
     @admin_names = Saison.admins_by_saison[@saison.name].collect(&:name)
     @week = Week.find(params[:id])
-    @people = Person.find(:all, :order => "name").select{ |p| p.is_staff_for? @saison }
+    @people = Person.all(:order => "name").select{ |p| p.is_staff_for? @saison }
   end
   
   # PUT /weeks/1

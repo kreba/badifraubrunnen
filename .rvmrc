@@ -1,1 +1,1 @@
-rvm use system@rails2_3_14
+rvm use 1.9.3@rails322

@@ -24,7 +24,7 @@ module DaysHelper
         }
     
     #img.display
-    img.write(RAILS_ROOT+"/images/gradientfill.gif")
+    img.write(Rails.root+"app/assets/images/gradientfill.gif")
     #exit
   end
 
@@ -48,7 +48,7 @@ module DaysHelper
           }
         )
       end
-    }.join
+    }.join.html_safe
   end
   def text_tooltip_for( day )
     day.shifts.group_by(&:saison).collect{ |saison, shifts|

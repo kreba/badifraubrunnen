@@ -1,0 +1,13 @@
+<%# usage example: render( 'shared/error_messages', obj: @person ) %>
+
+<% if obj.errors.any? %>
+  <div id="error_explanation">
+    <h2><%=t 'activerecord.errors.template.header', model: obj.class.name, count: obj.errors.size %></h2>
+    <p><%=t 'activerecord.errors.template.body' %></p>
+    <ul>
+      <% obj.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

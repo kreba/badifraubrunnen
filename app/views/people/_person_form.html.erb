@@ -1,23 +1,23 @@
-<% form_for(person) do |f| %><div>
+<%= form_for(person) do |f| %><div>
 	<div style="float: left; margin-right: 2em;">
 	
-		<p><label for="name"><%=t 'person.attributes.name' %></label><br/>
+		<p><label for="name"><%=t 'person.attributes.name' %></label><br />
 		<%= f.text_field( :name )%></p>
 
-		<p><label for="phone"><%=t 'person.attributes.phone' %></label><br/>
+		<p><label for="phone"><%=t 'person.attributes.phone' %></label><br />
 		<%= f.text_field( :phone )%></p>
 
-		<p><label for="phone2"><%=t 'person.attributes.phone2' %></label><br/>
+		<p><label for="phone2"><%=t 'person.attributes.phone2' %></label><br />
 		<%= f.text_field( :phone2 )%></p>
 
-		<p><label for="address"><%=t 'person.attributes.address' %></label><br/>
+		<p><label for="address"><%=t 'person.attributes.address' %></label><br />
 		<%= f.text_field( :address )%></p>
 
-		<p><label for="postal_code"><%=t 'person.attributes.postal_code' %></label>/<label for="location"><%=t 'person.attributes.location' %></label><br/>
+		<p><label for="postal_code"><%=t 'person.attributes.postal_code' %></label>/<label for="location"><%=t 'person.attributes.location' %></label><br />
 		<%= f.text_field( :postal_code, :size =>  5 )%>
 		<span id="location_field_container"><%= f.text_field( :location, :size => 21 )%></span></p>
 
-		<%= observe_field( 'person_postal_code', 
+		<%#= observe_field( 'person_postal_code',  ## This does not work anymore with Rails3 :(  TODO: fix this
 						:url => { :action => :find_location },
 						:frequency => 0.5,
 						:with => "'zip='+escape(value)" )%>
@@ -29,16 +29,16 @@
 
 	</div><div style="float: left; margin-right: 2em;">
 	
-		<p><label for="login"><%=t 'person.attributes.login' %></label><br/>
+		<p><label for="login"><%=t 'person.attributes.login' %></label><br />
 		<%= f.text_field( :login )%></p>
 
-		<p><label for="email"><%=t 'person.attributes.email' %></label><br/>
+		<p><label for="email"><%=t 'person.attributes.email' %></label><br />
 		<%= f.text_field( :email )%></p>
 
-		<p><label for="password"><%=t 'people.password_label' %></label><br/>
+		<p><label for="password"><%=t 'people.password_label' %></label><br />
 		<%= f.password_field( :password )%></p>
 
-		<p><label for="password_confirmation"><%=t 'people.password_confirmation_label' %></label><br/>
+		<p><label for="password_confirmation"><%=t 'people.password_confirmation_label' %></label><br />
 		<%= f.password_field( :password_confirmation )%></p>
 
 	</div><div style="clear: left;">

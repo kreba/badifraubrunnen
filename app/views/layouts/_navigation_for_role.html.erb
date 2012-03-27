@@ -1,9 +1,9 @@
 <% if current_person.has_role? rolename %>
-  <% unless "#{yield( 'static_links_for_' + rolename)} #{yield('dynamic_links_for_' + rolename)}".chop.empty? %>
+  <% if content_for?("static_links_for_#{rolename}") or content_for?("dynamic_links_for_#{rolename}") %>
     <h3><%=t "role.#{rolename}" %></h3>
     <ul id="links_for_<%=rolename%>">
-      <%= yield  'static_links_for_' + rolename %>
-      <%= yield 'dynamic_links_for_' + rolename %>
+      <%= content_for  "static_links_for_#{rolename}" %>
+      <%= content_for "dynamic_links_for_#{rolename}" %>
     </ul>
   <% end %>
 <% end %>

@@ -28,7 +28,7 @@ class Day < ActiveRecord::Base
           shift.saison.name.chars.first.downcase
         ) :
         '0'
-    }
+    }.join
     "day_status_#{str}.png"
   end
 
@@ -65,7 +65,7 @@ class Day < ActiveRecord::Base
 
   def find_shifts_by_saison( saison )
     # note: self.shifts.find_by_saison  is not possible, since the saison attibute is a delegate to the shiftinfo
-    #self.shifts.find(:all, :include => [:person, {:shiftinfo => :saison}]).select { |shift| shift.saison.eql? saison }.sort_by {|s| s.shiftinfo.begin }
+    #self.shifts.all(:include => [:person, {:shiftinfo => :saison}]).select { |shift| shift.saison.eql? saison }.sort_by {|s| s.shiftinfo.begin }
     self.shifts.all.select { |shift| shift.shiftinfo.saison.eql? saison }
   end
 
@@ -94,7 +94,7 @@ class Day < ActiveRecord::Base
       result.composite!(src, 0, shift_offset, Magick::OverCompositeOp)
       shift_offset += shift_height
     }
-    result.write RAILS_ROOT + "/public/images/" + self.status_image_name
+    result.write(Rails.root + "app/assets/images/" + self.status_image_name)
   end
 
   # This method heavily depends on certain shiftinfo descriptions and saison names!
@@ -115,7 +115,7 @@ class Day < ActiveRecord::Base
       end
       result.composite!(src, geometry[:x], geometry[:y], Magick::OverCompositeOp)
     }
-    result.write RAILS_ROOT + "/public/images/" + self.status_image_name
+    result.write Rails.root + "app/assets/images/" + self.status_image_name
   end
 
   def geometries_for_sorted_status_image_pikett
@@ -208,7 +208,7 @@ class Day < ActiveRecord::Base
     }
     #result = result.blur_image(0,3)
 
-    result.write RAILS_ROOT + "/public/images/" + self.status_image_name
+    result.write Rails.root + "app/assets/images/" + self.status_image_name
   end
 
   def destroy_all_shifts

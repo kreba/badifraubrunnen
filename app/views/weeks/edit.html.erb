@@ -4,13 +4,13 @@
 <% end %>
 
 
-<% form_for(@week) do |f| %>
+<%= form_for(@week) do |f| %>
   <p>
     <% if current_person.has_role? 'admin' %>
       <b><%=t 'weeks.responsability' %>:</b><br />
       <%= f.select( :person_id, @people.collect {|p| [ p.name, p.id ] }, { :include_blank => true } ) %>
     <% else %>
-      <h2><%=h t('weeks.edit.general_advice', :wnum => @week.number.to_s ) %></h2>
+      <h2><%= t('weeks.edit.general_advice', :wnum => @week.number.to_s ) %></h2>
       <%= f.hidden_field :person_id, :value => current_person.id %>
     <% end %>
   </p>

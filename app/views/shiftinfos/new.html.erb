@@ -4,9 +4,9 @@
 <% end %>
 
 
-<%= error_messages_for :shiftinfo %>
+<%= render( 'shared/error_messages', obj: @shiftinfo ) %>
 
-<% form_for(@shiftinfo) do |f| %>
+<%= form_for(@shiftinfo) do |f| %>
   <p>
     <b><%=t 'shiftinfo.attributes.description' %></b><br />
     <%= f.text_field :description %>

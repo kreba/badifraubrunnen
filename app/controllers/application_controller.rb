@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+  
+  protect_from_forgery
 
   # Filters added to this controller apply to all controllers in the application.
   # Likewise, all the methods added will be available for all controllers.
   before_filter :login_required
   before_filter :set_user_language
-  # This averts plain text logging of password-related parameters (does not influence SQL logging!)
-  filter_parameter_logging "password"
   
   # include all helpers, all the time
   helper :all 

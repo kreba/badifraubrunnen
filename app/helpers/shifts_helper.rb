@@ -2,7 +2,7 @@ module ShiftsHelper
   def person_string_or_free( shift )
     shift.free? ?
       " %s "% (shift.active? ? I18n.t('shifts.free') : '') :
-      "#{shift.person.name}<br />#{shift.person.phone}"
+      "#{shift.person.name}<br />#{shift.person.phone}".html_safe
   end
 
   def subscription_link_or_text( shift )
