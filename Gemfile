@@ -2,6 +2,13 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 
+# A more robust alternative to the Webrick webserver
+gem 'thin'
+
+# To start the application with the Procfile (which uses thin), used by heroku if present
+# For more info on how to deploy on heroku, see https://devcenter.heroku.com/articles/rails3
+#gem 'foreman' # not required atm, heroku's default behaviour 'rails server' is good enough (we don't have multiple worker processes anyway)
+
 # To use a Postgresql database
 gem 'pg'
 
