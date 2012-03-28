@@ -1,5 +1,6 @@
 module PeopleHelper
-
+  require 'net/http'
+  
   def render_people_list( title, people )
     render( :partial => 'list_people', 
               :locals => {
@@ -12,6 +13,7 @@ module PeopleHelper
     begin
       timeout(0.5) do
         response = Net::HTTP.get_response("map.search.ch", zip.to_s )
+        puts response.to_yaml
         return response.is_a?(Net::HTTPMovedPermanently) ? capitalized_location(response, zip.to_s) : nil
       end
     rescue TimeoutError

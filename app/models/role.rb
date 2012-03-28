@@ -6,6 +6,13 @@ class Role < ActiveRecord::Base
   has_and_belongs_to_many :people
   belongs_to :authorizable, :polymorphic => true
 
+  # A virtual attribute to work around a bug in the authorization gem
+  # (authorization-1.0.12/lib/publishare/object_roles_table.rb:52)
+  # TODO: file a bug report
+  def users
+    people
+  end
+
   def translate
     key = self.authorizable.nil? ? self.name : self.authorizable.name + self.name.capitalize
     I18n.translate "role.#{key}"

@@ -34,7 +34,7 @@ group :assets do
 end
 
 #gem 'jquery-rails'
-gem 'prototype'
+gem 'prototype-rails'
 gem 'prototype_legacy_helper', '0.0.0', :git => 'git://github.com/rails/prototype_legacy_helper.git'
 
 # To pop up a ruby debugger from within the code (start the app server with --debugger)

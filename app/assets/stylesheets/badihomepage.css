@@ -39,13 +39,15 @@ div.flash {
     font: small-caps 38px/50px serif;
     color: #000080;
     text-align: center;
+    height: 120px; /* so the picture fits in well, but don't waiste more space than necessary */
 }
-
+#banner h1 {
+	margin: 0.45em; /* less than usual, to fit inside 120px */
+}
 #banner img {
     float: left;
+    /* height: 130px; (for a normal h1) */
     margin: 10px;
-    /* height: 3em;
-    width: 2.22em; */
 }
 
 #side {
@@ -209,6 +211,10 @@ a.block {
 #people_list span.person_actions {
     font-size: smaller;
 }
+#people_list td.phone {
+	min-width: 7.6em;
+}
+
 tr.odd {
     background-color: #fafafa;
 }

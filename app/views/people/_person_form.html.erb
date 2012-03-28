@@ -17,7 +17,7 @@
 		<%= f.text_field( :postal_code, :size =>  5 )%>
 		<span id="location_field_container"><%= f.text_field( :location, :size => 21 )%></span></p>
 
-		<%#= observe_field( 'person_postal_code',  ## This does not work anymore with Rails3 :(  TODO: fix this
+		<%= observe_field( 'person_postal_code',  ## This does not work anymore with Rails3 :(  TODO: fix this
 						:url => { :action => :find_location },
 						:frequency => 0.5,
 						:with => "'zip='+escape(value)" )%>

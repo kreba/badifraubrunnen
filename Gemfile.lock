@@ -35,7 +35,6 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
-    attributes (5.0.1)
     authorization (1.0.12)
     builder (3.0.0)
     coffee-rails (3.2.2)
@@ -63,8 +62,8 @@ GEM
     multi_json (1.1.0)
     pg (0.13.2)
     polyglot (0.3.3)
-    prototype (2.0.0)
-      attributes (>= 3.3)
+    prototype-rails (3.2.1)
+      rails (~> 3.2)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -122,7 +121,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   email_veracity
   pg
-  prototype
+  prototype-rails
   prototype_legacy_helper (= 0.0.0)!
   rails (= 3.2.2)
   rmagick

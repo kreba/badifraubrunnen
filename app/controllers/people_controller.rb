@@ -67,7 +67,7 @@ class PeopleController < ApplicationController
   # GET /people/find_location  (used in ajax call)
   def find_location
     @location = PeopleHelper.fetch_location_by_postal_code(params[:zip])
-
+    
     if @location.nil? or @location.empty?
       render :nothing => true
     else      

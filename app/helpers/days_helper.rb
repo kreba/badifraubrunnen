@@ -39,7 +39,7 @@ module DaysHelper
     all_shifts = day.shifts.group_by(&:saison)
     all_shifts.keys.sort.collect{ |saison|
       content_tag(:div, :style => "padding: 3px; background-color: #{saison.color};" ) do
-        content_tag(:strong, I18n.t("saisons.#{saison.name}")) + "<br />" +
+        content_tag(:strong, I18n.t("saisons.#{saison.name}")) + "<br />".html_safe +
         (day.enabled?(saison) ? 
           html_tooltip_shifts(all_shifts[saison]) : 
           content_tag(:em) { current_person.is_admin_for?(saison) ?
@@ -54,7 +54,7 @@ module DaysHelper
     day.shifts.group_by(&:saison).collect{ |saison, shifts|
       I18n.t("saisons.#{saison.name}") + ": " +
         shifts.sort_by{ |s| s.shiftinfo.begin }.collect{ |shift|
-          " #{shift.shiftinfo.description}: #{shift.free? ? 'frei' : shift.person.name}"
+          " #{shift.shiftinfo.description}: #{shift.free? ? 'frei' : h(shift.person.name)}"
         }.join(' / ')
     }.join(' ||| ')
   end
@@ -67,10 +67,10 @@ module DaysHelper
           content_tag(:td, shift.shiftinfo.description.first + ":" ) +
           content_tag(:td) { shift.free? ?
               (current_person.is_staff_for?(shift.saison) ? 'frei' : 'vakant') :
-              shift.person.name
+              h(shift.person.name)
           }
         }
-      }.join
+      }.join.html_safe
     end
   end
   

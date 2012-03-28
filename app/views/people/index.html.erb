@@ -32,13 +32,14 @@
     </td>
 <% if current_person.has_role? 'admin' %>
   <% if current_person.administrates? person %>
-  	<td><%= person.shifts.size.to_s %>
-  	<td><%= person.preferences.to_s %>
+  	<td><%= person.shifts.size.to_s %></td>
+  	<td><%= person.preferences.to_s %></td>
   <% else %>
-    <td></td><td></td>
+    <td></td>
+    <td></td>
   <% end %>
 <% end %>
-    <td><%= phone_str(person, :delimiter => '<br />') %></td>
+    <td class="phone"><%= phone_str(person, :delimiter => '<br />') %></td>
     <td><%= render( :partial => 'address_link_if_complete', :locals => { :person => person }, :title => t('people.show_map') )%></td>
   </tr>
 <% end %>

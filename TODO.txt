@@ -1,3 +1,9 @@
+Bugfixes: 
+
+ - PLZ-lookup wieder zum laufen bringen ("400 Bad Request" von map.search.ch)
+ - DEPRECATION WARNING: ActiveSupport::Memoizable is deprecated and will be removed in future releases,simply use Ruby memoization pattern instead. (called from extend at /home/kreba/Dokumente/dev/badi2010.git/app/helpers/weeks_helper.rb:34)
+ - Week.create aktiviert die neue Woche nicht -> noch machen oder README_FOR_APP ergänzen
+ 
 Noch zu implementieren:
 
  - anständige Bilder generieren (badi/kiosk nebeneinander; Schichtenhöhe und -offset abhängig von Schichtenzeiten)
