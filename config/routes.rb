@@ -2,9 +2,11 @@ Badi2010::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes"
 
-  root  to: 'welcome#index'#, via: :get superfluous?
+  root  to: 'welcome#index', via: :get 
   match '/home' => 'weeks#index', via: :get, as: 'home'
 
+  # handle legacy routes
+  match '/badi2010' => redirect('/'), anchor: false
 
   match 'weeks/enable/:id/:saison_name'  => 'weeks#enable',  as: 'week_enable'
   match 'weeks/disable/:id/:saison_name' => 'weeks#disable', as: 'week_disable'
