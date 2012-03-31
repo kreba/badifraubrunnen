@@ -50,7 +50,7 @@ class Saison < ActiveRecord::Base
 
   #see README_FOR_APP for instructions how to set up a saison
   def self.long_days
-    high_saison = Day.all.select{ |day| (25..35).include?(day.week.number) }
+    high_saison = Day.all(include: :week).select{ |day| (25..35).include?(day.week.number) }
     week_end    = Day.all.select{ |day| %w'Sat Sun'.include? day.date.strftime( '%a' ) }
 
     high_saison | week_end

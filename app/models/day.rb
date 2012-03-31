@@ -64,9 +64,9 @@ class Day < ActiveRecord::Base
   end
 
   def find_shifts_by_saison( saison )
-    # note: self.shifts.find_by_saison  is not possible, since the saison attibute is a delegate to the shiftinfo
-    #self.shifts.all(:include => [:person, {:shiftinfo => :saison}]).select { |shift| shift.saison.eql? saison }.sort_by {|s| s.shiftinfo.begin }
-    self.shifts.all.select { |shift| shift.shiftinfo.saison.eql? saison }
+    # Note: self.shifts.find_by_saison  is not possible, since the saison attibute is a delegate to the shiftinfo
+    # (Even when Shift declares "has_one :saison, through: :shiftinfo", ActiveRecord can still not query by saison.)
+    self.shifts.all(include: :shiftinfo).select { |shift| shift.shiftinfo.saison_id == saison.id }
   end
 
 

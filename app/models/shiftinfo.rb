@@ -19,7 +19,7 @@ class Shiftinfo < ActiveRecord::Base
   end
 
   def self.list(cond = {})
-    Shiftinfo.all(:conditions => cond).collect{|si| "%d: %s, %s  %s"% [si.id, si.description, si.times_str, si.saison.name]}
+    Shiftinfo.all(conditions: cond, include: :saison).collect{|si| "%d: %s, %s  %s"% [si.id, si.description, si.times_str, si.saison.name]}
   end
 
   private

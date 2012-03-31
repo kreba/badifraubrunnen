@@ -4,6 +4,7 @@ class Shift < ActiveRecord::Base
 
   belongs_to :day
   belongs_to :shiftinfo
+  # could add  has_one :saison, through: :shiftinfo
   belongs_to :person
   
   after_update :update_status_image_of_my_day

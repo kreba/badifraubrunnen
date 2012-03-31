@@ -118,7 +118,7 @@ class Person < ActiveRecord::Base
   end
 
   def my_saisons
-    self.roles.collect(&:authorizable).flatten.uniq.compact.sort_by(&:name)
+    self.roles.all(include: :authorizable).collect(&:authorizable).flatten.uniq.compact.sort_by(&:name)
   end
   def all_saisons_but_mine_first
     my_saisons | Saison.all(:order => :name)
