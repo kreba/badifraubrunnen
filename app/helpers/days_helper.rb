@@ -43,8 +43,8 @@ module DaysHelper
         (day.enabled?(saison) ? 
           html_tooltip_shifts(all_shifts[saison]) : 
           content_tag(:em) { current_person.is_admin_for?(saison) ?
-            I18n.t("shifts.no_sign_up_admin") :
-            I18n.t("shifts.no_sign_up")
+            I18n.t("shifts.no_sign_up_admin").html_safe :
+            I18n.t("shifts.no_sign_up").html_safe
           }
         )
       end

@@ -41,7 +41,7 @@ class PeopleController < ApplicationController
       flash[:error] = t'people.destroy.webmaster_cannot_be_deleted_by_admin'
     else
       @person.destroy
-      flash[:notice] = t'people.destroy.success'
+      flash[:notice] = t('people.destroy.success', person_name: @person.name)
     end
 
     redirect_back_or_default(people_path)

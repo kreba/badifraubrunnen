@@ -32,9 +32,10 @@ class Day < ActiveRecord::Base
     "day_status_#{str}.png"
   end
 
+  # Heroku has a read-only file system, hence we created all status images upfront.
   def create_status_image
-    self.create_status_image_stacked
-    # use  self.create_status_image_sorted  in the future
+    img_path = Rails.root + "app/assets/images/" + self.status_image_name
+    self.create_status_image_stacked.write(img_path) unless File.exists?(img_path)
   end
 
   def date_str fmt = '%A %d.%m.%Y'
