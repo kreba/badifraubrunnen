@@ -17,6 +17,7 @@ Badi2010::Application.configure do
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  config.assets.precompile += %w( badihomepage.css )
 #  config.assets.precompile += %w( badihomepage.css prototype.js xstooltip.js )
 
   # Generate digests for assets URLs
