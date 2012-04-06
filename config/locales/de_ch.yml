@@ -173,7 +173,7 @@ de_ch:
     # in the view
     free: frei
     n: Schichten
-    none_for_today: heute keine Schichten
+    none_for_today: Heute keine Schichten.
     responsible_person: Belegung
     sign_up: Eintragen
     no_sign_up: Eintragen nicht erlaubt
