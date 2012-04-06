@@ -13,4 +13,5 @@
 //= require xstooltip
 //= require prototype
 //= require prototype_ujs
+//= require prototype_nested_form
 //= require_tree .

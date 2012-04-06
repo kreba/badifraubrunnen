@@ -63,5 +63,9 @@ module Badi2010
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Use PDFKit Middleware in order to generate PDF files from HTML (used for printout version of week plan)
+    # Requires the 'pdfkit' gem and a system runnable 'wkhtmltopdf' (Can that be installed on heroku?!)
+    #config.middleware.use "PDFKit::Middleware" - did not get it to work, not even locally...
   end
 end

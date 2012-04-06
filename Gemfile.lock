@@ -4,6 +4,12 @@ GIT
   specs:
     prototype_legacy_helper (0.0.0)
 
+GIT
+  remote: https://github.com/ryanb/nested_form.git
+  revision: 486e0f0e93f3ca455d5d0fc7869053257b6afce2
+  specs:
+    nested_form (0.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -60,6 +66,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.18)
     multi_json (1.1.0)
+    pdfkit (0.5.2)
     pg (0.13.2)
     polyglot (0.3.3)
     prototype-rails (3.2.1)
@@ -120,6 +127,8 @@ DEPENDENCIES
   authorization
   coffee-rails (~> 3.2.1)
   email_veracity
+  nested_form (~> 0.2.0)!
+  pdfkit
   pg
   prototype-rails
   prototype_legacy_helper (= 0.0.0)!

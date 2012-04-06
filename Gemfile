@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 
+# Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
+gem "nested_form", "~> 0.2.0", :git => 'https://github.com/ryanb/nested_form.git'
+
 # A more robust alternative to the Webrick webserver
 gem 'thin'
 
@@ -14,6 +17,10 @@ gem 'pg'
 
 # To generate images (used for the images in the weeks_table)
 gem 'rmagick'  # Requires system libraries!
+
+# To generate PDF files from HTML
+# Requires the executable 'wkhtmltopdf' to be available
+gem 'pdfkit'
 
 # For role based authorization à la current_person.is_admin_for? Saison.badi
 gem 'authorization' 

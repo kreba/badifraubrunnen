@@ -84,6 +84,8 @@ de_ch:
       forth_one_week: nächste Woche
     show:
       title: Tagesansicht für den %{date_str}
+      destroy_shift: Schicht entfernen
+      add_shift: Eine Schicht hinzufügen
 
   cache:
     imagine:

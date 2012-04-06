@@ -6,9 +6,11 @@ class Day < ActiveRecord::Base
   acts_as_authorizable
 
   belongs_to :week
-  has_many :shifts
+  has_many :shifts, dependent: :destroy
 
-  after_destroy :destroy_all_shifts
+  accepts_nested_attributes_for :shifts, allow_destroy: true
+
+  attr_accessible :shifts_attributes
 
   validates_associated :shifts
   validates_presence_of :date
@@ -210,10 +212,6 @@ class Day < ActiveRecord::Base
     #result = result.blur_image(0,3)
 
     result.write Rails.root + "app/assets/images/" + self.status_image_name
-  end
-
-  def destroy_all_shifts
-    self.shifts.each { |shift| shift.destroy() }
   end
 
 end

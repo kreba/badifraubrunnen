@@ -7,27 +7,17 @@
 
 <h3><%= t('date.day_names')[@day.date.wday % 7] + " KW " + @week.number.to_s %></h3>
 
-<table title="<%=t 'shifts.n' %>" cellpadding="15px" cellspacing="0px">
-  <tr style="padding: 0">
-    <th><%=t 'shifts.n' %>:</th>
-    <th><%=t 'shifts.responsible_person' %>:</th>
-  </tr>
+<% for saison in (@day_shifts.keys & current_person.admin_saisons) %>
+  <%= render partial: 'saison_for_admin', 
+             layout:  'days/saison_wrapper',
+             locals:  {saison: saison}
+  %>
+<% end %>
 
-  <% for saison in (@day_shifts.keys & current_person.admin_saisons) %>
-    <%= render :partial => 'saison_for_admin',
-               :layout => 'days/saison_wrapper',
-               :locals => {
-                 :saison => saison,
-                 :shifts => @day_shifts[saison].sort_by{ |shift| shift.shiftinfo.begin } } %>
-    <br />
-  <% end %>
+<% for saison in (@day_shifts.keys & current_person.non_admin_saisons) %>
+  <%= render partial: 'saison_for_others',
+             layout:  'days/saison_wrapper',
+             locals:  {saison: saison}
+  %>
+<% end %>
 
-  <% for saison in (@day_shifts.keys & current_person.non_admin_saisons) %>
-    <%= render :partial => 'saison_for_others',
-               :layout => 'days/saison_wrapper',
-               :locals => {
-                 :saison => saison,
-                 :shifts => @day_shifts[saison].sort_by{ |shift| shift.shiftinfo.begin } } %>
-  <% end %>
-
-</table>

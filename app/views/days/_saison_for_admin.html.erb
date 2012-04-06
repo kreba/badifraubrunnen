@@ -1,11 +1,18 @@
-<%= form_for @day do |f| %>
+<%= nested_form_for @day do |f_day| %>
 
-  <%= render :partial => 'shift_tr_for_admin_form', :collection => shifts, :as => :shift %>
-  
-  <tr><td style="border-left: 5px solid <%= saison.color %>">
-    <%= submit_tag t'Save' %>
-  </td></tr>
+  <%= f_day.fields_for :shifts, @day_shifts[saison] do |f_shift| %>
+        <%= f_shift.select( :shiftinfo_id, @shiftinfos[saison.name].collect {|si| [ full_descr(si, "%s, %s") , si.id ] } ) %>
+        <%= f_shift.select( :person_id, @people[saison.name].collect {|p| [ p.name, p.id ] }, :include_blank => true ) %>
+        <%= f_shift.check_box( :_destroy ) %>
+        <%= f_shift.label( :_destroy, t('days.show.destroy_shift') ) %>
+  <% end %>
 
-<% end unless shifts.nil? or shifts.empty? %>
+  <div>
+    <%= f_day.link_to_add( t('days.show.add_shift'), :shifts ) %>
+  </div>
 
-<%# TODO: allow the admin to add and remove shifts %>
+  <div>
+    <%= f_day.submit( t'Save' ) %>
+  </div>
+
+<% end if @day_shifts.has_key? saison %>

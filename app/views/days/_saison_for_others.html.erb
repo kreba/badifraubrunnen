@@ -1,3 +1,7 @@
-<%= render :partial => 'shift_tr_for_others', :collection => shifts, :as => :shift,
-           :locals => {
-             :saison => saison } %>
+<table title="<%=t 'shifts.n' %>" cellpadding="15px" cellspacing="0px">
+<%= render partial:    'shift_tr_for_others', 
+           collection: @day_shifts[saison], 
+           as:         :shift,
+           locals:     {saison: saison} 
+%>
+</table>

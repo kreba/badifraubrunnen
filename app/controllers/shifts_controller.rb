@@ -63,11 +63,9 @@ class ShiftsController < ApplicationController
     @day = @shift.day
     @week = @day.week
     
-    @people = Person.all(:order => "name").select(&:is_badiStaff?)
-    @admin_names = Person.all.select{ |p|
+    @admin_names = Person.select([:id, :name]).select{ |p|
       p.is_admin_for? @shift.saison
     }.collect(&:name).join(" #{t('or')} ")
-    @shiftinfos = Shiftinfo.all(:order => "description DESC" )
   end
 
   # PUT /shifts/1
