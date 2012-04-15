@@ -43,7 +43,7 @@ Badi2010::Application.configure do
 
   # Use a different cache store in production (defaults to :file_store)
   # RK: On Heroku, memcached must be used (which dalli does); sadly, memcache does not support fragment expiry by regexp
-  config.cache_store = :dalli_store, expires_in: 2.weeks, compress: true  # requires gem 'dalli'
+  config.cache_store = :dalli_store, {expires_in: 2.weeks, compress: true}  # requires gem 'dalli'
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
