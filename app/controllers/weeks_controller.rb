@@ -54,7 +54,7 @@ class WeeksController < ApplicationController
     @saisons = current_person.all_saisons_but_mine_first
     @week = Week.find(params[:id])
     
-    if !fragment_exist? "#{@week.key_for_cache}_plans_#{current_person.roles_key_for_cache}"
+    if !fragment_exist? "#{@week.cache_key}_plans_#{current_person.roles_key_for_cache}"
       @days = @week.days.sort_by(&:date)
       @dd = WeeksHelper::WeekPlanDisplayData.for @week
     end

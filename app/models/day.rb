@@ -5,7 +5,7 @@ class Day < ActiveRecord::Base
   # Authorization plugin
   acts_as_authorizable
 
-  belongs_to :week
+  belongs_to :week, touch: true
   has_many :shifts, dependent: :destroy
 
   accepts_nested_attributes_for :shifts, allow_destroy: true
@@ -43,9 +43,6 @@ class Day < ActiveRecord::Base
   def date_str fmt = '%A %d.%m.%Y'
     return self.date.strftime( fmt )
     # TODO: do better localization of weekday names
-  end
-  def key_for_cache
-    self.date.strftime( '%Y%m%d' )
   end
 
   # intended use: my_day.plus  1.day

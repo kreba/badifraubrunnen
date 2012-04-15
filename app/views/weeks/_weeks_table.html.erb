@@ -17,7 +17,7 @@
 
 <span id="day_tooltips">
 <% for week in @future_weeks %>
-  <% cache( :fragment => "#{week.key_for_cache}_tooltips_#{current_person.roles_key_for_cache}" ) do %>
+  <% cache( "#{week.cache_key}_tooltips_#{current_person.roles_key_for_cache}" ) do %>
 
     <% for day in week.days %>
       <%= tooltip_div(day) if day.active? %>

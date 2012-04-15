@@ -15,6 +15,9 @@ gem 'thin'
 # To use a Postgresql database
 gem 'pg'
 
+# To use memcached-based fragment caching
+gem 'dalli'
+
 # To generate images (used for the images in the weeks_table)
 gem 'rmagick'  # Requires system libraries!
 

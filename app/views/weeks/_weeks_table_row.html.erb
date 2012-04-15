@@ -1,4 +1,4 @@
-<% cache( :fragment   => "#{week.key_for_cache}_row_#{current_person.roles_key_for_cache}" ) do %>
+<% cache( "#{week.cache_key}_row_#{current_person.roles_key_for_cache}" ) do %>
 
   <tr id="<%= week_html_id(week) %>">
     <th style="padding-right: 1em;">

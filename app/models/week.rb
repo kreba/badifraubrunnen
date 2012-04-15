@@ -3,6 +3,7 @@ class Week < ActiveRecord::Base
   acts_as_authorizable #Why???
 
   has_many :days
+  # has_many :shifts, through: :days # unused
   belongs_to :person  #Wochenverantwortliche/r
 
   before_validation :assign_7_days, on: :create
@@ -45,17 +46,16 @@ class Week < ActiveRecord::Base
     ','
   end
 
-  def key_for_cache
-    "week_#{self.number}"
-  end
-  
+
   protected
+
   def all_shifts( saison ) #expecting a block
     shifts = self.days.collect{|day| day.find_shifts_by_saison(saison)}.flatten
     shifts.each{ |shift| yield(shift) }
     shifts.all?(&:save)
   end
   
+
   private
 
   def assign_7_days

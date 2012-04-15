@@ -51,6 +51,7 @@ GEM
       execjs
     coffee-script-source (1.2.0)
     daemons (1.1.8)
+    dalli (2.0.3)
     email_veracity (0.6.0)
     erubis (2.7.0)
     eventmachine (0.12.10)
@@ -126,6 +127,7 @@ PLATFORMS
 DEPENDENCIES
   authorization
   coffee-rails (~> 3.2.1)
+  dalli
   email_veracity
   nested_form (~> 0.2.0)!
   pdfkit

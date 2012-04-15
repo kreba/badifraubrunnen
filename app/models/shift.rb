@@ -3,6 +3,7 @@ class Shift < ActiveRecord::Base
   acts_as_authorizable  # Why?!
 
   belongs_to :day
+  #has_one :week, through: :day  # unused
   belongs_to :shiftinfo
   # could add  has_one :saison, through: :shiftinfo
   belongs_to :person
