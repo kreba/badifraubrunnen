@@ -1,8 +1,14 @@
 <%= nested_form_for @day do |f_day| %>
 
+  <% if @day_shifts[saison].empty? %>
+    <div>
+      <%= t('shifts.none_for_today') %>
+    </div>
+  <% end %>
+
   <%= f_day.fields_for :shifts, @day_shifts[saison] do |f_shift| %>
         <%= f_shift.select( :shiftinfo_id, @shiftinfos[saison.name].collect {|si| [ full_descr(si, "%s, %s") , si.id ] } ) %>
-        <%= f_shift.select( :person_id, @people[saison.name].collect {|p| [ p.name, p.id ] }, :include_blank => true ) %>
+        <%= f_shift.select( :person_id, @people[saison.name].collect {|p| [ p.name, p.id ] }, include_blank: true ) %>
         <%= f_shift.check_box( :_destroy ) %>
         <%= f_shift.label( :_destroy, t('days.show.destroy_shift') ) %>
   <% end %>

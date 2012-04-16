@@ -5,6 +5,5 @@
 </p>
 
 <div style="padding: 2px; border-left: 5px solid <%= saison.color %>">
-  <%= @day_shifts[saison] ? yield : t('shifts.none_for_today') %>
+  <%= yield %>
 </div>
-

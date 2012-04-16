@@ -38,6 +38,9 @@ class DaysController < ApplicationController
     @day_shifts = @day.shifts(include: :shiftinfo).group_by(&:saison)
     @day_shifts.each{|saison, shifts| shifts.sort_by!{|shift| shift.shiftinfo.begin} }
 
+    # To render the form fields partial without displaying fields for non-existing shifts.
+    current_person.admin_saisons.each{|saison| @day_shifts[saison] ||= []}
+
     if current_person.has_role? 'admin'
       @people     = Saison.staff_by_saison
       @shiftinfos = Saison.shiftinfos_by_saison
