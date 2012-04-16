@@ -39,6 +39,7 @@ class DaysController < ApplicationController
     @day_shifts.each{|saison, shifts| shifts.sort_by!{|shift| shift.shiftinfo.begin} }
 
     # To render the form fields partial without displaying fields for non-existing shifts.
+    # (We still want to render it because the link_to_add uses it as a template.)
     current_person.admin_saisons.each{|saison| @day_shifts[saison] ||= []}
 
     if current_person.has_role? 'admin'
