@@ -366,6 +366,28 @@ de_ch:
       skip_last_comma: true
 
   activerecord:
+    models:
+      day:
+        one:   Tag
+        other: Tage
+      person:
+        one:   Person
+        other: Personen
+      role:
+        one:   Rolle
+        other: Rollen
+      saison:
+        one:   Saison
+        other: Saisons
+      shift:
+        one:   Schicht
+        other: Schichten
+      shiftinfo: 
+        one:   Schichtdetails
+        other: Schichentdetails
+      week:
+        one:   Woche
+        other: Wochen
     attributes:
       person:
         <<: *person_attribute_names
@@ -377,7 +399,6 @@ de_ch:
       template:
         header: "Konnte %{model} nicht speichern: %{count} Fehler."
         body: "Bitte überprüfen Sie die folgenden Felder:"
-
       messages:
         inclusion: "ist kein gültiger Wert"
         exclusion: "ist nicht verfügbar"
@@ -399,11 +420,3 @@ de_ch:
         odd: "muss ungerade sein"
         even: "muss gerade sein"
 
-      models:
-        day: Tag
-        person: Person
-        role: Rolle
-        saison: Saison
-        shift: Schicht
-        shiftinfo: Schichtdetails
-        week: Woche
