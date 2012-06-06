@@ -1,5 +1,7 @@
 Bugfixes: 
 
+ - adapt de_ch.yaml (and view files) to new activerecord i18n strategy
+
  - Use the Rack::Cache middleware (for asset caching)?
  - PLZ-lookup wieder zum laufen bringen ("400 Bad Request" von map.search.ch)
  - DEPRECATION WARNING: ActiveSupport::Memoizable is deprecated and will be removed in future releases,simply use Ruby memoization pattern instead. (called from extend at /home/kreba/Dokumente/dev/badi2010.git/app/helpers/weeks_helper.rb:34)
@@ -8,9 +10,8 @@ Bugfixes:
  
 Noch zu implementieren:
 
- - anständige Bilder generieren (badi/kiosk nebeneinander; Schichtenhöhe und -offset abhängig von Schichtenzeiten)
+ - Hinweis auf Gemeindeseite bei (Weiterleitung aufs) Login-Formular
 
- - Änderungsantrag Hüten
  - ActionMailer
  - Feedback
 

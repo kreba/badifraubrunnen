@@ -13,13 +13,16 @@ gem 'thin'
 #gem 'foreman' # not required atm, heroku's default behaviour 'rails server' is good enough (we don't have multiple worker processes anyway)
 
 # To use a Postgresql database
+# System requirements: postgresql-9.1 postgresql-server-dev-9.1
 gem 'pg'
 
 # To use memcached-based fragment caching
+# System requirements: memcached
 gem 'dalli'
 
 # To generate images (used for the images in the weeks_table)
-gem 'rmagick'  # Requires system libraries!
+# System requirements: libmagickwand-dev
+gem 'rmagick'  
 
 # To generate PDF files from HTML
 # Requires the executable 'wkhtmltopdf' to be available

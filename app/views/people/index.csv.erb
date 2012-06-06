@@ -1,0 +1,4 @@
+<%= @csv_attributes.map{|attr| Person.human_attribute_name attr}.join(@csv_delimiter) %> 
+<% for person in @people.select{|person| current_person.administrates? person} %>
+<%= @csv_attributes.map{|attr| person.attributes[attr]}.join(@csv_delimiter) %>
+<% end %>

@@ -6,7 +6,10 @@ class PeopleController < ApplicationController
   
   # GET /people
   def index
-    @people = Person.all(:order => "name")
+    @people = Person.order('name')
+
+    @csv_attributes = %w[ name address postal_code location phone phone2 email preferences ]
+    @csv_delimiter  = ';'
   end
  
   # GET /people/new

@@ -22,21 +22,21 @@ ActiveRecord::Schema.define(:version => 20120331002609) do
   add_index "days", ["week_id"], :name => "index_days_on_week_id"
 
   create_table "people", :force => true do |t|
-    t.string   "name",                      :limit => 50
     t.string   "login",                     :limit => 20
-    t.string   "phone",                     :limit => 13
-    t.string   "email",                     :limit => 100
     t.string   "crypted_password",          :limit => 40
     t.string   "salt",                      :limit => 40
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "name",                      :limit => 50
+    t.string   "email",                     :limit => 100
+    t.string   "phone",                     :limit => 13
+    t.string   "phone2",                    :limit => 13
+    t.string   "address",                   :limit => 50
     t.integer  "postal_code"
     t.string   "location",                  :limit => 30
-    t.string   "address",                   :limit => 50
-    t.string   "phone2",                    :limit => 13
     t.string   "preferences"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   add_index "people", ["login"], :name => "index_people_on_login"
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(:version => 20120331002609) do
   create_table "people_roles", :id => false, :force => true do |t|
     t.integer  "person_id"
     t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "people_roles", ["person_id", "role_id"], :name => "index_people_roles_on_person_id_and_role_id"
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(:version => 20120331002609) do
   create_table "saisons", :force => true do |t|
     t.date     "begin"
     t.date     "end"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "name"
   end
 
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(:version => 20120331002609) do
     t.string   "description"
     t.time     "begin"
     t.time     "end"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "saison_id"
   end
 
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(:version => 20120331002609) do
     t.integer  "shiftinfo_id"
     t.integer  "person_id"
     t.boolean  "enabled",      :default => true
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "shifts", ["day_id", "shiftinfo_id"], :name => "index_shifts_on_day_id_and_shiftinfo_id"
@@ -92,8 +92,8 @@ ActiveRecord::Schema.define(:version => 20120331002609) do
   create_table "weeks", :force => true do |t|
     t.integer  "number"
     t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.string   "enabled_saisons", :limit => 3, :default => ""
   end
 
