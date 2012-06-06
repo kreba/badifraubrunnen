@@ -3,7 +3,7 @@
   <% if content_for? :additional_formats %>
   <div id="links_to_additional_formats" style="float: right;">
     <% for format in content_for(:additional_formats).split(',') do %>
-      <%= link_to image_tag(format, alt: format.upcase), params.merge(format: format) %>
+      <%= link_to format.upcase, params.merge(format: format) %>
     <% end %>
   </div>
   <% end %>
