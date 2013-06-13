@@ -6,6 +6,7 @@
 </span>
 
 <span style="<%= @dd.style_for_day_body(day) %>">
-	<%= render( :partial => 'week_plan_shift', :collection => day.find_shifts_by_saison(saison), :as => :shift,
-                :locals => { :saison => saison } )%>
+	<%= render( :partial => 'week_plan_shift', 
+              :collection => day.find_shifts_by_saison(saison), :as => :shift,
+              :locals => { :saison => saison } )%>
 </span>

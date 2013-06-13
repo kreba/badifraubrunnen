@@ -11,8 +11,7 @@ Badi2010::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  #config.action_controller.perform_caching = false
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = false
   config.cache_store = :dalli_store # keep in sync with the production env
 
   # Don't care if the mailer can't send
@@ -33,6 +32,8 @@ Badi2010::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+  
+  config.serve_static_assets = true
 
   # Expands the lines which load the assets
   config.assets.debug = true

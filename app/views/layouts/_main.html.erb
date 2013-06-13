@@ -9,7 +9,7 @@
   <% end %>
 
   <% if content_for? :title %>
-  <h1 id="page_title"><%= content_for(:title) %></h1>
+  <h1 id="page_title" class="noprint"><%= content_for(:title) %></h1>
   <% end %>
 
 	<% flash.each do |level, message| %>

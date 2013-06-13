@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.2'
 
 # Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
-gem "nested_form", "~> 0.2.0", :git => 'https://github.com/ryanb/nested_form.git'
+gem "nested_form", "~> 0.3.2", :git => 'https://github.com/ryanb/nested_form.git'
 
 # A more robust alternative to the Webrick webserver
 gem 'thin'
@@ -18,10 +18,12 @@ gem 'pg'
 
 # To use memcached-based fragment caching
 # System requirements: memcached
+# On Mac, try: brew install memcached
 gem 'dalli'
 
 # To generate images (used for the images in the weeks_table)
 # System requirements: libmagickwand-dev
+# On Mac, try: brew install imagemagick
 gem 'rmagick'  
 
 # To generate PDF files from HTML

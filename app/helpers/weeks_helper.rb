@@ -21,7 +21,7 @@ module WeeksHelper
     }
 
     if day.active?
-      options.merge :background => images_url + day.status_image_name
+      options.merge :background => image_path(day.status_image_name)
       # do something with an image_tag instead? (enables browser-side caching)
     else
       options.merge :style => "background-color:#dddddd; color:#ffffff;"
@@ -30,15 +30,22 @@ module WeeksHelper
   def week_html_id( week )
     "week_#{week.number}"
   end
+  def cell_link_to( text, target = {}, padding = "5px 3px" )
+      link_to( 
+        content_tag(:span, 
+          text, {:style => "width: 100%; height: inherit; margin: #{padding};"}),
+        target, {:style => "width: #{WeekPlanDisplayData::DAY_WIDTH}px; height: inherit; display: table-cell; vertical-align: middle;", class: 'noprint'} )
+  end
+    
   class WeekPlanDisplayData
     extend ActiveSupport::Memoizable ## TODO: deprecated. 
     # DEPRECATION WARNING: ActiveSupport::Memoizable is deprecated and will be removed in future releases,simply use Ruby memoization pattern instead.
 
-    @@hour_height   = 24
-    @@header_height = 35
-    @@day_width     = 125
-    @@time_height   = 20  #css: height=17px + 2*border=2px
-    @@time_width    = 50 + 5
+    HEADER_HEIGHT = 35
+    SHIFT_HEIGHT  = 120
+    DAY_WIDTH     = 125
+    TIME_HEIGHT   = 20  #css: height=17px + 2*border=2px
+    TIME_WIDTH    = 50 + 5
     
     attr_accessor :week
 
@@ -72,29 +79,29 @@ module WeeksHelper
     end
     def style_for_day( saison )
       "position: relative; 
-       height:   #{@@header_height + self.day_height(saison)}px;
+       height:   #{HEADER_HEIGHT + self.day_height(saison)}px;
        margin:   2em 0em;"
     end
     def style_for_day_header( day )
       "position: absolute; 
        left:     #{self.h_offset(day.date.wday)}px;
-       width:    #{@@day_width}px;
+       width:    #{DAY_WIDTH}px;
        top:      0px;
-       height:   #{@@header_height - 3}px;
+       height:   #{HEADER_HEIGHT - 3}px;
        text-align: center;"
     end
     def style_for_day_body( day )
       "position: absolute; 
        left:     #{self.h_offset(day.date.wday)}px;
-       width:    #{@@day_width}px;
-       top:      #{@@header_height}px; "
+       width:    #{DAY_WIDTH}px;
+       top:      #{HEADER_HEIGHT}px; "
     end
     def style_for_shift( shift )
       si = shift.shiftinfo
       v_offset = self.v_offset(si.description, si.begin)
 
-      top    = v_offset                         - 1 #border
-      height = self.time2pixels(shift.duration) - 1 #border
+      top    = v_offset     - 1 #border
+      height = SHIFT_HEIGHT - 1 #border
       bg_color = shift.free? ? shift.saison.color : "#eeeeee"
 
       "top:        #{top}px;
@@ -104,18 +111,18 @@ module WeeksHelper
 
 
     def begin_times( saison, side )
-      begin_times = (self.toptops(saison, side).reject {|time, top| self.toptops(saison, side).values.detect {|x| x - top > 0 and x - top < @@time_height } }).keys
-      return begin_times.reject {|t| self.end_times(saison, side).detect {|x| x - t > 0 and x - t < @@time_height} }
+      begin_times = (self.toptops(saison, side).reject {|time, top| self.toptops(saison, side).values.detect {|x| x - top > 0 and x - top < TIME_HEIGHT } }).keys
+      return begin_times.reject {|t| self.end_times(saison, side).detect {|x| x - t > 0 and x - t < TIME_HEIGHT} }
     end
     def end_times( saison, side )
-      end_times = (self.endtops(saison, side).reject {|time, top| self.endtops(saison, side).values.detect {|x| top - x > 0 and top - x < @@time_height } }).keys
+      end_times = (self.endtops(saison, side).reject {|time, top| self.endtops(saison, side).values.detect {|x| top - x > 0 and top - x < TIME_HEIGHT } }).keys
       return end_times
     end
     def toptops( saison, side )
       toptops = {}
       self.shifts_by(saison, side).each {|shift|
           si = shift.shiftinfo
-          toptops[si.begin] ||= @@header_height + self.v_offset(si.description, si.begin)
+          toptops[si.begin] ||= HEADER_HEIGHT + self.v_offset(si.description, si.begin) 
         } 
       toptops
     end
@@ -123,12 +130,12 @@ module WeeksHelper
       endtops = {}
         self.shifts_by(saison, side).each{ |shift|
           si = shift.shiftinfo
-          endtops[si.end] ||= @@header_height + self.v_offset(si.description, si.end) - @@time_height
+          endtops[si.end] ||= HEADER_HEIGHT + SHIFT_HEIGHT + self.v_offset(si.description, si.end) - TIME_HEIGHT
         }
       endtops
     end
     def shifts_by( saison, side )
-      day = side == :left ? self.week.days.first : (side == :right ? self.week.days.last : raise('no such side'))
+      day = side == :left ? self.week.days.first : (side == :right ? self.week.days.last : raise('No such side. Use :left or :right.'))
       day.find_shifts_by_saison(saison)
     end
     memoize :begin_times, :end_times, :toptops, :endtops, :shifts_by
@@ -137,23 +144,30 @@ module WeeksHelper
     def day_height( saison )
       case saison.name
       when "badi"
-        17.5 * @@hour_height
+        4.3 * SHIFT_HEIGHT
       when "kiosk"
-        10 * @@hour_height
+        3   * SHIFT_HEIGHT
       end
     end
     def h_offset_day_count( number_of_days )
-      @@time_width + number_of_days * (@@day_width + 5)
+      TIME_WIDTH + number_of_days * (DAY_WIDTH + 5)
     end
     def v_offset( shiftinfo_description , time )
-      time_offset = self.time2pixels(time.seconds_since_midnight)
-      pikett_offset = shiftinfo_description.eql?("Pikett") ? -0.5*@@hour_height : -9.5*@@hour_height
-      time_offset + pikett_offset
-    end
-    def time2pixels( seconds )
-      (@@hour_height * seconds.to_f/1.hour.to_f).round
+      case shiftinfo_description 
+      when 'Morgen'
+          return 0
+        when 'Nachmittag'
+          return 1   * SHIFT_HEIGHT
+        when 'Abend'
+          return 2   * SHIFT_HEIGHT
+        when 'Pikett'
+          return 3.3 * SHIFT_HEIGHT
+        else 
+          raise 'Dunno how to display a shift with a "#{shiftinfo_description}" shiftinfo'
+      end
     end
     memoize :day_height, :h_offset_day_count, :v_offset
+    
     private  # disable the default constructor
     def self.new
       super

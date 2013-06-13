@@ -42,7 +42,7 @@ div.flash {
     height: 120px; /* so the picture fits in well, but don't waiste more space than necessary */
 }
 #banner h1 {
-	margin: 0.45em; /* less than usual, to fit inside 120px */
+	  margin: 0.45em; /* less than usual, to fit inside 120px */
 }
 #banner img {
     float: left;
@@ -196,13 +196,20 @@ span.week_plan_shift {
     margin: 0;
 }
 span.week_plan_shift .person_name {
+    line-height: 1.2em;
+}
+span.week_plan_shift .person_phone_numbers {
+    line-height: normal;
+    font-size: smaller;
+}
+/*span.week_plan_shift .person_name {
     line-height: 1.5em;
     margin-bottom: 0px;
 }
 span.week_plan_shift .person_phone_numbers {
     font-size: x-small;
 }
-a.block {
+*/a.block {
     display: block;
     width: inherit;
     height: inherit;
@@ -229,21 +236,19 @@ tr.even {
 */
 @media print {
 
-    #banner, #side, #footer, #page_title, #bottom_navi {
+    .noprint {
         display: none !important;
+    }
+
+    #container, #banner, #main {
+        border: none;
     }
 
     #main {
         margin: 0;
-        /* padding: 0; */
-        border: none;
     }
-
-    span.week_plan_shift .person_name {
-        line-height: 1.2em;
-    }
-    span.week_plan_shift .phone_numbers {
-        line-height: normal;
-        font-size: smaller;
+    
+    a {
+      color: black;
     }
 }
