@@ -3,6 +3,7 @@
 config/database.yml
 \.conflict\~$
 public/images
+app/assets/images/day_status_*
 log/*$
 \.orig\..*$
 \.orig$
