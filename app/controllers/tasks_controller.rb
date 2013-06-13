@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   cache_sweeper :week_sweeper, :only => [:imagine] 
 
   # Deprecated. Heroku has a read-only file system. 
-  # In order for this to make sense again, I'd have to switch to static asset caching (stores the generated images in runtime memory).
+  # In order for this to make sense again, I'd have to switch to static asset caching (stores the generated images in runtime memory; Rails app serves them itself; not recommended in production).
   # POST tasks/imagine
   def imagine
     Day.all.each(&:create_status_image)

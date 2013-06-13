@@ -122,7 +122,7 @@ module WeeksHelper
       toptops = {}
       self.shifts_by(saison, side).each {|shift|
           si = shift.shiftinfo
-          toptops[si.begin] ||= HEADER_HEIGHT + self.v_offset(si.description, si.begin) 
+          toptops[si.begin] ||= HEADER_HEIGHT + self.v_offset(si.description, si.begin) - 1
         } 
       toptops
     end
