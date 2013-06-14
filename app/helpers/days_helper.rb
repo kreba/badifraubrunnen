@@ -2,7 +2,7 @@ module DaysHelper
   def sample_image
     require 'RMagick'
     
-    # Demonstrate the GradientFill class
+    # Demonstrate the GradientFill class # TODO: that does not belong here
     
     rows = 100
     cols = 300

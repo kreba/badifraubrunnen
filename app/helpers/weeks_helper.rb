@@ -20,7 +20,7 @@ module WeeksHelper
 # the html tooltips appear and look nice, but they don't disappear any more!
     }
 
-    if day.active?
+    if day.timely_active?
       options.merge :background => image_path(day.status_image_name)
       # do something with an image_tag instead? (enables browser-side caching)
     else

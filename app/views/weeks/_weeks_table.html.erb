@@ -20,7 +20,7 @@
   <% cache( "#{week.cache_key}_tooltips_#{current_person.roles_key_for_cache}" ) do %>
 
     <% for day in week.days %>
-      <%= tooltip_div(day) if day.active? %>
+      <%= tooltip_div(day) if day.timely_active? %>
     <% end %>
 
   <% end %>

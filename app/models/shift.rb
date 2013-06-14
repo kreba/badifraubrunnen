@@ -1,4 +1,10 @@
 class Shift < ActiveRecord::Base
+  STATUS_CHARS = {
+    free:     'F',
+    taken:    'T',
+    disabled: '0'
+  }
+  
   # Authorization plugin
   acts_as_authorizable  # Why?!
 
@@ -17,12 +23,6 @@ class Shift < ActiveRecord::Base
 #  attr_readonly :day
   delegate :saison, :saison=, :times_str,  :to => :shiftinfo  # :allow_nil => true
 
-  def free?
-    return person.nil?
-  end
-  def forget_person!
-    self.person = nil
-  end
 
   def time_to_begin
     return shiftinfo.begin.seconds_since_midnight
@@ -34,12 +34,39 @@ class Shift < ActiveRecord::Base
     return time_to_end - time_to_begin
   end
 
-  def active?
-    !self.day.date.past? &&
-    self.day.date.between?(self.saison.begin, self.saison.end)
+  def status_str
+    saison_char + status_char
   end
+  def saison_char
+    saison.name.chars.first.downcase
+  end
+  def status_char
+    if !free?
+      STATUS_CHARS[:taken]
+    elsif !enabled? || !timely_active?
+      STATUS_CHARS[:disabled]
+    else
+      STATUS_CHARS[:free]
+    end
+  end
+
+  def disabled?
+    !enabled?
+  end
+  def free?
+    person_id.nil?
+  end
+  def forget_person!
+    update_attribute :person, nil
+  end
+  
+  def timely_active?
+    !day.date.past? &&
+    day.date.between?(saison.begin, saison.end)
+  end
+  
   def can_staff_sign_up?
-    self.enabled? and self.free? and self.active?
+    enabled? and free? and timely_active?
   end
 
   protected
