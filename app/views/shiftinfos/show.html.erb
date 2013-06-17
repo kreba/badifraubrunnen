@@ -1,4 +1,4 @@
-<% content_for :title, @title = t('shiftinfos.show.title', :description => full_descr(@shiftinfo)) %>
+<% content_for :title, @title = t('shiftinfos.show.title', description: full_descr(@shiftinfo)) %>
 <% content_for :dynamic_links_for_admin do %>
 	<%= navigation_link t('shiftinfos.edit.title') , edit_shiftinfo_path(@shiftinfo) %>
 	<%= navigation_link t('shiftinfos.new.title') , new_shiftinfo_path %>

@@ -1,15 +1,13 @@
 class Shiftinfo < ActiveRecord::Base
-  # Authorization plugin
-  #acts_as_authorizable  #  TODO: Why should it??
 
   belongs_to :saison
   has_many :shifts
   
-  # after_update :update_status_image_of_all_days_of_associated_shifts
+  # after_update :update_status_image_of_all_days_of_associated_shifts # obsolete on heroku
 
   validates_presence_of :saison
   validates_presence_of :description, :begin, :end
-  validates_length_of :description, :within => 1..10
+  validates_length_of :description, within: 1..10
   
 #  attr_accessible :description, :begin, :end, :shifts
 #  attr_protected :saison

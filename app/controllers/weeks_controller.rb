@@ -1,22 +1,22 @@
 class WeeksController < ApplicationController
   
-  before_filter :only => [:new, :create]  do |c| c.restrict_access 'webmaster' end
-  before_filter :only => [:enable, :disable]  do |c| c.restrict_access 'admin' end
+  before_filter only: [:new, :create]  do |c| c.restrict_access 'webmaster' end
+  before_filter only: [:enable, :disable]  do |c| c.restrict_access 'admin' end
   # TODO: somehow prevent staff people from overwriting the inscription
-  cache_sweeper :week_sweeper, :only => [:enable, :disable, :edit, :update, :destroy]
+  cache_sweeper :week_sweeper, only: [:enable, :disable, :edit, :update, :destroy]
   
   # GET /weeks
   # GET /weeks.xml
   def index
     @saisons = current_person.all_saisons_but_mine_first
-    @weeks = Week.all( :order => "number" ) 
+    @weeks = Week.all( order: "number" ) 
     # no eager loading required; in 'past?', the date is calculated from the number, not from the related days.
     @past_weeks   = @weeks.select(&:past?)
     @future_weeks = @weeks.reject(&:past?)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @weeks }
+      format.xml  { render xml: @weeks }
     end
   end
   
@@ -27,7 +27,7 @@ class WeeksController < ApplicationController
     
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @week }
+      format.xml  { render xml: @week }
     end
   end
   
@@ -40,10 +40,10 @@ class WeeksController < ApplicationController
       if @week.save 
         flash[:notice] = t'weeks.create.success'
         format.html { redirect_to(@week) }
-        format.xml  { render :xml => @week, :status => :created, :location => @week }
+        format.xml  { render xml: @week, status: :created, location: @week }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @week.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.xml  { render xml: @week.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,7 +61,7 @@ class WeeksController < ApplicationController
   
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @week }
+      format.xml  { render xml: @week }
     end
   end
   
@@ -70,7 +70,7 @@ class WeeksController < ApplicationController
     @saison = Saison.find_by_name("badi")  # TODO: SUPPORT MULTIPLE (>2) SAISONS
     @admin_names = Saison.admins_by_saison[@saison.name].collect(&:name)
     @week = Week.find(params[:id])
-    @people = Person.all(:order => "name").select{ |p| p.is_staff_for? @saison }
+    @people = Person.all(order: "name").select{ |p| p.is_staff_for? @saison }
   end
   
   # PUT /weeks/1
@@ -85,8 +85,8 @@ class WeeksController < ApplicationController
         #format.html { redirect_to(@week) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @week.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.xml  { render xml: @week.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -114,7 +114,7 @@ class WeeksController < ApplicationController
     @dd = WeeksHelper::WeekPlanDisplayData.for @week
     @printout = true
 
-    render( :template => 'weeks/_week_plan', :layout => 'popup', :locals => {:saison => @saison} )
+    render( template: 'weeks/_week_plan', layout: 'popup', locals: {saison: @saison} )
   end
 
   # POST /weeks/1/enable
@@ -123,7 +123,7 @@ class WeeksController < ApplicationController
     @saison = Saison.find_by_name(params[:saison_name])
 
     @week.enable(@saison)
-    flash[:notice] = t 'weeks.enable.success', :number => @week.number
+    flash[:notice] = t 'weeks.enable.success', number: @week.number
     redirect_back_or_default(weeks_path)
   end
   # POST /weeks/1/disable
@@ -132,7 +132,7 @@ class WeeksController < ApplicationController
     @saison = Saison.find_by_name(params[:saison_name])
 
     @week.disable(@saison)
-    flash[:notice] = t 'weeks.disable.success', :number => @week.number
+    flash[:notice] = t 'weeks.disable.success', number: @week.number
     redirect_back_or_default(weeks_path)
   end
 

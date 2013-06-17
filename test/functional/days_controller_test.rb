@@ -14,30 +14,30 @@ class DaysControllerTest < ActionController::TestCase
 
   def test_should_create_day
     assert_difference('Day.count') do
-      post :create, :day => { }
+      post :create, day: { }
     end
 
     assert_redirected_to day_path(assigns(:day))
   end
 
   def test_should_show_day
-    get :show, :id => days(:one).id
+    get :show, id: days(:one).id
     assert_response :success
   end
 
   def test_should_get_edit
-    get :edit, :id => days(:one).id
+    get :edit, id: days(:one).id
     assert_response :success
   end
 
   def test_should_update_day
-    put :update, :id => days(:one).id, :day => { }
+    put :update, id: days(:one).id, day: { }
     assert_redirected_to day_path(assigns(:day))
   end
 
   def test_should_destroy_day
     assert_difference('Day.count', -1) do
-      delete :destroy, :id => days(:one).id
+      delete :destroy, id: days(:one).id
     end
 
     assert_redirected_to days_path

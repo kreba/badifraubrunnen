@@ -29,8 +29,8 @@ module DaysHelper
   end
 
   def tooltip_div( day )
-    content_tag(:div, html_tooltip_for(day), :id => tooltip_id(day),
-      :class => "xstooltip", :style => "margin: 0px; padding: 0px;")
+    content_tag(:div, html_tooltip_for(day), id: tooltip_id(day),
+      class: "xstooltip", style: "margin: 0px; padding: 0px;")
   end
   def tooltip_id( day )
     "tooltip_#{day.date_str("%Y-%m-%d")}"
@@ -38,7 +38,7 @@ module DaysHelper
   def html_tooltip_for( day )
     all_shifts = day.shifts.group_by(&:saison)
     all_shifts.keys.sort.collect{ |saison|
-      content_tag(:div, :style => "padding: 3px; background-color: #{saison.color};" ) do
+      content_tag(:div, style: "padding: 3px; background-color: #{saison.color};" ) do
         content_tag(:strong, I18n.t("saisons.#{saison.name}")) + "<br />".html_safe +
         (day.enabled?(saison) ? 
           html_tooltip_shifts(all_shifts[saison]) : 

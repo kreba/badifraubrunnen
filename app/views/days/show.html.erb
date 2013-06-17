@@ -1,7 +1,7 @@
-<% content_for :title, @title = t('days.show.title', :date_str => @day.date_str) %>
+<% content_for :title, @title = t('days.show.title', date_str: @day.date_str) %>
 <% content_for :navigation_links do %>
   <%= navigation_link t('weeks.show.title'), @week %>
-  <%= render( :partial => 'day_jumper', :object => @day ) %><%# :as => :day does not work (collections only)%>
+  <%= render( partial: 'day_jumper', object: @day ) %><%# as: :day does not work (collections only)%>
 <% end %>
 
 

@@ -1,20 +1,20 @@
 class ShiftsController < ApplicationController
   
-  before_filter :only => :index do |c| c.restrict_access 'admin' end
-  before_filter :only => [:new, :create] do |c| c.restrict_access 'webmaster' end
-  before_filter :future_required, :only => [:edit, :update]
-  cache_sweeper :week_sweeper, :only => [:edit, :update, :create, :destroy]
+  before_filter only: :index do |c| c.restrict_access 'admin' end
+  before_filter only: [:new, :create] do |c| c.restrict_access 'webmaster' end
+  before_filter :future_required, only: [:edit, :update]
+  cache_sweeper :week_sweeper, only: [:edit, :update, :create, :destroy]
 
   # GET /shifts
   # GET /shifts.xml
   def index
-    @shifts = Shift.all(:include => [:day, :shiftinfo]).select{|s| current_person.is_admin_for? s.shiftinfo.saison }.sort_by {|s| s.day.date}
+    @shifts = Shift.all(include: [:day, :shiftinfo]).select{|s| current_person.is_admin_for? s.shiftinfo.saison }.sort_by {|s| s.day.date}
     # the eager loading of days and shiftinfos reduces the amount of database accesses while rendering the list
     # (but i think does not fasten it up, because larger amounts of data are fetched)
     
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @shifts }
+      format.xml  { render xml: @shifts }
     end
   end
 
@@ -27,7 +27,7 @@ class ShiftsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @shift }
+      format.xml  { render xml: @shift }
     end
   end
 
@@ -40,10 +40,10 @@ class ShiftsController < ApplicationController
       if @shift.save
         flash[:notice] = t'shifts.create.success'
         format.html { redirect_to(@shift) }
-        format.xml  { render :xml => @shift, :status => :created, :location => @shift }
+        format.xml  { render xml: @shift, status: :created, location: @shift }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @shift.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.xml  { render xml: @shift.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,7 +53,7 @@ class ShiftsController < ApplicationController
     @shift = Shift.find(params[:id])
 
     respond_to do |format|
-      format.xml  { render :xml => @shift }
+      format.xml  { render xml: @shift }
     end
   end
 
@@ -88,8 +88,8 @@ class ShiftsController < ApplicationController
         format.html { redirect_to( week_path(@week) ) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @shift.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.xml  { render xml: @shift.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -114,8 +114,8 @@ class ShiftsController < ApplicationController
     logger.debug( "Numer of shifts to display for person #{current_person.name}: #{@shifts.size.to_s}" )
     
     respond_to do |format|
-      format.html { render :action => 'index' }
-      format.xml  { render :xml => @shifts }
+      format.html { render action: 'index' }
+      format.xml  { render xml: @shifts }
     end
   end
   

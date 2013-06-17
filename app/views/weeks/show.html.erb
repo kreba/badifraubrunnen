@@ -1,11 +1,11 @@
-<% content_for( :title, t('weeks.week_plan.title', :wnum => @week.number) )%>
+<% content_for( :title, t('weeks.week_plan.title', wnum: @week.number) )%>
 <% content_for :dynamic_links_for_admin do %>
   <%= navigation_link t('weeks.new.title'), new_week_path %>
 <% end %>
 
 <% cache( "#{@week.cache_key}_plans_#{current_person.roles_key_for_cache}" ) do %>
 
-  <%= render( :partial => 'week_jumper' )%>
+  <%= render( partial: 'week_jumper' )%>
 
   <% for @saison in @saisons %>
 
@@ -13,11 +13,11 @@
       <h2><%=t "saisons.#{@saison.name}" %></h2>
     <% end %>
 
-    <%= render( :partial => 'week_plan', :locals => {:saison => @saison} )%>
+    <%= render( partial: 'week_plan', locals: {saison: @saison} )%>
     
     <%= link_to( t('weeks.show.printout'),
-      { :action => "render_week_plan", :id => @week, :saison_id => @saison },
-      { :class => 'noprint', :popup => true } )%>
+      { action: "render_week_plan", id: @week, saison_id: @saison },
+      { class: 'noprint', popup: true } )%>
       
     <h2><br /></h2>
 

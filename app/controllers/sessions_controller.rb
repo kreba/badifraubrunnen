@@ -1,8 +1,8 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
 
-  skip_before_filter :login_required, :only => [:new, :create]
-  before_filter :only => :act_as do |c| c.restrict_access 'webmaster' end
+  skip_before_filter :login_required, only: [:new, :create]
+  before_filter only: :act_as do |c| c.restrict_access 'webmaster' end
 
   # GET /sessions/new  (render login page)
   def new 
@@ -14,13 +14,13 @@ class SessionsController < ApplicationController
     if logged_in?
       if params[:remember_me] == "1"
         current_person.remember_me unless current_person.remember_token?
-        cookies[:auth_token] = { :value => self.current_person.remember_token , :expires => self.current_person.remember_token_expires_at }
+        cookies[:auth_token] = { value: self.current_person.remember_token , expires: self.current_person.remember_token_expires_at }
       end
       flash[:notice] = t('sessions.create.access_granted')
       redirect_back_or_default(root_path)
     else
       flash.now[:error] = t('sessions.create.access_denied')
-      render :action => 'new'
+      render action: 'new'
     end
   end
 

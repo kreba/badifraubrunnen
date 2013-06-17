@@ -4,8 +4,8 @@
 <div class="week_jumper noprint">
   <%= link_to_unless( before.nil?, "←", before ) %>
 
-  <% for week in Week.all(:order => "number") %>
-    <%= link_to_unless_current( content_tag(:span, week.number ), week, :class => "jumplink" )%>
+  <% for week in Week.all(order: "number") %>
+    <%= link_to_unless_current( content_tag(:span, week.number ), week, class: "jumplink" )%>
   <% end %>
 
 <%= link_to_unless( after.nil?, "→", after ) %>

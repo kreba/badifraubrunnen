@@ -14,17 +14,17 @@
 		<%= f.text_field( :address )%></p>
 
 		<p><label for="postal_code"><%=t 'person.attributes.postal_code' %></label>/<label for="location"><%=t 'person.attributes.location' %></label><br />
-		<%= f.text_field( :postal_code, :size =>  5 )%>
-		<span id="location_field_container"><%= f.text_field( :location, :size => 21 )%></span></p>
+		<%= f.text_field( :postal_code, size:  5 )%>
+		<span id="location_field_container"><%= f.text_field( :location, size: 21 )%></span></p>
 
 		<%= observe_field( 'person_postal_code',  ## This does not work anymore with Rails3 :(  TODO: fix this
-						:url => { :action => :find_location },
-						:frequency => 0.5,
-						:with => "'zip='+escape(value)" )%>
+						url: { action: :find_location },
+						frequency: 0.5,
+						with: "'zip='+escape(value)" )%>
 		
 		<% if current_person.has_role? 'admin' %>
 			<p><label for="preferences"><%=t 'people.preferences_label' %></label><br />
-			<%= f.text_field( :preferences, :rows => 4, :size => 67 )%></p>
+			<%= f.text_field( :preferences, rows: 4, size: 67 )%></p>
 		<% end %>
 
 	</div><div style="float: left; margin-right: 2em;">

@@ -22,7 +22,7 @@
       <% if current_person.administrates? person %><br />
         <span class="person_actions">
           <%= link_to t('Edit'), edit_person_path(person) %>
-          <%= link_to t('Delete'), person, :method => :delete, :confirm => t('people.destroy.confirm', :person_name => person.name) %>
+          <%= link_to t('Delete'), person, method: :delete, confirm: t('people.destroy.confirm', person_name: person.name) %>
         </span>
       <% elsif current_person == person %><br />
         <span class="person_actions">
@@ -39,8 +39,8 @@
     <td></td>
   <% end %>
 <% end %>
-    <td class="phone"><%= phone_str(person, :delimiter => '<br />') %></td>
-    <td><%= render( :partial => 'address_link_if_complete', :locals => { :person => person }, :title => t('people.show_map') )%></td>
+    <td class="phone"><%= phone_str(person, delimiter: '<br />') %></td>
+    <td><%= render( partial: 'address_link_if_complete', locals: { person: person }, title: t('people.show_map') )%></td>
   </tr>
 <% end %>
 </table>

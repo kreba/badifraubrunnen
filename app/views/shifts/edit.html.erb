@@ -1,7 +1,7 @@
-<% content_for :title, @title = t('shifts.edit.title', :shift => @shift.shiftinfo.description, :date => @day.date_str) %>
+<% content_for :title, @title = t('shifts.edit.title', shift: @shift.shiftinfo.description, date: @day.date_str) %>
 <% content_for :navigation_links do %>
   <%= navigation_link t('weeks.show.title'), @week %>
-  <%= navigation_link t('days.show.title', :date_str => @day.date_str), @day %>
+  <%= navigation_link t('days.show.title', date_str: @day.date_str), @day %>
 <% end %>
 
 
@@ -12,15 +12,15 @@
 <% else %>
   <%= form_for(@shift) do |f| %>
     <h2><%=t 'shifts.edit.general_advice' %></h2>
-    <%= f.hidden_field :person_id, :value => current_person.id %>
+    <%= f.hidden_field :person_id, value: current_person.id %>
     <%= f.hidden_field :shiftinfo_id %>
     <p>
       <%= f.submit t'Save' %><br />
     </p>
   <% end %>
   <p><br /><em>
-      <%= t('shifts.edit.warning', :admin_names => @admin_names).html_safe %><br />
-      <%= link_to( t('help.contact.title') , :controller => 'help', :action => 'contact' )%><br />
+      <%= t('shifts.edit.warning', admin_names: @admin_names).html_safe %><br />
+      <%= link_to( t('help.contact.title') , controller: 'help', action: 'contact' )%><br />
       <br />
       <%=t 'abort_with_backbutton' %>
   </em></p>

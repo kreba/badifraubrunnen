@@ -5,7 +5,7 @@
 
   <h3><%=t 'navigation' %></h3>
   <% if logged_in? %>
-    <%= render :partial => 'layouts/navigation_for_members' %>
+    <%= render partial: 'layouts/navigation_for_members' %>
   <% else %>
     <ul>
       <%= navigation_link_unless_current( t('sessions.login'), login_path )%>

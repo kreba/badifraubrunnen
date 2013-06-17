@@ -21,7 +21,7 @@ class Shift < ActiveRecord::Base
   attr_protected :enabled
 #  attr_accessible :person, :shiftinfo
 #  attr_readonly :day
-  delegate :saison, :saison=, :times_str,  :to => :shiftinfo  # :allow_nil => true
+  delegate :saison, :saison=, :times_str,  to: :shiftinfo  # allow_nil: true
 
 
   def time_to_begin

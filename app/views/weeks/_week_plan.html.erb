@@ -3,11 +3,11 @@
 
   <h2 style="margin-bottom: 5px;">
     <%=t( 'weeks.week_plan.caption',
-          :begin_date => h(@days.first.date_str "%d.%m."),
-          :end_date => h(@days.last.date_str "%d.%m.%Y"))%>
+          begin_date: h(@days.first.date_str "%d.%m."),
+          end_date: h(@days.last.date_str "%d.%m.%Y"))%>
   </h2>
 
-  <%= if saison.name.eql? "badi"; render( :partial => 'week_plan_responsability', :locals => {:saison => saison} ); end %>
+  <%= if saison.name.eql? "badi"; render( partial: 'week_plan_responsability', locals: {saison: saison} ); end %>
 
   <% @days.each do |day| %>
     <% unless content_for?("day_header_#{day.date.wday}") %>
@@ -19,9 +19,9 @@
   <% end %>
 
   <div style="<%= @dd.style_for_day( saison ) %>">
-    <%= render( :partial => 'week_plan_times', :locals => { :saison => saison, :side => :left } )%>
-    <%= render( :partial => 'week_plan_day',   :locals => { :saison => saison }, :collection => @days, :as => :day )%>
-    <%= render( :partial => 'week_plan_times', :locals => { :saison => saison, :side => :right } )%>
+    <%= render( partial: 'week_plan_times', locals: { saison: saison, side: :left } )%>
+    <%= render( partial: 'week_plan_day',   locals: { saison: saison }, collection: @days, as: :day )%>
+    <%= render( partial: 'week_plan_times', locals: { saison: saison, side: :right } )%>
   </div>
 
   <% if @printout %>

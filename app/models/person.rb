@@ -13,23 +13,23 @@ class Person < ActiveRecord::Base
   #before_create :make_activation_code
   after_destroy :free_all_shifts
 
-  validates_uniqueness_of   :name, :login, :case_sensitive => false
+  validates_uniqueness_of   :name, :login, case_sensitive: false
   validates_presence_of     :name, :login, :phone
-  validates_presence_of     :password,                   :if => :password_required?
-  validates_presence_of     :password_confirmation,      :if => :password_required?
-  validates_confirmation_of :password,                   :if => :password_required?
-  validates_length_of       :password, :within => 4..40, :if => :password_required?
-  validates_length_of       :name,     :within => 3..50
-  validates_length_of       :login,    :within => 3..20
-  validates_length_of       :email,    :maximum => 100,                                      :allow_blank => true
-  validates_length_of       :address,  :maximum =>  50,                                      :allow_blank => true
-  validates_length_of       :location, :maximum =>  30,                                      :allow_blank => true
-  validates_format_of       :postal_code, :with => /\A([1-9][0-9]{3})\Z/,                    :allow_blank => true, :message => I18n.translate('person.invalid_zip')
-  validates_format_of       :phone2, :with => /\A(0[1-9]{2} [0-9]{3} [0-9]{2} [0-9]{2})\Z/i, :allow_blank => true, :message => I18n.translate('person.invalid_phone')
-  validates_format_of       :phone,  :with => /\A(0[1-9]{2} [0-9]{3} [0-9]{2} [0-9]{2})\Z/i,                       :message => I18n.translate('person.invalid_phone')
+  validates_presence_of     :password,                   if: :password_required?
+  validates_presence_of     :password_confirmation,      if: :password_required?
+  validates_confirmation_of :password,                   if: :password_required?
+  validates_length_of       :password, within: 4..40, if: :password_required?
+  validates_length_of       :name,     within: 3..50
+  validates_length_of       :login,    within: 3..20
+  validates_length_of       :email,    maximum: 100,                                      allow_blank: true
+  validates_length_of       :address,  maximum:  50,                                      allow_blank: true
+  validates_length_of       :location, maximum:  30,                                      allow_blank: true
+  validates_format_of       :postal_code, with: /\A([1-9][0-9]{3})\Z/,                    allow_blank: true, message: I18n.translate('person.invalid_zip')
+  validates_format_of       :phone2, with: /\A(0[1-9]{2} [0-9]{3} [0-9]{2} [0-9]{2})\Z/i, allow_blank: true, message: I18n.translate('person.invalid_phone')
+  validates_format_of       :phone,  with: /\A(0[1-9]{2} [0-9]{3} [0-9]{2} [0-9]{2})\Z/i,                       message: I18n.translate('person.invalid_phone')
 
   # Uses Carsten Nielsen's email_veracity gem (see lib/EmailVeracityValidator.rb)
-  validates :email, :email_veracity => true
+  validates :email, email_veracity: true
   
   # Virtual attribute for the unencrypted password
   attr_accessor :password
@@ -41,7 +41,7 @@ class Person < ActiveRecord::Base
   # :shifts is protected because it is not on this list.
 
   def full_address_str( options = {} )
-    options.reverse_merge! :delimiter => ', '
+    options.reverse_merge! delimiter: ', '
     str = ""
     str << address unless !address  # must append instead of a direct assignment in order to get a copy
     str << (str.empty? ? "" : options[:delimiter]) + postal_code.to_s if postal_code
@@ -121,10 +121,10 @@ class Person < ActiveRecord::Base
     self.roles.all(include: :authorizable).collect(&:authorizable).flatten.uniq.compact.sort_by(&:name)
   end
   def all_saisons_but_mine_first
-    my_saisons | Saison.all(:order => :name)
+    my_saisons | Saison.all(order: :name)
   end
   def unrelated_saisons
-    Saison.all(:order => :name) - my_saisons
+    Saison.all(order: :name) - my_saisons
   end
   def admin_saisons
     is_admin_for_what.sort_by(&:name)
@@ -134,7 +134,7 @@ class Person < ActiveRecord::Base
   end
 
   def self.find_by_role role_name
-    roles = Role.find_all_by_name(role_name, :include => :people)
+    roles = Role.find_all_by_name(role_name, include: :people)
     roles.collect{ |role| role.people }.flatten.uniq.sort_by(&:name)
   end
 

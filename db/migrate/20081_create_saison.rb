@@ -19,7 +19,7 @@ class CreateSaison < ActiveRecord::Migration
       t.belongs_to :day
       t.references :shiftinfo
       t.references :person
-      t.boolean :enabled, :default => true
+      t.boolean :enabled, default: true
 
       t.timestamps
     end

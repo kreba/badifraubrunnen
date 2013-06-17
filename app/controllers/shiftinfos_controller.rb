@@ -9,7 +9,7 @@ class ShiftinfosController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @shiftinfos }
+      format.xml  { render xml: @shiftinfos }
     end
   end
 
@@ -20,7 +20,7 @@ class ShiftinfosController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @shiftinfo }
+      format.xml  { render xml: @shiftinfo }
     end
   end
 
@@ -38,10 +38,10 @@ class ShiftinfosController < ApplicationController
       if @shiftinfo.save
         flash[:notice] = t'shiftinfos.create.success'
         format.html { redirect_to shiftinfos_path }
-        format.xml  { render :xml => @shiftinfo, :status => :created, :location => @shiftinfo }
+        format.xml  { render xml: @shiftinfo, status: :created, location: @shiftinfo }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @shiftinfo.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.xml  { render xml: @shiftinfo.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,7 +53,7 @@ class ShiftinfosController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @shiftinfo }
+      format.xml  { render xml: @shiftinfo }
     end
   end
 
@@ -73,8 +73,8 @@ class ShiftinfosController < ApplicationController
         format.html { redirect_to shiftinfos_path }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @shiftinfo.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.xml  { render xml: @shiftinfo.errors, status: :unprocessable_entity }
       end
     end
   end

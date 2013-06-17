@@ -1,8 +1,8 @@
 class PeopleController < ApplicationController
   
   # Do not allow anyone to subscribe by themselfes
-  #skip_before_filter :login_required, :only => [:new, :create]
-  before_filter :except => [:edit, :find_location, :index, :update] do |c| c.restrict_access 'admin' end
+  #skip_before_filter :login_required, only: [:new, :create]
+  before_filter except: [:edit, :find_location, :index, :update] do |c| c.restrict_access 'admin' end
   
   # GET /people
   def index
@@ -33,7 +33,7 @@ class PeopleController < ApplicationController
       self.current_person = @person unless logged_in? # admin can create people without losing his login
       redirect_back_or_default(people_path)
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
   
@@ -61,9 +61,9 @@ class PeopleController < ApplicationController
 
     if @person.update_attributes(params[:person])
       flash[:notice] = t'people.update.success'
-      render :action => "edit" #pointing there on purpose
+      render action: "edit" #pointing there on purpose
     else
-      render :action => "edit"
+      render action: "edit"
     end
   end
 
@@ -72,7 +72,7 @@ class PeopleController < ApplicationController
     @location = PeopleHelper.fetch_location_by_postal_code(params[:zip])
     
     if @location.nil? or @location.empty?
-      render :nothing => true
+      render nothing: true
     else      
       render :update do |page|
         page["person_location"].setValue( @location )

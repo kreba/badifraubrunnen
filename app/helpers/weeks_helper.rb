@@ -1,13 +1,13 @@
 module WeeksHelper
 
   def phone_str( person, options = {} )
-    options.reverse_merge! :delimiter => ', '
+    options.reverse_merge! delimiter: ', '
     [person.phone, person.phone2].compact.reject(&:empty?).join(options[:delimiter]).html_safe
   end
   def day_td( day )
     content_tag(:td,
       link_to( day.date.strftime( "%d.%m." ), day,
-               :style => "color:inherit;" ),
+               style: "color:inherit;" ),
       self.day_td_html_options(day)
     )
   end
@@ -15,16 +15,16 @@ module WeeksHelper
     options = {
       :class       => "weeks_table_td",
 #      :title       => text_tooltip_for(day)
-      :onmouseover => "xstooltip_show('#{tooltip_id(day)}', '#{week_html_id(day.week)}', -8, -8);",
+      onmouseover: "xstooltip_show('#{tooltip_id(day)}', '#{week_html_id(day.week)}', -8, -8);",
       :onmouseout  => "xstooltip_hide('#{tooltip_id(day)}');"
 # the html tooltips appear and look nice, but they don't disappear any more!
     }
 
     if day.timely_active?
-      options.merge :background => image_path(day.status_image_name)
+      options.merge background: image_path(day.status_image_name)
       # do something with an image_tag instead? (enables browser-side caching)
     else
-      options.merge :style => "background-color:#dddddd; color:#ffffff;"
+      options.merge style: "background-color:#dddddd; color:#ffffff;"
     end
   end
   def week_html_id( week )
@@ -33,8 +33,8 @@ module WeeksHelper
   def cell_link_to( text, target = {}, padding = "5px 3px" )
       link_to( 
         content_tag(:span, 
-          text, {:style => "width: 100%; height: inherit; margin: #{padding};"}),
-        target, {:style => "width: #{WeekPlanDisplayData::DAY_WIDTH}px; height: inherit; display: table-cell; vertical-align: middle;", class: 'noprint'} )
+          text, {style: "width: 100%; height: inherit; margin: #{padding};"}),
+        target, {style: "width: #{WeekPlanDisplayData::DAY_WIDTH}px; height: inherit; display: table-cell; vertical-align: middle;", class: 'noprint'} )
   end
     
   class WeekPlanDisplayData
@@ -66,7 +66,7 @@ module WeeksHelper
     def h_offset_times
       {
         :left  => 0,
-        :right => h_offset_day_count(7)
+        right: h_offset_day_count(7)
       }
     end
     memoize :day_name, :h_offset, :h_offset_times

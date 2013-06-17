@@ -6,6 +6,6 @@
 <% end %>
 
 
-<%= render( :partial => 'weeks_table' )   unless @future_weeks.empty? %>
+<%= render( partial: 'weeks_table' )   unless @future_weeks.empty? %>
 
-<%= render( :partial => 'weeks_past_view' ) unless @past_weeks.empty?  %>
+<%= render( partial: 'weeks_past_view' ) unless @past_weeks.empty?  %>

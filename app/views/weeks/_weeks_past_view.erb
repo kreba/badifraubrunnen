@@ -1,6 +1,6 @@
 <h3><%=t 'weeks.past_weeks' %>:</h3>
 <div class="week_jumper">
 	<% for week in @past_weeks %>
-		<%= link_to_unless_current( content_tag(:span, week.number ), week, :class => "jumplink" )%>
+		<%= link_to_unless_current( content_tag(:span, week.number ), week, class: "jumplink" )%>
   <% end %>
 </div>

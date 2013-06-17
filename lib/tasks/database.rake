@@ -11,7 +11,7 @@ namespace :db do
     " # To enable batch mode BATCH=Y (By default, the task queries the user to view the yaml and \n" +
     " # write it to a file (just in case-call me chicken if you wish)\n" +
     " # e.g. rake db:cloneModelData MODEL=User,Account,Post BATCH=Y\n"
-  task :cloneModelData => :environment do
+  task cloneModelData: :environment do
 
     batchmode = ENV['BATCH'] ? ENV['BATCH'] =~ /^y$/i : false
     sourcedb = ENV['SOURCE'] || 'production'

@@ -13,6 +13,6 @@
     <% end %>
   <% else %>
     <p class="person_name"><%= shift.person.name %></p>
-    <p class="person_phone_numbers"><%= phone_str(shift.person, :delimiter => '<br />') %></p>
+    <p class="person_phone_numbers"><%= phone_str(shift.person, delimiter: '<br />') %></p>
   <% end %>
 </span> 

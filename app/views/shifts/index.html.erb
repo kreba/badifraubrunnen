@@ -1,7 +1,7 @@
 <% content_for :title, @title = t('shifts.index.title') %>
 
 
-<h2><%= t('shifts.index.summary', :total => @shifts.size, :enabled => @shifts.collect(&:enabled).size) %></h2>
+<h2><%= t('shifts.index.summary', total: @shifts.size, enabled: @shifts.collect(&:enabled).size) %></h2>
 <p><em><%=  t('shifts.index.advice_weeks_responsability_not_listed') %></em></p>
 <table>
   <tr>
@@ -10,6 +10,6 @@
     <th><%=t 'shift.attributes.person' %></th>
   </tr>
 
-  <%= render( :partial => "shift_tr", :collection => @shifts ) %>
+  <%= render( partial: "shift_tr", collection: @shifts ) %>
 </table>
 

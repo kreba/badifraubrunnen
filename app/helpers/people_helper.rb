@@ -2,10 +2,10 @@ module PeopleHelper
   require 'net/http'
   
   def render_people_list( title, people )
-    render( :partial => 'list_people', 
-              :locals => {
-                :title => title,
-                :people => people } )
+    render( partial: 'list_people', 
+              locals: {
+                title: title,
+                people: people } )
   end
 
   def self.fetch_location_by_postal_code(zip)

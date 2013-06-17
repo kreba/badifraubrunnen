@@ -44,7 +44,7 @@ module AuthenticatedSystem
     #
     # To require logins for specific actions, use this in your controllers:
     #
-    #   before_filter :login_required, :only => [ :edit, :update ]
+    #   before_filter :login_required, only: [ :edit, :update ]
     #
     # To skip this in a subclassed controller:
     #
@@ -87,7 +87,7 @@ module AuthenticatedSystem
 
     # Redirect to the URI stored by the most recent store_location call or
     # to the passed default.  Set an appropriately modified
-    #   after_filter :store_location, :only => [:index, :new, :show, :edit]
+    #   after_filter :store_location, only: [:index, :new, :show, :edit]
     # for any controller you want to be bounce-backable.
     def redirect_back_or_default(default, options = {})
       redirect_to((session[:return_to] || default), options)
@@ -184,7 +184,7 @@ module AuthenticatedSystem
     def send_remember_cookie!
       cookies[:auth_token] = {
         :value   => @current_person.remember_token,
-        :expires => @current_person.remember_token_expires_at }
+        expires: @current_person.remember_token_expires_at }
     end
 
 end

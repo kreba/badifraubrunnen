@@ -1,7 +1,7 @@
 class DaysController < ApplicationController
   
-  before_filter :except => [:show, :edit, :update] do |c| c.restrict_access 'webmaster' end
-  cache_sweeper :week_sweeper, :only => [:update]
+  before_filter except: [:show, :edit, :update] do |c| c.restrict_access 'webmaster' end
+  cache_sweeper :week_sweeper, only: [:update]
   
   # GET /weeks/1/days
   def index
@@ -9,7 +9,7 @@ class DaysController < ApplicationController
     redirect_to weeks_path and return false 
     
     # that is not executed:
-    @week = Week.find(params[:week_id], :include => :days)
+    @week = Week.find(params[:week_id], include: :days)
     @days = @week.days.sort_by(&:date)
   end
 
@@ -27,7 +27,7 @@ class DaysController < ApplicationController
       redirect_to(@day)
     else
       # validation error messages are displayed automatically
-      render :action => "new"
+      render action: "new"
     end
   end
 
@@ -57,7 +57,7 @@ class DaysController < ApplicationController
       redirect_back_or_default(@day.week)
     else
       # validation error messages are displayed automatically
-      render :action => "edit"
+      render action: "edit"
     end
   end
 

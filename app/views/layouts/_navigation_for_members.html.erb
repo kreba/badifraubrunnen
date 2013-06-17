@@ -11,10 +11,10 @@
 <%# content_for :static_links_for_webmaster do %>
 <%# end %>
 
-<ul><%= render :partial => 'layouts/navigation_in_saison' %></ul>
+<ul><%= render partial: 'layouts/navigation_in_saison' %></ul>
 
-<%= render :partial => 'layouts/navigation_for_role',
-           :collection => %w"staff admin webmaster", :as => :rolename %>
+<%= render partial: 'layouts/navigation_for_role',
+           collection: %w"staff admin webmaster", as: :rolename %>
 
 <h3><%= current_person.name %></h3>
 <ul>

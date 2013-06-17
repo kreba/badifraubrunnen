@@ -4,7 +4,7 @@
 # or without any specification at all.
 class Role < ActiveRecord::Base
   has_and_belongs_to_many :people
-  belongs_to :authorizable, :polymorphic => true
+  belongs_to :authorizable, polymorphic: true
 
   # A virtual attribute to work around a bug in the authorization gem
   # (authorization-1.0.12/lib/publishare/object_roles_table.rb:52)

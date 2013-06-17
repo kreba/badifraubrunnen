@@ -12,39 +12,39 @@ class PersonTest < Test::Unit::TestCase
 
   def test_should_require_login
     assert_no_difference 'Person.count' do
-      u = create_person(:login => nil)
+      u = create_person(login: nil)
       assert u.errors.on(:login)
     end
   end
 
   def test_should_require_password
     assert_no_difference 'Person.count' do
-      u = create_person(:password => nil)
+      u = create_person(password: nil)
       assert u.errors.on(:password)
     end
   end
 
   def test_should_require_password_confirmation
     assert_no_difference 'Person.count' do
-      u = create_person(:password_confirmation => nil)
+      u = create_person(password_confirmation: nil)
       assert u.errors.on(:password_confirmation)
     end
   end
 
   def test_should_require_email
     assert_no_difference 'Person.count' do
-      u = create_person(:email => nil)
+      u = create_person(email: nil)
       assert u.errors.on(:email)
     end
   end
 
   def test_should_reset_password
-    people(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
+    people(:quentin).update_attributes(password: 'new password', password_confirmation: 'new password')
     assert_equal people(:quentin), Person.authenticate('quentin', 'new password')
   end
 
   def test_should_not_rehash_password
-    people(:quentin).update_attributes(:login => 'quentin2')
+    people(:quentin).update_attributes(login: 'quentin2')
     assert_equal people(:quentin), Person.authenticate('quentin2', 'test')
   end
 
@@ -93,7 +93,7 @@ class PersonTest < Test::Unit::TestCase
 
 protected
   def create_person(options = {})
-    record = Person.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire', :password_confirmation => 'quire' }.merge(options))
+    record = Person.new({ login: 'quire', email: 'quire@example.com', password: 'quire', password_confirmation: 'quire' }.merge(options))
     record.save
     record
   end

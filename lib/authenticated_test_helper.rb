@@ -11,11 +11,11 @@ module AuthenticatedTestHelper
   
   # rspec
   def mock_person
-    person = mock_model(Person, :id => 1,
+    person = mock_model(Person, id: 1,
       :login  => 'user_name',
       :name   => 'U. Surname',
-      :to_xml => "Person-in-XML", :to_json => "Person-in-JSON", 
-      :errors => [])
+      to_xml: "Person-in-XML", to_json: "Person-in-JSON", 
+      errors: [])
     person
   end  
 

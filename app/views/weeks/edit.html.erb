@@ -8,10 +8,10 @@
   <p>
     <% if current_person.has_role? 'admin' %>
       <b><%=t 'weeks.responsability' %>:</b><br />
-      <%= f.select( :person_id, @people.collect {|p| [ p.name, p.id ] }, { :include_blank => true } ) %>
+      <%= f.select( :person_id, @people.collect {|p| [ p.name, p.id ] }, { include_blank: true } ) %>
     <% else %>
-      <h2><%= t('weeks.edit.general_advice', :wnum => @week.number.to_s ) %></h2>
-      <%= f.hidden_field :person_id, :value => current_person.id %>
+      <h2><%= t('weeks.edit.general_advice', wnum: @week.number.to_s ) %></h2>
+      <%= f.hidden_field :person_id, value: current_person.id %>
     <% end %>
   </p>
 
@@ -19,12 +19,12 @@
     <%= f.submit t('Save') %><br />
   </p>
 <% end %>
-<p><br /><%= button_to( t('Abort'), @day ) %></p>
+<p><%= link_to( t('Abort'), :weeks ) %></p>
 
 <% unless current_person.has_role? 'admin'  %>
   <p><em>
-      <%= t('weeks.edit.warning', :admin_names => @admin_names).gsub("\n","<br />") %><br />
-      <%= link_to( t('help.contact.title') , :controller => 'help', :action => 'contact' )%><br />
+      <%= t('weeks.edit.warning', admin_names: @admin_names).gsub("\n","<br />") %><br />
+      <%= link_to( t('help.contact.title') , controller: 'help', action: 'contact' )%><br />
       <br />
       <%=t 'abort_with_backbutton' %>
   </em></p>

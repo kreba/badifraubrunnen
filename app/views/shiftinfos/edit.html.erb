@@ -1,4 +1,4 @@
-<% content_for :title, @title = t('shiftinfos.edit.title',:description => full_descr(@shiftinfo)) %>
+<% content_for :title, @title = t('shiftinfos.edit.title', description: full_descr(@shiftinfo)) %>
 <% content_for :navigation_links do %>
   <%= navigation_link t('shiftinfos.index.title') , shiftinfos_path %>
 <% end %>

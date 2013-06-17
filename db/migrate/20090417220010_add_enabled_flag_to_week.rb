@@ -1,6 +1,6 @@
 class AddEnabledFlagToWeek < ActiveRecord::Migration
   def self.up
-    add_column :weeks, :enabled_saisons, :string, :limit => 3, :default => ''
+    add_column :weeks, :enabled_saisons, :string, limit: 3, default: ''
 
     Week.all.each{ |week|
       enabled_saisons = Saison.all.select{ |saison|

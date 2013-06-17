@@ -12,10 +12,10 @@ module ShiftsHelper
           link_to( " #{t 'shifts.sign_up'} " , edit_shift_path(shift) )
         end
       else
-        content_tag(:span, " - #{t('shifts.no_sign_up')} - ", :style => "color: gray")
+        content_tag(:span, " - #{t('shifts.no_sign_up')} - ", style: "color: gray")
       end
     elsif shift.timely_active?
-      content_tag(:span, " - #{t('shifts.taken')} - ", :style => "color: gray")
+      content_tag(:span, " - #{t('shifts.taken')} - ", style: "color: gray")
     end
   end
 end

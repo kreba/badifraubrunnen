@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.2'
 
 # Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
-gem "nested_form", "~> 0.3.2", :git => 'https://github.com/ryanb/nested_form.git'
+gem "nested_form", "~> 0.3.2", git: 'https://github.com/ryanb/nested_form.git'
 
 # A more robust alternative to the Webrick webserver
 gem 'thin'
@@ -50,14 +50,14 @@ end
 
 #gem 'jquery-rails'
 gem 'prototype-rails'
-gem 'prototype_legacy_helper', '0.0.0', :git => 'git://github.com/rails/prototype_legacy_helper.git'
+gem 'prototype_legacy_helper', '0.0.0', git: 'git://github.com/rails/prototype_legacy_helper.git'
 
 # To pop up a ruby debugger from within the code (start the app server with --debugger)
 # (Put a call to 'debugger' in your code. When executed, this method issues an irb prompt in the
 # console where the server runs. You can now inspect the currently executed method's environment.)
 group :development do
 ###  gem 'ruby-debug-base19x', '~> 0.11.30.pre4' #maybe this line helps?
-##  gem 'ruby-debug19',       :require => 'ruby-debug'
+##  gem 'ruby-debug19',       require: 'ruby-debug'
 ##  gem 'ruby-debug-ide19'
 end
 

@@ -16,7 +16,7 @@ Badi2010::Application.routes.draw do
   match 'sudo/cachesweep' => 'tasks#cachesweep', as: 'cachesweep'
 
 
-  resources :weeks, :shallow => true do
+  resources :weeks, shallow: true do
     resources :days do
       resources :shifts
     end
@@ -29,7 +29,7 @@ Badi2010::Application.routes.draw do
   match '/myshifts' => 'shifts#my_shifts', as: 'myshifts'
 
   resource :session, only: [:new, :create, :destroy]
-#  match '/activate/:activation_code' => 'accounts#activate', as: 'activate', :activation_code => nil
+#  match '/activate/activation_code': 'accounts#activate', as: 'activate', activation_code: nil
   match '/signup' => 'people#new', as: 'signup'
   match '/login' => 'sessions#new', as: 'login'
   match '/logout' => 'sessions#destroy', as: 'logout'
@@ -49,8 +49,8 @@ Badi2010::Application.routes.draw do
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+  #   match 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  # This route can be invoked with purchase_url(id: product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
@@ -77,7 +77,7 @@ Badi2010::Application.routes.draw do
   #   resources :products do
   #     resources :comments
   #     resources :sales do
-  #       get 'recent', :on => :collection
+  #       get 'recent', on: :collection
   #     end
   #   end
 

@@ -14,30 +14,30 @@ class ShiftsControllerTest < ActionController::TestCase
 
   def test_should_create_shift
     assert_difference('Shift.count') do
-      post :create, :shift => { }
+      post :create, shift: { }
     end
 
     assert_redirected_to shift_path(assigns(:shift))
   end
 
   def test_should_show_shift
-    get :show, :id => shifts(:one).id
+    get :show, id: shifts(:one).id
     assert_response :success
   end
 
   def test_should_get_edit
-    get :edit, :id => shifts(:one).id
+    get :edit, id: shifts(:one).id
     assert_response :success
   end
 
   def test_should_update_shift
-    put :update, :id => shifts(:one).id, :shift => { }
+    put :update, id: shifts(:one).id, shift: { }
     assert_redirected_to shift_path(assigns(:shift))
   end
 
   def test_should_destroy_shift
     assert_difference('Shift.count', -1) do
-      delete :destroy, :id => shifts(:one).id
+      delete :destroy, id: shifts(:one).id
     end
 
     assert_redirected_to shifts_path
