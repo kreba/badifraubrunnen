@@ -1,5 +1,4 @@
-require 'RMagick'
-include Magick
+autoload :Magick, 'RMagick'
 
 class Day < ActiveRecord::Base
   # Authorization plugin
