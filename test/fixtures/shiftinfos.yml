@@ -2,27 +2,30 @@
 
 morgen_lang:
   description: Morgen
-  begin: 09:30:00
-  end:   15:00:00
+  begin: '09:30:00'
+  end:   '15:00:00'
+  
 morgen_kurz:
   description: Morgen
-  begin: 11:00:00
-  end:   15:30:00
+  begin: '11:00:00'
+  end:   '15:30:00'
 
 pikett_lang:
   description: Pikett
-  begin: 11:30:00
-  end:   17:00:00
+  begin: '11:30:00'
+  end:   '17:00:00'
+  
 pikett_kurz:
   description: Pikett
-  begin: 11:30:00
-  end:   16:00:00
+  begin: '11:30:00'
+  end:   '16:00:00'
 
 abend_lang:
   description: Abend
-  begin: 15:00:00
-  end:   20:30:00
+  begin: '15:00:00'
+  end:   '20:30:00'
+  
 abend_kurz:
   description: Abend
-  begin: 15:30:00
-  end:   20:00:00
+  begin: '15:30:00'
+  end:   '20:00:00'

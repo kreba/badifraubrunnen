@@ -4,12 +4,7 @@ require 'people_controller'
 # Re-raise errors caught by the controller.
 class PeopleController; def rescue_action(e) raise e end; end
 
-class PeopleControllerTest < Test::Unit::TestCase
-  # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead
-  # Then, you can remove it from this and the units test.
-  include AuthenticatedTestHelper
-
-  fixtures :people
+class PeopleControllerTest < ActiveRecord::TestCase
 
   def setup
     @controller = PeopleController.new
@@ -17,41 +12,41 @@ class PeopleControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
   end
 
-  def test_should_allow_signup
+  test 'should_allow_signup' do
     assert_difference 'Person.count' do
       create_person
       assert_response :redirect
     end
   end
 
-  def test_should_require_login_on_signup
+  test 'should_require_login_on_signup' do
     assert_no_difference 'Person.count' do
       create_person(login: nil)
-      assert assigns(:person).errors.on(:login)
+      assert assigns(:person).errors[:login].any?
       assert_response :success
     end
   end
 
-  def test_should_require_password_on_signup
+  test 'should_require_password_on_signup' do
     assert_no_difference 'Person.count' do
       create_person(password: nil)
-      assert assigns(:person).errors.on(:password)
+      assert assigns(:person).errors[:password].any?
       assert_response :success
     end
   end
 
-  def test_should_require_password_confirmation_on_signup
+  test 'should_require_password_confirmation_on_signup' do
     assert_no_difference 'Person.count' do
       create_person(password_confirmation: nil)
-      assert assigns(:person).errors.on(:password_confirmation)
+      assert assigns(:person).errors[:password_confirmation].any?
       assert_response :success
     end
   end
 
-  def test_should_require_email_on_signup
+  test 'should_require_email_on_signup' do
     assert_no_difference 'Person.count' do
       create_person(email: nil)
-      assert assigns(:person).errors.on(:email)
+      assert assigns(:person).errors[:email].any?
       assert_response :success
     end
   end

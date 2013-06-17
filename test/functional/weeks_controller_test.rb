@@ -1,18 +1,19 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class WeeksControllerTest < ActionController::TestCase
-  def test_should_get_index
+
+  test 'should_get_index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:weeks)
   end
 
-  def test_should_get_new
+  test 'should_get_new' do
     get :new
     assert_response :success
   end
 
-  def test_should_create_week
+  test 'should_create_week' do
     assert_difference('Week.count') do
       post :create, week: { }
     end
@@ -20,24 +21,24 @@ class WeeksControllerTest < ActionController::TestCase
     assert_redirected_to week_path(assigns(:week))
   end
 
-  def test_should_show_week
-    get :show, id: weeks(:one).id
+  test 'should_show_week' do
+    get :show, id: weeks(:kw19).id
     assert_response :success
   end
 
-  def test_should_get_edit
-    get :edit, id: weeks(:one).id
+  test 'should_get_edit' do
+    get :edit, id: weeks(:kw19).id
     assert_response :success
   end
 
-  def test_should_update_week
-    put :update, id: weeks(:one).id, week: { }
+  test 'should_update_week' do
+    put :update, id: weeks(:kw19).id, week: { }
     assert_redirected_to week_path(assigns(:week))
   end
 
-  def test_should_destroy_week
+  test 'should_destroy_week' do
     assert_difference('Week.count', -1) do
-      delete :destroy, id: weeks(:one).id
+      delete :destroy, id: weeks(:kw19).id
     end
 
     assert_redirected_to weeks_path

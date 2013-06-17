@@ -1,142 +1,177 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 kw19_d1: # MO
+  id:   191
   date: 2009-05-04
   week: kw_19
 
 kw19_d2: # TU
+  id:   192
   date: 2009-05-05
   week: kw_19
 
 kw19_d3: # WE
+  id:   193
   date: 2009-05-06
   week: kw_19
 
 kw19_d4: # TH
+  id:   194
   date: 2009-05-07
   week: kw_19
 
 kw19_d5: # FR
+  id:   195
   date: 2009-05-08
   week: kw_19
 
 kw19_d6: # SA
+  id:   196
   date: 2009-05-09
   week: kw_19
 
 kw19_d7: #SO
+  id:   197
   date: 2009-05-10
   week: kw_19
 
 kw20_d1: # MO
+  id:   201
   date: 2009-05-11
   week: kw_20
 
 kw20_d2: # TU
+  id:   202
   date: 2009-05-12
   week: kw_20
 
 kw20_d3: # WE
+  id:   203
   date: 2009-05-13
   week: kw_20
 
 kw20_d4: # TH
+  id:   204
   date: 2009-05-14
   week: kw_20
 
 kw20_d5: # FR
+  id:   205
   date: 2009-05-15
   week: kw_20
 
 kw20_d6: # SA
+  id:   206
   date: 2009-05-16
   week: kw_20
 
 kw20_d7: #SO
+  id:   207
   date: 2009-05-17
   week: kw_20
 
 kw21_d1: # MO
+  id:   211
   date: 2009-05-18
   week: kw_21
 
 kw21_d2: # TU
+  id:   212
   date: 2009-05-19
   week: kw_21
 
 kw21_d3: # WE
+  id:   213
   date: 2009-05-20
   week: kw_21
 
 kw21_d4: # TH
+  id:   214
   date: 2009-05-21
   week: kw_21
 
 kw21_d5: # FR
+  id:   215
   date: 2009-05-22
   week: kw_21
 
 kw21_d6: # SA
+  id:   216
   date: 2009-05-23
   week: kw_21
 
 kw21_d7: #SO
+  id:   217
   date: 2009-05-24
   week: kw_21
 
 kw22_d1: # MO
+  id:   221
   date: 2009-05-25
   week: kw_22
 
 kw22_d2: # TU
+  id:   222
   date: 2009-05-26
   week: kw_22
 
 kw22_d3: # WE
+  id:   223
   date: 2009-05-27
   week: kw_22
 
 kw22_d4: # TH
+  id:   224
   date: 2009-05-28
   week: kw_22
 
 kw22_d5: # FR
+  id:   225
   date: 2009-05-29
   week: kw_22
 
 kw22_d6: # SA
+  id:   226
   date: 2009-05-30
   week: kw_22
 
 kw22_d7: #SO
+  id:   227
   date: 2009-05-31
   week: kw_22
 
 kw23_d1: # MO
+  id:   231
   date: 2009-06-01
   week: kw_23
 
 kw23_d2: # TU
+  id:   232
   date: 2009-06-02
   week: kw_23
 
 kw23_d3: # WE
+  id:   233
   date: 2009-06-03
   week: kw_23
 
 kw23_d4: # TH
+  id:   234
   date: 2009-06-04
   week: kw_23
 
 kw23_d5: # FR
+  id:   235
   date: 2009-06-05
   week: kw_23
 
 kw23_d6: # SA
+  id:   236
   date: 2009-06-06
   week: kw_23
 
 kw23_d7: #SO
+  id:   237
   date: 2009-06-07
   week: kw_23
 
