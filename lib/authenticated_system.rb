@@ -51,7 +51,7 @@ module AuthenticatedSystem
     #   skip_before_filter :login_required
     #
     def login_required
-      authorized? || access_denied
+      access_denied unless authorized?
     end
 
     # Redirect as appropriate when an access request fails.

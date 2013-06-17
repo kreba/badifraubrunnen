@@ -21,6 +21,9 @@ gem 'pg'
 # On Mac, try: brew install memcached
 gem 'dalli'
 
+# Replaces ActiveSupport::Memoization
+gem 'memoist'
+
 # To generate images (used for the images in the weeks_table)
 # System requirements: libmagickwand-dev
 # On Mac, try: brew install imagemagick

@@ -3,34 +3,6 @@ class DaysController < ApplicationController
   before_filter except: [:show, :edit, :update] do |c| c.restrict_access 'webmaster' end
   cache_sweeper :week_sweeper, only: [:update]
   
-  # GET /weeks/1/days
-  def index
-    flash[:error] = t('days.index.not_available')
-    redirect_to weeks_path and return false 
-    
-    # that is not executed:
-    @week = Week.find(params[:week_id], include: :days)
-    @days = @week.days.sort_by(&:date)
-  end
-
-  # GET /weeks/1/days/new
-  def new
-    @day = Day.new()
-  end
-  
-  # POST /weeks/1/days
-  def create
-    @day = Day.new(params[:day])
-    
-    if @day.save
-      flash[:notice] = t('days.create.success')
-      redirect_to(@day)
-    else
-      # validation error messages are displayed automatically
-      render action: "new"
-    end
-  end
-
   # GET /weeks/1/days/1
   def show
     @day = Day.find(params[:id])

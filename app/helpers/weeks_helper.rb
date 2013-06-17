@@ -1,3 +1,5 @@
+require 'memoist'
+
 module WeeksHelper
 
   def phone_str( person, options = {} )
@@ -38,8 +40,7 @@ module WeeksHelper
   end
     
   class WeekPlanDisplayData
-    extend ActiveSupport::Memoizable ## TODO: deprecated. 
-    # DEPRECATION WARNING: ActiveSupport::Memoizable is deprecated and will be removed in future releases,simply use Ruby memoization pattern instead.
+    extend Memoist
 
     HEADER_HEIGHT = 35
     SHIFT_HEIGHT  = 120

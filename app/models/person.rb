@@ -1,5 +1,7 @@
 require 'digest/sha1'
 class Person < ActiveRecord::Base
+  REMEMBER_ME_TIME = 1.hour
+  
   # Authorization plugin
   acts_as_authorized_user
   acts_as_authorizable
@@ -76,7 +78,7 @@ class Person < ActiveRecord::Base
 
   # These create and unset the fields required for remembering users between browser closes
   def remember_me
-    remember_me_for 1.hour
+    remember_me_for REMEMBER_ME_TIME
   end
 
   def remember_me_for(time)
