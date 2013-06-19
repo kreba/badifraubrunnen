@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
+ruby '1.9.3' #keep in sync with .ruby-version
 
 gem 'rails', '3.2.13'
 
 # Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
-gem "nested_form", "~> 0.3.2", git: 'https://github.com/ryanb/nested_form.git'
+gem 'nested_form', '~> 0.3.2', :git => 'https://github.com/ryanb/nested_form.git'
 
 # A more robust alternative to the Webrick webserver
 gem 'thin'
@@ -53,14 +54,33 @@ end
 
 #gem 'jquery-rails'
 gem 'prototype-rails'
-gem 'prototype_legacy_helper', '0.0.0', git: 'git://github.com/rails/prototype_legacy_helper.git'
+gem 'prototype_legacy_helper', '0.0.0', :git => 'https://github.com/rails/prototype_legacy_helper.git'
 
 # To pop up a ruby debugger from within the code (start the app server with --debugger)
-# (Put a call to 'debugger' in your code. When executed, this method issues an irb prompt in the
-# console where the server runs. You can now inspect the currently executed method's environment.)
+# Put a call to 'debugger' in your code. When executed, this method issues an irb prompt in the
+# console where the server runs. You can now inspect the currently executed method's environment.
 group :development do
-###  gem 'ruby-debug-base19x', '~> 0.11.30.pre4' #maybe this line helps?
-##  gem 'ruby-debug19',       require: 'ruby-debug'
-##  gem 'ruby-debug-ide19'
+  # gem 'ruby-debug-base19x', '~> 0.11.30.pre4' #maybe this line helps?
+  # gem 'ruby-debug19',       require: 'ruby-debug'
+  # gem 'ruby-debug-ide19'
 end
 
+
+gem 'rspec-rails', :group => [:test, :development]
+group :test do
+  gem 'factory_girl_rails'
+
+  # For dealing with a warning about the version of nokogiri that is being loaded, see http://stackoverflow.com/a/10759560/1212000
+  # (Plus: require 'nokogiri' in application.rb before any other libraries get the chance to load the wrong version.)
+
+#  gem 'cucumber-rails', :require => false
+
+  gem 'minitest-spec-rails'
+  gem 'capybara_minitest_spec' # for capybara integration and spec matchers
+  gem 'capybara-webkit' # for headless javascript tests; see http://stackoverflow.com/questions/11354656/error-error-error-installing-capybara-webkit
+  gem 'database_cleaner' # as recommended by capybara
+
+  gem 'guard-minitest' # On Mac OS X, make sure the rb-fsevent gem is installed so Guard can detect file changes.
+  
+  gem 'turn' # for fancy test outputs
+end

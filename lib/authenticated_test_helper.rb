@@ -2,12 +2,12 @@
 module AuthenticatedTestHelper
   # Sets the current person in the session.
   def login_as(person)
-    @request.session[:person_id] = person ? (person.is_a?(Person) ? person.id : Person(person).id) : nil
+    request.session[:person_id] = person ? (person.is_a?(Person) ? person.id : Person(person).id) : nil
   end
 
-  def authorize_as(person)
-    @request.env["HTTP_AUTHORIZATION"] = person ? ActionController::HttpAuthentication::Basic.encode_credentials(Person(person).login, 'monkey') : nil
-  end
+  # def authorize_as(person)
+  #   @request.env["HTTP_AUTHORIZATION"] = person ? ActionController::HttpAuthentication::Basic.encode_credentials(Person(person).login, 'monkey') : nil
+  # end
   
   # rspec
   def mock_person

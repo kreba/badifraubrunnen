@@ -29,7 +29,7 @@ class DaysController < ApplicationController
       redirect_back_or_default(@day.week)
     else
       # validation error messages are displayed automatically
-      render action: "edit"
+      render action: "show"
     end
   end
 

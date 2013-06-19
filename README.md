@@ -85,7 +85,6 @@ Ohne Anmeldung kann Jede/r
 
 2. Wie setze ich eine Saison auf?
 ---------------------------------
-Erst sicherstellen, dass "ApplicationController.year" das richtige Jahr zurückgibt (und ggf. die Rails-Konsole neu starten!)
 Dann in der "script/console production":
 - evtl. vorhandene Daten mittels "Week.destroy_all" vernichten
 - (19..37).each{|n| Week.create!( number: n )}

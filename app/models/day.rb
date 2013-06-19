@@ -9,11 +9,11 @@ class Day < ActiveRecord::Base
 
   accepts_nested_attributes_for :shifts, allow_destroy: true
 
-  attr_accessible :shifts_attributes
+  attr_accessible :shifts_attributes, :date
 
   validates_associated :shifts
   validates_presence_of :date
-  # validates_presence_of :week  --  causes problems!
+  validates_presence_of :week
 
   def shift_attributes=( attrs ) # invoked on an update (that is, on submitting an update form)
     # assert existance

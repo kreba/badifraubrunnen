@@ -8,15 +8,13 @@ class Shift < ActiveRecord::Base
   # Authorization plugin
   acts_as_authorizable  # Why?!
 
-  belongs_to :day
-  #has_one :week, through: :day  # unused
   belongs_to :shiftinfo
-  # could add  has_one :saison, through: :shiftinfo
+  belongs_to :day
   belongs_to :person
   
   after_update :update_status_image_of_my_day
 
-  validates_presence_of :shiftinfo
+  validates_presence_of :shiftinfo, :day
 
   attr_protected :enabled
 #  attr_accessible :person, :shiftinfo
@@ -71,6 +69,9 @@ class Shift < ActiveRecord::Base
 
   protected
   def update_status_image_of_my_day
-    day.create_status_image
+    #day.create_status_image
+    # We currently deploy to heroku, which requires all static assets to be precompiled. 
+    # Hence we check in every possible status image.
+    # Hence no need for creation here.
   end
 end
