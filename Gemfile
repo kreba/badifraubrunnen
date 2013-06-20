@@ -56,31 +56,30 @@ end
 gem 'prototype-rails'
 gem 'prototype_legacy_helper', '0.0.0', :git => 'https://github.com/rails/prototype_legacy_helper.git'
 
-# To pop up a ruby debugger from within the code (start the app server with --debugger)
+# To pop up a ruby debugger from within the code (start the app server with --debugger) TODO: verify that this is needed
 # Put a call to 'debugger' in your code. When executed, this method issues an irb prompt in the
 # console where the server runs. You can now inspect the currently executed method's environment.
-group :development do
-  # gem 'ruby-debug-base19x', '~> 0.11.30.pre4' #maybe this line helps?
-  # gem 'ruby-debug19',       require: 'ruby-debug'
-  # gem 'ruby-debug-ide19'
-end
+# (Also tried ruby-debug19 et al, but they don't work and are not maintained any more.)
+# TODO: verify this works together with guard+spring (extra gem might be required to make it work) (works with both guard and spring individually, already checked that.)
+gem 'debugger', :group => [:test, :development]
 
+#gem 'rspec-rails', :group => [:test, :development]
 
-gem 'rspec-rails', :group => [:test, :development]
 group :test do
   gem 'factory_girl_rails'
-
-  # For dealing with a warning about the version of nokogiri that is being loaded, see http://stackoverflow.com/a/10759560/1212000
-  # (Plus: require 'nokogiri' in application.rb before any other libraries get the chance to load the wrong version.)
 
 #  gem 'cucumber-rails', :require => false
 
   gem 'minitest-spec-rails'
   gem 'capybara_minitest_spec' # for capybara integration and spec matchers
-  gem 'capybara-webkit' # for headless javascript tests; see http://stackoverflow.com/questions/11354656/error-error-error-installing-capybara-webkit
-  gem 'database_cleaner' # as recommended by capybara
+  gem 'capybara-webkit'        # for headless javascript tests; see http://stackoverflow.com/questions/11354656/error-error-error-installing-capybara-webkit
 
-  gem 'guard-minitest' # On Mac OS X, make sure the rb-fsevent gem is installed so Guard can detect file changes.
+  gem 'database_cleaner' # as recommended by capybara; TODO: make sure this is working as expected (railscast shows some manual setup)
+
+  gem 'launchy' # For save_and_open_page
+
+  gem 'guard-minitest' # Guard: On Mac OS X, make sure the rb-fsevent gem is installed so Guard can detect file changes.
+  gem 'spring'         # !!As of now, only supports MiniTest::Unit (not MiniTest::Spec)!! Faster testing thanks to pre-loading of (big chunks of) the environment. (Alternatives: spork, zeus, commands)
   
   gem 'turn' # for fancy test outputs
 end

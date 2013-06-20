@@ -24,7 +24,7 @@ FactoryGirl.define do |f|
     password '123456'
     password_confirmation { password }
     name  { "Nam Von Toess #{id}" }
-    email { "mailmay#{id}@trash-mail.com" }
+    email { "mailmay#{id}@gmail.com" }
     phone '011 000 00 00'
   end
   

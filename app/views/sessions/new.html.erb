@@ -16,7 +16,7 @@
   <%#*<p><label for="remember_me">Remember me:</label>%>
   <%#= check_box_tag 'remember_me' % ></p>%>
 
-  <p><%= submit_tag t'sessions.login' %></p>
+  <p><%= submit_tag t('sessions.login'), id: 'do_login' %></p>
 <% end %>
 
 <%# TODO: Add password forgotten functionality (requires mailer). %>
