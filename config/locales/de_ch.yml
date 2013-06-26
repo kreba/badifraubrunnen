@@ -140,6 +140,8 @@ de_ch:
     # in the view
     login: Einloggen
     logout: Ausloggen
+    infopage_reference: 
+      html: Diese Internetseite dient der Organisation der ehrenamtlichen HelferInnen der Badi Fraubrunnen.<br />F&uuml;r Infos zur Badi besuchen Sie bitte <a href="http://www.fraubrunnen.ch/xml_1/internet/de/application/d8/f63.cfm">die Internetseite der Gemeinde Fraubrunnen</a>.
 
 
   shiftinfos:

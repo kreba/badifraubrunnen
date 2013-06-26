@@ -23,6 +23,8 @@ Siehe https://devcenter.heroku.com/articles/quickstart
 
 Eine IDE hab ich bisher nicht benutzt.
 
+Siehe auch Gemfile.
+
 
 1. Technische Überlegungen
 --------------------------
