@@ -17,9 +17,10 @@ gem 'thin'
 # System requirements: postgresql-9.1 postgresql-server-dev-9.1
 gem 'pg'
 
-# To use memcached-based fragment caching
+# Dalli: To use memcached-based fragment caching
 # System requirements: memcached
 # On Mac, try: brew install memcached
+gem 'memcachier'
 gem 'dalli'
 
 # Replaces ActiveSupport::Memoization
