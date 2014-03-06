@@ -19,6 +19,7 @@ gem 'pg'
 # To use memcached-based fragment caching
 # System requirements: memcached
 # On Mac, try: brew install memcached
+gem 'memcachier'
 gem 'dalli'
 
 # Replaces ActiveSupport::Memoization
