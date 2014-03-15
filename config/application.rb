@@ -1,9 +1,5 @@
 require File.expand_path('../boot', __FILE__)
 
-# Silences a warning about the version of nokogiri that is being loaded, see http://stackoverflow.com/a/10759560/1212000
-# (Must require it here, before any other libraries can get the chance to load the wrong version.)
-require 'nokogiri'
-
 require 'rails/all'
 
 if defined?(Bundler)

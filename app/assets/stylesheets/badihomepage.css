@@ -141,6 +141,11 @@ table.weeks_table .weeks_table_td a {
     text-decoration: none;
 }
 
+ul.checkboxes {
+    list-style: none;
+    padding-left: 0px;
+}
+
 /* Shamelessly stolen from http://www.texsoft.it/index.php?c=software&m=sw.js.htmltooltip */
 .xstooltip {
     visibility: hidden;

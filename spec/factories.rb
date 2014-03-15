@@ -40,6 +40,9 @@ FactoryGirl.define do |f|
     factory :badi do
       name 'badi'
     end
+    factory :bassin do
+      name 'bassin'
+    end
     factory :kiosk do
       name 'kiosk'
     end

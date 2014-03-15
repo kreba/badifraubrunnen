@@ -1,14 +1,10 @@
-<%= form_for(person) do |f| %><div>
-	<div style="float: left; margin-right: 2em;">
-	
-		<p><label for="name"><%=t 'person.attributes.name' %></label><br />
+<%= render( 'shared/error_messages', obj: @person ) %>
+
+<%= form_for(@person) do |f| %><div>
+  <div style="float: left; margin-right: 2em;">
+
+    <p><label for="name"><%=t 'person.attributes.name' %></label><br />
 		<%= f.text_field( :name )%></p>
-
-		<p><label for="phone"><%=t 'person.attributes.phone' %></label><br />
-		<%= f.text_field( :phone )%></p>
-
-		<p><label for="phone2"><%=t 'person.attributes.phone2' %></label><br />
-		<%= f.text_field( :phone2 )%></p>
 
 		<p><label for="address"><%=t 'person.attributes.address' %></label><br />
 		<%= f.text_field( :address )%></p>
@@ -21,30 +17,43 @@
 						url: { action: :find_location },
 						frequency: 0.5,
 						with: "'zip='+escape(value)" )%>
-		
-		<% if current_person.has_role? 'admin' %>
-			<p><label for="preferences"><%=t 'people.preferences_label' %></label><br />
-			<%= f.text_field( :preferences, rows: 4, size: 67 )%></p>
-		<% end %>
 
-	</div><div style="float: left; margin-right: 2em;">
-	
+    <% if current_person.has_role? 'admin' or current_person.has_role? 'webmaster' %>
+      <p><label for="preferences"><%=t 'people.preferences_label' %></label><br />
+        <%= f.text_field( :preferences, rows: 4, size: 67 )%></p>
+
+      <p><%= t 'role.n' %></p>
+      <ul class="checkboxes">
+        <% staff_roles.each do |role| %>
+          <%= f.fields_for :roles, role do |roles_form| %>
+            <li>
+              <%= roles_form.check_box(role.id, checked: @person.roles.include?(role)) %>
+              <%= role.translate %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
+
+	</div>
+  <div style="float: left; margin-right: 2em;">
+
 		<p><label for="login"><%=t 'person.attributes.login' %></label><br />
 		<%= f.text_field( :login )%></p>
 
 		<p><label for="email"><%=t 'person.attributes.email' %></label><br />
 		<%= f.text_field( :email )%></p>
 
-		<p><label for="password"><%=t 'people.password_label' %></label><br />
-		<%= f.password_field( :password )%></p>
+    <p><label for="phone"><%=t 'person.attributes.phone' %></label><br />
+    <%= f.text_field( :phone )%></p>
 
-		<p><label for="password_confirmation"><%=t 'people.password_confirmation_label' %></label><br />
-		<%= f.password_field( :password_confirmation )%></p>
+    <p><label for="phone2"><%=t 'person.attributes.phone2' %></label><br />
+    <%= f.text_field( :phone2 )%></p>
 
-	</div><div style="clear: left;">
-		
+</div><div style="clear: left;">
+
 		<p><%= submit_tag( t'Save' )%>
 		<em> <%=t 'save_button_remark' %> </em></p>
-		
+
 	</div>
 </div><% end %>

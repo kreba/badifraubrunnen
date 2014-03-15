@@ -9,7 +9,7 @@
 <%= form_for(@shiftinfo) do |f| %>
   <p>
     <b><%=t 'shiftinfo.attributes.description' %></b><br />
-    <%= f.text_field :description %>
+    <%= f.select :description, collection: Shiftinfo::DESCRIPTIONS %>
   </p>
 
   <p>

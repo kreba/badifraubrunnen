@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '1.9.3' #keep in sync with .ruby-version
+ruby '2.0.0' #keep in sync with .ruby-version
 
 gem 'rails', '3.2.13'
 
@@ -55,7 +55,7 @@ end
 
 #gem 'jquery-rails'
 gem 'prototype-rails'
-gem 'prototype_legacy_helper', '0.0.0', :git => 'https://github.com/rails/prototype_legacy_helper.git'
+gem 'prototype_legacy_helper', '0.0.0', git: 'git://github.com/rails/prototype_legacy_helper.git'
 
 # To pop up a ruby debugger from within the code (start the app server with --debugger) 
 # Put a call to 'debugger' in your code. When executed, this method issues an irb prompt in the

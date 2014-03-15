@@ -1,17 +1,13 @@
 class Shiftinfo < ActiveRecord::Base
 
+  DESCRIPTIONS = %w[ Morgen Nachmittag Abend ]
+
   belongs_to :saison
   has_many :shifts
-  
-  # after_update :update_status_image_of_all_days_of_associated_shifts # obsolete on heroku
 
-  validates_presence_of :saison
-  validates_presence_of :description, :begin, :end
-  validates_length_of :description, within: 1..10
+  validates :saison, :description, :begin, :end, presence: true
+  validates :description, inclusion: {in: Shiftinfo::DESCRIPTIONS, allow_nil: true}
   
-#  attr_accessible :description, :begin, :end, :shifts
-#  attr_protected :saison
-
   def times_str
     return self.begin.strftime( '%H:%M' ) + ' - ' + self.end.strftime( '%H:%M' )
   end
