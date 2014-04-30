@@ -38,7 +38,8 @@ class Saison < ActiveRecord::Base
     return min, max
   end
 
-  def self.shiftinfos_by_saison( shiftinfos = Shiftinfo.all(order: :begin, include: :saison) )
+  def self.shiftinfos_by_saison( shiftinfos = Shiftinfo.includes(:saison).all )
+    shiftinfos.sort_by!(&:begin_plus_offset)
     hash_by_saison(shiftinfos){ |shiftinfo, saison|
       shiftinfo.saison.eql? saison
     }

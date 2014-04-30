@@ -37,6 +37,7 @@ de_ch:
       description: Beschreibung
       begin: Beginn
       end: Ende
+      offset: Offset auf Wochenplan (als Zeit)
       saison: Saison
 
   shift:
@@ -185,7 +186,7 @@ de_ch:
     no_sign_up_admin: Woche deaktiviert.<br /> Du als Admin kannst aber<br /> trotzdem Leute eintragen.
     taken: besetzt
     edit:
-      title: Schicht %{shift} am %{date}
+      title: '%{date}: %{shift}'
       admin_advice: Du kannst HelferInnen nur in der Tagesansicht neu zuordnen.
       general_advice: Du bist dabei, dich für eine Schicht einzutragen. Bitte bestätigen.
       warning: 'Achtung: Wenn du auf "Speichern" klickst, meldest du dich verbindlich für diese Schicht als HüterIn!<br />Nur %{admin_names} kann dich wieder austragen.'

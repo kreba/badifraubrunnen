@@ -23,7 +23,7 @@ class Day < ActiveRecord::Base
 
   # Heroku has a read-only file system, hence we created all status images upfront.
   def create_status_image( shifts = shifts_sorted_for_status_image() )
-    img_path = Rails.root + "app/assets/images/" + self.status_image_name(shifts)
+    img_path = Rails.root + 'app/assets/images/' + self.status_image_name(shifts)
     self.create_status_image_stacked(shifts).write(img_path) unless File.exists?(img_path)
   end
 
@@ -33,8 +33,7 @@ class Day < ActiveRecord::Base
   end
 
   def date_str fmt = '%A %d.%m.%Y'
-    return self.date.strftime( fmt )
-    # TODO: do better localization of weekday names
+    I18n.l self.date, format: fmt
   end
 
   # intended use: my_day.plus  1.day
@@ -62,16 +61,12 @@ class Day < ActiveRecord::Base
   end
 
 
-protected
+private
   
-  # shift.shiftinfo.saison.id
-  # shift.shiftinfo.begin
+  # 1) shift.shiftinfo.saison.id
+  # 2) shift.shiftinfo.begin
   def shifts_sorted_for_status_image
-    self.shifts.includes(shiftinfo: :saison).sort{ |a, b|
-      (a.saison.id == b.saison.id) ?
-        a.shiftinfo.begin <=> b.shiftinfo.begin :
-        a.saison.id <=> b.saison.id
-    }
+    self.shifts.includes(:shiftinfo => :saison).sort_by{ |s| [s.shiftinfo.saison.id, s.shiftinfo.begin_plus_offset] }
   end
 
   # shift.free?        (shift.person_id)
@@ -79,14 +74,14 @@ protected
   # shift.saison.color 
   def create_status_image_stacked( shifts = shifts_sorted_for_status_image() )
     img_width, img_height = 1, 80  # synchronize height with css!
-    result = Image.new(img_width, img_height) { background_color = "transparent" }
+    result = Magick::Image.new(img_width, img_height) { background_color = 'transparent' }
     return result if shifts.none?
 
     shift_height = (img_height.to_f / shifts.count.to_f).round
     shift_offset = 1
     shifts.each{ |shift|
-      src = Image.new(img_width, shift_height - 1) {
-        background_color = shift.free? ? shift.saison.color : "transparent"
+      src = Magick::Image.new(img_width, shift_height - 1) {
+        background_color = shift.free? ? shift.saison.color : 'transparent'
         size = "#{img_width}x#{shift_height}+0+#{shift_offset}"
       }
       if shift.disabled?

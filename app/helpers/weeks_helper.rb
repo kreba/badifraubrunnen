@@ -75,9 +75,9 @@ module WeeksHelper
        line-height:  1em;
        margin:      -8px 16px 3px 3px;"
     end
-    def style_for_day( week, saison )
+    def style_for_day( saison )
       "position: relative; 
-       height:   #{HEADER_HEIGHT + day_height(week, saison)}px;
+       height:   #{HEADER_HEIGHT + day_height(saison)}px;
        margin:   2em 0em;"
     end
     def style_for_day_header( day )
@@ -96,7 +96,7 @@ module WeeksHelper
     end
     def style_for_shift( shift )
       si = shift.shiftinfo
-      v_offset = v_offset(si.begin)
+      v_offset = v_offset_begin(si)
 
       top    = v_offset                    - 1 #border
       height = time2pixels(shift.duration) - 1 #border
@@ -108,29 +108,13 @@ module WeeksHelper
     end
 
 
-    def begin_times( saison, side )
-      begin_times = (toptops(saison, side).reject {|time, top| toptops(saison, side).values.detect {|x| x - top > 0 and x - top < TIME_HEIGHT } }).keys
-      return begin_times.reject {|t| end_times(saison, side).detect {|x| x - t > 0 and x - t < TIME_HEIGHT} }
-    end
-    def end_times( saison, side )
-      end_times = (endtops(saison, side).reject {|time, top| endtops(saison, side).values.detect {|x| top - x > 0 and top - x < TIME_HEIGHT } }).keys
-      return end_times
-    end
-    def toptops( saison, side )
-      toptops = {}
-      shifts_by(saison, side).each {|shift|
-          si = shift.shiftinfo
-          toptops[si.begin] ||= HEADER_HEIGHT + v_offset(si.begin) - 1
-        } 
-      toptops
-    end
-    def endtops( saison, side )
-      endtops = {}
-        shifts_by(saison, side).each{ |shift|
-          si = shift.shiftinfo
-          endtops[si.end] ||= HEADER_HEIGHT + v_offset(si.end) - TIME_HEIGHT
-        }
-      endtops
+    def times( saison, side )
+      shifts_by(saison, side).map do |shift|
+        si = shift.shiftinfo
+        begin_top  = HEADER_HEIGHT + v_offset_begin(si) - 1
+        end_top    = HEADER_HEIGHT + v_offset_end(si) - TIME_HEIGHT
+        [si.begin, begin_top, si.end, end_top]
+      end
     end
     def shifts_by( saison, side )
       day = case side
@@ -140,20 +124,21 @@ module WeeksHelper
             end
       day.find_shifts_by_saison(saison)
     end
-    memoize :begin_times, :end_times, :toptops, :endtops, :shifts_by
+    memoize :times, :shifts_by
 
-    def day_height( day, saison )
-      12 * HOUR_HEIGHT
+    def day_height( saison )
+      shiftinfos = Shiftinfo.for_week_and_saison(week, saison)
+      min = earliest_second(shiftinfos)
+      max = latest_second(shiftinfos)
+      time2pixels(max - min)
     end
     memoize :day_height
 
 
-    private
+    # Disable the default constructor.
+    private_class_method :new
 
-    # disable the default constructor
-    def self.new
-      super
-    end
+    private
 
     def time2pixels( seconds )
       (HOUR_HEIGHT * seconds.to_f/1.hour.to_f).round
@@ -164,12 +149,24 @@ module WeeksHelper
     end
     memoize :h_offset_day_count
 
-    def v_offset( time )
-      time_offset = time2pixels(time.seconds_since_midnight)
-      pikett_offset = -9.5*HOUR_HEIGHT
-      time_offset + pikett_offset
+    def v_offset_begin( shiftinfo )
+      v_offset(shiftinfo.saison, shiftinfo.begin_plus_offset)
     end
-    memoize :v_offset
+    def v_offset_end( shiftinfo )
+      v_offset(shiftinfo.saison, shiftinfo.end_plus_offset)
+    end
+    def v_offset( saison, time_in_seconds )
+      shiftinfos = Shiftinfo.for_week_and_saison(week, saison)
+      time2pixels(time_in_seconds - earliest_second(shiftinfos))
+    end
+
+    def earliest_second(shiftinfos)
+      shiftinfos.map(&:begin_plus_offset).min
+    end
+    def latest_second(shiftinfos)
+      shiftinfos.map(&:end_plus_offset).max
+    end
+    memoize :earliest_second, :latest_second
 
   end
 end

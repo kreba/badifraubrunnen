@@ -23,6 +23,11 @@
   </p>
 
   <p>
+    <b><%=t 'shiftinfo.attributes.offset' %></b><br />
+    <%= f.text_field :offset %>
+  </p>
+
+  <p>
     <b><%=t 'shiftinfo.attributes.saison' %></b><br />
     <% if current_person.is_admin_for_what.size > 1 %>
       <%= f.select( :saison_id, current_person.is_admin_for_what.sort.collect { |saison|

@@ -18,7 +18,7 @@
     <% end %>
   <% end %>
 
-  <div style="<%= @dd.style_for_day( @week, saison ) %>">
+  <div style="<%= @dd.style_for_day( saison ) %>">
     <%= render( partial: 'week_plan_times', locals: { saison: saison, side: :left } )%>
     <%= render( partial: 'week_plan_day',   locals: { saison: saison }, collection: @days, as: :day )%>
     <%= render( partial: 'week_plan_times', locals: { saison: saison, side: :right } )%>
