@@ -118,18 +118,15 @@ de_ch:
       success: Personendetails erfolgreich gespeichert.
   
   saisons:
-    badi: Eintrittskontrolle
-    bassin: Wasseraufsicht
+    badi: Badi
     kiosk: Kiosk
     
   role:
     admin: AdministratorIn
-    badiAdmin: Kasse-Admin
-    bassinAdmin: Bassin-Admin
+    badiAdmin: Badi-Admin
     kioskAdmin: Kiosk-Admin
     staff: HelferIn
-    badiStaff: Eintrittskontrolle
-    bassinStaff: Wasseraufsicht
+    badiStaff: Aufsichtsperson
     kioskStaff: Kioskpersonal
     webmaster: Webmaster
     n: Rollen

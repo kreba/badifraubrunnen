@@ -18,8 +18,6 @@ class Saison < ActiveRecord::Base
     case name
     when 'badi'
       'rgba( 38, 158,   0, 0.5)'
-    when 'bassin'
-      'rgba( 10,  10, 255, 0.5)'
     when 'kiosk'
       'rgba(255, 255,   0, 0.5)'
     end
@@ -64,9 +62,6 @@ class Saison < ActiveRecord::Base
 
   def self.badi
     find_by_name('badi')
-  end
-  def self.bassin
-    find_by_name('bassin')
   end
   def self.kiosk
     find_by_name('kiosk')
