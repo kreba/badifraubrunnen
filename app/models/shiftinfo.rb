@@ -11,10 +11,10 @@ class Shiftinfo < ActiveRecord::Base
   validates :description, inclusion: {in: Shiftinfo::DESCRIPTIONS, allow_nil: true}
 
   def begin_plus_offset
-    [self.begin, self.offset].compact.sum(&:seconds_since_midnight)
+    [read_attribute(:begin), read_attribute(:offset)].compact.sum(&:seconds_since_midnight)
   end
   def end_plus_offset
-    [self.end,   self.offset].compact.sum(&:seconds_since_midnight)
+    [read_attribute(:end  ), read_attribute(:offset)].compact.sum(&:seconds_since_midnight)
   end
 
   def times_str
@@ -22,7 +22,7 @@ class Shiftinfo < ActiveRecord::Base
   end
 
   def self.list(cond = {})
-    Shiftinfo.all(conditions: cond, include: :saison).collect{|si| "%d: %s, %s  %s"% [si.id, si.description, si.times_str, si.saison.name]}
+    Shiftinfo.all(conditions: cond, include: :saison).collect{|si| "%2d: %12s, %s  %s"% [si.id, si.description, si.times_str, si.saison.name]}
   end
 
   private
