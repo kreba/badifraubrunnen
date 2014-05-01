@@ -36,7 +36,7 @@ module DaysHelper
     "tooltip_#{day.date_str("%Y-%m-%d")}"
   end
   def html_tooltip_for( day )
-    all_shifts = day.shifts.group_by(&:saison)
+    all_shifts = day.shifts.sort_by{ |s| s.shiftinfo.begin_plus_offset }.group_by(&:saison)
     all_shifts.keys.sort.collect{ |saison|
       content_tag(:div, style: "padding: 3px; background-color: #{saison.color};" ) do
         content_tag(:strong, I18n.t("saisons.#{saison.name}")) + "<br />".html_safe +
@@ -51,7 +51,7 @@ module DaysHelper
     }.join.html_safe
   end
   def text_tooltip_for( day )
-    day.shifts.group_by(&:saison).collect{ |saison, shifts|
+    day.shifts.sort_by{ |s| s.shiftinfo.begin_plus_offset }.group_by(&:saison).collect{ |saison, shifts|
       I18n.t("saisons.#{saison.name}") + ": " +
         shifts.sort_by{ |s| s.shiftinfo.begin }.collect{ |shift|
           " #{shift.shiftinfo.description}: #{shift.free? ? 'frei' : h(shift.person.name)}"
@@ -62,7 +62,7 @@ module DaysHelper
   protected
   def html_tooltip_shifts( shifts )
     content_tag(:table) do
-      shifts.sort_by{ |s| s.shiftinfo.begin }.collect{ |shift|
+      shifts.collect{ |shift|
         content_tag(:tr) {
           content_tag(:td, shift.shiftinfo.description.first + ":" ) +
           content_tag(:td) { shift.free? ?
