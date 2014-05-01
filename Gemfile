@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
+ruby '2.1.1' #keep in sync with .ruby-version
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.13'
 
 # Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
-gem "nested_form", "~> 0.3.2", git: 'https://github.com/ryanb/nested_form.git'
+gem 'nested_form', '~> 0.3.2', :git => 'https://github.com/ryanb/nested_form.git'
 
 # A more robust alternative to the Webrick webserver
 gem 'thin'
@@ -16,7 +17,7 @@ gem 'thin'
 # System requirements: postgresql-9.1 postgresql-server-dev-9.1
 gem 'pg'
 
-# To use memcached-based fragment caching
+# Dalli: To use memcached-based fragment caching
 # System requirements: memcached
 # On Mac, try: brew install memcached
 gem 'memcachier'
@@ -43,25 +44,39 @@ gem 'email_veracity'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails',   '~> 3.2.6'
+  gem 'coffee-rails', '~> 3.2.2'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer'
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '~> 2.1.1'
 end
 
 #gem 'jquery-rails'
 gem 'prototype-rails'
 gem 'prototype_legacy_helper', '0.0.0', git: 'git://github.com/rails/prototype_legacy_helper.git'
 
-# To pop up a ruby debugger from within the code (start the app server with --debugger)
-# (Put a call to 'debugger' in your code. When executed, this method issues an irb prompt in the
-# console where the server runs. You can now inspect the currently executed method's environment.)
-group :development do
-###  gem 'ruby-debug-base19x', '~> 0.11.30.pre4' #maybe this line helps?
-##  gem 'ruby-debug19',       require: 'ruby-debug'
-##  gem 'ruby-debug-ide19'
-end
+#gem 'rspec-rails', :group => [:test, :development]
 
+group :test do
+  gem 'factory_girl_rails'
+
+  gem 'cucumber-rails', :require => false
+
+  gem 'minitest-spec-rails'
+  gem 'capybara_minitest_spec' # for capybara integration and spec matchers
+  gem 'capybara-webkit'        # for headless javascript tests; see http://stackoverflow.com/questions/11354656/error-error-error-installing-capybara-webkit
+
+  # TODO: make sure the database cleaner is working as expected (railscast shows some manual setup)
+  gem 'database_cleaner' # as recommended by capybara & cucumber-rails; 
+
+  gem 'launchy' # For save_and_open_page
+
+  gem 'guard-minitest', :git => 'https://github.com/guard/guard-minitest' # Guard: On Mac OS X, make sure the rb-fsevent gem is installed so Guard can detect file changes.
+  gem 'guard-cucumber'
+  
+  gem 'spring'         # !!As of now, only supports MiniTest::Unit (not MiniTest::Spec)!! Faster testing thanks to pre-loading of (big chunks of) the environment. (Alternatives: spork, zeus, commands)
+  
+  gem 'turn' # for fancy test outputs
+end

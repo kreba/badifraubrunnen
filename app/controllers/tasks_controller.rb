@@ -11,7 +11,7 @@ class TasksController < ApplicationController
   # POST tasks/imagine
   def imagine
     Day.all.each(&:create_status_image)
-    flash[:notice] = t('cache.imagine.success')
+    flash[:notice] = t('cache.imagine.success').html_safe
     redirect_back_or_default(weeks_path)
   end
 

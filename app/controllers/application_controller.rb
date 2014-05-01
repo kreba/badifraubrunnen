@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+
+  YEAR = 2014
   
   protect_from_forgery
 
@@ -21,17 +23,18 @@ class ApplicationController < ActionController::Base
   end
 
   def ApplicationController.year
-    return 2014
+    return 2013
   end
   
-def restrict_access( role_name )
-  saison_if_given = Saison.find_by_name(params[:saison_name])
-  unless current_person.has_role? role_name, saison_if_given
-    role_descr = t('role.' + (saison_if_given ? params[:saison_name] + role_name.capitalize : role_name))
-    flash[:error] = t('application.access_restricted', role: role_descr)
-    redirect_back_or_default( home_path ) and return false
+  def restrict_access( role_name )
+    saison_if_given = Saison.find_by_name(params[:saison_name])
+    unless current_person.has_role? role_name, saison_if_given
+      role_descr = t('role.' + (saison_if_given ? params[:saison_name] + role_name.capitalize : role_name))
+      flash[:error] = t('application.access_restricted', role: role_descr)
+      redirect_back_or_default( home_path ) and return false
+    end
   end
-end
+
 #  # example: restrict_access 'a', ['b', 'c']
 #  # is interpreted as: the person must have roles  a and (b or c)
 #  def restrict_access( *needed_role_sets )

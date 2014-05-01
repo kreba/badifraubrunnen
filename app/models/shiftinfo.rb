@@ -1,16 +1,21 @@
 class Shiftinfo < ActiveRecord::Base
 
+  DESCRIPTIONS = [ 'Morgen', 'Nachmittag', 'Kasse', 'Pikett', 'Wasseraufsicht', 'Abend' ]
+
   belongs_to :saison
   has_many :shifts
-  
-  # after_update :update_status_image_of_all_days_of_associated_shifts # obsolete on heroku
 
-  validates_presence_of :saison
-  validates_presence_of :description, :begin, :end
-  validates_length_of :description, within: 1..10
-  
-#  attr_accessible :description, :begin, :end, :shifts
-#  attr_protected :saison
+  scope :for_week_and_saison, ->(week, saison){ where(saison_id: saison, id: Shift.where(day_id: week.days).uniq.pluck(:shiftinfo_id)) }
+
+  validates :saison, :description, :begin, :end, presence: true
+  validates :description, inclusion: {in: Shiftinfo::DESCRIPTIONS, allow_nil: true}
+
+  def begin_plus_offset
+    [self.begin, self.offset].compact.sum(&:seconds_since_midnight)
+  end
+  def end_plus_offset
+    [self.end,   self.offset].compact.sum(&:seconds_since_midnight)
+  end
 
   def times_str
     return self.begin.strftime( '%H:%M' ) + ' - ' + self.end.strftime( '%H:%M' )

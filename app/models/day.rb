@@ -9,11 +9,11 @@ class Day < ActiveRecord::Base
 
   accepts_nested_attributes_for :shifts, allow_destroy: true
 
-  attr_accessible :shifts_attributes
+  attr_accessible :shifts_attributes, :date
 
   validates_associated :shifts
   validates_presence_of :date
-  # validates_presence_of :week  --  causes problems!
+  validates_presence_of :week
 
   def shift_attributes=( attrs ) # invoked on an update (that is, on submitting an update form)
     # assert existance
@@ -22,19 +22,18 @@ class Day < ActiveRecord::Base
   end
 
   # Heroku has a read-only file system, hence we created all status images upfront.
-  def create_status_image( shifts = shifts_sorted_for_status_image() )
-    img_path = Rails.root + "app/assets/images/" + self.status_image_name(shifts)
-    self.create_status_image_stacked(shifts).write(img_path) unless File.exists?(img_path)
+  def create_status_image
+    shifts = self.shifts.includes(:shiftinfo => :saison)
+    DayImagesGenerator.create_status_image(shifts)
   end
 
-  def status_image_name( shifts = shifts_sorted_for_status_image() )
-    combined_status_str = shifts.collect(&:status_str).join
-    "day_status_#{combined_status_str}.png"
+  def status_image_name
+    shifts = self.shifts.includes(:shiftinfo => :saison)
+    DayImagesGenerator.status_image_name(shifts)
   end
 
   def date_str fmt = '%A %d.%m.%Y'
-    return self.date.strftime( fmt )
-    # TODO: do better localization of weekday names
+    I18n.l self.date, format: fmt
   end
 
   # intended use: my_day.plus  1.day
@@ -59,44 +58,6 @@ class Day < ActiveRecord::Base
     # Note: self.shifts.find_by_saison  is not possible, since the saison attibute is a delegate to the shiftinfo
     # (Even when Shift declares "has_one :saison, through: :shiftinfo", ActiveRecord can still not query by saison.)
     self.shifts.all(include: :shiftinfo).select { |shift| shift.shiftinfo.saison_id == saison.id }
-  end
-
-
-protected
-  
-  # shift.shiftinfo.saison.id
-  # shift.shiftinfo.begin
-  def shifts_sorted_for_status_image
-    self.shifts.includes(shiftinfo: :saison).sort{ |a, b|
-      (a.saison.id == b.saison.id) ?
-        a.shiftinfo.begin <=> b.shiftinfo.begin :
-        a.saison.id <=> b.saison.id
-    }
-  end
-
-  # shift.free?        (shift.person_id)
-  # shift.disabled?    (shift.enabled)
-  # shift.saison.color 
-  def create_status_image_stacked( shifts = shifts_sorted_for_status_image() )
-    img_width, img_height = 1, 80  # synchronize height with css!
-    result = Image.new(img_width, img_height) { background_color = "transparent" }
-    return result if shifts.none?
-
-    shift_height = (img_height.to_f / shifts.count.to_f).round
-    shift_offset = 1
-    shifts.each{ |shift|
-      src = Image.new(img_width, shift_height - 1) {
-        background_color = shift.free? ? shift.saison.color : "transparent"
-        size = "#{img_width}x#{shift_height}+0+#{shift_offset}"
-      }
-      if shift.disabled?
-        src = src.modulate(1.5, 0.5, 0.95)  # brightness, saturation, hue
-      end
-      result.composite!(src, 0, shift_offset, Magick::OverCompositeOp)
-      shift_offset += shift_height
-    }
-    
-    result
   end
 
 end

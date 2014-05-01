@@ -3,7 +3,6 @@ class Week < ActiveRecord::Base
   acts_as_authorizable #Why???
 
   has_many :days
-  # has_many :shifts, through: :days # unused
   belongs_to :person  #Wochenverantwortliche/r
 
   before_validation :assign_7_days, on: :create
@@ -13,10 +12,7 @@ class Week < ActiveRecord::Base
   validates_associated :days
   validates_presence_of     :number, on: :create
   validates_uniqueness_of   :number, on: :create
-  validates_numericality_of :number, on: :create, only_integer: true, greater_than: 0, less_than_or_equal_to: 52
-
-  #attr_accessible :person
-  #attr_readonly :number, :days
+  validates_numericality_of :number, on: :create, only_integer: true, greater_than: 0, less_than_or_equal_to: 53
 
   # returns all days, monday first
   def weekdays
@@ -24,7 +20,7 @@ class Week < ActiveRecord::Base
   end
   
   def past?
-    return Date.commercial( ApplicationController.year , self.number , 7 ) < Date.today;    
+    return Date.commercial( ApplicationController::YEAR , self.number , 7 ) < Date.today;    
   end
 
   def enabled?( saison )
@@ -59,12 +55,19 @@ class Week < ActiveRecord::Base
   private
 
   def assign_7_days
-    @year = ApplicationController.year
-    logger.debug( "(II) Creating 7 days for week #{self.number} in year #{@year}:" )
+    return unless days.empty?
+    
+    year = ApplicationController::YEAR
+    logger.debug( "(II) Building 7 days for week #{self.number} in year #{year}:" )
     for wday in 1..7
-      @date = Date.commercial( @year , self.number , wday )
+      @date = Date.commercial( year , self.number , wday )
       logger.debug( "(II)   Day #{wday}:  #{@date.strftime( "%d.%m." )}" )
-      self.days << (Day.find_by_date( @date ) || Day.create( date: @date ))
+      if Day.where(date: @date).exists?
+        self.days << Day.find_by_date( @date )
+      else
+        self.days << Day.new( date: @date ).tap{|d|d.week = self}
+      end
+
     end
   end
 

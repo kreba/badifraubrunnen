@@ -16,10 +16,10 @@ class Saison < ActiveRecord::Base
 
   def color # move this information to the database?
     case name
-    when "badi"
-      "rgba( 38, 158, 0, 0.5)"
-    when "kiosk"
-      "rgba(255, 255, 0, 0.5)"
+    when 'badi'
+      'rgba( 38, 158,   0, 0.5)'
+    when 'kiosk'
+      'rgba(255, 255,   0, 0.5)'
     end
   end
 
@@ -36,7 +36,8 @@ class Saison < ActiveRecord::Base
     return min, max
   end
 
-  def self.shiftinfos_by_saison( shiftinfos = Shiftinfo.all(order: :begin, include: :saison) )
+  def self.shiftinfos_by_saison( shiftinfos = Shiftinfo.includes(:saison).all )
+    shiftinfos.sort_by!(&:begin_plus_offset)
     hash_by_saison(shiftinfos){ |shiftinfo, saison|
       shiftinfo.saison.eql? saison
     }
@@ -60,10 +61,42 @@ class Saison < ActiveRecord::Base
   end
 
   def self.badi
-    find_by_name("badi")
+    find_by_name('badi')
   end
   def self.kiosk
-    find_by_name("kiosk")
+    find_by_name('kiosk')
+  end
+
+  def self.tear_down_set_up
+    transaction do
+      Week.destroy_all
+
+      (19..36).each{|kw| raise('af') unless Week.create(number: kw) }
+
+      Day.all.each do |day|
+        day.shifts << Shift.new(shiftinfo_id:  1)
+        day.shifts << Shift.new(shiftinfo_id: 12)
+        day.shifts << Shift.new(shiftinfo_id:  6)
+
+        day.shifts << Shift.new(shiftinfo_id: 32)
+        day.shifts << Shift.new(shiftinfo_id: 33)
+        day.shifts << Shift.new(shiftinfo_id: 35)
+
+        case day.date.wday % 7
+        when 1, 2, 3, 4, 5
+          day.shifts << Shift.new(shiftinfo_id:  3)
+          day.shifts << Shift.new(shiftinfo_id: 38)
+        when 6, 0
+          day.shifts << Shift.new(shiftinfo_id: 39)
+          day.shifts << Shift.new(shiftinfo_id: 40)
+          day.shifts << Shift.new(shiftinfo_id: 41)
+        else
+          raise 'nnooooooeeees'
+        end
+      end
+
+      'Done.'
+    end
   end
 
   private

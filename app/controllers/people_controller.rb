@@ -23,11 +23,8 @@ class PeopleController < ApplicationController
     # protects against session fixation attacks, wreaks havoc with request forgery protection.
     # uncomment at your own risk
     # reset_session
-    @person = Person.new(params[:person])
-    for saison in current_person.is_admin_for_what
-      @person.is_staff_for saison
-    end
-    
+    @person = Person.new(params[:person].except(:roles))
+    update_staff_roles(@person)
     if @person.save
       flash[:notice] = t'people.create.success'
       self.current_person = @person unless logged_in? # admin can create people without losing his login
@@ -36,7 +33,7 @@ class PeopleController < ApplicationController
       render action: 'new'
     end
   end
-  
+
   def destroy
     @person = Person.find(params[:id])
 
@@ -58,8 +55,8 @@ class PeopleController < ApplicationController
   # PUT /people/1
   def update
     @person = Person.find(params[:id])
-
-    if @person.update_attributes(params[:person])
+    update_staff_roles(@person)
+    if @person.update_attributes(params[:person].except(:roles))
       flash[:notice] = t'people.update.success'
       render action: "edit" #pointing there on purpose
     else
@@ -94,5 +91,30 @@ class PeopleController < ApplicationController
 #      end
 #    end
 #  end
+
+
+  private
+
+  def staff_roles
+    Role.where(name: 'staff').order(:id)
+  end
+  helper_method :staff_roles
+
+  def update_staff_roles(person)
+    staff_role_ids = staff_roles.map{ |r| r.id.to_s }
+    role_ids = person.role_ids.map(&:to_s)
+
+    params[:person][:roles].each do |role_id, checked|
+      if staff_role_ids.include?(role_id)
+        if checked == '1'
+          role_ids << role_id
+        else
+          role_ids.delete role_id
+        end
+      end
+    end
+
+    person.role_ids = role_ids
+  end
 
 end

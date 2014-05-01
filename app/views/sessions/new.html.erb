@@ -1,8 +1,7 @@
 <% content_for :title, @title = t('sessions.login') %>
 
 <p>
-  Diese Internetseite dient der Organisation der ehrenamtlichen HelferInnen der Badi Fraubrunnen.<br />
-  F&uuml;r Infos zur Badi besuchen Sie bitte <a href="http://www.fraubrunnen.ch/xml_1/internet/de/application/d8/f63.cfm">die Internetseite der Gemeinde Fraubrunnen</a>.
+  <%=t 'sessions.infopage_reference.html' %>
 </p>
 
 <%= form_tag session_path do %>
@@ -16,7 +15,7 @@
   <%#*<p><label for="remember_me">Remember me:</label>%>
   <%#= check_box_tag 'remember_me' % ></p>%>
 
-  <p><%= submit_tag t'sessions.login' %></p>
+  <p><%= submit_tag t('sessions.login'), id: 'do_login' %></p>
 <% end %>
 
 <%# TODO: Add password forgotten functionality (requires mailer). %>

@@ -7,8 +7,7 @@ class DaysController < ApplicationController
   def show
     @day = Day.find(params[:id])
     @week = @day.week
-    @day_shifts = @day.shifts(include: :shiftinfo).group_by(&:saison)
-    @day_shifts.each{|saison, shifts| shifts.sort_by!{|shift| shift.shiftinfo.begin} }
+    @day_shifts = @day.shifts.includes(:shiftinfo).sort_by{ |shift| shift.shiftinfo.begin_plus_offset }.group_by(&:saison)
 
     # To render the form fields partial without displaying fields for non-existing shifts.
     # (We still want to render it because the link_to_add uses it as a template.)
@@ -29,7 +28,7 @@ class DaysController < ApplicationController
       redirect_back_or_default(@day.week)
     else
       # validation error messages are displayed automatically
-      render action: "edit"
+      render action: "show"
     end
   end
 

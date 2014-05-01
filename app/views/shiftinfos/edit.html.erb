@@ -9,7 +9,7 @@
 <%= form_for(@shiftinfo) do |f| %>
   <p>
     <b><%=t 'shiftinfos.description_label' %></b><br />
-    <%= f.text_field :description %>
+    <%= f.select :description, collection: Shiftinfo::DESCRIPTIONS %>
   </p>
 
   <p>
@@ -20,6 +20,11 @@
   <p>
     <b><%=t 'shiftinfo.attributes.end' %></b><br />
     <%= f.text_field :end %>
+  </p>
+
+  <p>
+    <b><%=t 'shiftinfo.attributes.offset' %></b><br />
+    <%= f.text_field :offset %>
   </p>
 
   <% if current_person.is_admin_for_what.size > 1 %><p>
