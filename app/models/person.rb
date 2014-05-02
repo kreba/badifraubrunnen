@@ -39,7 +39,7 @@ class Person < ActiveRecord::Base
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :name, :login, :phone, :phone2, :address, :postal_code, :location, 
-                  :email, :preferences, :password, :password_confirmation
+                  :email, :preferences, :password, :password_confirmation, :brevet
   # :shifts is protected because it is not on this list.
 
   def full_address_str( options = {} )

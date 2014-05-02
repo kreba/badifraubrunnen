@@ -3,13 +3,13 @@
 <%= form_for(@person) do |f| %><div>
   <div style="float: left; margin-right: 2em;">
 
-    <p><label for="name"><%=t 'person.attributes.name' %></label><br />
+    <p><label for="person_name"><%=t 'person.attributes.name' %></label><br />
 		<%= f.text_field( :name )%></p>
 
-		<p><label for="address"><%=t 'person.attributes.address' %></label><br />
+		<p><label for="person_address"><%=t 'person.attributes.address' %></label><br />
 		<%= f.text_field( :address )%></p>
 
-		<p><label for="postal_code"><%=t 'person.attributes.postal_code' %></label>/<label for="location"><%=t 'person.attributes.location' %></label><br />
+		<p><label for="person_postal_code"><%=t 'person.attributes.postal_code' %></label>/<label for="location"><%=t 'person.attributes.location' %></label><br />
 		<%= f.text_field( :postal_code, size:  5 )%>
 		<span id="location_field_container"><%= f.text_field( :location, size: 21 )%></span></p>
 
@@ -19,35 +19,41 @@
 						with: "'zip='+escape(value)" )%>
 
     <% if current_person.has_role? 'admin' or current_person.has_role? 'webmaster' %>
-      <p><label for="preferences"><%=t 'people.preferences_label' %></label><br />
+      <p><label for="person_preferences"><%=t 'people.preferences_label' %></label><br />
         <%= f.text_field( :preferences, rows: 4, size: 67 )%></p>
 
-      <p><%= t 'role.n' %></p>
+      <p><%= t 'people.skills_label' %><br />
+        <%= f.check_box(:brevet) %>
+        <label for="person_brevet"><%= t 'person.attributes.brevet' %></label>
+      </p>
+
+      <label for="roles"><%= t 'role.n' %></label>
       <ul class="checkboxes">
         <% staff_roles.each do |role| %>
           <%= f.fields_for :roles, role do |roles_form| %>
             <li>
               <%= roles_form.check_box(role.id, checked: @person.roles.include?(role)) %>
-              <%= role.translate %>
+              <label for="person_roles_<%= role.id %>"><%= role.translate %></label>
             </li>
           <% end %>
         <% end %>
       </ul>
+
     <% end %>
 
 	</div>
   <div style="float: left; margin-right: 2em;">
 
-		<p><label for="login"><%=t 'person.attributes.login' %></label><br />
+		<p><label for="person_login"><%=t 'person.attributes.login' %></label><br />
 		<%= f.text_field( :login )%></p>
 
-		<p><label for="email"><%=t 'person.attributes.email' %></label><br />
+		<p><label for="person_email"><%=t 'person.attributes.email' %></label><br />
 		<%= f.text_field( :email )%></p>
 
-    <p><label for="phone"><%=t 'person.attributes.phone' %></label><br />
+    <p><label for="person_phone"><%=t 'person.attributes.phone' %></label><br />
     <%= f.text_field( :phone )%></p>
 
-    <p><label for="phone2"><%=t 'person.attributes.phone2' %></label><br />
+    <p><label for="person_phone2"><%=t 'person.attributes.phone2' %></label><br />
     <%= f.text_field( :phone2 )%></p>
 
 </div><div style="clear: left;">

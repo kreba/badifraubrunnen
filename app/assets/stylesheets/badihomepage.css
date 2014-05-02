@@ -237,6 +237,10 @@ tr.even {
     background-color: #f2f2f2;
 }
 
+form ul.checkboxes {
+    margin-top: 0;
+}
+
 /* printout styles
 *-- Remember to include
 *-- <%= stylesheet_link_tag( 'badihomepage', :media => :print )%>

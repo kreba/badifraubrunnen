@@ -21,6 +21,7 @@ de_ch:
       phone: Telefonnummer
       phone2: Zweite Telefonnummer
       preferences: Vorlieben
+      brevet: Hat ein Lebensrettungsbrevet
     invalid_email: 
       malformed: ist ungültig. Bitte auf Tippfehler kontrollieren!
       blacklisted: Dieser Mailserver ist auf der schwarzen Liste. Bitte eine andere Mailadresse verwenden.
@@ -100,6 +101,7 @@ de_ch:
     password_label: Passwort ändern (sonst leer lassen)
     password_confirmation_label: Neues Passwort wiederholen
     preferences_label: Spontan anfragen für (z.B. "Mo Abend und WE, ausser Wochen 23-25")
+    skills_label: Auszeichnungen
     show_map: Kartensuche
     index:
       title: Personenliste

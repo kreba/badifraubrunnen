@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140430183949) do
+ActiveRecord::Schema.define(:version => 20140501210509) do
 
   create_table "days", :force => true do |t|
     t.integer "week_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20140430183949) do
     t.string   "address",                   :limit => 50
     t.string   "phone2",                    :limit => 13
     t.string   "preferences"
+    t.boolean  "brevet",                                   :default => false, :null => false
   end
 
   add_index "people", ["login"], :name => "index_people_on_login"
