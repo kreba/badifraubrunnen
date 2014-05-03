@@ -18,7 +18,34 @@
 						frequency: 0.5,
 						with: "'zip='+escape(value)" )%>
 
-    <% if current_person.has_role? 'admin' or current_person.has_role? 'webmaster' %>
+	</div>
+  <div style="float: left; margin-right: 2em;">
+
+		<p><label for="person_login"><%=t 'person.attributes.login' %></label><br />
+		<%= f.text_field( :login )%></p>
+
+		<p><label for="person_email"><%=t 'person.attributes.email' %></label><br />
+		<%= f.text_field( :email )%></p>
+
+    <p><label for="person_phone"><%=t 'person.attributes.phone' %></label><br />
+    <%= f.text_field( :phone )%></p>
+
+    <p><label for="person_phone2"><%=t 'person.attributes.phone2' %></label><br />
+    <%= f.text_field( :phone2 )%></p>
+
+  </div>
+  <div style="float: left; margin-right: 2em;">
+
+    <p><label for="password"><%=t 'people.password_label' %></label><br/>
+      <%= f.password_field( :password )%></p>
+
+    <p><label for="password_confirmation"><%=t 'people.password_confirmation_label' %></label><br/>
+      <%= f.password_field( :password_confirmation )%></p>
+
+  </div>
+
+  <% if current_person.has_role? 'admin' or current_person.has_role? 'webmaster' %>
+    <div style="float: left; margin-right: 2em;">
       <p><label for="person_preferences"><%=t 'people.preferences_label' %></label><br />
         <%= f.text_field( :preferences, rows: 4, size: 67 )%></p>
 
@@ -38,25 +65,10 @@
           <% end %>
         <% end %>
       </ul>
+    </div>
+  <% end %>
 
-    <% end %>
-
-	</div>
-  <div style="float: left; margin-right: 2em;">
-
-		<p><label for="person_login"><%=t 'person.attributes.login' %></label><br />
-		<%= f.text_field( :login )%></p>
-
-		<p><label for="person_email"><%=t 'person.attributes.email' %></label><br />
-		<%= f.text_field( :email )%></p>
-
-    <p><label for="person_phone"><%=t 'person.attributes.phone' %></label><br />
-    <%= f.text_field( :phone )%></p>
-
-    <p><label for="person_phone2"><%=t 'person.attributes.phone2' %></label><br />
-    <%= f.text_field( :phone2 )%></p>
-
-</div><div style="clear: left;">
+  <div style="clear: left;">
 
 		<p><%= submit_tag( t'Save' )%>
 		<em> <%=t 'save_button_remark' %> </em></p>
