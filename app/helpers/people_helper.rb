@@ -1,6 +1,16 @@
 module PeopleHelper
   require 'net/http'
-  
+
+  def person_select_label( person )
+    person_with_brevet(person)
+  end
+
+  def person_with_brevet(person)
+    label = h person.name
+    label << ' [B]' if person.brevet?
+    label
+  end
+
   def render_people_list( title, people )
     render( partial: 'list_people', 
               locals: {

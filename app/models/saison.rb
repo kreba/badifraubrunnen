@@ -23,6 +23,19 @@ class Saison < ActiveRecord::Base
     end
   end
 
+  def badi?
+    name == 'badi'
+  end
+  def kiosk?
+    name == 'kiosk'
+  end
+  def self.badi
+    find_by_name('badi')
+  end
+  def self.kiosk
+    find_by_name('kiosk')
+  end
+
   def self.daytime_limits
       times = Shiftinfo.all
       min = times.sort_by(&:begin).first.begin.seconds_since_midnight
@@ -58,13 +71,6 @@ class Saison < ActiveRecord::Base
   end
   def self.short_days
     Day.all - long_days
-  end
-
-  def self.badi
-    find_by_name('badi')
-  end
-  def self.kiosk
-    find_by_name('kiosk')
   end
 
   def self.tear_down_set_up
@@ -106,7 +112,7 @@ class Saison < ActiveRecord::Base
     }
   end
   def self.hash_by_saison collection  
-    hash = Hash.new;
+    hash = Hash.new
     Saison.all.each{ |saison|
       hash[saison.name] = collection.select{ |elem| yield(elem, saison) }
     }

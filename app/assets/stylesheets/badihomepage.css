@@ -217,6 +217,11 @@ span.week_plan_shift .person_phone_numbers {
     line-height: normal;
     font-size: smaller;
 }
+span.week_plan_shift .has-brevet {
+    position: absolute;
+    bottom: 1px;
+    right: 3px;
+}
 a.block {
     display: block;
     width: inherit;

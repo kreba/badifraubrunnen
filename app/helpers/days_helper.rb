@@ -67,7 +67,7 @@ module DaysHelper
           content_tag(:td, shift.shiftinfo.description.first + ":" ) +
           content_tag(:td) { shift.free? ?
               (current_person.is_staff_for?(shift.saison) ? 'frei' : 'vakant') :
-              h(shift.person.name)
+              person_with_brevet(shift.person)
           }
         }
       }.join.html_safe
