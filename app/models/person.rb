@@ -99,8 +99,8 @@ class Person < ActiveRecord::Base
     @activated
   end
 
-  def administrates? person
-    self.is_admin?
+  def administrates?( person )
+    is_admin? or is_webmaster?
   end
 
   def roles_str
