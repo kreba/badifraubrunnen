@@ -23,7 +23,7 @@ class PeopleController < ApplicationController
     # protects against session fixation attacks, wreaks havoc with request forgery protection.
     # uncomment at your own risk
     # reset_session
-    @person = Person.new(params[:person].except(:roles))
+    @person = Person.new(person_params)
     update_staff_roles(@person)
     if @person.save
       flash[:notice] = t'people.create.success'
@@ -56,7 +56,7 @@ class PeopleController < ApplicationController
   def update
     @person = Person.find(params[:id])
     update_staff_roles(@person)
-    if @person.update_attributes(params[:person].except(:roles))
+    if @person.update_attributes(person_params)
       flash[:notice] = t'people.update.success'
       render action: "edit" #pointing there on purpose
     else
@@ -104,7 +104,7 @@ class PeopleController < ApplicationController
     staff_role_ids = staff_roles.map{ |r| r.id.to_s }
     role_ids = person.role_ids.map(&:to_s)
 
-    params[:person][:roles].each do |role_id, checked|
+    role_params.each do |role_id, checked|
       if staff_role_ids.include?(role_id)
         if checked == '1'
           role_ids << role_id
@@ -115,6 +115,16 @@ class PeopleController < ApplicationController
     end
 
     person.role_ids = role_ids
+  end
+
+  def person_params
+    params[:person] ||= {}
+    params[:person].except(:roles)
+  end
+
+  def role_params
+    params[:person] ||= {}
+    params[:person][:roles] || {}
   end
 
 end
