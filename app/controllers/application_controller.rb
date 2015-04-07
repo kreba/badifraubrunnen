@@ -1,17 +1,17 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
 
-  YEAR = 2014
-  
+  YEAR = 2015
+
   protect_from_forgery
 
   # Filters added to this controller apply to all controllers in the application.
   # Likewise, all the methods added will be available for all controllers.
   before_filter :login_required
   before_filter :set_user_language
-  
+
   # include all helpers, all the time
-  helper :all 
+  helper :all
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -22,10 +22,6 @@ class ApplicationController < ActionController::Base
     # I18n.locale = current_user.language if logged_in?
   end
 
-  def ApplicationController.year
-    return 2013
-  end
-  
   def restrict_access( role_name )
     saison_if_given = Saison.find_by_name(params[:saison_name])
     unless current_person.has_role? role_name, saison_if_given
