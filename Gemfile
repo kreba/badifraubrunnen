@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.1' #keep in sync with .ruby-version
+ruby '2.1.5' #keep in sync with .ruby-version
 
 gem 'rails', '3.2.13'
 
