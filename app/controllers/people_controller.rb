@@ -1,17 +1,17 @@
 class PeopleController < ApplicationController
-  
+
   # Do not allow anyone to subscribe by themselfes
   #skip_before_filter :login_required, only: [:new, :create]
   before_filter except: [:edit, :find_location, :index, :update] do |c| c.restrict_access 'admin' end
-  
+
   # GET /people
   def index
     @people = Person.order('name')
 
-    @csv_attributes = %w[ name address postal_code location phone phone2 email preferences ]
+    @csv_attributes = %w[ name address postal_code location phone phone2 email preferences roles_str ]
     @csv_delimiter  = ';'
   end
- 
+
   # GET /people/new
   def new
     @person = Person.new()
@@ -67,10 +67,10 @@ class PeopleController < ApplicationController
   # GET /people/find_location  (used in ajax call)
   def find_location
     @location = PeopleHelper.fetch_location_by_postal_code(params[:zip])
-    
+
     if @location.nil? or @location.empty?
       render nothing: true
-    else      
+    else
       render :update do |page|
         page["person_location"].setValue( @location )
       end
