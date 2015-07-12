@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.5' #keep in sync with .ruby-version
+ruby File.read(__dir__ + '/.ruby-version').match(/([0-9.]+)/)[1]
 
 gem 'rails', '3.2.13'
 
@@ -29,14 +29,14 @@ gem 'memoist'
 # To generate images (used for the images in the weeks_table)
 # System requirements: libmagickwand-dev
 # On Mac, try: brew install imagemagick
-gem 'rmagick'  
+gem 'rmagick'
 
 # To generate PDF files from HTML
 # Requires the executable 'wkhtmltopdf' to be available
 gem 'pdfkit'
 
 # For role based authorization à la current_person.is_admin_for? Saison.badi
-gem 'authorization' 
+gem 'authorization'
 
 # For email validation (inkl live check whether the domain exists)
 gem 'email_veracity'
@@ -69,14 +69,14 @@ group :test do
   gem 'capybara-webkit'        # for headless javascript tests; see http://stackoverflow.com/questions/11354656/error-error-error-installing-capybara-webkit
 
   # TODO: make sure the database cleaner is working as expected (railscast shows some manual setup)
-  gem 'database_cleaner' # as recommended by capybara & cucumber-rails; 
+  gem 'database_cleaner' # as recommended by capybara & cucumber-rails;
 
   gem 'launchy' # For save_and_open_page
 
   gem 'guard-minitest', :git => 'https://github.com/guard/guard-minitest' # Guard: On Mac OS X, make sure the rb-fsevent gem is installed so Guard can detect file changes.
   gem 'guard-cucumber'
-  
+
   gem 'spring'         # !!As of now, only supports MiniTest::Unit (not MiniTest::Spec)!! Faster testing thanks to pre-loading of (big chunks of) the environment. (Alternatives: spork, zeus, commands)
-  
+
   gem 'turn' # for fancy test outputs
 end
