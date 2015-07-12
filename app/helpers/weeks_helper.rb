@@ -20,7 +20,11 @@ module WeeksHelper
     }
 
     if day.timely_active?
-      options.merge background: image_path(day.status_image_name)
+      begin
+        options.merge background: image_path(day.status_image_name)
+      rescue Sprockets::Helpers::RailsHelper::AssetPaths::AssetNotPrecompiledError
+        options.merge background: image_path('attention-icon.png')
+      end
       # do something with an image_tag instead? (enables browser-side caching)
     else
       options.merge style: "background-color:#dddddd; color:#ffffff;"
@@ -30,12 +34,12 @@ module WeeksHelper
     "week_#{week.number}"
   end
   def cell_link_to( text, target = {}, padding = "5px 3px" )
-      link_to( 
-        content_tag(:span, 
+      link_to(
+        content_tag(:span,
           text, {style: "width: 100%; height: inherit; margin: #{padding};"}),
         target, {style: "width: #{WeekPlanDisplayData::DAY_WIDTH}px; height: inherit; display: table-cell; vertical-align: middle;", class: 'noprint'} )
   end
-    
+
   class WeekPlanDisplayData
     extend Memoist
 
@@ -44,7 +48,7 @@ module WeeksHelper
     DAY_WIDTH     = 125
     TIME_HEIGHT   = 20  #css: height=17px + border=2*1px
     TIME_WIDTH    = 50 + 5
-    
+
     attr_accessor :week
 
 
@@ -53,7 +57,7 @@ module WeeksHelper
       instance.week = week
       return instance
     end
-    
+
     def day_name( wday )
       I18n.translate('date.abbr_day_names')[wday]
     end
@@ -76,12 +80,12 @@ module WeeksHelper
        margin:      -8px 16px 3px 3px;"
     end
     def style_for_day( saison )
-      "position: relative; 
+      "position: relative;
        height:   #{HEADER_HEIGHT + day_height(saison)}px;
        margin:   2em 0em;"
     end
     def style_for_day_header( day )
-      "position: absolute; 
+      "position: absolute;
        left:     #{h_offset(day.date.wday)}px;
        width:    #{DAY_WIDTH}px;
        top:      0px;
@@ -89,7 +93,7 @@ module WeeksHelper
        text-align: center;"
     end
     def style_for_day_body( day )
-      "position: absolute; 
+      "position: absolute;
        left:     #{h_offset(day.date.wday)}px;
        width:    #{DAY_WIDTH}px;
        top:      #{HEADER_HEIGHT}px; "
