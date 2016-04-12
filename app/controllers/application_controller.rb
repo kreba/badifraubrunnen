@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
 
-  YEAR = 2015
+  YEAR = 2016
 
   protect_from_forgery
 
