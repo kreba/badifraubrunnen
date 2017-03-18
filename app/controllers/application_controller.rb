@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
 
-  YEAR = 2016
-
   protect_from_forgery
 
   # Filters added to this controller apply to all controllers in the application.

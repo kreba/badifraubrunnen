@@ -18,9 +18,9 @@ class Week < ActiveRecord::Base
   def weekdays
     days.sort_by{ |day| day.date }
   end
-  
+
   def past?
-    return Date.commercial( ApplicationController::YEAR , self.number , 7 ) < Date.today;    
+    return Date.commercial( Date.today.year , self.number , 7 ) < Date.today;
   end
 
   def enabled?( saison )
@@ -50,14 +50,14 @@ class Week < ActiveRecord::Base
     shifts.each{ |shift| yield(shift) }
     shifts.all?(&:save)
   end
-  
+
 
   private
 
   def assign_7_days
     return unless days.empty?
-    
-    year = ApplicationController::YEAR
+
+    year = Date.today.year
     logger.debug( "(II) Building 7 days for week #{self.number} in year #{year}:" )
     for wday in 1..7
       @date = Date.commercial( year , self.number , wday )
