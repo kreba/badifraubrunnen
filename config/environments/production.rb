@@ -4,22 +4,29 @@ Badi2010::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
 
+  config.eager_load = true
+
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_files = false
 
   # Compress JavaScripts and CSS
-  config.assets.compress = true
+  config.assets.js_compressor = :uglifier
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( badihomepage.css prototype.js prototype_ujs.js prototype_nested_form.js xstooltip.js )
+  config.assets.precompile += %w( badihomepage.css
+                                  prototype.js
+                                  prototype_ujs.js
+                                  prototype_nested_form.js
+                                  xstooltip.js
+  )
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -63,8 +70,4 @@ Badi2010::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-
-  # Log the query plan for queries taking more than this (works
-  # with SQLite, MySQL, and PostgreSQL)
-  # config.active_record.auto_explain_threshold_in_seconds = 0.5
 end

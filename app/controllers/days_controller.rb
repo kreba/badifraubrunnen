@@ -1,8 +1,8 @@
 class DaysController < ApplicationController
-  
+
   before_filter except: [:show, :edit, :update] do |c| c.restrict_access 'webmaster' end
   cache_sweeper :week_sweeper, only: [:update]
-  
+
   # GET /weeks/1/days/1
   def show
     @day = Day.find(params[:id])
@@ -22,14 +22,21 @@ class DaysController < ApplicationController
   # PUT /weeks/1/days/1
   def update
     @day = Day.find(params[:id])
-    
-    if @day.update_attributes(params[:day])
+
+    if @day.update(day_params)
       flash[:notice] = t('days.update.success')
       redirect_back_or_default(@day.week)
     else
       # validation error messages are displayed automatically
       render action: "show"
     end
+  end
+
+
+  private
+
+  def day_params
+    params.require(:day).permit(shifts_attributes: [:id, :shiftinfo_id, :person_id, :_destroy])
   end
 
 end

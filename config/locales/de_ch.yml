@@ -22,11 +22,11 @@ de_ch:
       phone2: Zweite Telefonnummer
       preferences: Vorlieben
       brevet: Hat ein Lebensrettungsbrevet
-    invalid_email: 
+    invalid_email:
       malformed: ist ungültig. Bitte auf Tippfehler kontrollieren!
       blacklisted: Dieser Mailserver ist auf der schwarzen Liste. Bitte eine andere Mailadresse verwenden.
       no_records: Diese Domain gibt es nicht.
-      no_address_servers: Diesen Mailserver gibt es nicht. 
+      no_address_servers: Diesen Mailserver gibt es nicht.
       no_exchange_servers: Diese Domain hat keinen Mailserver.
       timed_out: Der Mailserver ist nicht erreichbar.
     invalid_phone: muss von der Form "0xx xxx xx xx" sein
@@ -117,11 +117,11 @@ de_ch:
         admin: Personalien bearbeiten
     update:
       success: Personendetails erfolgreich gespeichert.
-  
+
   saisons:
     badi: Badi
     kiosk: Kiosk
-    
+
   role:
     admin: AdministratorIn
     badiAdmin: Badi-Admin
@@ -142,7 +142,7 @@ de_ch:
     # in the view
     login: Einloggen
     logout: Ausloggen
-    infopage_reference: 
+    infopage_reference:
       html: Diese Internetseite dient der Organisation der ehrenamtlichen HelferInnen der Badi Fraubrunnen.
 
 
@@ -193,7 +193,7 @@ de_ch:
       summary: Total %{total} Schichten
 #      summary: Total %{total} Schichten, davon %{enabled} zurzeit aktiv
       advice_weeks_responsability_not_listed: "Achtung: Einsätze als Wochenverantwortung werden nicht aufgelistet"
-    myshifts:
+    my_shifts:
       title: Meine Einsätze
     show:
       edit_shiftinfos: Schichtentypen bearbeiten
@@ -205,7 +205,7 @@ de_ch:
     update:
       success: Änderung erfolgreich.
     destroy:
-      success: Woche gelöscht. 
+      success: Woche gelöscht.
     # in the view
     confirm_delete: Jää, bisch de sicher? Die Daten zu den Tagen werden unwiederbringlich gelöscht!
     past_weeks: Vergangene Wochen
@@ -257,7 +257,7 @@ de_ch:
   phone_short: Tel.
   Save: Speichern
   save_button_remark: Änderungen werden nur bei einem Klick auf diesen Knopf gespeichert.
-    
+
   help:
     # in the view
     title: Hilfe!
@@ -386,7 +386,7 @@ de_ch:
       shift:
         one:   Schicht
         other: Schichten
-      shiftinfo: 
+      shiftinfo:
         one:   Schichtdetails
         other: Schichentdetails
       week:

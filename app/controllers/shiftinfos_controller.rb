@@ -27,7 +27,7 @@ class ShiftinfosController < ApplicationController
   # POST /shiftinfos
   # POST /shiftinfos.xml
   def create
-    @shiftinfo = Shiftinfo.new(params[:shiftinfo])
+    @shiftinfo = Shiftinfo.new(shiftinfo_params)
     if current_person.is_admin_for_what.size == 1
       @shiftinfo.saison = current_person.is_admin_for_what.first
     else
@@ -68,7 +68,7 @@ class ShiftinfosController < ApplicationController
     @shiftinfo = Shiftinfo.find(params[:id])
 
     respond_to do |format|
-      if @shiftinfo.update_attributes(params[:shiftinfo])
+      if @shiftinfo.update(shiftinfo_params)
         flash[:notice] = t'shiftinfos.update.success'
         format.html { redirect_to shiftinfos_path }
         format.xml  { head :ok }
@@ -90,4 +90,12 @@ class ShiftinfosController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
+  private
+
+  def shiftinfo_params
+    params.require(:shiftinfo).permit!
+  end
+
 end

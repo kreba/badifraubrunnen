@@ -92,8 +92,8 @@ Dann in der "script/console production":
 - (19..37).each{|n| Week.create!( number: n )}
 - [1,12,6,3,32,33,35].each{|n| Saison.long_days.each{|day| Shift.create!(shiftinfo_id: n, day_id: day.id); day.save!}}
 - [26,27,28,29,30,33,36].each{|n| Saison.short_days.each{|day| Shift.create!(shiftinfo_id: n, day_id: day.id); day.save!}}
-- Saison.kiosk.update_attributes( begin: "2012-05-05", end: "2012-09-16" )
--  Saison.badi.update_attributes( begin: "2012-05-05", end: "2012-09-16" )
+- Saison.kiosk.update( begin: "2012-05-05", end: "2012-09-16" )
+-  Saison.badi.update( begin: "2012-05-05", end: "2012-09-16" )
 
 Achtung: Alle Schichten sind standardmässig aktiviert.
 Dies kann aber z.B. mittels "Week.all.each{|w| w.disable(Saison.badi)}" bequem geändert werden.

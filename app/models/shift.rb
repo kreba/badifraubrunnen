@@ -4,21 +4,18 @@ class Shift < ActiveRecord::Base
     taken:    'T',
     disabled: '0'
   }
-  
+
   # Authorization plugin
   acts_as_authorizable  # Why?!
 
   belongs_to :shiftinfo
   belongs_to :day
   belongs_to :person
-  
+
   after_update :update_status_image_of_my_day
 
   validates_presence_of :shiftinfo, :day
 
-  attr_protected :enabled
-#  attr_accessible :person, :shiftinfo
-#  attr_readonly :day
   delegate :saison, :saison=, :times_str,  to: :shiftinfo  # allow_nil: true
 
 
@@ -57,12 +54,12 @@ class Shift < ActiveRecord::Base
   def forget_person!
     update_attribute :person, nil
   end
-  
+
   def timely_active?
     !day.date.past? &&
     day.date.between?(saison.begin, saison.end)
   end
-  
+
   def can_staff_sign_up?
     enabled? and free? and timely_active?
   end
@@ -70,7 +67,7 @@ class Shift < ActiveRecord::Base
   protected
   def update_status_image_of_my_day
     #day.create_status_image
-    # We currently deploy to heroku, which requires all static assets to be precompiled. 
+    # We currently deploy to heroku, which requires all static assets to be precompiled.
     # Hence we check in every possible status image.
     # Hence no need for creation here.
   end

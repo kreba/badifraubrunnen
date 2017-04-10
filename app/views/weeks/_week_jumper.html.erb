@@ -1,5 +1,5 @@
-<% before = Week.find_by_number( @week.number - 1 ) %>
-<% after  = Week.find_by_number( @week.number + 1 ) %>
+<% before = Week.find_by number: @week.number - 1 %>
+<% after  = Week.find_by number: @week.number + 1 %>
 
 <div class="week_jumper noprint">
   <%= link_to_unless( before.nil?, "←", before ) %>

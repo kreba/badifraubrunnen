@@ -19,6 +19,6 @@
 <h3><%= current_person.name %></h3>
 <ul>
   <%= navigation_link_unless_current( t('people.edit.title.staff'), edit_person_path(current_person) )%>
-  <%= navigation_link_unless_current( t('shifts.myshifts.title'), myshifts_path )%>
-  <%= navigation_link( t('sessions.logout'), logout_path )%>
+  <%= navigation_link_unless_current( t('shifts.my_shifts.title'), my_shifts_path )%>
+  <%= navigation_link( t('sessions.logout'), logout_path, method: :delete )%>
 </ul>

@@ -17,7 +17,7 @@ class DayImagesGenerator
 
   def self.create_status_image( shifts )
     img_path = Rails.root + 'app/assets/images/' + status_image_name(shifts)
-    if File.exists?(img_path)
+    if File.exist?(img_path)
       p 'EXISTS ' + img_path.to_s
     else
       p 'CREATE ' + img_path.to_s

@@ -1,6 +1,6 @@
 <%= nested_form_for @day do |f_day| %>
 
-  <% if @day_shifts[saison].empty? %>
+  <% if @day_shifts[saison].none? %>
     <div>
       <%= t('shifts.none_for_today') %>
     </div>

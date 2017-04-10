@@ -1,7 +1,11 @@
 require 'digest/sha1'
 class Person < ActiveRecord::Base
   REMEMBER_ME_TIME = 1.hour
-  
+
+  has_many :people_roles
+  has_many :roles, through: :people_roles
+  scope :having_role, -> (role_name) { joins(:roles).merge(Role.where(name: role_name)) }
+
   # Authorization plugin
   acts_as_authorized_user
   acts_as_authorizable
@@ -29,28 +33,22 @@ class Person < ActiveRecord::Base
 
   # Uses Carsten Nielsen's email_veracity gem (see lib/EmailVeracityValidator.rb)
   validates :email, email_veracity: true
-  
+
   # Virtual attribute for the unencrypted password
   attr_accessor :password
-
-  # Prevents a user from submitting a crafted form that bypasses activation
-  # anything else you want your user to change should be added here.
-  attr_accessible :name, :login, :phone, :phone2, :address, :postal_code, :location, 
-                  :email, :preferences, :password, :password_confirmation, :brevet
-  # :shifts is protected because it is not on this list.
 
   def full_address_str( options = {} )
     options.reverse_merge! delimiter: ', '
     str = ''
     str << address unless !address  # must append instead of a direct assignment in order to get a copy
-    str << (str.empty? ? '' : options[:delimiter]) + postal_code.to_s if postal_code
-    str << (str.empty? ? '' : ' ') + location if location
+    str << (str.blank? ? '' : options[:delimiter]) + postal_code.to_s if postal_code
+    str << (str.blank? ? '' : ' ') + location if location
     return str.html_safe
   end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
-    u = find_by_login(login) # need to get the salt
+    u = find_by login: login # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
 
@@ -70,7 +68,7 @@ class Person < ActiveRecord::Base
   end
 
   def remember_token?
-    remember_token_expires_at && Time.now.utc < remember_token_expires_at 
+    remember_token_expires_at && Time.now.utc < remember_token_expires_at
   end
 
   # These create and unset the fields required for remembering users between browser closes
@@ -117,7 +115,7 @@ class Person < ActiveRecord::Base
   end
 
   def my_saisons
-    self.roles.all(include: :authorizable).collect(&:authorizable).flatten.uniq.compact.sort_by(&:name)
+    self.roles.includes(:authorizable).collect(&:authorizable).flatten.uniq.compact.sort_by(&:name)
   end
   def all_saisons_but_mine_first
     my_saisons | Saison.all(order: :name)
@@ -133,25 +131,25 @@ class Person < ActiveRecord::Base
   end
 
   def self.find_by_role role_name
-    roles = Role.find_all_by_name(role_name, include: :people)
+    roles = Role.where(name: role_name).includes(:people)
     roles.collect{ |role| role.people }.flatten.uniq.sort_by(&:name)
   end
 
   protected
-    # before filter 
+    # before filter
     def encrypt_password
       return if password.blank?
       self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
       self.crypted_password = encrypt(password)
     end
-      
+
     def password_required?
       crypted_password.blank? || !password.blank?
     end
-    
+
   private
     def free_all_shifts
       self.shifts.each {| shift | shift.forget_person! }
     end
 end
-  
+

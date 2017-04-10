@@ -9,8 +9,6 @@ class Day < ActiveRecord::Base
 
   accepts_nested_attributes_for :shifts, allow_destroy: true
 
-  attr_accessible :shifts_attributes, :date
-
   validates_associated :shifts
   validates_presence_of :date
   validates_presence_of :week
@@ -39,10 +37,10 @@ class Day < ActiveRecord::Base
   # intended use: my_day.plus  1.day
   # or            my_day.minus 1.week
   def plus( time )
-    Day.find_by_date( self.date + time )
+    Day.find_by date: self.date + time
   end
   def minus( time )
-    Day.find_by_date( self.date - time )
+    Day.find_by date: self.date - time
   end
 
   def timely_active?
@@ -57,7 +55,7 @@ class Day < ActiveRecord::Base
   def find_shifts_by_saison( saison )
     # Note: self.shifts.find_by_saison  is not possible, since the saison attibute is a delegate to the shiftinfo
     # (Even when Shift declares "has_one :saison, through: :shiftinfo", ActiveRecord can still not query by saison.)
-    self.shifts.all(include: :shiftinfo).select { |shift| shift.shiftinfo.saison_id == saison.id }
+    self.shifts.includes(:shiftinfo).select { |shift| shift.shiftinfo.saison_id == saison.id }
   end
 
 end

@@ -4,7 +4,7 @@ module WeeksHelper
 
   def phone_str( person, options = {} )
     options.reverse_merge! delimiter: ', '
-    [person.phone, person.phone2].compact.reject(&:empty?).join(options[:delimiter]).html_safe
+    [person.phone, person.phone2].compact.reject(&:blank?).join(options[:delimiter]).html_safe
   end
   def day_td( day )
     content_tag(:td,

@@ -56,7 +56,7 @@ class PeopleController < ApplicationController
   def update
     @person = Person.find(params[:id])
     update_staff_roles(@person)
-    if @person.update_attributes(person_params)
+    if @person.update(person_params)
       flash[:notice] = t'people.update.success'
       render action: "edit" #pointing there on purpose
     else
@@ -68,7 +68,7 @@ class PeopleController < ApplicationController
   def find_location
     @location = PeopleHelper.fetch_location_by_postal_code(params[:zip])
 
-    if @location.nil? or @location.empty?
+    if @location.blank?
       render nothing: true
     else
       render :update do |page|
@@ -119,7 +119,10 @@ class PeopleController < ApplicationController
 
   def person_params
     params[:person] ||= {}
-    params[:person].except(:roles)
+    params[:person].permit(
+        :name, :login, :phone, :phone2, :address, :postal_code, :location,
+        :email, :preferences, :password, :password_confirmation, :brevet
+    )
   end
 
   def role_params

@@ -16,8 +16,8 @@ FactoryGirl.define do |f|
 
 
   factory :person do
-    ignore do
-      sequence(:id, f.next_id(Person))
+    transient do
+      sequence(:id) { f.next_id(Person) }
     end
 
     login { "abcxy#{id}" }
@@ -29,8 +29,8 @@ FactoryGirl.define do |f|
   end
 
   factory :saison do
-    ignore do
-      sequence(:id, f.next_id(Saison))
+    transient do
+      sequence(:id) { f.next_id(Saison) }
     end
 
     name { "Ressort_#{id}" }
@@ -46,7 +46,7 @@ FactoryGirl.define do |f|
   end
 
   factory :shiftinfo do
-    saison (Saison.badi || FactoryGirl.create(:badi))
+    saison { Saison.badi || FactoryGirl.create(:badi) }
     description { "Morgen" }
     self.begin '09:30:00'
     self.end   '12:00:00'
@@ -58,7 +58,7 @@ FactoryGirl.define do |f|
   end
 
   factory :day do
-    ignore do
+    transient do
       wdaynum 1 # Monday
     end
 
@@ -73,7 +73,7 @@ FactoryGirl.define do |f|
   end
 
   factory :week do
-    sequence(:number, f.next_week_number)
+    sequence(:number) { f.next_week_number }
 
     after :build do |week|
       for wday in 1..7

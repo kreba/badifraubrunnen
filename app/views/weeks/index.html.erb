@@ -1,11 +1,11 @@
 <% content_for :title, @title = t('weeks.index.title') %>
 <% content_for :dynamic_links_for_webmaster do %>
   <%#= navigation_link t('weeks.new.title'), new_week_path %>
-  <%= navigation_link t('cache.imagine.title'), imagine_path %>
-  <%= navigation_link t('cache.sweep.title'), cachesweep_path %>
+  <%= navigation_link t('cache.imagine.title'), imagine_path, method: :post %>
+  <%= navigation_link t('cache.sweep.title'), cachesweep_path, method: :post %>
 <% end %>
 
 
-<%= render( partial: 'weeks_table' )   unless @future_weeks.empty? %>
+<%= render( partial: 'weeks_table' )     unless @future_weeks.none? %>
 
-<%= render( partial: 'weeks_past_view' ) unless @past_weeks.empty?  %>
+<%= render( partial: 'weeks_past_view' ) unless @past_weeks.none?  %>

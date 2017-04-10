@@ -7,7 +7,6 @@ class Saison < ActiveRecord::Base
   validates_presence_of :begin, :end, :name
   validates_uniqueness_of :name
 
-  attr_accessible :begin, :end
   attr_readonly :name
 
   def <=> other
@@ -30,10 +29,10 @@ class Saison < ActiveRecord::Base
     name == 'kiosk'
   end
   def self.badi
-    find_by_name('badi')
+    find_by name: 'badi'
   end
   def self.kiosk
-    find_by_name('kiosk')
+    find_by name: 'kiosk'
   end
 
   def self.daytime_limits
@@ -64,7 +63,7 @@ class Saison < ActiveRecord::Base
 
   #see README_FOR_APP for instructions how to set up a saison
   def self.long_days
-    high_saison = Day.all(include: :week).select{ |day| (25..35).include?(day.week.number) }
+    high_saison = Day.includes(:week).select{ |day| (25..35).include?(day.week.number) }
     week_end    = Day.all.select{ |day| %w'Sat Sun'.include? day.date.strftime( '%a' ) }
 
     high_saison | week_end
@@ -111,7 +110,7 @@ class Saison < ActiveRecord::Base
       person.has_role? role_name, saison
     }
   end
-  def self.hash_by_saison collection  
+  def self.hash_by_saison collection
     hash = Hash.new
     Saison.all.each{ |saison|
       hash[saison.name] = collection.select{ |elem| yield(elem, saison) }

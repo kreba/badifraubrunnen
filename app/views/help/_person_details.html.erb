@@ -4,20 +4,20 @@
 <div class="person_details">
   <p>
     <%= person.name %>
-    <% unless person.address.nil? %>
+    <% if person.address.present? %>
       <br /><%= person.address %>
     <% end %>
-    <% unless person.location.nil? or person.location.empty? %>
+    <% if person.location.present? %>
       <br /><%= "#{person.postal_code} #{person.location}" %>
     <% end %>
   </p><p>
     Tel.: <%= person.phone %>
-    <% unless person.phone2.nil? or person.phone2.empty? %>
+    <% if person.phone2.present? %>
       <br />Tel2: <%= person.phone2 %>
     <% end %>
   </p><p>
-    Mail: <%= mail_to( "#{person.name} <#{person.email}>", person.email, subject: t('mail.subject'), 
-                       # encode: "hex", replace_at: "æ", replace_dot: "·" 
+    Mail: <%= mail_to( "#{person.name} <#{person.email}>", person.email, subject: t('mail.subject'),
+                       # encode: "hex", replace_at: "æ", replace_dot: "·"
           ) %>
   </p>
 </div>

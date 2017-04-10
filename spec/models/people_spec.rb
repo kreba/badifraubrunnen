@@ -54,7 +54,7 @@ describe Person do
 
       assert_equal @quentin, Person.authenticate(@quentin.login, old_pw)
 
-      @quentin.update_attributes!(password: new_pw, password_confirmation: new_pw)
+      @quentin.update!(password: new_pw, password_confirmation: new_pw)
 
       assert_equal @quentin, Person.authenticate(@quentin.login, new_pw)
       assert_equal nil,      Person.authenticate(@quentin.login, old_pw)
@@ -66,7 +66,7 @@ describe Person do
 
       assert_equal @quentin, Person.authenticate(old_login, @quentin.password)
 
-      @quentin.update_attributes!(login: new_login)
+      @quentin.update!(login: new_login)
 
       assert_equal @quentin, Person.authenticate(new_login, @quentin.password)
       assert_equal nil,      Person.authenticate(old_login, @quentin.password)
@@ -110,21 +110,21 @@ describe Person do
       after = (Time.now + Person::REMEMBER_ME_TIME).utc
       assert_not_nil @quentin.remember_token
       assert_not_nil @quentin.remember_token_expires_at
-      assert @quentin.remember_token_expires_at.utc.between?(before, after), 
+      assert @quentin.remember_token_expires_at.utc.between?(before, after),
         "Expected expiry to be right past #{before}, but was #{@quentin.remember_token_expires_at.utc}"
     end
   end
 
 private
-  
+
   def create_person options = {}
     FactoryGirl.create(:person, options)
   end
-  
+
   def build_and_validate_person options = {}
     person = FactoryGirl.build(:person, options)
     person.valid?
     person
   end
-  
+
 end

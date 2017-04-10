@@ -4,7 +4,7 @@ class HelpController < ApplicationController
   # GET /contact
   def contact
     @admins = Saison.admins_by_saison
-    @webmasters = Person.find_by_role 'webmaster'
+    @webmasters = Person.having_role 'webmaster'
   end
-  
+
 end

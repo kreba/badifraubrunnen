@@ -1,6 +1,6 @@
-<% unless people.empty? %>
+<% if people.any? %>
 	<h2><%= title %></h2>
 	<div>
 	  <%= render( partial: 'person_details', collection: people, as: :person )%>
-	</div>	
+	</div>
 <% end %>

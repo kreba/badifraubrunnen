@@ -1,7 +1,7 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  def navigation_link(title, path)
-    content_tag(:li, link_to(title, path) )
+  def navigation_link(title, path, **opts)
+    content_tag(:li, link_to(title, path, opts) )
 #      options[:prefix].to_s + link_to(title, path) + options[:postfix].to_s
   end
   def navigation_link_unless_current(title, path)

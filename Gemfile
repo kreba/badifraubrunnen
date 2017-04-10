@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby File.read(__dir__ + '/.ruby-version').match(/([0-9.]+)/)[1]
 
-gem 'rails', '~> 3.2'
+gem 'rails', '~> 4.0.0'
 
 # Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
 gem 'nested_form', '~> 0.3.2', :git => 'https://github.com/ryanb/nested_form.git'
@@ -20,6 +20,7 @@ gem 'pg'
 # Dalli: To use memcached-based fragment caching
 # System requirements: memcached
 # On Mac, try: brew install memcached
+gem 'rails-observers'
 gem 'memcachier'
 gem 'dalli'
 
@@ -41,23 +42,23 @@ gem 'authorization'
 # For email validation (inkl live check whether the domain exists)
 gem 'email_veracity'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.6'
-  gem 'coffee-rails', '~> 3.2.2'
+gem 'sass-rails'
+gem 'coffee-rails'
 
-  # See https://github.com/sstephenson/execjs#readme for more sed runtimes
-  # gem 'therubyracer'
+# See https://github.com/sstephenson/execjs#readme for more sed runtimes
+# gem 'therubyracer'
 
-  gem 'uglifier', '~> 2.1.1'
-end
+gem 'uglifier'
 
 #gem 'jquery-rails'
 gem 'prototype-rails'
 gem 'prototype_legacy_helper', '0.0.0', git: 'git://github.com/rails/prototype_legacy_helper.git'
 
 gem 'test-unit'
+
+group :development do
+  gem 'spring'
+end
 
 group :test do
   gem 'factory_girl_rails'
@@ -73,8 +74,8 @@ group :test do
 
   gem 'launchy' # For save_and_open_page
 
-  gem 'guard-minitest', :git => 'https://github.com/guard/guard-minitest' # Guard: On Mac OS X, make sure the rb-fsevent gem is installed so Guard can detect file changes.
-  gem 'guard-cucumber'
+  # gem 'guard-minitest', :git => 'https://github.com/guard/guard-minitest' # Guard: On Mac OS X, make sure the rb-fsevent gem is installed so Guard can detect file changes.
+  # gem 'guard-cucumber'
 
   gem 'spring'         # !!As of now, only supports MiniTest::Unit (not MiniTest::Spec)!! Faster testing thanks to pre-loading of (big chunks of) the environment. (Alternatives: spork, zeus, commands)
 

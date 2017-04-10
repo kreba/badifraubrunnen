@@ -1,5 +1,5 @@
 class ShiftsController < ApplicationController
-  
+
   before_filter only: :index do |c| c.restrict_access 'admin' end
   before_filter only: [:new, :create] do |c| c.restrict_access 'webmaster' end
   before_filter :future_required, only: [:edit, :update]
@@ -8,10 +8,10 @@ class ShiftsController < ApplicationController
   # GET /shifts
   # GET /shifts.xml
   def index
-    @shifts = Shift.all(include: [:day, :shiftinfo]).select{|s| current_person.is_admin_for? s.shiftinfo.saison }.sort_by {|s| s.day.date}
+    @shifts = Shift.includes(:day, :shiftinfo).select{|s| current_person.is_admin_for? s.shiftinfo.saison }.sort_by {|s| s.day.date}
     # the eager loading of days and shiftinfos reduces the amount of database accesses while rendering the list
     # (but i think does not fasten it up, because larger amounts of data are fetched)
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render xml: @shifts }
@@ -34,7 +34,7 @@ class ShiftsController < ApplicationController
   # POST /shifts
   # POST /shifts.xml
   def create
-    @shift = Shift.new(params[:shift])
+    @shift = Shift.new(shift_params)
 
     respond_to do |format|
       if @shift.save
@@ -62,7 +62,7 @@ class ShiftsController < ApplicationController
     @shift = Shift.find(params[:id])
     @day = @shift.day
     @week = @day.week
-    
+
     @admin_names = Person.select([:id, :name]).select{ |p|
       p.is_admin_for? @shift.saison
     }.collect(&:name).join(" #{t('or')} ")
@@ -82,7 +82,7 @@ class ShiftsController < ApplicationController
     end
 
     respond_to do |format|
-      if @shift.update_attributes(params[:shift])
+      if @shift.update(shift_params)
         @day.create_status_image
         flash[:notice] = t'shifts.update.success'
         format.html { redirect_to( week_path(@week) ) }
@@ -106,28 +106,35 @@ class ShiftsController < ApplicationController
     end
   end
 
-  # GET /myshifts
-  # GET /myshifts.xml
+  # GET /my_shifts
+  # GET /my_shifts.xml
   def my_shifts
     @shifts = current_person.shifts.sort_by {|s| s.day.date}
 #    @shifts = (Shift.all.select{|s| s.person_id == current_person.id})
     logger.debug( "Numer of shifts to display for person #{current_person.name}: #{@shifts.size.to_s}" )
-    
+
     respond_to do |format|
       format.html { render action: 'index' }
       format.xml  { render xml: @shifts }
     end
   end
-  
+
+
   protected
-    def future_required
-      s = Shift.find(params[:id])
-      shift_end = s.day.date + s.shiftinfo.end.seconds_since_midnight.seconds
-      if shift_end < Time.now 
-        flash[:error] = t'shifts.future_required.cant_change_past'
-        redirect_to :back
-        return false
-      end
+
+  def future_required
+    s = Shift.find(params[:id])
+    shift_end = s.day.date + s.shiftinfo.end.seconds_since_midnight.seconds
+    if shift_end < Time.now
+      flash[:error] = t'shifts.future_required.cant_change_past'
+      redirect_to :back
+      return false
     end
+  end
+
+  def shift_params
+    params.require(:shift).permit!
+  end
+
 end
 

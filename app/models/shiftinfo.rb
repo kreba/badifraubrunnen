@@ -18,15 +18,18 @@ class Shiftinfo < ActiveRecord::Base
   end
 
   def times_str
-    return self.begin.strftime( '%H:%M' ) + ' - ' + self.end.strftime( '%H:%M' )
+    self.begin.strftime( '%H:%M' ) + ' - ' + self.end.strftime( '%H:%M' )
   end
 
   def self.list(cond = {})
-    Shiftinfo.all(conditions: cond, include: :saison).collect{|si| "%2d: %12s, %s  %s"% [si.id, si.description, si.times_str, si.saison.name]}
+    Shiftinfo.includes(:saison).where(cond).collect{|si| "%2d: %12s, %s  %s"% [si.id, si.description, si.times_str, si.saison.name]}
   end
 
+
   private
+
   def update_status_image_of_all_days_of_associated_shifts
     shifts.each { |shift| shift.day.create_status_image }
   end
+
 end
