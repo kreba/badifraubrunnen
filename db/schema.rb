@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -19,10 +18,9 @@ ActiveRecord::Schema.define(version: 20140501210509) do
   create_table "days", force: :cascade do |t|
     t.integer "week_id"
     t.date    "date"
+    t.index ["date"], name: "index_days_on_date", using: :btree
+    t.index ["week_id"], name: "index_days_on_week_id", using: :btree
   end
-
-  add_index "days", ["date"], name: "index_days_on_date", using: :btree
-  add_index "days", ["week_id"], name: "index_days_on_week_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "name",                      limit: 50
@@ -41,26 +39,23 @@ ActiveRecord::Schema.define(version: 20140501210509) do
     t.string   "phone2",                    limit: 13
     t.string   "preferences",               limit: 255
     t.boolean  "brevet",                                default: false, null: false
+    t.index ["login"], name: "index_people_on_login", using: :btree
   end
-
-  add_index "people", ["login"], name: "index_people_on_login", using: :btree
 
   create_table "people_roles", id: false, force: :cascade do |t|
     t.integer  "person_id"
     t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["person_id", "role_id"], name: "index_people_roles_on_person_id_and_role_id", using: :btree
   end
-
-  add_index "people_roles", ["person_id", "role_id"], name: "index_people_roles_on_person_id_and_role_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string  "name",              limit: 40
     t.string  "authorizable_type", limit: 40
     t.integer "authorizable_id"
+    t.index ["authorizable_id"], name: "index_roles_on_authorizable_id", using: :btree
   end
-
-  add_index "roles", ["authorizable_id"], name: "index_roles_on_authorizable_id", using: :btree
 
   create_table "saisons", force: :cascade do |t|
     t.date     "begin"
@@ -78,9 +73,8 @@ ActiveRecord::Schema.define(version: 20140501210509) do
     t.datetime "updated_at"
     t.integer  "saison_id"
     t.time     "offset"
+    t.index ["saison_id"], name: "index_shiftinfos_on_saison_id", using: :btree
   end
-
-  add_index "shiftinfos", ["saison_id"], name: "index_shiftinfos_on_saison_id", using: :btree
 
   create_table "shifts", force: :cascade do |t|
     t.integer  "day_id"
@@ -89,10 +83,9 @@ ActiveRecord::Schema.define(version: 20140501210509) do
     t.boolean  "enabled",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["day_id", "shiftinfo_id"], name: "index_shifts_on_day_id_and_shiftinfo_id", using: :btree
+    t.index ["shiftinfo_id"], name: "index_shifts_on_shiftinfo_id", using: :btree
   end
-
-  add_index "shifts", ["day_id", "shiftinfo_id"], name: "index_shifts_on_day_id_and_shiftinfo_id", using: :btree
-  add_index "shifts", ["shiftinfo_id"], name: "index_shifts_on_shiftinfo_id", using: :btree
 
   create_table "weeks", force: :cascade do |t|
     t.integer  "number"
@@ -100,8 +93,7 @@ ActiveRecord::Schema.define(version: 20140501210509) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "enabled_saisons", limit: 3, default: ""
+    t.index ["number"], name: "index_weeks_on_number", using: :btree
   end
-
-  add_index "weeks", ["number"], name: "index_weeks_on_number", using: :btree
 
 end

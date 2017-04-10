@@ -1,4 +1,4 @@
-class Shift < ActiveRecord::Base
+class Shift < ApplicationRecord
   STATUS_CHARS = {
     free:     'F',
     taken:    'T',

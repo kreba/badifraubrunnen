@@ -1,6 +1,6 @@
 autoload :Magick, 'RMagick'
 
-class Day < ActiveRecord::Base
+class Day < ApplicationRecord
   # Authorization plugin
   acts_as_authorizable; include AutHack
 

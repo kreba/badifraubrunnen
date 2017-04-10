@@ -1,4 +1,4 @@
-class Shiftinfo < ActiveRecord::Base
+class Shiftinfo < ApplicationRecord
 
   belongs_to :saison
   has_many :shifts

@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See http://guides.rubyonrails.org/routing.html for information about this file.
-  # See how all your routes lay out with "rake routes".
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # See how all your routes lay out with "rake routes" or in the browser at "/routes".
 
   root to: 'welcome#index'
   get '/home' => 'weeks#index', as: 'home'
