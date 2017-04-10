@@ -22,6 +22,7 @@ de_ch:
       phone2: Zweite Telefonnummer
       preferences: Vorlieben
       brevet: Hat ein Lebensrettungsbrevet
+      roles_str: Rollen
     invalid_email:
       malformed: ist ungültig. Bitte auf Tippfehler kontrollieren!
       blacklisted: Dieser Mailserver ist auf der schwarzen Liste. Bitte eine andere Mailadresse verwenden.
