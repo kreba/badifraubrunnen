@@ -16,4 +16,12 @@ class Role < ActiveRecord::Base
     key = self.authorizable.nil? ? self.name : self.authorizable.name + self.name.capitalize
     I18n.translate "role.#{key}"
   end
+
+  # AutHack that enables us to temporarily contiue using the authorization gem
+  def self.find_all_by_name(role_name)
+    where(name: role_name)
+  end
+  def self.find_all_by_authorizable_type_and_name(type_name, role_name)
+    where(authorizable_type: type_name, name: role_name)
+  end
 end

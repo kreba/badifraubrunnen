@@ -1,20 +1,20 @@
 module DaysHelper
   def sample_image
     require 'RMagick'
-    
+
     # Demonstrate the GradientFill class # TODO: that does not belong here
-    
+
     rows = 100
     cols = 300
-    
+
     start_color = "#900"
     end_color = "#000"
-    
+
     fill = Magick::GradientFill.new(0, 0, 0, rows, start_color, end_color)
     img = Magick::Image.new(cols, rows, fill);
-    
+
     # Annotate the filled image with the code that created the fill.
-    
+
     ann = Magick::Draw.new
     ann.annotate(img, 0,0,0,0, "GradientFill.new(0, 0, 0, #{rows}, '#{start_color}', '#{end_color}')") {
         self.gravity = Magick::CenterGravity
@@ -22,7 +22,7 @@ module DaysHelper
         self.stroke = 'transparent'
         self.pointsize = 14
         }
-    
+
     #img.display
     img.write(Rails.root+"app/assets/images/gradientfill.gif")
     #exit
@@ -40,8 +40,8 @@ module DaysHelper
     all_shifts.keys.sort.collect{ |saison|
       content_tag(:div, style: "padding: 3px; background-color: #{saison.color};" ) do
         content_tag(:strong, I18n.t("saisons.#{saison.name}")) + "<br />".html_safe +
-        (day.enabled?(saison) ? 
-          html_tooltip_shifts(all_shifts[saison]) : 
+        (day.enabled?(saison) ?
+          html_tooltip_shifts(all_shifts[saison]) :
           content_tag(:em) { current_person.is_admin_for?(saison) ?
             I18n.t("shifts.no_sign_up_admin").html_safe :
             I18n.t("shifts.no_sign_up").html_safe
@@ -64,7 +64,7 @@ module DaysHelper
     content_tag(:table) do
       shifts.collect{ |shift|
         content_tag(:tr) {
-          content_tag(:td, shift.shiftinfo.description.first + ":" ) +
+          content_tag(:td, shift.shiftinfo.description.chars.first + ":" ) +
           content_tag(:td) { shift.free? ?
               (current_person.is_staff_for?(shift.saison) ? 'frei' : 'vakant') :
               person_with_brevet(shift.person)
@@ -73,5 +73,5 @@ module DaysHelper
       }.join.html_safe
     end
   end
-  
+
 end

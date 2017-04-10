@@ -68,7 +68,7 @@ FactoryGirl.define do |f|
     after :build do |day|
       # Only relevant in case the week was generated (and not passed in)
       # Discard the one day that was unnecessarily built and take its place
-      day.week.days.map! {|d| (d.date.eql? day.date) ? day : d }
+      day.week.days = day.week.days.map {|d| (d.date.eql? day.date) ? day : d }
     end
   end
 

@@ -2,7 +2,7 @@ autoload :Magick, 'RMagick'
 
 class Day < ActiveRecord::Base
   # Authorization plugin
-  acts_as_authorizable
+  acts_as_authorizable; include AutHack
 
   belongs_to :week, touch: true
   has_many :shifts, dependent: :destroy

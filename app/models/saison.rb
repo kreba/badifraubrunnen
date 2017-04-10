@@ -1,6 +1,6 @@
 class Saison < ActiveRecord::Base
   # Authorization plugin
-  acts_as_authorizable
+  acts_as_authorizable; include AutHack
 
   has_many :shiftinfos
 
@@ -54,10 +54,10 @@ class Saison < ActiveRecord::Base
       shiftinfo.saison.eql? saison
     }
   end
-  def self.staff_by_saison( people = Person.all(order: 'name') )
+  def self.staff_by_saison( people = Person.all.order(:name) )
     people_by_saison_for_role('staff', people)
   end
-  def self.admins_by_saison( people = Person.all(order: 'name') )
+  def self.admins_by_saison( people = Person.all.order(:name) )
     people_by_saison_for_role('admin', people)
   end
 

@@ -1,4 +1,4 @@
-Badi2010::Application.routes.draw do
+Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See http://guides.rubyonrails.org/routing.html for information about this file.
   # See how all your routes lay out with "rake routes".

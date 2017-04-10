@@ -1,6 +1,6 @@
 class Week < ActiveRecord::Base
-  # Authorization plugin
-  acts_as_authorizable #Why???
+  # Authorization plugin – Why?!?
+  acts_as_authorizable; include AutHack
 
   has_many :days
   belongs_to :person  #Wochenverantwortliche/r

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby File.read(__dir__ + '/.ruby-version').match(/([0-9.]+)/)[1]
 
-gem 'rails', '~> 4.0.0'
+gem 'rails', '~> 4.1.0'
 
 # Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
 gem 'nested_form', '~> 0.3.2', :git => 'https://github.com/ryanb/nested_form.git'

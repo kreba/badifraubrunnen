@@ -8,7 +8,7 @@ class Person < ActiveRecord::Base
 
   # Authorization plugin
   acts_as_authorized_user
-  acts_as_authorizable
+  acts_as_authorizable; include AutHack
 
   has_many :shifts
   has_many :weeks  #als Wochenverantwortliche/r
@@ -107,8 +107,8 @@ class Person < ActiveRecord::Base
   def roles_key_for_cache
     keys = Array.new
     Saison.all.each{ |saison|
-      keys << saison.name.first.upcase   if self.is_admin_for?( saison )
-      keys << saison.name.first.downcase if self.is_staff_for?( saison )
+      keys << saison.name.chars.first.upcase   if self.is_admin_for?( saison )
+      keys << saison.name.chars.first.downcase if self.is_staff_for?( saison )
     }
     keys << 'w' if self.is_webmaster?
     keys.sort.join
@@ -118,10 +118,10 @@ class Person < ActiveRecord::Base
     self.roles.includes(:authorizable).collect(&:authorizable).flatten.uniq.compact.sort_by(&:name)
   end
   def all_saisons_but_mine_first
-    my_saisons | Saison.all(order: :name)
+    my_saisons | Saison.all.order(:name)
   end
   def unrelated_saisons
-    Saison.all(order: :name) - my_saisons
+    Saison.all.order(:name) - my_saisons
   end
   def admin_saisons
     is_admin_for_what.sort_by(&:name)

@@ -5,8 +5,8 @@ class Shift < ActiveRecord::Base
     disabled: '0'
   }
 
-  # Authorization plugin
-  acts_as_authorizable  # Why?!
+  # Authorization plugin – Why?!
+  acts_as_authorizable; include AutHack
 
   belongs_to :shiftinfo
   belongs_to :day
