@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby File.read(__dir__ + '/.ruby-version').match(/([0-9.]+)/)[1]
 
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.2.0'
 
 # Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
 gem 'nested_form', '~> 0.3.2', :git => 'https://github.com/ryanb/nested_form.git'
@@ -51,13 +51,14 @@ gem 'coffee-rails'
 gem 'uglifier'
 
 #gem 'jquery-rails'
-gem 'prototype-rails'
+gem 'prototype-rails', github: 'rails/prototype-rails', branch: '4.2'
 gem 'prototype_legacy_helper', '0.0.0', git: 'git://github.com/rails/prototype_legacy_helper.git'
 
 gem 'test-unit'
 
 group :development do
   gem 'spring'
+  gem 'web-console'
 end
 
 group :test do
