@@ -11,6 +11,10 @@ module PeopleHelper
     label
   end
 
+  def image_tag_brevet
+    image_tag 'brevet', class: 'brevet', alt: '[B]', title: 'Hat ein Brevet'
+  end
+
   def render_people_list( title, people )
     render( partial: 'list_people',
             locals: {

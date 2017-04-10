@@ -6,6 +6,7 @@
 
 <table id="people_list">
   <tr>
+    <th></th>
     <th><%=t 'person.attributes.name' %></th>
 <% if current_person.has_role? 'admin' %>
   	<th>#<%=t 'assignments' %></th>
@@ -17,6 +18,7 @@
 
 <% for person in @people %>
   <tr class="<%= cycle('even', 'odd') %>">
+    <td><%= image_tag_brevet if person.brevet? %></td>
     <td>
       <%= person.name %>
       <% if current_person.administrates? person %><br />
@@ -32,7 +34,7 @@
     </td>
 <% if current_person.has_role? 'admin' %>
   <% if current_person.administrates? person %>
-  	<td><%= person.shifts.size.to_s %></td>
+  	<td class="shifts"><%= person.shifts.size.to_s %></td>
   	<td><%= person.preferences.to_s %></td>
   <% else %>
     <td></td>

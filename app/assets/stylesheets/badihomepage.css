@@ -217,10 +217,11 @@ span.week_plan_shift .person_phone_numbers {
     line-height: normal;
     font-size: smaller;
 }
-span.week_plan_shift .has-brevet {
+span.week_plan_shift img.brevet {
     position: absolute;
-    bottom: 1px;
-    right: 3px;
+    bottom: 4px;
+    right: 4px;
+    width: 22px;
 }
 a.block {
     display: block;
@@ -229,7 +230,13 @@ a.block {
 }
 
 #people_list span.person_actions {
-    font-size: smaller;
+  font-size: smaller;
+}
+#people_list img.brevet {
+  height: 1em;
+}
+#people_list td.shifts {
+	text-align: right;
 }
 #people_list td.phone {
 	min-width: 7.6em;
@@ -264,7 +271,7 @@ form ul.checkboxes {
     #main {
         margin: 0;
     }
-    
+
     a {
       color: black;
     }

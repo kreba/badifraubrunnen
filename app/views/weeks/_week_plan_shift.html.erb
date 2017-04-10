@@ -21,6 +21,6 @@
     <% end %>
   </span>
 
-  <%= content_tag(:div, 'B', class: 'has-brevet') if shift.person && shift.person.brevet? %>
+  <%= image_tag_brevet if shift.person && shift.person.brevet? %>
 
 </span>
