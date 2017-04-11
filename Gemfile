@@ -7,7 +7,7 @@ gem 'rails', '~> 4.2.0'
 gem 'nested_form', '~> 0.3.2', :git => 'https://github.com/ryanb/nested_form.git'
 
 # A more robust alternative to the Webrick webserver
-gem 'thin'
+gem 'puma'
 
 # To start the application with the Procfile (which uses thin), used by heroku if present
 # For more info on how to deploy on heroku, see https://devcenter.heroku.com/articles/rails3
@@ -56,8 +56,15 @@ gem 'prototype_legacy_helper', '0.0.0', git: 'git://github.com/rails/prototype_l
 
 gem 'test-unit'
 
+group :production do
+  gem 'rails_12factor'
+end
+
+group :development, :test do
+  gem 'spring' # Faster testing thanks to pre-loading of (big chunks of) the environment. (Alternatives: spork, zeus, commands)
+end
+
 group :development do
-  gem 'spring'
   gem 'web-console'
 end
 
@@ -77,8 +84,6 @@ group :test do
 
   # gem 'guard-minitest', :git => 'https://github.com/guard/guard-minitest' # Guard: On Mac OS X, make sure the rb-fsevent gem is installed so Guard can detect file changes.
   # gem 'guard-cucumber'
-
-  gem 'spring'         # !!As of now, only supports MiniTest::Unit (not MiniTest::Spec)!! Faster testing thanks to pre-loading of (big chunks of) the environment. (Alternatives: spork, zeus, commands)
 
   gem 'turn' # for fancy test outputs
 end
