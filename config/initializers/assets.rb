@@ -9,6 +9,7 @@ Rails.application.config.assets.version = '1.2'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w( badihomepage.css
+                                                  brevet.jpg
                                                   prototype.js
                                                   prototype_ujs.js
                                                   prototype_nested_form.js

@@ -12,7 +12,7 @@ module PeopleHelper
   end
 
   def image_tag_brevet
-    image_tag 'brevet', class: 'brevet', alt: '[B]', title: 'Hat ein Brevet'
+    image_tag asset_path('brevet.jpg'), class: 'brevet', alt: '[B]', title: 'Hat ein Brevet'
   end
 
   def render_people_list( title, people )
