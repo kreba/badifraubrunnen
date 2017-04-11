@@ -154,7 +154,6 @@ de_ch:
     update:
       success: Änderungen gespeichert.
     # in the view
-    description_label: Beschreibung
     new:
       title: Neuen Schichtentyp erstellen
     edit:

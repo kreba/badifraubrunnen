@@ -8,23 +8,23 @@
 
 <%= form_for(@shiftinfo) do |f| %>
   <p>
-    <b><%=t 'shiftinfos.description_label' %></b><br />
-    <%= f.select :description, Shiftinfo::DESCRIPTIONS %>
+    <b><%=t 'shiftinfo.attributes.description' %></b><br />
+    <%= f.text_field :description %>
   </p>
 
   <p>
     <b><%=t 'shiftinfo.attributes.begin' %></b><br />
-    <%= f.text_field :begin %>
+    <%= f.text_field :begin, value: I18n.l(@shiftinfo.begin, format: :time) %>
   </p>
 
   <p>
     <b><%=t 'shiftinfo.attributes.end' %></b><br />
-    <%= f.text_field :end %>
+    <%= f.text_field :end, value: I18n.l(@shiftinfo.end, format: :time) %>
   </p>
 
   <p>
     <b><%=t 'shiftinfo.attributes.offset' %></b><br />
-    <%= f.text_field :offset %>
+    <%= f.text_field :offset, value: I18n.l(@shiftinfo.offset, format: :time) %>
   </p>
 
   <% if current_person.is_admin_for_what.size > 1 %><p>
