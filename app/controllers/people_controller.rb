@@ -107,7 +107,7 @@ class PeopleController < ApplicationController
     role_params.each do |role_id, checked|
       if staff_role_ids.include?(role_id)
         if checked == '1'
-          role_ids << role_id
+          role_ids << role_id unless role_ids.include? role_id
         else
           role_ids.delete role_id
         end
