@@ -15,6 +15,25 @@ class ShiftsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render xml: @shifts }
+      format.csv do
+        @csv_headers = [
+            'Datum',
+            'Von',
+            'Bis',
+            'Art',
+            'Person'
+        ]
+        @csv_data = @shifts.map do |shift|
+          [
+              I18n.l(shift.day.date),
+              I18n.l(shift.shiftinfo.begin, format: :time),
+              I18n.l(shift.shiftinfo.end,   format: :time),
+              shift.shiftinfo.description,
+              shift.person&.name
+          ]
+        end
+        @csv_delimiter = ';'
+      end
     end
   end
 

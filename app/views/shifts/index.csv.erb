@@ -1,0 +1,4 @@
+<%= @csv_headers.join(@csv_delimiter) %>
+<%- @csv_data.each do |row| %>
+<%= row.join(@csv_delimiter) %>
+<% end %>
