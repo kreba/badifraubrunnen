@@ -106,8 +106,8 @@ de_ch:
     index:
       title: Personenliste
     create:
-      title: Neue Person eintragen
-      success: Person erfolgreich eingetragen.
+      title: Neue Person erfassen
+      success: Person erfolgreich erfasst.
     destroy:
       confirm: Bitte Rausschmiss nochmal bestätigen. Sämtliche Daten von %{person_name} gehen verloren!
       success: Sämtliche Daten von Benutzer %{person_name} wurden gelöscht.
