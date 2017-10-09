@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
 
+  YEAR = Saison.first&.begin&.year || Date.today.year
+
   protect_from_forgery
 
   # Filters added to this controller apply to all controllers in the application.

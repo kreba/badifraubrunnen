@@ -20,7 +20,7 @@ class Week < ActiveRecord::Base
   end
 
   def past?
-    return Date.commercial( Date.today.year , self.number , 7 ) < Date.today;
+    return Date.commercial( ApplicationController::YEAR , self.number , 7 ) < Date.today;
   end
 
   def enabled?( saison )
@@ -57,7 +57,7 @@ class Week < ActiveRecord::Base
   def assign_7_days
     return if days.none?
 
-    year = Date.today.year
+    year = ApplicationController::YEAR
     logger.debug( "(II) Building 7 days for week #{self.number} in year #{year}:" )
     for wday in 1..7
       @date = Date.commercial( year , self.number , wday )
