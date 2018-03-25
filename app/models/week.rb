@@ -55,7 +55,7 @@ class Week < ActiveRecord::Base
   private
 
   def assign_7_days
-    return if days.none?
+    return if days.present?
 
     year = ApplicationController::YEAR
     logger.debug( "(II) Building 7 days for week #{self.number} in year #{year}:" )
@@ -65,7 +65,7 @@ class Week < ActiveRecord::Base
       if Day.where(date: @date).exists?
         self.days << Day.find_by( date: @date )
       else
-        self.days << Day.new( date: @date ).tap{|d|d.week = self}
+        self.days << Day.new( date: @date, week: self )
       end
 
     end
