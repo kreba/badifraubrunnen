@@ -4,24 +4,32 @@ Badi2010
 0. Systemvoaussetzungen (Entwicklermaschine)
 --------------------------------------------
 
-Das gem pg für postgresql-Datenbanken (Heroku nutzt 9.1) benötigt einen lokalen Postgres-Server:
-sudo aptitude install postgresql-9.1 postgresql-server-dev-9.1
+Das gem pg für postgresql-Datenbanken benötigt einen lokalen Postgres-Server:
+
+    sudo aptitude install postgresql-9.6 postgresql-server-dev-9.6
 
 Die Bilder für die Saisonübersicht werden mit RMagick erstellt, was ein lokales ImageMagick benötigt:
-sudo aptitude install libmagickwand-dev
+
+    sudo aptitude install libmagickwand-dev
+
+Capybara-Webkit benötigt Qt etc
+Siehe https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit#debian--ubuntu 
+
+    sudo aptitude install qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
 
 Die Javascript-Funktionalitäten benötigen offenbar eine lokale Runtime:
-sudo aptitude install nodejs
+
+    sudo aptitude install nodejs
 
 Das Zwischenspeichern von Seitenfragmenten geschieht mithilfe von memcached (via Dalli):
-sudo aptitude install memcached
+
+    sudo aptitude install memcached
 
 Ausserdem sollten git, rvm und der heroku-toolbelt installiert werden:
-sudo aptitude install git
 Siehe https://rvm.io/rvm/install/
 Siehe https://devcenter.heroku.com/articles/quickstart
 
-Eine IDE hab ich bisher nicht benutzt.
+    sudo aptitude install git
 
 Siehe auch Gemfile.
 

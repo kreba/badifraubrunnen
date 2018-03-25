@@ -1,6 +1,11 @@
 source 'https://rubygems.org'
 ruby File.read(__dir__ + '/.ruby-version').match(/([0-9.]+)/)[1]
 
+# Not the newest, but Heroku is currently using this version.
+# See https://devcenter.heroku.com/articles/bundler-version
+# NB: Use bundler commands like this: bundle _1.15.2_ update
+gem 'bundler', '1.15.2'
+
 gem 'rails', '~> 4.2.0'
 
 # Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
@@ -13,9 +18,8 @@ gem 'puma'
 # For more info on how to deploy on heroku, see https://devcenter.heroku.com/articles/rails3
 #gem 'foreman' # not required atm, heroku's default behaviour 'rails server' is good enough (we don't have multiple worker processes anyway)
 
-# To use a Postgresql database
-# System requirements: postgresql-9.1 postgresql-server-dev-9.1
-gem 'pg'
+# To use a Postgresql database (See README for system requirements)
+gem 'pg', '~> 0.15' # Heroku can't use 1.0 as of now...
 
 # Dalli: To use memcached-based fragment caching
 # System requirements: memcached
