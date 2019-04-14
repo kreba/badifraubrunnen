@@ -1,6 +1,8 @@
 # Be sure to restart your server when you modify this file.
 
-# ApplicationController.renderer.defaults.merge!(
-#   http_host: 'badifraubrunnen.ch',
-#   https: false
-# )
+# ActiveSupport::Reloader.to_prepare do
+#   ApplicationController.renderer.defaults.merge!(
+#     http_host: 'badifraubrunnen.herokuapp.com',
+#     https: false
+#   )
+# end

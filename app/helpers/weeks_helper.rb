@@ -22,7 +22,7 @@ module WeeksHelper
     if day.timely_active?
       begin
         options.merge background: image_path(day.status_image_name)
-      rescue Sprockets::Helpers::RailsHelper::AssetPaths::AssetNotPrecompiledError
+      rescue Sprockets::Rails::Helper::AssetNotFound
         options.merge background: image_path('attention-icon.png')
       end
       # do something with an image_tag instead? (enables browser-side caching)
