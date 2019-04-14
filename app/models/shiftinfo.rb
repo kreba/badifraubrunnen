@@ -15,7 +15,7 @@ class Shiftinfo < ActiveRecord::Base
   end
 
   def times_str
-    self.begin.strftime( '%H:%M' ) + ' - ' + self.end.strftime( '%H:%M' )
+    "#{self.begin&.strftime( '%H:%M' )} - #{self.end&.strftime( '%H:%M' )}"
   end
 
   def self.list(cond = {})
