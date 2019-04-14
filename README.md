@@ -107,3 +107,20 @@ Achtung: Alle Schichten sind standardmässig aktiviert.
 Dies kann aber z.B. mittels "Week.all.each{|w| w.disable(Saison.badi)}" bequem geändert werden.
 
 et voilà! :D
+
+3. Backup und Restore
+---------------------
+Da die Applikation auf Heroku läuft, werden DB-Backups dort erstellt. 
+Infos zu allen verfügbaren Kommandos erhält man mit 
+
+    heroku help pg
+    
+So zum Beispiel
+
+    heroku pg:backups
+    heroku pg:backups:capture
+    
+Um lokal mit einer produktionsnahen DB zu arbeiten, kann die DB von Heroku lokal kopiert werden.
+
+    heroku pg:pull ORANGE postgres://badifraubrunnen@localhost/badifraubrunnen_development
+
