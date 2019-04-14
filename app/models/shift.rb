@@ -10,11 +10,9 @@ class Shift < ApplicationRecord
 
   belongs_to :shiftinfo
   belongs_to :day
-  belongs_to :person
+  belongs_to :person, optional: true
 
   after_update :update_status_image_of_my_day
-
-  validates_presence_of :shiftinfo, :day
 
   delegate :saison, :saison=, :times_str,  to: :shiftinfo  # allow_nil: true
 

@@ -11,7 +11,6 @@ class Day < ApplicationRecord
 
   validates_associated :shifts
   validates_presence_of :date
-  validates_presence_of :week
 
   def shift_attributes=( attrs ) # invoked on an update (that is, on submitting an update form)
     # assert existance

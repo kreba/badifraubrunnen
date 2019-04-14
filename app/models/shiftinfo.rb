@@ -5,7 +5,7 @@ class Shiftinfo < ApplicationRecord
 
   scope :for_week_and_saison, ->(week, saison){ where(saison_id: saison, id: Shift.where(day_id: week.days).uniq.pluck(:shiftinfo_id)) }
 
-  validates :saison, :description, :begin, :end, presence: true
+  validates :description, :begin, :end, presence: true
 
   def begin_plus_offset
     [read_attribute(:begin), read_attribute(:offset)].compact.sum(&:seconds_since_midnight)
