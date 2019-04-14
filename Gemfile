@@ -54,9 +54,7 @@ gem 'coffee-rails'
 
 gem 'uglifier'
 
-#gem 'jquery-rails'
-#gem 'prototype-rails', github: 'rails/prototype-rails', branch: '4.2'
-#gem 'prototype_legacy_helper', '0.0.0', git: 'git://github.com/rails/prototype_legacy_helper.git'
+gem 'jquery-rails'
 
 gem 'test-unit'
 
