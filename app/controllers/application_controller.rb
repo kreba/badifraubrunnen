@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
 
   # Filters added to this controller apply to all controllers in the application.
   # Likewise, all the methods added will be available for all controllers.
-  before_filter :login_required
-  before_filter :set_user_language
+  before_action :login_required
+  before_action :set_user_language
 
   # include all helpers, all the time
   helper :all

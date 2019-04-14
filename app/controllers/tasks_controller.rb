@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   
-  before_filter do |c| c.restrict_access 'webmaster' end
+  before_action do |c| c.restrict_access 'webmaster' end
 
   # Hmm, no record gets saved during #imagine, so where is the point in adding the cache sweeper here?
   #  Shouldn't I rather touch all weeks manually? (since I switched to updated-at-based cache keys)

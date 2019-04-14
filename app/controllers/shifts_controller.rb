@@ -1,8 +1,8 @@
 class ShiftsController < ApplicationController
 
-  before_filter only: :index do |c| c.restrict_access 'admin' end
-  before_filter only: [:new, :create] do |c| c.restrict_access 'webmaster' end
-  before_filter :future_required, only: [:edit, :update]
+  before_action only: :index do |c| c.restrict_access 'admin' end
+  before_action only: [:new, :create] do |c| c.restrict_access 'webmaster' end
+  before_action :future_required, only: [:edit, :update]
   cache_sweeper :week_sweeper, only: [:edit, :update, :create, :destroy]
 
   # GET /shifts

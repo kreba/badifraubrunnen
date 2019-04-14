@@ -1,8 +1,8 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
 
-  skip_before_filter :login_required, only: [:new, :create]
-  before_filter only: :act_as do |c| c.restrict_access 'webmaster' end
+  skip_before_action :login_required, only: [:new, :create]
+  before_action only: :act_as do |c| c.restrict_access 'webmaster' end
 
   # GET /sessions/new  (render login page)
   def new 
