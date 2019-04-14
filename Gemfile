@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 ruby File.read(__dir__ + '/.ruby-version').match(/([0-9.]+)/)[1]
 
-# Not the newest, but Heroku is currently using this version.
+# Not the newest, but Heroku uses only very specific versions of bundler.
 # See https://devcenter.heroku.com/articles/bundler-version
-# NB: Use bundler commands like this: bundle _1.15.2_ update
-gem 'bundler', '1.15.2'
+# NB: Use specific versions of bundler like this: bundle _1.15.2_ update
+gem 'bundler', '2.0.1'
 
 gem 'rails', '~> 5.0.0'
 
@@ -19,7 +19,7 @@ gem 'puma'
 #gem 'foreman' # not required atm, heroku's default behaviour 'rails server' is good enough (we don't have multiple worker processes anyway)
 
 # To use a Postgresql database (See README for system requirements)
-gem 'pg', '~> 0.15' # Heroku can't use 1.0 as of now...
+gem 'pg', '~> 1.0'
 
 # Dalli: To use memcached-based fragment caching
 # System requirements: memcached
