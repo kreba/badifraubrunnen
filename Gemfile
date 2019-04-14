@@ -6,7 +6,7 @@ ruby File.read(__dir__ + '/.ruby-version').match(/([0-9.]+)/)[1]
 # NB: Use specific versions of bundler like this: bundle _1.15.2_ update
 gem 'bundler', '2.0.1'
 
-gem 'rails', '~> 5.1.0'
+gem 'rails', '~> 5.2.0'
 
 # Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
 gem 'nested_form', '~> 0.3.2', :git => 'https://github.com/ryanb/nested_form.git'
