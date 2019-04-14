@@ -7,7 +7,7 @@ module WeeksHelper
     [person.phone, person.phone2].compact.reject(&:blank?).join(options[:delimiter]).html_safe
   end
   def day_td( day )
-    content_tag(:td,
+    tag.td(
       link_to( day.date.strftime( "%d.%m." ), day, style: "color:inherit;" ),
       day_td_html_options(day)
     )
@@ -35,8 +35,7 @@ module WeeksHelper
   end
   def cell_link_to( text, target = {}, padding = "5px 3px" )
       link_to(
-        content_tag(:span,
-          text, {style: "width: 100%; height: inherit; margin: #{padding};"}),
+        tag.span(text, {style: "width: 100%; height: inherit; margin: #{padding};"}),
         target, {style: "width: #{WeekPlanDisplayData::DAY_WIDTH}px; height: inherit; display: table-cell; vertical-align: middle;", class: 'noprint'} )
   end
 
