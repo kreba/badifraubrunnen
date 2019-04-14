@@ -5,7 +5,7 @@ class DaysController < ApplicationController
 
   # GET /weeks/1/days/1
   def show
-    @day = Day.find(params[:id])
+    @day ||= Day.find(params[:id])
     @week = @day.week
     @day_shifts = @day.shifts.includes(:shiftinfo).sort_by{ |shift| shift.shiftinfo.begin_plus_offset }.group_by(&:saison)
 
@@ -16,7 +16,9 @@ class DaysController < ApplicationController
     if current_person.has_role? 'admin'
       @people     = Saison.staff_by_saison
       @shiftinfos = Saison.shiftinfos_by_saison
-    end # TODO: refactor to edit
+    end
+
+    # TODO: refactor to use an edit action
   end
 
   # PUT /weeks/1/days/1

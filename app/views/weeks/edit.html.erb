@@ -4,7 +4,7 @@
 <% end %>
 
 
-<%= form_for(@week) do |f| %>
+<%= form_with model: @week, local: true do |f| %>
   <p>
     <% if current_person.has_role? 'admin' %>
       <b><%=t 'weeks.responsability' %>:</b><br />
