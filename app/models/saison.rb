@@ -1,4 +1,4 @@
-class Saison < ActiveRecord::Base
+class Saison < ApplicationRecord
   # Authorization plugin
   acts_as_authorizable; include AutHack
 

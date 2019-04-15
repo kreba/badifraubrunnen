@@ -1,5 +1,5 @@
 require 'digest/sha1'
-class Person < ActiveRecord::Base
+class Person < ApplicationRecord
   REMEMBER_ME_TIME = 1.hour
 
   has_many :people_roles

@@ -29,7 +29,7 @@ module DaysHelper
   end
 
   def tooltip_div( day )
-    content_tag(:div, html_tooltip_for(day), id: tooltip_id(day),
+    tag.div(html_tooltip_for(day), id: tooltip_id(day),
       class: "xstooltip", style: "margin: 0px; padding: 0px;")
   end
   def tooltip_id( day )
@@ -38,11 +38,11 @@ module DaysHelper
   def html_tooltip_for( day )
     all_shifts = day.shifts.sort_by{ |s| s.shiftinfo.begin_plus_offset }.group_by(&:saison)
     all_shifts.keys.sort.collect{ |saison|
-      content_tag(:div, style: "padding: 3px; background-color: #{saison.color};" ) do
-        content_tag(:strong, I18n.t("saisons.#{saison.name}")) + "<br />".html_safe +
+      tag.div(style: "padding: 3px; background-color: #{saison.color};" ) do
+        tag.strong(I18n.t("saisons.#{saison.name}")) + "<br />".html_safe +
         (day.enabled?(saison) ?
           html_tooltip_shifts(all_shifts[saison]) :
-          content_tag(:em) { current_person.is_admin_for?(saison) ?
+          tag.em { current_person.is_admin_for?(saison) ?
             I18n.t("shifts.no_sign_up_admin").html_safe :
             I18n.t("shifts.no_sign_up").html_safe
           }
@@ -61,11 +61,11 @@ module DaysHelper
 
   protected
   def html_tooltip_shifts( shifts )
-    content_tag(:table) do
+    tag.table do
       shifts.collect{ |shift|
-        content_tag(:tr) {
-          content_tag(:td, shift.shiftinfo.description.chars.first + ":" ) +
-          content_tag(:td) { shift.free? ?
+        tag.tr {
+          tag.td( shift.shiftinfo.description.chars.first + ":" ) +
+          tag.td { shift.free? ?
               (current_person.is_staff_for?(shift.saison) ? 'frei' : 'vakant') :
               person_with_brevet(shift.person)
           }

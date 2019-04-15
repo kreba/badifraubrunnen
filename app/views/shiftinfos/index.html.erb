@@ -16,7 +16,7 @@
         <tr>
           <td><%= shiftinfo.description %></td>
           <td><%= shiftinfo.times_str %></td>
-          <%= content_tag(:td, link_to( t('Edit'), edit_shiftinfo_path(shiftinfo) ) ) if current_person.is_admin_for? saison %>
+          <%= tag.td(link_to( t('Edit'), edit_shiftinfo_path(shiftinfo) ) ) if current_person.is_admin_for? saison %>
         </tr>
       <% end %>
       <% if current_person.is_admin_for? saison %>

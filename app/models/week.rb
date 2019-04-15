@@ -1,4 +1,4 @@
-class Week < ActiveRecord::Base
+class Week < ApplicationRecord
   # Authorization plugin – Why?!?
   acts_as_authorizable; include AutHack
 

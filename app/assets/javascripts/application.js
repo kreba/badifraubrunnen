@@ -10,7 +10,7 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require prototype
-//= require prototype_ujs
-//= require prototype_nested_form
+//= require jquery
+//= require jquery_ujs
+//= require jquery_nested_form
 //= require xstooltip

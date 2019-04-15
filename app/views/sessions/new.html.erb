@@ -4,16 +4,16 @@
   <%=t 'sessions.infopage_reference.html' %>
 </p>
 
-<%= form_tag login_path do %>
+<%= form_with url: login_path, local: true do |f| %>
   <p><label for="login"><%=t 'person.attributes.login' %></label><br />
-  <%= text_field_tag 'login' %></p>
+  <%= f.text_field 'login' %></p>
 
   <p><label for="password"><%=t 'person.attributes.password' %></label><br />
-  <%= password_field_tag 'password' %></p>
+  <%= f.password_field 'password' %></p>
 
   <%#Uncomment this if you want this functionality - don't forget localization!%>
   <%#*<p><label for="remember_me">Remember me:</label>%>
-  <%#= check_box_tag 'remember_me' % ></p>%>
+  <%#= f.check_box 'remember_me' % ></p>%>
 
   <p><%= submit_tag t('sessions.login'), id: 'do_login' %></p>
 <% end %>

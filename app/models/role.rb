@@ -2,9 +2,9 @@
 # objects in a polymorphic fashion. For example, you could create a role
 # "moderator" for an instance of a model (i.e., an object), a model class,
 # or without any specification at all.
-class Role < ActiveRecord::Base
+class Role < ApplicationRecord
   has_and_belongs_to_many :people
-  belongs_to :authorizable, polymorphic: true
+  belongs_to :authorizable, polymorphic: true, optional: true
 
   # A virtual attribute to work around a bug in the authorization gem
   # (authorization-1.0.12/lib/publishare/object_roles_table.rb:52)

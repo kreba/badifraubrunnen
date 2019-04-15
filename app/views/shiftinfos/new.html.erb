@@ -6,7 +6,7 @@
 
 <%= render( 'shared/error_messages', obj: @shiftinfo ) %>
 
-<%= form_for(@shiftinfo) do |f| %>
+<%= form_with model: @shiftinfo, local: true do |f| %>
   <p>
     <b><%=t 'shiftinfo.attributes.description' %></b><br />
     <%= f.text_field :description %>

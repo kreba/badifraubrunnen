@@ -10,7 +10,7 @@
 <% if current_person.is_admin_for? @shift.saison %>
   <p><%=t 'shifts.edit.admin_advice' %></p>
 <% else %>
-  <%= form_for(@shift) do |f| %>
+  <%= form_with model: @shift, local: true do |f| %>
     <h2><%=t 'shifts.edit.general_advice' %></h2>
     <%= f.hidden_field :person_id, value: current_person.id %>
     <%= f.hidden_field :shiftinfo_id %>

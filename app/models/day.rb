@@ -1,6 +1,6 @@
 autoload :Magick, 'RMagick'
 
-class Day < ActiveRecord::Base
+class Day < ApplicationRecord
   # Authorization plugin
   acts_as_authorizable; include AutHack
 
@@ -11,7 +11,6 @@ class Day < ActiveRecord::Base
 
   validates_associated :shifts
   validates_presence_of :date
-  validates_presence_of :week
 
   def shift_attributes=( attrs ) # invoked on an update (that is, on submitting an update form)
     # assert existance

@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 ruby File.read(__dir__ + '/.ruby-version').match(/([0-9.]+)/)[1]
 
-# Not the newest, but Heroku is currently using this version.
+# Not the newest, but Heroku uses only very specific versions of bundler.
 # See https://devcenter.heroku.com/articles/bundler-version
-# NB: Use bundler commands like this: bundle _1.15.2_ update
-gem 'bundler', '1.15.2'
+# NB: Use specific versions of bundler like this: bundle _1.15.2_ update
+gem 'bundler', '2.0.1'
 
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 5.2.0'
 
-# Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
-gem 'nested_form', '~> 0.3.2', :git => 'https://github.com/ryanb/nested_form.git'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 
 # A more robust alternative to the Webrick webserver
 gem 'puma'
@@ -19,7 +19,7 @@ gem 'puma'
 #gem 'foreman' # not required atm, heroku's default behaviour 'rails server' is good enough (we don't have multiple worker processes anyway)
 
 # To use a Postgresql database (See README for system requirements)
-gem 'pg', '~> 0.15' # Heroku can't use 1.0 as of now...
+gem 'pg', '~> 1.0'
 
 # Dalli: To use memcached-based fragment caching
 # System requirements: memcached
@@ -46,6 +46,9 @@ gem 'authorization'
 # For email validation (inkl live check whether the domain exists)
 gem 'email_veracity'
 
+# Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
+gem 'nested_form', '~> 0.3.2', :git => 'https://github.com/ryanb/nested_form.git'
+
 gem 'sass-rails'
 gem 'coffee-rails'
 
@@ -54,9 +57,7 @@ gem 'coffee-rails'
 
 gem 'uglifier'
 
-#gem 'jquery-rails'
-gem 'prototype-rails', github: 'rails/prototype-rails', branch: '4.2'
-gem 'prototype_legacy_helper', '0.0.0', git: 'git://github.com/rails/prototype_legacy_helper.git'
+gem 'jquery-rails'
 
 gem 'test-unit'
 
@@ -69,6 +70,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'listen' # For auto-reloading upon file changes
   gem 'web-console'
 end
 
