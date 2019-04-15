@@ -3,7 +3,8 @@ td {
     padding: 2px 1em;
 }
 
-.fieldWithErrors {
+.field_with_errors {
+    display: inline-block;
     border: solid red 2px;
 }
 
