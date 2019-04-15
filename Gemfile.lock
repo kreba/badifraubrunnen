@@ -55,6 +55,8 @@ GEM
     authorization (1.0.12)
     backports (3.13.0)
     bindex (0.7.0)
+    bootsnap (1.4.3)
+      msgpack (~> 1.0)
     builder (3.2.3)
     capybara (3.16.2)
       addressable
@@ -149,6 +151,7 @@ GEM
     minitest-spec-rails (5.5.0)
       minitest (~> 5.0)
       rails (>= 4.1)
+    msgpack (1.2.9)
     multi_json (1.13.1)
     multi_test (0.1.2)
     nio4r (2.3.1)
@@ -247,6 +250,7 @@ PLATFORMS
 
 DEPENDENCIES
   authorization
+  bootsnap (>= 1.1.0)
   bundler (= 2.0.1)
   capybara-webkit
   capybara_minitest_spec

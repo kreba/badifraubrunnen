@@ -8,8 +8,8 @@ gem 'bundler', '2.0.1'
 
 gem 'rails', '~> 5.2.0'
 
-# Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
-gem 'nested_form', '~> 0.3.2', :git => 'https://github.com/ryanb/nested_form.git'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 
 # A more robust alternative to the Webrick webserver
 gem 'puma'
@@ -45,6 +45,9 @@ gem 'authorization'
 
 # For email validation (inkl live check whether the domain exists)
 gem 'email_veracity'
+
+# Form helper plug-in by Ryan Bates (eg, offers a simple 'add element' link for nested forms)
+gem 'nested_form', '~> 0.3.2', :git => 'https://github.com/ryanb/nested_form.git'
 
 gem 'sass-rails'
 gem 'coffee-rails'
