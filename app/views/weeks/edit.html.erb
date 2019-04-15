@@ -23,7 +23,7 @@
 
 <% unless current_person.has_role? 'admin'  %>
   <p><em>
-      <%= t('weeks.edit.warning', admin_names: @admin_names).gsub("\n","<br />") %><br />
+      <%= t('weeks.edit.warning', admin_names: @admin_names.join(" #{t('or')} ")).html_safe %><br />
       <%= link_to( t('help.contact.title') , controller: 'help', action: 'contact' )%><br />
       <br />
       <%=t 'abort_with_backbutton' %>

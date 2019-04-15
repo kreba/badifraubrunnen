@@ -84,7 +84,7 @@ class ShiftsController < ApplicationController
 
     @admin_names = Person.select([:id, :name]).select{ |p|
       p.is_admin_for? @shift.saison
-    }.collect(&:name).join(" #{t('or')} ")
+    }.collect(&:name)
   end
 
   # PUT /shifts/1

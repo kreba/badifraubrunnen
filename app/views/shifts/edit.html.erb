@@ -19,7 +19,7 @@
     </p>
   <% end %>
   <p><br /><em>
-      <%= t('shifts.edit.warning', admin_names: @admin_names).html_safe %><br />
+      <%= t('shifts.edit.warning', admin_names: @admin_names.join(" #{t('or')} ")).html_safe %><br />
       <%= link_to( t('help.contact.title') , controller: 'help', action: 'contact' )%><br />
       <br />
       <%=t 'abort_with_backbutton' %>
