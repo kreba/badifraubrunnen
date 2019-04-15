@@ -102,7 +102,6 @@ class ShiftsController < ApplicationController
 
     respond_to do |format|
       if @shift.update(shift_params)
-        @day.create_status_image
         flash[:notice] = t'shifts.update.success'
         format.html { redirect_to( week_path(@week) ) }
         format.xml  { head :ok }

@@ -90,9 +90,6 @@ de_ch:
       add_shift: Eine Schicht hinzufügen
 
   cache:
-    imagine:
-      title: Bilder neu erzeugen
-      success: "Alle Bilder wurden neu erzeugt. Hoffentlich stimmt alles ;) <br />Nicht vergessen: Browser-Cache löschen! (F5)"
     sweep:
       title: Cache löschen
       success: Alle Seitenfragmente im Server-Cache wurden gelöscht.

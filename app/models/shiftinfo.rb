@@ -22,11 +22,4 @@ class Shiftinfo < ApplicationRecord
     Shiftinfo.includes(:saison).where(cond).collect{|si| "%2d: %12s, %s  %s"% [si.id, si.description, si.times_str, si.saison.name]}
   end
 
-
-  private
-
-  def update_status_image_of_all_days_of_associated_shifts
-    shifts.each { |shift| shift.day.create_status_image }
-  end
-
 end

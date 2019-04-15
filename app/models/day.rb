@@ -15,7 +15,6 @@ class Day < ApplicationRecord
   def shift_attributes=( attrs ) # invoked on an update (that is, on submitting an update form)
     # assert existance
     self.shifts.update(attrs.keys, attrs.values)
-    #self.create_status_image is invoked on a shift update
   end
 
   def date_str fmt = '%A %d.%m.%Y'

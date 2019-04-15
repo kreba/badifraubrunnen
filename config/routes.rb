@@ -36,7 +36,6 @@ Rails.application.routes.draw do
   get '/help' => 'help#contact', as: 'help'
 
   namespace :tasks, path: 'sudo', as: nil do
-    post 'imagine'
     post 'cachesweep'
   end
 
