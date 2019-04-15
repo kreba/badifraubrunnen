@@ -18,17 +18,6 @@ class Day < ApplicationRecord
     #self.create_status_image is invoked on a shift update
   end
 
-  # Heroku has a read-only file system, hence we created all status images upfront.
-  def create_status_image
-    shifts = self.shifts.includes(:shiftinfo => :saison)
-    DayImagesGenerator.create_status_image(shifts)
-  end
-
-  def status_image_name
-    shifts = self.shifts.includes(:shiftinfo => :saison)
-    DayImagesGenerator.status_image_name(shifts)
-  end
-
   def date_str fmt = '%A %d.%m.%Y'
     I18n.l self.date, format: fmt
   end

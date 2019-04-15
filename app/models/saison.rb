@@ -29,10 +29,10 @@ class Saison < ApplicationRecord
     name == 'kiosk'
   end
   def self.badi
-    find_by name: 'badi'
+    @@badi ||= find_by name: 'badi'
   end
   def self.kiosk
-    find_by name: 'kiosk'
+    @@kiosk ||= find_by name: 'kiosk'
   end
 
   def self.daytime_limits

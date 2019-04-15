@@ -9,7 +9,7 @@ class WeeksController < ApplicationController
   # GET /weeks.xml
   def index
     @saisons = current_person.all_saisons_but_mine_first
-    @weeks = Week.all.order(:number)
+    @weeks = Week.all.order(:number).includes(:days => {:shifts => {:shiftinfo => :saison}})
     # no eager loading required; in 'past?', the date is calculated from the number, not from the related days.
     @past_weeks   = @weeks.select(&:past?)
     @future_weeks = @weeks.reject(&:past?)
@@ -126,6 +126,7 @@ class WeeksController < ApplicationController
     flash[:notice] = t 'weeks.enable.success', number: @week.number
     redirect_back_or_default(weeks_path)
   end
+
   # POST /weeks/1/disable
   def disable
     @week = Week.find(params[:id])

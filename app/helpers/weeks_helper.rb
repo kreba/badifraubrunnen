@@ -20,14 +20,9 @@ module WeeksHelper
     }
 
     if day.timely_active?
-      begin
-        options.merge background: image_path(day.status_image_name)
-      rescue Sprockets::Rails::Helper::AssetNotFound
-        options.merge background: image_path('attention-icon.png')
-      end
-      # do something with an image_tag instead? (enables browser-side caching)
+      options.merge style: "background: #{DayStyle.status_background(day.shifts)}, #eeeeee;"
     else
-      options.merge style: "background-color:#dddddd; color:#ffffff;"
+      options.merge style: "background: #e0e0e0; color: #ffffff;"
     end
   end
   def week_html_id( week )
@@ -38,6 +33,78 @@ module WeeksHelper
         tag.span(text, {style: "width: 100%; height: inherit; margin: #{padding};"}),
         target, {style: "width: #{WeekPlanDisplayData::DAY_WIDTH}px; height: inherit; display: table-cell; vertical-align: middle;", class: 'noprint'} )
   end
+
+
+  class DayStyle
+
+    def self.status_background( shifts )
+      status_background2(shifts.map{ |s| color_for_shift(s) })
+    end
+
+    def self.status_background2( colors )
+      target_height_px = 80
+      target_gap_height_px = 1
+
+      gap_height = 100.0 * target_gap_height_px / target_height_px
+      remaining_height = 100.0 - (colors.length - 1) * gap_height
+      bar_height = remaining_height / colors.length
+
+      pos = 0.0
+      segments = []
+      colors.each.with_index do |color, idx|
+        pos0 = pos
+        pos1 = pos + bar_height
+        pos2 = pos + bar_height + gap_height
+        pos = pos2
+
+        bar_segment = [color, pos0, pos1]
+        segments << bar_segment
+
+        unless idx == colors.length - 1
+          gap_segment = ['transparent', pos1, pos2]
+          segments << gap_segment
+        end
+      end
+
+      segments_dedup = segments.reduce([]) do |segments, s2|
+        if segments.none?
+          [s2]
+        else
+          s1 = segments.pop
+          col1, pos1a, _ = s1
+          col2, _, pos2b = s2
+          if col1 == col2
+            segments << [col1, pos1a, pos2b]
+          else
+            segments << s1 << s2
+          end
+        end
+      end
+
+      "linear-gradient(to bottom, #{segments_dedup.map{ |s| '%s %.1f%% %.1f%%' % s }.join(", ")})"
+    end
+
+
+    private
+
+    def self.color_for_shift(shift)
+      case [shift.saison.name, shift.status]
+      when [Saison.badi.name,  :taken   ] then 'transparent'
+      when [Saison.badi.name,  :free    ] then 'rgba( 38, 158, 0, 0.6)'
+      when [Saison.badi.name,  :disabled] then 'rgba( 38, 158, 0, 0.3)'
+      when [Saison.kiosk.name, :taken   ] then 'transparent'
+      when [Saison.kiosk.name, :free    ] then 'rgba(255, 255, 0, 0.6)'
+      when [Saison.kiosk.name, :disabled] then 'rgba(255, 255, 0, 0.3)'
+      else 'red'
+      end
+    end
+
+    def self.sorted_for_status_image(shifts)
+      shifts.sort_by{ |s| [s.shiftinfo.saison_id, s.shiftinfo.begin_plus_offset] }
+    end
+
+  end
+
 
   class WeekPlanDisplayData
     extend Memoist
