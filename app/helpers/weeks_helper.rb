@@ -38,10 +38,15 @@ module WeeksHelper
   class DayStyle
 
     def self.status_background( shifts )
-      status_background2(sorted_for_status_image(shifts).map{ |s| color_for_shift(s) })
+      if shifts.any?
+        colors = sorted_for_status_image(shifts).map{ |s| color_for_shift(s) }
+        status_background_gradient(colors)
+      else
+        'none'
+      end
     end
 
-    def self.status_background2( colors )
+    def self.status_background_gradient( colors )
       target_height_px = 80
       target_gap_height_px = 1
 
@@ -49,43 +54,44 @@ module WeeksHelper
       remaining_height = 100.0 - (colors.length - 1) * gap_height
       bar_height = remaining_height / colors.length
 
-      pos = 0.0
       segments = []
+
+      pos = 0.0
       colors.each.with_index do |color, idx|
         pos0 = pos
         pos1 = pos + bar_height
         pos2 = pos + bar_height + gap_height
         pos = pos2
 
-        bar_segment = [color, pos0, pos1]
-        segments << bar_segment
+        bar_from_to = [color, pos0, pos1]
+        segments << bar_from_to
 
         unless idx == colors.length - 1
-          gap_segment = ['transparent', pos1, pos2]
-          segments << gap_segment
+          gap_from_to = ['transparent', pos1, pos2]
+          segments << gap_from_to
         end
       end
 
-      segments_dedup = segments.reduce([]) do |segments, s2|
-        if segments.none?
+      segments = segments.reduce([]) do |segments_dedup, s2|
+        if segments_dedup.none?
           [s2]
         else
-          s1 = segments.pop
-          col1, pos1a, _ = s1
-          col2, _, pos2b = s2
-          if col1 == col2
-            segments << [col1, pos1a, pos2b]
+          s1 = segments_dedup.pop
+          color1, from1, _to1 = s1
+          color2, _from2, to2 = s2
+          if color1 == color2
+            segments_dedup << [color1, from1, to2]
           else
-            segments << s1 << s2
+            segments_dedup << s1 << s2
           end
         end
       end
 
-      "linear-gradient(to bottom, #{segments_dedup.map{ |s| '%s %.1f%% %.1f%%' % s }.join(", ")})"
+      segments = segments.flat_map{ |(color, posA, posB)| [[color, posA], [color, posB]] }
+      segments = segments[1..-2] if segments.length > 2
+
+      "linear-gradient(to bottom, #{segments.map{ |s| '%s %.1f%%' % s }.join(", ")})"
     end
-
-
-    private
 
     def self.color_for_shift(shift)
       case [shift.saison.name, shift.status]
