@@ -38,7 +38,7 @@ module WeeksHelper
   class DayStyle
 
     def self.status_background( shifts )
-      status_background2(shifts.map{ |s| color_for_shift(s) })
+      status_background2(sorted_for_status_image(shifts).map{ |s| color_for_shift(s) })
     end
 
     def self.status_background2( colors )
