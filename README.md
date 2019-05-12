@@ -4,29 +4,27 @@ Badi2010
 0. Systemvoaussetzungen (Entwicklermaschine)
 --------------------------------------------
 
-Das gem pg für postgresql-Datenbanken benötigt einen lokalen Postgres-Server:
+Das gem pg für postgresql-Datenbanken benötigt einen Postgres-Server. 
+Ein solcher kann zu Entwicklungszwecken lokal installiert werden:
 
     sudo aptitude install postgresql-9.6 postgresql-server-dev-9.6
+    sudo su postgres -c "createuser --createdb --login --pwprompt badifraubrunnen"
 
-Die Bilder für die Saisonübersicht werden mit RMagick erstellt, was ein lokales ImageMagick benötigt:
-
-    sudo aptitude install libmagickwand-dev
-
-Capybara-Webkit benötigt Qt etc
+Capybara-Webkit benötigt die Entwicklerbibliotheken von Qt.
 Siehe https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit#debian--ubuntu 
 
-    sudo aptitude install qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+    sudo aptitude install libqt5webkit5-dev
 
-Die Javascript-Funktionalitäten benötigen offenbar eine lokale Runtime:
+Ruby muss natürlich installiert sein. Und die Javascript-Funktionalitäten benötigen offenbar eine lokale Runtime.
+Beides kann mit asdf installiert werden (aus dem project root):
 
-    sudo aptitude install nodejs
+    asdf install
 
 Das Zwischenspeichern von Seitenfragmenten geschieht mithilfe von memcached (via Dalli):
 
     sudo aptitude install memcached
 
-Ausserdem sollten git, rvm und der heroku-toolbelt installiert werden:
-Siehe https://rvm.io/rvm/install/
+Ausserdem sollten git und der Heroku-Toolbelt installiert werden:
 Siehe https://devcenter.heroku.com/articles/quickstart
 
     sudo aptitude install git

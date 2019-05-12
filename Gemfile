@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby File.read(__dir__ + '/.ruby-version').match(/([0-9.]+)/)[1]
+ruby File.read(__dir__ + '/.tool-versions').match(/^ruby ([0-9.]+)/)[1]
 
 # Not the newest, but Heroku uses only very specific versions of bundler.
 # See https://devcenter.heroku.com/articles/bundler-version
@@ -30,11 +30,6 @@ gem 'dalli'
 
 # Replaces ActiveSupport::Memoization
 gem 'memoist'
-
-# To generate images (used for the images in the weeks_table)
-# System requirements: libmagickwand-dev
-# On Mac, try: brew install imagemagick
-gem 'rmagick'
 
 # To generate PDF files from HTML
 # Requires the executable 'wkhtmltopdf' to be available
