@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190414185455) do
+ActiveRecord::Schema.define(version: 2019_05_12_143152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20190414185455) do
   create_table "days", id: :serial, force: :cascade do |t|
     t.integer "week_id"
     t.date "date"
+    t.string "admin_remarks"
     t.index ["date"], name: "index_days_on_date"
     t.index ["week_id"], name: "index_days_on_week_id"
   end

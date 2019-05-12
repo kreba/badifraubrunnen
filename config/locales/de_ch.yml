@@ -86,6 +86,7 @@ de_ch:
       forth_one_week: nächste Woche
     show:
       title: Tagesansicht für den %{date_str}
+      admin_remarks_placeholder: Bemerkungen (nur sichtbar für Administratoren)
       destroy_shift: Schicht entfernen
       add_shift: Eine Schicht hinzufügen
 

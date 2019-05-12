@@ -7,6 +7,17 @@
 
 <h3><%= t('date.day_names')[@day.date.wday % 7] + " KW " + @week.number.to_s %></h3>
 
+<% if current_person.is_admin? %>
+  <%= form_for @day do |f| %>
+    <div>
+      <%= f.text_area :admin_remarks, rows: 5, placeholder: t( 'days.show.admin_remarks_placeholder' ) %>
+    </div>
+    <div>
+      <%= f.submit( t'Save' ) %>
+    </div>
+  <% end %>
+<% end %>
+
 <% for saison in current_person.admin_saisons %>
   <%= render partial: 'saison_for_admin', 
              layout:  'days/saison_wrapper',

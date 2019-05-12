@@ -8,6 +8,15 @@ td {
     border: solid red 2px;
 }
 
+.edit_day #day_admin_remarks {
+    width: 630px;
+    padding: 0.5em;
+}
+.edit_day .add_nested_fields {
+    display: inline-block;
+    padding: 0.5em;
+}
+
 /* ID styles */
 div.flash {
     padding: 1em;

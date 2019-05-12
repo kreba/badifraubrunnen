@@ -1,6 +1,6 @@
 class DaysController < ApplicationController
 
-  before_action except: [:show, :edit, :update] do |c| c.restrict_access 'webmaster' end
+  before_action except: [:show, :update] do |c| c.restrict_access 'webmaster' end
   cache_sweeper :week_sweeper, only: [:update]
 
   # GET /weeks/1/days/1
@@ -38,7 +38,7 @@ class DaysController < ApplicationController
   private
 
   def day_params
-    params.require(:day).permit(shifts_attributes: [:id, :shiftinfo_id, :person_id, :_destroy])
+    params.require(:day).permit(:admin_remarks, shifts_attributes: [:id, :shiftinfo_id, :person_id, :_destroy])
   end
 
 end
