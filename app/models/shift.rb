@@ -5,7 +5,7 @@ class Shift < ApplicationRecord
 
   belongs_to :shiftinfo
   belongs_to :day
-  belongs_to :person, optional: true
+  belongs_to :person, optional: true # Helfer*in
 
   delegate :saison, :saison=, :times_str,  to: :shiftinfo  # allow_nil: true
 

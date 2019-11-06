@@ -3,7 +3,7 @@ class Week < ApplicationRecord
   acts_as_authorizable; include AutHack
 
   has_many :days
-  belongs_to :person  #Wochenverantwortliche/r
+  belongs_to :person, optional: true  #Wochenverantwortliche*r
 
   before_validation :assign_7_days, on: :create
   after_destroy :destroy_all_days
