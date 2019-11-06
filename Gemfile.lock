@@ -247,7 +247,7 @@ PLATFORMS
 DEPENDENCIES
   authorization
   bootsnap (>= 1.1.0)
-  bundler (= 2.0.1)
+  bundler (= 2.0.2)
   capybara-webkit
   capybara_minitest_spec
   coffee-rails
@@ -277,7 +277,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 2.6.5p114
 
 BUNDLED WITH
-   2.0.1
+   2.0.2

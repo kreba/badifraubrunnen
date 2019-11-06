@@ -4,7 +4,7 @@ ruby File.read(__dir__ + '/.tool-versions').match(/^ruby ([0-9.]+)/)[1]
 # Not the newest, but Heroku uses only very specific versions of bundler.
 # See https://devcenter.heroku.com/articles/bundler-version
 # NB: Use specific versions of bundler like this: bundle _1.15.2_ update
-gem 'bundler', '2.0.1'
+gem 'bundler', '2.0.2'
 
 gem 'rails', '~> 5.2.0'
 
