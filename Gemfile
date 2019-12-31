@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby File.read(__dir__ + '/.tool-versions').match(/^ruby ([0-9.]+)/)[1]
+ruby File.read(__dir__ + '/.tool-versions').match(/^ruby ([0-9.]+)/)[1] rescue puts "Gemfile failed to set ruby version"
 
 # Not the newest, but Heroku uses only very specific versions of bundler.
 # See https://devcenter.heroku.com/articles/bundler-version
