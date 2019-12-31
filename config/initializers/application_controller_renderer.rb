@@ -2,7 +2,7 @@
 
 # ActiveSupport::Reloader.to_prepare do
 #   ApplicationController.renderer.defaults.merge!(
-#     http_host: 'badifraubrunnen.herokuapp.com',
+#     http_host: 'example.org',
 #     https: false
 #   )
 # end
