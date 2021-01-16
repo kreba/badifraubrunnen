@@ -5,7 +5,7 @@
 
 <%=t 'weeks.new.taken_numbers' %>: <%= Week.all.collect(&:number).sort.join(', ') %>
 
-<%= form_with model: @week, local: true do |f| %>
+<%= form_with model: @week do |f| %>
   <p>
     <b><%=t 'weeks.new.week_number_label' %></b><br />
     <%= f.text_field :number %>

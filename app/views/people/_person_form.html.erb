@@ -1,6 +1,6 @@
 <%= render( 'shared/error_messages', obj: @person ) %>
 
-<%= form_with model: @person, local: true do |f| %><div>
+<%= form_with model: @person do |f| %><div>
 
   <!-- This should soak up the browser's password autocomplete attempts -->
   <input type="password" style="display: none;" readonly />

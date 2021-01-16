@@ -4,7 +4,7 @@
   <%=t 'sessions.infopage_reference.html' %>
 </p>
 
-<%= form_with url: login_path, local: true do |f| %>
+<%= form_with url: login_path do |f| %>
   <p><label for="login"><%=t 'person.attributes.login' %></label><br />
   <%= f.text_field 'login' %></p>
 
