@@ -6,7 +6,7 @@ ruby File.read(__dir__ + '/.tool-versions').match(/^ruby ([0-9.]+)/)[1] rescue p
 # NB: Use specific versions of bundler like this: bundle _1.15.2_ update
 gem 'bundler', '2.2.3'
 
-gem 'rails', '~> 6.0.0'
+gem 'rails', '~> 6.1.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
