@@ -26,8 +26,6 @@ Rails.application.configure do
     }
   else
     config.action_controller.perform_caching = false
-
-    config.cache_store = :dalli_store # keep in sync with the production env
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
