@@ -1,35 +1,66 @@
 Badi2010
 ========
+                
+Webapplikation zur Koordination der Helfer*innen der Badi Fraubrunnen.
+
+Die Applikation ist mit Ruby on Rails gebaut und läuft auf Heroku. Als Datenbank kommt Postgres zum Einsatz.
+Für bessere Performance werden Seitenfragmente serverseitig im Cache gehalten. Hierzu verwenden wir Memcache.
+
 
 0. Systemvoaussetzungen (Entwicklermaschine)
 --------------------------------------------
 
-Das gem pg für postgresql-Datenbanken benötigt einen Postgres-Server. 
-Ein solcher kann zu Entwicklungszwecken lokal installiert werden:
+> _Die unten aufgeführten Kommandos gehen davon aus, dass die Entwicklermaschine unter einem __Linux__-Betriebssystem läuft. <br>
+> Unter __MacOS__ funktioniert vieles ähnlich und zur Installation von Systemkomponenten empfiehlt sich [Homebrew](https://brew.sh/). <br>
+> Unter __Windows__ kann man auch entwickeln, aber das kann haarig werden. Viel Glück!_  
 
-    sudo aptitude install postgresql-9.6 postgresql-server-dev-9.6
-    sudo su postgres -c "createuser --createdb --login --pwprompt badifraubrunnen"
+Das Versionsmanagement erfolgt mittels [Git](https://git-scm.com/).
 
-Capybara-Webkit benötigt die Entwicklerbibliotheken von Qt.
-Siehe https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit#debian--ubuntu 
+    sudo apt install git
 
-    sudo aptitude install libqt5webkit5-dev
-
-Ruby muss natürlich installiert sein. Und die Javascript-Funktionalitäten benötigen offenbar eine lokale Runtime.
-Beides kann mit asdf installiert werden (aus dem project root):
+Nebst Ruby müssen Postgres und NodeJS installiert sein, gemäss der Datei `.tool-versions`. 
+Das geht z.B. praktisch mit [asdf-vm](https://asdf-vm.com/). 
+Damit kann man im besten Fall im Projektverzeichnis diesen Befehl ausführen und fertig:
 
     asdf install
 
-Das Zwischenspeichern von Seitenfragmenten geschieht mithilfe von memcached (via Dalli):
+Evtl muss dann der Postgres-Server noch gestartet werden. 
+Der zweite Befehl listet alle Datenbanken in diesem Server (bzw. Cluster) auf.
+ 
+    pg_ctl start   
+    psql -l
 
-    sudo aptitude install memcached
+Je nachdem kann es praktisch sein, einen eigenen Datenbank-Superuser anzulegen:
 
-Ausserdem sollten git und der Heroku-Toolbelt installiert werden:
-Siehe https://devcenter.heroku.com/articles/quickstart
+    createuser --echo --superuser $(whoami)
 
-    sudo aptitude install git
+Die Applikation bekommt ihre eigene, lokale Development-Datenbank. Diese wird in `config/database.yml` konfiguriert. 
+Damit jeder Entwickler die Hoheit über sein eigenes Setup behält, haben wir davon nur eine Beispieldatei im Repo.  
 
-Siehe auch Gemfile.
+    # Gib dem User das Passwort "badifraubrunnen" gemäss config/database.yml
+    createuser --echo --createdb --login --pwprompt badifraubrunnen
+
+Um die Development-Datenbank aus dem Projektverzeichnis heraus praktisch verwenden zu können, können die entsprechenden
+Umgebungsvariabeln für Postgres gesetzt werden. Dies z.B. mittels [Direnv](https://direnv.net/).
+
+    # Datei .envrc im Projektverzeichnis mit folgendem Inhalt:
+    export PGHOST=localhost
+    export PGUSER=badifraubrunnen
+    export PGDATABASE=badifraubrunnen_dev
+
+
+Automatisierte Tests verwenden z.T. Capybara-Webkit, dieses benötigt die Entwicklerbibliotheken von Qt.
+Siehe https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit#debian--ubuntu 
+
+    sudo apt install libqt5webkit5-dev
+
+Das Zwischenspeichern von Seitenfragmenten geschieht mithilfe von Memcache (via Dalli). 
+Auf der Entwicklermaschine könnte man auch einfach einen In-Memory-Cache verwenden, aber es empfiehlt sich,
+mit einem möglichst produktionsnahen Setup zu entwickeln.
+
+    sudo apt install memcached
+
+Allenfalls hat es noch weitere Instruktionen im `Gemfile`.
 
 
 1. Technische Überlegungen
@@ -59,11 +90,11 @@ Personen können nebst ihrer Identität (inkl. Name, Adresse) auch
 mehrere Rollen haben.
 
 Für die Badi:
-staff kann
+`staff` kann
 - an mehreren Tagen hüten und für mehrere Wochen verantwortlich sein.
 - seine/ihre belegten Schichten auflisten
 
-admin kann
+`admin` kann
 - Saison-Daten festlegen (nur badi)
 - Schichten pro Tag und deren Schichtenzeiten bearbeiten (nur badi)
 - Tage explizit inaktivieren (nur badi) (Schichteneigenschaft; Sammelaktion pro Tag)
@@ -75,7 +106,7 @@ Die Rollen staff und admin gibt es auch für den Kiosk, jedoch auf einem separat
 Satz Schichten (Eigenschaft badi/kiosk als attribut der shiftinfos). Badi und
 Kiosk sind (in der DB persistierte) instanzen eines Saison-Objekts
 
-webmaster kann
+`webmaster` kann
 - alle administrativen Aufgaben für badi + kiosk ausführen
 
 
@@ -93,6 +124,7 @@ Ohne Anmeldung kann Jede/r
 
 2. Wie setze ich eine Saison auf?
 ---------------------------------
+
 Dann in der "script/console production":
 - evtl. vorhandene Daten mittels "Week.destroy_all" vernichten
 - (19..37).each{|n| Week.create!( number: n )}
@@ -105,9 +137,38 @@ Achtung: Alle Schichten sind standardmässig aktiviert.
 Dies kann aber z.B. mittels "Week.all.each{|w| w.disable(Saison.badi)}" bequem geändert werden.
 
 et voilà! :D
+ 
 
-3. Backup und Restore
+3. Deployment
+-------------
+
+Es laufen zwei Instanzen der Applikation auf [Heroku](https://www.heroku.com).
+Die PROD-Umgebung ist für den laufenden Betrieb gedacht. Die DEMO-Umgebung enthält keine vertraulichen Personendaten
+oder Passwörter und kann für Demonstrationszwecke benutzt werden, z.B. für ein Entwickler-Portfolio.
+
+Zur Kontrolle der Instanzen auf Heroku sollte deren CLI installiert werden. Instruktionen dazu siehe 
+
+    https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+
+Dann einloggen und aus dem Projektverzeichnis heraus mit der bestehenden Applikation verbinden:
+
+    heroku login
+    heroku git:remote --app=badifraubrunnen --remote=prod
+    heroku git:remote --app=badifraubrunnen-demo --remote=demo
+    git remote -v
+    
+Das fügt dem lokalen Git-Repository weitere Remote-Repositories namens `prod` und `demo` hinzu.
+Anschliessend kann man den aktuellen Code ganz einfach mittels Git-Push auf Heroku deployen:
+                                                                                            
+    git push prod
+
+Es gibt auch viele hilfreiche Artikel hierzu im 
+[Devcenter von Heroku](https://devcenter.heroku.com/articles/git#for-an-existing-heroku-app).
+
+
+4. Backup und Restore
 ---------------------
+
 Da die Applikation auf Heroku läuft, werden DB-Backups dort erstellt. 
 Infos zu allen verfügbaren Kommandos erhält man mit 
 
@@ -117,8 +178,11 @@ So zum Beispiel
 
     heroku pg:backups
     heroku pg:backups:capture
+    heroku pg:backups:download
+    mv latest.dump db/badifraubrunnen_$(date --iso).dump
     
 Um lokal mit einer produktionsnahen DB zu arbeiten, kann die DB von Heroku lokal kopiert werden.
 
-    heroku pg:pull ORANGE postgres://badifraubrunnen@localhost/badifraubrunnen_development
+    dropdb badifraubrunnen_dev
+    heroku pg:pull ORANGE badifraubrunnen_dev
 

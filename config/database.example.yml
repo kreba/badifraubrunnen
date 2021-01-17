@@ -1,0 +1,23 @@
+# Database credentials.
+# NB: There is no `production` section because this file will be overwritten by Heroku upon deployment.
+
+development:
+  adapter: postgresql
+  host: localhost
+  database: badifraubrunnen_dev
+  encoding: utf-8
+  pool: 5
+  username: badifraubrunnen
+  password: badifraubrunnen
+
+test: &test
+  adapter: postgresql
+  host: localhost
+  database: badifraubrunnen_test
+  encoding: utf-8
+  pool: 5
+  username: badifraubrunnen
+  password: badifraubrunnen
+
+cucumber:
+  <<: *test
