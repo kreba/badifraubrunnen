@@ -178,11 +178,11 @@ Deshalb muss alle Jahre wieder ein Entwickler den Jahreswechsel vornehmen.
 Dafür gibt es noch kein Skript, aber ungefähr so wird das aussehen:
 
     $ bin/rails console
-    d0 = Saison.badi.begin; d1 = Date.commercial(d1.year + 1, d1.cweek, d1.cwday)
+    d0 = Saison.badi.begin; d1 = Date.commercial(d0.year + 1, d0.cweek, d0.cwday)
     diff = d1 - d0 # meist äquivalent zu 52.weeks, aber manche Jahre auch 53.weeks
-    Saison.all.each{ |s| s.update begin: s.begin + diff, end: s.end + diff }
-    Shift.all.each{ |s| s.update person: nil, enabled: false }
-    Week.all.each{ |w| w.update person: nil, enabled_saisons: "" }
-    Day.all.each{ |d| d.update date: d.date + diff, admin_remarks: nil }
+    Saison.all.each{ |s| s.update! begin: s.begin + diff, end: s.end + diff }
+    Shift.all.each{ |s| s.update! person: nil, enabled: false }
+    Week.all.each{ |w| w.update! person: nil, enabled_saisons: "" }
+    Day.all.each{ |d| d.update! date: d.date + diff, admin_remarks: nil }
 
 et voilà! :D
