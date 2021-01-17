@@ -61,49 +61,6 @@ class Saison < ApplicationRecord
     people_by_saison_for_role('admin', people)
   end
 
-  #see README_FOR_APP for instructions how to set up a saison
-  def self.long_days
-    high_saison = Day.includes(:week).select{ |day| (25..35).include?(day.week.number) }
-    week_end    = Day.all.select{ |day| %w'Sat Sun'.include? day.date.strftime( '%a' ) }
-
-    high_saison | week_end
-  end
-  def self.short_days
-    Day.all - long_days
-  end
-
-  def self.tear_down_set_up
-    transaction do
-      Week.destroy_all
-
-      (19..36).each{|kw| raise('af') unless Week.create(number: kw) }
-
-      Day.all.each do |day|
-        day.shifts << Shift.new(shiftinfo_id:  1)
-        day.shifts << Shift.new(shiftinfo_id: 12)
-        day.shifts << Shift.new(shiftinfo_id:  6)
-
-        day.shifts << Shift.new(shiftinfo_id: 32)
-        day.shifts << Shift.new(shiftinfo_id: 33)
-        day.shifts << Shift.new(shiftinfo_id: 35)
-
-        case day.date.wday % 7
-        when 1, 2, 3, 4, 5
-          day.shifts << Shift.new(shiftinfo_id:  3)
-          day.shifts << Shift.new(shiftinfo_id: 38)
-        when 6, 0
-          day.shifts << Shift.new(shiftinfo_id: 39)
-          day.shifts << Shift.new(shiftinfo_id: 40)
-          day.shifts << Shift.new(shiftinfo_id: 41)
-        else
-          raise 'nnooooooeeees'
-        end
-      end
-
-      'Done.'
-    end
-  end
-
   private
   def self.people_by_saison_for_role( role_name, people )
     hash_by_saison(people){ |person, saison|

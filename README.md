@@ -122,24 +122,7 @@ Ohne Anmeldung kann Jede/r
 - Sich einloggen
 
 
-2. Wie setze ich eine Saison auf?
----------------------------------
-
-Dann in der "script/console production":
-- evtl. vorhandene Daten mittels "Week.destroy_all" vernichten
-- (19..37).each{|n| Week.create!( number: n )}
-- [1,12,6,3,32,33,35].each{|n| Saison.long_days.each{|day| Shift.create!(shiftinfo_id: n, day_id: day.id); day.save!}}
-- [26,27,28,29,30,33,36].each{|n| Saison.short_days.each{|day| Shift.create!(shiftinfo_id: n, day_id: day.id); day.save!}}
-- Saison.kiosk.update( begin: "2012-05-05", end: "2012-09-16" )
--  Saison.badi.update( begin: "2012-05-05", end: "2012-09-16" )
-
-Achtung: Alle Schichten sind standardmässig aktiviert.
-Dies kann aber z.B. mittels "Week.all.each{|w| w.disable(Saison.badi)}" bequem geändert werden.
-
-et voilà! :D
- 
-
-3. Deployment
+2. Deployment
 -------------
 
 Es laufen zwei Instanzen der Applikation auf [Heroku](https://www.heroku.com).
@@ -166,7 +149,7 @@ Es gibt auch viele hilfreiche Artikel hierzu im
 [Devcenter von Heroku](https://devcenter.heroku.com/articles/git#for-an-existing-heroku-app).
 
 
-4. Backup und Restore
+3. Backup und Restore
 ---------------------
 
 Da die Applikation auf Heroku läuft, werden DB-Backups dort erstellt. 
@@ -186,3 +169,20 @@ Um lokal mit einer produktionsnahen DB zu arbeiten, kann die DB von Heroku lokal
     dropdb badifraubrunnen_dev
     heroku pg:pull ORANGE badifraubrunnen_dev
 
+
+4. Saisonwechsel
+----------------
+
+Datenmodell und Benutzerkonzept sind darauf ausgelegt, nur ein einzelnes Jahr abzubilden. 
+Deshalb muss alle Jahre wieder ein Entwickler den Jahreswechsel vornehmen. 
+Dafür gibt es noch kein Skript, aber ungefähr so wird das aussehen: 
+                                          
+    $ bin/rails console
+    d1 = Saison.badi.begin; d2 = Date.commercial(d1.year + 1, d1.cweek, d1.cwday)
+    diff = d2 - d1 # meist äquivalent zu 52.weeks, aber manche Jahre auch 53.weeks
+    Saison.all.each{ |s| s.update begin: s.begin + diff, end: s.end + diff }
+    Shift.all.each{ |s| s.update person: nil, enabled: false }
+    Week.all.each{ |w| w.update person: nil, enabled_saisons: "" }
+    Day.all.each{ |d| d.update date: d.date + diff, admin_remarks: nil }
+
+et voilà! :D
