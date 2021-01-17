@@ -62,6 +62,14 @@ mit einem möglichst produktionsnahen Setup zu entwickeln.
 
 Allenfalls hat es noch weitere Instruktionen im `Gemfile`.
 
+Es hat ein Setup-Skript, welches nun ausgeführt werden können sollte:
+
+    bin/setup
+
+Dann kann die Applikation lokal laufen gelassen werden mit:
+                                                           
+    bin/rails server
+
 
 1. Technische Überlegungen
 --------------------------
@@ -71,52 +79,43 @@ letzten erstellten Tag (desselben Jahres). Evtl trotzdem als Attribut speichern.
 
 Jeder Tag gehört zu einer Woche.
 Die Organisation benutzt Wochenpläne, welche als PDF an die Helfer gemailt, 
-sowie ausgedruck und in der Badi angeschlagen werden. Jede Woche hat eine 
-verantwortliche Person (Wochenverantwortliche/r). Ausserdem können Wochen en
-bloc 'vergeben' werden. Aus diesem Grund soll auch nicht die gesamte Saison von
-anfang an verfügbar sein, d.h. Tage sollen 'inaktiviert' werden können, nachdem
-sie erstellt wurden.
-Evtl. explizite und implizite inaktivierung. Explizit durch Administrator
-(Datenbankattribut für Schichten; Sammelaktion für Tag); implizit durch Datum
-(z.B. von heute bis zum 1.7.09; Eigenschaften einer 'Saison').
+sowie ausgedruckt und in der Badi angeschlagen werden. Jede Woche hat eine 
+verantwortliche Person (Wochenverantwortliche/r). Ausserdem können Wochen en bloc
+'vergeben' werden. Aus diesem Grund ist i.d.R. auch nicht die gesamte Saison von
+Anfang an verfügbar, d.h. Helfer*innen können sich zu Beginn nicht überall eintragen.
+Administratoren können zu diesem Zweck jede Woche einzeln aktivieren/deaktivieren.  
+(Zusätzlich können nur Schichten an Tagen innerhalb der Saison aktiv sein.)
 
-Ein Tag ist im wesentlichen ein Kalenderdatum. Dazu gehören mehrere Schichten,
+Ein Tag ist im Wesentlichen ein Kalenderdatum. Dazu gehören mehrere Schichten,
 welche wiederum eine Start- und Endzeit sowie eine verantwortliche Person
-(Hüter/in) haben. Die Zeiten der Schichten und deren Anzahl sollen zu einem
-beliebigen Zeitpunkt geändert werden können. (evtl. halbautomatisch, d.h. für
-mehrere Schichten/Tage/Wochen gleichzeitig)
+(Hüter*in) haben. Die Zeiten der Schichten und deren Anzahl können zu einem
+beliebigen Zeitpunkt geändert werden.
 
-Personen können nebst ihrer Identität (inkl. Name, Adresse) auch
-mehrere Rollen haben.
+Personen können nebst ihrer Identität (inkl. Name, Adresse) auch eine oder mehrere 
+Rollen haben. Diese Rollen sind meist an eine Organisationseinheit gebunden. Diese
+sind im Datenmodell als separate "Saisons" abgebildet: `badi` und `kiosk`.
 
-Für die Badi:
 `staff` kann
 - an mehreren Tagen hüten und für mehrere Wochen verantwortlich sein.
 - seine/ihre belegten Schichten auflisten
 
 `admin` kann
-- Saison-Daten festlegen (nur badi)
-- Schichten pro Tag und deren Schichtenzeiten bearbeiten (nur badi)
-- Tage explizit inaktivieren (nur badi) (Schichteneigenschaft; Sammelaktion pro Tag)
-- Schichten Personen zuweisen oder freigeben
-- Wochen    Personen zuweisen oder freigeben
-- Personalien von badiStaff-Personen bearbeiten (inkl. Passwort)
-
-Die Rollen staff und admin gibt es auch für den Kiosk, jedoch auf einem separaten
-Satz Schichten (Eigenschaft badi/kiosk als attribut der shiftinfos). Badi und
-Kiosk sind (in der DB persistierte) instanzen eines Saison-Objekts
+- Schichten pro Tag und deren Schichtenzeiten bearbeiten
+- Das selbständige Eintragen für Helfer*innen wochenweise aktivieren/inaktivieren
+- Schichten Personen zuweisen oder freigeben (Kasse, Wasseraufsicht, Pikett, ...)
+- Wochen    Personen zuweisen oder freigeben (Wochenverantwortung)
+- Personalien von Personen bearbeiten (inkl. Passwort)
 
 `webmaster` kann
 - alle administrativen Aufgaben für badi + kiosk ausführen
 
-
-Ohne spezielle Rolle kann jeder angemeldete Benutzer
+Angemeldete Benutzer*innen ohne spezielle Rolle können
 - Die Planung einsehen (Saisonübersicht/Wochenansicht/Tagesansicht(/Schichtansicht))
-- Eine vollständige Personenliste anzeigen (evtl. einschränken gem. Rollen?)
+- Eine vollständige Personenliste anzeigen
 - Eigene Personalien bearbeiten
 - Sich ausloggen
 
-Ohne Anmeldung kann Jede/r
+Nicht angemeldete Benutzer*innen können
 - Die Hilfeseite anzeigen
 - Die Startseite anzeigen
 - Sich einloggen
