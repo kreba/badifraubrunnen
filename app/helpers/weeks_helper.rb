@@ -130,11 +130,8 @@ module WeeksHelper
       return instance
     end
 
-    def day_name( wday )
-      I18n.translate('date.abbr_day_names')[wday]
-    end
-    def h_offset( wday )
-      index = (wday - 1) % 7  # Monday..Sunday -> 0..6
+    def h_offset( cwday )
+      index = cwday - 1  # Monday..Sunday -> 0..6
       h_offset_day_count(index)
     end
     def h_offset_times
@@ -143,7 +140,7 @@ module WeeksHelper
         right: h_offset_day_count(7)
       }
     end
-    memoize :day_name, :h_offset, :h_offset_times
+    memoize :h_offset, :h_offset_times
 
     def style_for_wnum
       "float:       left;
@@ -158,7 +155,7 @@ module WeeksHelper
     end
     def style_for_day_header( day )
       "position: absolute;
-       left:     #{h_offset(day.date.wday)}px;
+       left:     #{h_offset(day.date.cwday)}px;
        width:    #{DAY_WIDTH}px;
        top:      0px;
        height:   #{HEADER_HEIGHT - 3}px;
@@ -166,7 +163,7 @@ module WeeksHelper
     end
     def style_for_day_body( day )
       "position: absolute;
-       left:     #{h_offset(day.date.wday)}px;
+       left:     #{h_offset(day.date.cwday)}px;
        width:    #{DAY_WIDTH}px;
        top:      #{HEADER_HEIGHT}px; "
     end
@@ -223,7 +220,6 @@ module WeeksHelper
     def h_offset_day_count( number_of_days )
       TIME_WIDTH + number_of_days * (DAY_WIDTH + 5)
     end
-    memoize :h_offset_day_count
 
     def v_offset_begin( shiftinfo )
       v_offset(shiftinfo.saison, shiftinfo.begin_plus_offset)

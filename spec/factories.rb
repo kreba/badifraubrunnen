@@ -59,11 +59,11 @@ FactoryGirl.define do |f|
 
   factory :day do
     transient do
-      wdaynum 1 # Monday
+      cwday 1 # Monday
     end
 
     association :week, strategy: :build
-    date { Date.commercial( ApplicationController::YEAR , week.number , wdaynum ) }
+    date { Date.commercial( ApplicationController::YEAR , week.number , cwday ) }
 
     after :build do |day|
       # Only relevant in case the week was generated (and not passed in)
@@ -76,8 +76,8 @@ FactoryGirl.define do |f|
     sequence(:number) { f.next_week_number }
 
     after :build do |week|
-      for wday in 1..7
-        week.days << build(:day, week: week, wdaynum: wday)
+      for cwday in 1..7
+        week.days << build(:day, week: week, cwday: cwday)
       end
     end
   end

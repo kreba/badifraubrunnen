@@ -5,7 +5,7 @@
 <% end %>
 
 
-<h3><%= t('date.day_names')[@day.date.wday % 7] + " KW " + @week.number.to_s %></h3>
+<h3><%= @day.date_str('%A') + ' KW ' + @week.number.to_s %></h3>
 
 <% if current_person.is_admin? %>
   <%= form_for @day do |f| %>
@@ -19,7 +19,7 @@
 <% end %>
 
 <% for saison in current_person.admin_saisons %>
-  <%= render partial: 'saison_for_admin', 
+  <%= render partial: 'saison_for_admin',
              layout:  'days/saison_wrapper',
              locals:  {saison: saison}
   %>

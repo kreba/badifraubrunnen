@@ -1,12 +1,12 @@
 <span style="<%= @dd.style_for_day_header(day) %>">
   <%= link_to_unless( @printout,
-                      content_for("day_header_#{day.date.wday}"),
+                      content_for("day_header_#{day.date.cwday}"),
                       day,
                       {title: t('days.show.title', date_str: day.date_str), class: "block"} ) %>
 </span>
 
 <span style="<%= @dd.style_for_day_body(day) %>">
-	<%= render( partial: 'week_plan_shift', 
+	<%= render( partial: 'week_plan_shift',
               collection: day.find_shifts_by_saison(saison), as: :shift,
               locals: { saison: saison } )%>
 </span>

@@ -59,9 +59,9 @@ class Week < ApplicationRecord
 
     year = ApplicationController::YEAR
     logger.debug( "(II) Building 7 days for week #{self.number} in year #{year}:" )
-    for wday in 1..7
-      @date = Date.commercial( year , self.number , wday )
-      logger.debug( "(II)   Day #{wday}:  #{@date.strftime( "%d.%m." )}" )
+    for cwday in 1..7
+      @date = Date.commercial( year , self.number , cwday )
+      logger.debug( "(II)   Day #{cwday}:  #{@date.strftime( "%d.%m." )}" )
       if Day.where(date: @date).exists?
         self.days << Day.find_by( date: @date )
       else
