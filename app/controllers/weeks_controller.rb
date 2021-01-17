@@ -10,9 +10,8 @@ class WeeksController < ApplicationController
   def index
     @saisons = current_person.all_saisons_but_mine_first
     @weeks = Week.all.order(:number).includes(:days => {:shifts => {:shiftinfo => :saison}})
-    # no eager loading required; in 'past?', the date is calculated from the number, not from the related days.
-    @past_weeks   = @weeks.select(&:past?)
-    @future_weeks = @weeks.reject(&:past?)
+    past_year = @saisons.first.begin.year < Date.today.year
+    @past_weeks, @future_weeks = @weeks.partition{ |w| past_year || w.number < Date.today.cweek }
 
     respond_to do |format|
       format.html # index.html.erb

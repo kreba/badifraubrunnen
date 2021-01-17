@@ -34,8 +34,8 @@ FactoryGirl.define do |f|
     end
 
     name { "Ressort_#{id}" }
-    self.begin  Date.commercial( ApplicationController::YEAR , 18 , 5 )
-    self.end    Date.commercial( ApplicationController::YEAR , 37 , 7 )
+    self.begin  Date.commercial( Date.today.year , 18 , 5 )
+    self.end    Date.commercial( Date.today.year , 37 , 7 )
 
     factory :badi do
       name 'badi'
@@ -63,7 +63,7 @@ FactoryGirl.define do |f|
     end
 
     association :week, strategy: :build
-    date { Date.commercial( ApplicationController::YEAR , week.number , cwday ) }
+    date { Date.commercial( Date.today.year , week.number , cwday ) }
 
     after :build do |day|
       # Only relevant in case the week was generated (and not passed in)

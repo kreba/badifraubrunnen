@@ -19,10 +19,6 @@ class Week < ApplicationRecord
     days.sort_by{ |day| day.date }
   end
 
-  def past?
-    return Date.commercial( ApplicationController::YEAR , self.number , 7 ) < Date.today;
-  end
-
   def enabled?( saison )
     self.enabled_saisons.split(Week.enabled_saisons_delimiter).include? saison.id.to_s
   end
@@ -57,7 +53,7 @@ class Week < ApplicationRecord
   def assign_7_days
     return if days.present?
 
-    year = ApplicationController::YEAR
+    year = Saison.first.begin.year
     logger.debug( "(II) Building 7 days for week #{self.number} in year #{year}:" )
     for cwday in 1..7
       @date = Date.commercial( year , self.number , cwday )

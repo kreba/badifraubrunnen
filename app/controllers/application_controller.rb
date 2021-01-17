@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
 
-  YEAR = Saison.first&.begin&.year || Date.today.year
-
   # Filters added to this controller apply to all controllers in the application.
   # Likewise, all the methods added will be available for all controllers.
   before_action :login_required
