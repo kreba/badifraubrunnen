@@ -12,12 +12,22 @@ class Day < ApplicationRecord
   validates_associated :shifts
   validates_presence_of :date
 
+  # Adds a where clause that selects by weekday (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+  def self.with_wday( *weekday_or_array )
+    weekdays = weekday_or_array.flatten
+    if weekdays.one?
+      where("extract(DOW from date) = #{weekdays.first}")
+    else
+      where("extract(DOW from date) in (#{weekdays.join(",")})")
+    end
+  end
+
   def shift_attributes=( attrs ) # invoked on an update (that is, on submitting an update form)
     # assert existance
     self.shifts.update(attrs.keys, attrs.values)
   end
 
-  def date_str fmt = '%A %d.%m.%Y'
+  def date_str( fmt = '%A %d.%m.%Y' )
     I18n.l self.date, format: fmt
   end
 
