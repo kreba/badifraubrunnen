@@ -1,8 +1,8 @@
 class PeopleController < ApplicationController
 
-  # Do not allow anyone to subscribe by themselfes
+  # Do not allow anyone to subscribe by themselves
   #skip_before_action :login_required, only: [:new, :create]
-  before_action except: [:edit, :find_location, :index, :update] do |c| c.restrict_access 'admin' end
+  before_action only: [:new, :create, :destroy] do |c| c.restrict_access ['admin', 'webmaster'] end
 
   # GET /people
   def index
