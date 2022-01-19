@@ -8,7 +8,7 @@ class PeopleController < ApplicationController
   def index
     @people = Person.order('name')
 
-    @csv_attributes = %w[ name address postal_code location phone phone2 email preferences roles_str ]
+    @csv_attributes = %w[ name address postal_code location phone phone2 email preferences roles_str brevet ]
     @csv_delimiter  = ';'
   end
 
